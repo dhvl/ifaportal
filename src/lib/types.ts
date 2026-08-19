@@ -1,9 +1,9 @@
 export type TemplateId = 'modern-wealth' | 'heritage-trust' | 'agile-dynamic';
 
 export interface IFABranding {
-  primaryColor: string; // e.g. '#0f2942'
-  secondaryColor: string; // e.g. '#c5a059'
-  accentColor: string; // e.g. '#2563eb'
+  primaryColor: string;
+  secondaryColor: string;
+  accentColor: string;
   fontFamily: 'inter' | 'playfair' | 'plus-jakarta';
   logoUrl?: string;
   heroHeadline: string;
@@ -44,16 +44,28 @@ export interface Testimonial {
   verifiedSource?: 'VouchedFor' | 'Trustpilot' | 'Google';
 }
 
+export interface IFAComplianceDetails {
+  fcaFrn: string;
+  isIndependent: boolean;
+  registeredOffice: string;
+  companyRegistrationNumber?: string;
+  fscsProtected: boolean; // FSCS £85,000 cover
+  mortgageWarningRequired: boolean; // "Your home may be repossessed..."
+  feeStructureSummary: string; // e.g. "Fixed initial advice fee + 0.50% - 0.75% p.a. ongoing management"
+  fcaStatusText: string;
+}
+
 export interface IFAClient {
   id: string;
   slug: string;
   firmName: string;
-  fcaFrn: string; // Firm Reference Number, e.g., "123456"
-  isIndependent: boolean; // Independent vs Restricted
+  fcaFrn: string;
+  isIndependent: boolean;
   registeredOffice: string;
   phone: string;
   email: string;
   address: string;
+  compliance: IFAComplianceDetails;
   branding: IFABranding;
   templateId: TemplateId;
   services: IFAService[];
@@ -76,6 +88,10 @@ export interface AdminQuestionnaireFormData {
   phone: string;
   email: string;
   address: string;
+  registeredOffice: string;
+  companyRegistrationNumber: string;
+  mortgageWarningRequired: boolean;
+  feeStructureSummary: string;
   templateId: TemplateId;
   primaryColor: string;
   secondaryColor: string;

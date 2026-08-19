@@ -68,9 +68,19 @@ export const INITIAL_CLIENTS: IFAClient[] = [
     phone: '0113 245 8900',
     email: 'enquiries@mlpwealth.co.uk',
     address: '12 Park Square, Leeds, West Yorkshire, LS1 2JH',
+    compliance: {
+      fcaFrn: '592810',
+      isIndependent: true,
+      registeredOffice: 'MLP House, 12 Park Square, Leeds, LS1 2JH',
+      companyRegistrationNumber: '08129402',
+      fscsProtected: true,
+      mortgageWarningRequired: true,
+      feeStructureSummary: 'Transparent fixed initial consultation + 0.50% - 0.75% p.a. ongoing discretionary management with zero exit fees.',
+      fcaStatusText: 'MLP Wealth Management is authorised and regulated by the Financial Conduct Authority (FCA Firm Reference Number: 592810).',
+    },
     branding: {
-      primaryColor: '#0f2744', // Deep Navy
-      secondaryColor: '#c5a059', // Warm Gold
+      primaryColor: '#0f2744',
+      secondaryColor: '#c5a059',
       accentColor: '#1e3a8a',
       fontFamily: 'playfair',
       heroHeadline: 'Preserving & Growing Wealth Across Generations',
@@ -128,7 +138,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
       investmentGrowth: true,
     },
     createdAt: '2026-01-10T10:00:00Z',
-    updatedAt: '2026-08-18T10:00:00Z',
+    updatedAt: '2026-08-19T10:00:00Z',
   },
   {
     id: 'client-agile-ifa',
@@ -140,9 +150,19 @@ export const INITIAL_CLIENTS: IFAClient[] = [
     phone: '0121 680 4420',
     email: 'hello@agileifa.co.uk',
     address: '45 Church Street, Birmingham, West Midlands, B3 2NP',
+    compliance: {
+      fcaFrn: '684201',
+      isIndependent: true,
+      registeredOffice: 'Innovation Hub, 45 Church Street, Birmingham, B3 2NP',
+      companyRegistrationNumber: '09912048',
+      fscsProtected: true,
+      mortgageWarningRequired: true,
+      feeStructureSummary: 'Capped fixed fees for pension consolidations + clear ongoing advisory options.',
+      fcaStatusText: 'Agile Financial Advice is authorised and regulated by the Financial Conduct Authority (FCA Firm Reference Number: 684201).',
+    },
     branding: {
-      primaryColor: '#064e3b', // Deep Emerald
-      secondaryColor: '#10b981', // Bright Emerald Accent
+      primaryColor: '#064e3b',
+      secondaryColor: '#10b981',
       accentColor: '#047857',
       fontFamily: 'plus-jakarta',
       heroHeadline: 'Modern, Flexible Financial Advice Built Around Your Life Goals',
@@ -180,7 +200,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
       investmentGrowth: true,
     },
     createdAt: '2026-03-15T10:00:00Z',
-    updatedAt: '2026-08-18T10:00:00Z',
+    updatedAt: '2026-08-19T10:00:00Z',
   },
   {
     id: 'client-heritage-trust',
@@ -192,9 +212,19 @@ export const INITIAL_CLIENTS: IFAClient[] = [
     phone: '0161 832 9900',
     email: 'info@heritagetrust.co.uk',
     address: 'St. Peter Square, Manchester, M2 3DE',
+    compliance: {
+      fcaFrn: '419203',
+      isIndependent: true,
+      registeredOffice: 'The Old Rectory, St. Peter Square, Manchester, M2 3DE',
+      companyRegistrationNumber: '05419283',
+      fscsProtected: true,
+      mortgageWarningRequired: false,
+      feeStructureSummary: 'Bespoke retainer & agreed percentage management for estate trusts.',
+      fcaStatusText: 'Heritage & Trust Financial is authorised and regulated by the Financial Conduct Authority (FCA Firm Reference Number: 419203).',
+    },
     branding: {
-      primaryColor: '#1e293b', // Slate Dark
-      secondaryColor: '#d97706', // Warm Amber/Gold
+      primaryColor: '#1e293b',
+      secondaryColor: '#d97706',
       accentColor: '#92400e',
       fontFamily: 'inter',
       heroHeadline: 'Safeguarding Your Legacy with Executive Financial Care',
@@ -232,11 +262,10 @@ export const INITIAL_CLIENTS: IFAClient[] = [
       investmentGrowth: true,
     },
     createdAt: '2026-04-01T10:00:00Z',
-    updatedAt: '2026-08-18T10:00:00Z',
+    updatedAt: '2026-08-19T10:00:00Z',
   },
 ];
 
-// Local Storage Helper
 const STORAGE_KEY = 'ifa_portal_clients';
 
 export function getClients(): IFAClient[] {
@@ -247,7 +276,21 @@ export function getClients(): IFAClient[] {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_CLIENTS));
       return INITIAL_CLIENTS;
     }
-    return JSON.parse(data);
+    const parsed = JSON.parse(data);
+    // Ensure backwards compatibility with compliance object
+    return parsed.map((c: any) => ({
+      ...c,
+      compliance: c.compliance || {
+        fcaFrn: c.fcaFrn || '123456',
+        isIndependent: c.isIndependent ?? true,
+        registeredOffice: c.registeredOffice || c.address,
+        companyRegistrationNumber: '00000000',
+        fscsProtected: true,
+        mortgageWarningRequired: true,
+        feeStructureSummary: 'Transparent initial consultation + ongoing advisory management.',
+        fcaStatusText: `${c.firmName} is authorised and regulated by the Financial Conduct Authority (FCA FRN: ${c.fcaFrn || '123456'}).`,
+      },
+    }));
   } catch (e) {
     console.error('Failed to load clients from localStorage', e);
     return INITIAL_CLIENTS;

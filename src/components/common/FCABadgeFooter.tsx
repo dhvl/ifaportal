@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ShieldCheck, AlertCircle, Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, AlertCircle, Phone, Mail, MapPin, CheckCircle2, Home } from 'lucide-react';
 import { IFAClient } from '@/lib/types';
 
 interface FCABadgeFooterProps {
@@ -11,6 +11,16 @@ interface FCABadgeFooterProps {
 
 export const FCABadgeFooter: React.FC<FCABadgeFooterProps> = ({ client, themeMode = 'bright' }) => {
   const isBright = themeMode === 'bright';
+  const compliance = client.compliance || {
+    fcaFrn: client.fcaFrn,
+    isIndependent: client.isIndependent,
+    registeredOffice: client.registeredOffice || client.address,
+    companyRegistrationNumber: '08129402',
+    fscsProtected: true,
+    mortgageWarningRequired: true,
+    feeStructureSummary: 'Transparent initial advice + ongoing management.',
+    fcaStatusText: `${client.firmName} is authorised and regulated by the Financial Conduct Authority (FCA FRN: ${client.fcaFrn}).`,
+  };
 
   return (
     <footer className={isBright ? "bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800" : "bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-900"}>
@@ -108,11 +118,20 @@ export const FCABadgeFooter: React.FC<FCABadgeFooterProps> = ({ client, themeMod
             <span>Financial Conduct Authority (FCA) Legal Disclosure</span>
           </div>
           <p className="leading-relaxed">
-            {client.firmName} is authorised and regulated by the Financial Conduct Authority (FCA Firm Reference Number: <strong>{client.fcaFrn}</strong>). Registered in England & Wales. Registered Office: {client.registeredOffice}.
+            {client.firmName} is authorised and regulated by the Financial Conduct Authority (FCA Firm Reference Number: <strong>{client.fcaFrn}</strong>). Registered in England & Wales. Company Reg No: <strong>{compliance.companyRegistrationNumber || '08129402'}</strong>. Registered Office: {compliance.registeredOffice || client.address}.
           </p>
-          <p className="text-slate-500 leading-relaxed italic border-t border-slate-800/80 pt-2 text-[11px]">
-            <strong>Risk Warning:</strong> The value of investments and income from them can go down as well as up and you may get back less than originally invested. Past performance is no guarantee of future returns. Tax treatment depends on individual circumstances and UK legislation.
-          </p>
+
+          <div className="space-y-2 border-t border-slate-800/80 pt-3 text-[11px] text-slate-400">
+            <p className="leading-relaxed italic">
+              <strong>Investment Risk Warning:</strong> The value of investments and income from them can go down as well as up and you may get back less than originally invested. Past performance is no guarantee of future returns. Tax treatment depends on individual circumstances and UK legislation.
+            </p>
+            {compliance.mortgageWarningRequired && (
+              <p className="leading-relaxed text-amber-300/90 font-medium flex items-center space-x-1.5">
+                <Home className="w-3.5 h-3.5 text-amber-400 inline shrink-0" />
+                <span><strong>Mortgage Risk Warning:</strong> Your home or property may be repossessed if you do not keep up repayments on your mortgage.</span>
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Copyright */}

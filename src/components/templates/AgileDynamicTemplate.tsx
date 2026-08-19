@@ -3,12 +3,14 @@
 import React, { useState } from 'react';
 import { 
   ShieldCheck, ArrowRight, Phone, Mail, 
-  PiggyBank, TrendingUp, Sparkles, CheckCircle2, Zap, Star, Award, Check
+  PiggyBank, TrendingUp, Sparkles, CheckCircle2, Zap
 } from 'lucide-react';
 import { IFAClient } from '@/lib/types';
 import { FCABadgeFooter } from '@/components/common/FCABadgeFooter';
 import { PensionCalculator } from '@/components/calculators/PensionCalculator';
 import { ConsultationModal } from '@/components/modals/ConsultationModal';
+import { AdviceJourneySection } from '@/components/common/AdviceJourneySection';
+import { FeeTransparencyModule } from '@/components/common/FeeTransparencyModule';
 
 interface TemplateProps {
   client: IFAClient;
@@ -39,7 +41,7 @@ export const AgileDynamicTemplate: React.FC<TemplateProps> = ({ client }) => {
         </div>
       </div>
 
-      {/* Modern Bright Header */}
+      {/* Header */}
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-emerald-100 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -59,8 +61,8 @@ export const AgileDynamicTemplate: React.FC<TemplateProps> = ({ client }) => {
 
           <nav className="hidden md:flex items-center space-x-8 text-xs font-bold text-slate-600 uppercase tracking-wider">
             <a href="#services" className="hover:text-emerald-600 transition-colors">Services</a>
+            <a href="#journey" className="hover:text-emerald-600 transition-colors">Advice Process</a>
             <a href="#calculator" className="hover:text-emerald-600 transition-colors">Pension Calculator</a>
-            <a href="#why-us" className="hover:text-emerald-600 transition-colors">Why Us</a>
           </nav>
 
           <button
@@ -74,7 +76,7 @@ export const AgileDynamicTemplate: React.FC<TemplateProps> = ({ client }) => {
         </div>
       </header>
 
-      {/* Hero Section - Bright Modern Minimalist */}
+      {/* Hero */}
       <section className="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-white via-emerald-50/50 to-emerald-100/30 border-b border-emerald-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 relative z-10">
           <div className="inline-flex items-center space-x-2 bg-emerald-100/80 border border-emerald-300/80 px-4 py-1.5 rounded-full text-xs font-bold text-emerald-900 shadow-xs">
@@ -111,7 +113,7 @@ export const AgileDynamicTemplate: React.FC<TemplateProps> = ({ client }) => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services */}
       <section id="services" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-2">
           <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">Tailored Solutions</span>
@@ -143,6 +145,14 @@ export const AgileDynamicTemplate: React.FC<TemplateProps> = ({ client }) => {
           ))}
         </div>
       </section>
+
+      {/* Advice Journey */}
+      <div id="journey">
+        <AdviceJourneySection firmName={client.firmName} primaryColor={branding.primaryColor} onOpenConsultation={() => setIsModalOpen(true)} />
+      </div>
+
+      {/* Fee Transparency */}
+      <FeeTransparencyModule firmName={client.firmName} isIndependent={client.isIndependent} feeSummary={client.compliance?.feeStructureSummary} />
 
       {/* Pension Calculator */}
       <section id="calculator" className="py-20 bg-slate-900 text-white">

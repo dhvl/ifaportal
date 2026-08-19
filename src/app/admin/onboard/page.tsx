@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
   ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Building2, 
-  Palette, Briefcase, Users, Layout, Eye, Sparkles, Check, Phone, Mail, MapPin
+  Palette, Briefcase, Users, Layout, Eye, Sparkles, Check, Phone, Mail, MapPin, AlertCircle
 } from 'lucide-react';
-import { IFAClient, TemplateId, AdminQuestionnaireFormData } from '@/lib/types';
+import { IFAClient, AdminQuestionnaireFormData } from '@/lib/types';
 import { DEFAULT_SERVICES, saveClient } from '@/lib/store';
 
 export default function OnboardingQuestionnairePage() {
@@ -21,6 +21,10 @@ export default function OnboardingQuestionnairePage() {
     phone: '020 7946 0123',
     email: 'info@crownwealth.co.uk',
     address: '88 Leadenhall Street, London, EC3A 3BP',
+    registeredOffice: '88 Leadenhall Street, London, EC3A 3BP',
+    companyRegistrationNumber: '09824102',
+    mortgageWarningRequired: true,
+    feeStructureSummary: 'Transparent fixed initial consultation fee + 0.50% - 0.75% p.a. ongoing discretionary management with zero exit penalties.',
     templateId: 'modern-wealth',
     primaryColor: '#0f2744',
     secondaryColor: '#c5a059',
@@ -43,10 +47,20 @@ export default function OnboardingQuestionnairePage() {
       firmName: formData.firmName,
       fcaFrn: formData.fcaFrn,
       isIndependent: formData.isIndependent,
-      registeredOffice: formData.address,
+      registeredOffice: formData.registeredOffice || formData.address,
       phone: formData.phone,
       email: formData.email,
       address: formData.address,
+      compliance: {
+        fcaFrn: formData.fcaFrn,
+        isIndependent: formData.isIndependent,
+        registeredOffice: formData.registeredOffice || formData.address,
+        companyRegistrationNumber: formData.companyRegistrationNumber || '00000000',
+        fscsProtected: true,
+        mortgageWarningRequired: formData.mortgageWarningRequired,
+        feeStructureSummary: formData.feeStructureSummary,
+        fcaStatusText: `${formData.firmName} is authorised and regulated by the Financial Conduct Authority (FCA Firm Reference Number: ${formData.fcaFrn}).`,
+      },
       branding: {
         primaryColor: formData.primaryColor,
         secondaryColor: formData.secondaryColor,
@@ -119,8 +133,8 @@ export default function OnboardingQuestionnairePage() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-lg font-bold text-white tracking-tight">IFA Client Onboarding Questionnaire</h1>
-              <span className="text-xs text-amber-400 font-medium">Step {step} of 5 &bull; Practice & Branding Setup</span>
+              <h1 className="text-lg font-bold text-white tracking-tight">IFA Practice Onboarding Questionnaire</h1>
+              <span className="text-xs text-amber-400 font-medium">Step {step} of 5 &bull; FCA Compliance &amp; Setup</span>
             </div>
           </div>
 
@@ -134,13 +148,13 @@ export default function OnboardingQuestionnairePage() {
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Questionnaire Column */}
+          {/* Left Questionnaire */}
           <div className="lg:col-span-7 space-y-8 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
             {/* Step Progress Tracker */}
             <div className="flex justify-between items-center border-b border-slate-800 pb-6 text-xs font-semibold">
               <div className={`flex items-center space-x-2 ${step >= 1 ? 'text-amber-400' : 'text-slate-600'}`}>
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 1 ? 'bg-amber-400 text-slate-950' : 'bg-slate-800'}`}>1</div>
-                <span className="hidden sm:inline">Firm Info</span>
+                <span className="hidden sm:inline">Regulatory Info</span>
               </div>
               <div className={`flex items-center space-x-2 ${step >= 2 ? 'text-amber-400' : 'text-slate-600'}`}>
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 2 ? 'bg-amber-400 text-slate-950' : 'bg-slate-800'}`}>2</div>
@@ -160,15 +174,15 @@ export default function OnboardingQuestionnairePage() {
               </div>
             </div>
 
-            {/* STEP 1: Practice Details */}
+            {/* STEP 1: Regulatory Details */}
             {step === 1 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
                   <h2 className="text-xl font-bold text-white flex items-center space-x-2">
                     <Building2 className="w-5 h-5 text-amber-400" />
-                    <span>Practice Identity & Regulatory Information</span>
+                    <span>Practice Identity &amp; FCA Regulatory Credentials</span>
                   </h2>
-                  <p className="text-xs text-slate-400">Enter the client IFA practice details and FCA Firm Reference Number.</p>
+                  <p className="text-xs text-slate-400">Enter FCA FRN, company registration, and legal disclosures.</p>
                 </div>
 
                 <div className="space-y-4">
@@ -199,6 +213,21 @@ export default function OnboardingQuestionnairePage() {
 
                     <div>
                       <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                        Company House Reg Number
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.companyRegistrationNumber}
+                        onChange={(e) => setFormData({ ...formData, companyRegistrationNumber: e.target.value })}
+                        placeholder="e.g. 08129402"
+                        className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none font-mono"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
                         Advice Model
                       </label>
                       <select
@@ -210,12 +239,26 @@ export default function OnboardingQuestionnairePage() {
                         <option value="restricted">Restricted Financial Adviser</option>
                       </select>
                     </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                        Mortgage Warning Required?
+                      </label>
+                      <select
+                        value={formData.mortgageWarningRequired ? 'yes' : 'no'}
+                        onChange={(e) => setFormData({ ...formData, mortgageWarningRequired: e.target.value === 'yes' })}
+                        className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none"
+                      >
+                        <option value="yes">Yes ("Your home may be repossessed...")</option>
+                        <option value="no">No (Wealth / Pension Advice Only)</option>
+                      </select>
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
-                        Contact Telephone *
+                        Contact Phone *
                       </label>
                       <input
                         type="text"
@@ -227,7 +270,7 @@ export default function OnboardingQuestionnairePage() {
 
                     <div>
                       <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
-                        Primary Email Address *
+                        Contact Email *
                       </label>
                       <input
                         type="email"
@@ -240,12 +283,13 @@ export default function OnboardingQuestionnairePage() {
 
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
-                      Office Registered Address *
+                      Fee Structure Summary (For Disclosure Card)
                     </label>
                     <input
                       type="text"
-                      value={formData.address}
-                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                      value={formData.feeStructureSummary}
+                      onChange={(e) => setFormData({ ...formData, feeStructureSummary: e.target.value })}
+                      placeholder="e.g. Fixed initial advice fee + 0.50% - 0.75% p.a. ongoing management."
                       className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none"
                     />
                   </div>
@@ -253,13 +297,13 @@ export default function OnboardingQuestionnairePage() {
               </div>
             )}
 
-            {/* STEP 2: Branding & Hero Content */}
+            {/* STEP 2: Branding */}
             {step === 2 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
                   <h2 className="text-xl font-bold text-white flex items-center space-x-2">
                     <Palette className="w-5 h-5 text-amber-400" />
-                    <span>Branding, Palette & Hero Messaging</span>
+                    <span>Branding, Palette &amp; Hero Messaging</span>
                   </h2>
                   <p className="text-xs text-slate-400">Customize client colors and landing page messaging.</p>
                 </div>
@@ -324,7 +368,7 @@ export default function OnboardingQuestionnairePage() {
               </div>
             )}
 
-            {/* STEP 3: Services Selection */}
+            {/* STEP 3: Services */}
             {step === 3 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
@@ -362,7 +406,7 @@ export default function OnboardingQuestionnairePage() {
               </div>
             )}
 
-            {/* STEP 4: Template Selector */}
+            {/* STEP 4: Template */}
             {step === 4 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
@@ -374,7 +418,6 @@ export default function OnboardingQuestionnairePage() {
                 </div>
 
                 <div className="space-y-4">
-                  {/* Option 1 */}
                   <div
                     onClick={() => setFormData({ ...formData, templateId: 'modern-wealth' })}
                     className={`p-5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
@@ -385,12 +428,11 @@ export default function OnboardingQuestionnairePage() {
                   >
                     <div>
                       <h4 className="font-bold text-base text-white">Modern Wealth (Inspired by MLP Wealth)</h4>
-                      <p className="text-xs text-slate-400">Navy/Gold theme, high trust hero, whole-of-market disclosures, VouchedFor reviews.</p>
+                      <p className="text-xs text-slate-400">Navy/Gold theme, high trust hero, 4-step advice journey, fee transparency.</p>
                     </div>
                     {formData.templateId === 'modern-wealth' && <CheckCircle2 className="w-6 h-6 text-amber-400 shrink-0" />}
                   </div>
 
-                  {/* Option 2 */}
                   <div
                     onClick={() => setFormData({ ...formData, templateId: 'heritage-trust' })}
                     className={`p-5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
@@ -400,13 +442,12 @@ export default function OnboardingQuestionnairePage() {
                     }`}
                   >
                     <div>
-                      <h4 className="font-bold text-base text-white">Heritage & Trust (Executive Classic)</h4>
+                      <h4 className="font-bold text-base text-white">Heritage &amp; Trust (Executive Classic)</h4>
                       <p className="text-xs text-slate-400">Executive serif typography, retirement planning spotlight, and legacy wealth focus.</p>
                     </div>
                     {formData.templateId === 'heritage-trust' && <CheckCircle2 className="w-6 h-6 text-amber-400 shrink-0" />}
                   </div>
 
-                  {/* Option 3 */}
                   <div
                     onClick={() => setFormData({ ...formData, templateId: 'agile-dynamic' })}
                     className={`p-5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
@@ -417,7 +458,7 @@ export default function OnboardingQuestionnairePage() {
                   >
                     <div>
                       <h4 className="font-bold text-base text-white">Agile Dynamic (Inspired by Agile IFA)</h4>
-                      <p className="text-xs text-slate-400">Modern glassmorphism emerald layout with interactive pension pot calculator & instant booking.</p>
+                      <p className="text-xs text-slate-400">Modern glassmorphism emerald layout with interactive pension pot calculator &amp; instant booking.</p>
                     </div>
                     {formData.templateId === 'agile-dynamic' && <CheckCircle2 className="w-6 h-6 text-amber-400 shrink-0" />}
                   </div>
@@ -425,13 +466,13 @@ export default function OnboardingQuestionnairePage() {
               </div>
             )}
 
-            {/* STEP 5: Final Review & Publish */}
+            {/* STEP 5: Publish */}
             {step === 5 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
                   <h2 className="text-xl font-bold text-white flex items-center space-x-2">
                     <Sparkles className="w-5 h-5 text-amber-400" />
-                    <span>Review & Deploy Client Website</span>
+                    <span>Review &amp; Deploy Client Website</span>
                   </h2>
                   <p className="text-xs text-slate-400">Confirm practice setup details and launch the live portal.</p>
                 </div>
@@ -446,12 +487,12 @@ export default function OnboardingQuestionnairePage() {
                     <strong className="text-amber-400 font-mono">{formData.fcaFrn}</strong>
                   </div>
                   <div className="flex justify-between border-b border-slate-800 pb-2">
-                    <span className="text-slate-400">Template Layout:</span>
-                    <strong className="text-white capitalize">{formData.templateId.replace('-', ' ')}</strong>
+                    <span className="text-slate-400">Advice Model:</span>
+                    <strong className="text-emerald-400">{formData.isIndependent ? 'Independent (Whole of Market)' : 'Restricted'}</strong>
                   </div>
                   <div className="flex justify-between border-b border-slate-800 pb-2">
-                    <span className="text-slate-400">Active Services:</span>
-                    <strong className="text-emerald-400">{formData.selectedServiceIds.length} Selected</strong>
+                    <span className="text-slate-400">Template Layout:</span>
+                    <strong className="text-white capitalize">{formData.templateId.replace('-', ' ')}</strong>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-400">Target Slug URL:</span>
@@ -466,7 +507,7 @@ export default function OnboardingQuestionnairePage() {
                   className="w-full py-4 px-6 rounded-2xl bg-amber-400 text-slate-950 font-extrabold text-sm uppercase tracking-wider shadow-2xl hover:bg-amber-300 transition-all flex items-center justify-center space-x-2"
                 >
                   <Sparkles className="w-5 h-5" />
-                  <span>Publish & Open Client Portal</span>
+                  <span>Publish &amp; Open Client Portal</span>
                 </button>
               </div>
             )}
