@@ -121,119 +121,119 @@ export default function OnboardingQuestionnairePage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans">
-      {/* Onboarding Header */}
-      <header className="bg-slate-900 border-b border-slate-800 sticky top-0 z-30">
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
+      {/* Top Bright Header */}
+      <header className="bg-white/90 backdrop-blur-xl border-b border-slate-200/80 sticky top-0 z-30 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <Link
               href="/admin"
-              className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors"
+              className="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-lg font-bold text-white tracking-tight">IFA Practice Onboarding Questionnaire</h1>
-              <span className="text-xs text-amber-400 font-medium">Step {step} of 5 &bull; FCA Compliance &amp; Setup</span>
+              <h1 className="text-lg font-extrabold text-slate-900 tracking-tight">Practice Onboarding Questionnaire</h1>
+              <span className="text-xs text-amber-600 font-bold">Step {step} of 5 &bull; Practice &amp; Regulatory Setup</span>
             </div>
           </div>
 
           <div className="flex items-center space-x-3">
-            <span className="text-xs text-slate-400 hidden sm:inline">Auto-Saving Form State</span>
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+            <span className="text-xs text-slate-500 font-medium hidden sm:inline">Auto-Saving Form State</span>
+            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
           </div>
         </div>
       </header>
 
-      {/* Main Container */}
+      {/* Main Form Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Questionnaire */}
-          <div className="lg:col-span-7 space-y-8 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
-            {/* Step Progress Tracker */}
-            <div className="flex justify-between items-center border-b border-slate-800 pb-6 text-xs font-semibold">
-              <div className={`flex items-center space-x-2 ${step >= 1 ? 'text-amber-400' : 'text-slate-600'}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 1 ? 'bg-amber-400 text-slate-950' : 'bg-slate-800'}`}>1</div>
-                <span className="hidden sm:inline">Regulatory Info</span>
+          {/* Left Questionnaire Card */}
+          <div className="lg:col-span-7 space-y-8 bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm">
+            {/* Step Progress Bar */}
+            <div className="flex justify-between items-center border-b border-slate-100 pb-6 text-xs font-bold">
+              <div className={`flex items-center space-x-2 ${step >= 1 ? 'text-amber-600' : 'text-slate-400'}`}>
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 1 ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>1</div>
+                <span className="hidden sm:inline">Firm Details</span>
               </div>
-              <div className={`flex items-center space-x-2 ${step >= 2 ? 'text-amber-400' : 'text-slate-600'}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 2 ? 'bg-amber-400 text-slate-950' : 'bg-slate-800'}`}>2</div>
+              <div className={`flex items-center space-x-2 ${step >= 2 ? 'text-amber-600' : 'text-slate-400'}`}>
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 2 ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>2</div>
                 <span className="hidden sm:inline">Branding</span>
               </div>
-              <div className={`flex items-center space-x-2 ${step >= 3 ? 'text-amber-400' : 'text-slate-600'}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 3 ? 'bg-amber-400 text-slate-950' : 'bg-slate-800'}`}>3</div>
+              <div className={`flex items-center space-x-2 ${step >= 3 ? 'text-amber-600' : 'text-slate-400'}`}>
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 3 ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>3</div>
                 <span className="hidden sm:inline">Services</span>
               </div>
-              <div className={`flex items-center space-x-2 ${step >= 4 ? 'text-amber-400' : 'text-slate-600'}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 4 ? 'bg-amber-400 text-slate-950' : 'bg-slate-800'}`}>4</div>
+              <div className={`flex items-center space-x-2 ${step >= 4 ? 'text-amber-600' : 'text-slate-400'}`}>
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 4 ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>4</div>
                 <span className="hidden sm:inline">Template</span>
               </div>
-              <div className={`flex items-center space-x-2 ${step >= 5 ? 'text-amber-400' : 'text-slate-600'}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 5 ? 'bg-amber-400 text-slate-950' : 'bg-slate-800'}`}>5</div>
+              <div className={`flex items-center space-x-2 ${step >= 5 ? 'text-amber-600' : 'text-slate-400'}`}>
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 5 ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>5</div>
                 <span className="hidden sm:inline">Publish</span>
               </div>
             </div>
 
-            {/* STEP 1: Regulatory Details */}
+            {/* STEP 1 */}
             {step === 1 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
-                  <h2 className="text-xl font-bold text-white flex items-center space-x-2">
-                    <Building2 className="w-5 h-5 text-amber-400" />
-                    <span>Practice Identity &amp; FCA Regulatory Credentials</span>
+                  <h2 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                    <Building2 className="w-5 h-5 text-amber-500" />
+                    <span>Practice Identity &amp; FCA Credentials</span>
                   </h2>
-                  <p className="text-xs text-slate-400">Enter FCA FRN, company registration, and legal disclosures.</p>
+                  <p className="text-xs text-slate-500">Enter firm name, FCA FRN number, and company registration.</p>
                 </div>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                       Practice / Firm Name *
                     </label>
                     <input
                       type="text"
                       value={formData.firmName}
                       onChange={(e) => setFormData({ ...formData, firmName: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         FCA Firm Reference Number (FRN) *
                       </label>
                       <input
                         type="text"
                         value={formData.fcaFrn}
                         onChange={(e) => setFormData({ ...formData, fcaFrn: e.target.value })}
-                        className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none font-mono"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none font-mono"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
-                        Company House Reg Number
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                        Company Reg Number
                       </label>
                       <input
                         type="text"
                         value={formData.companyRegistrationNumber}
                         onChange={(e) => setFormData({ ...formData, companyRegistrationNumber: e.target.value })}
                         placeholder="e.g. 08129402"
-                        className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none font-mono"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none font-mono"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         Advice Model
                       </label>
                       <select
                         value={formData.isIndependent ? 'independent' : 'restricted'}
                         onChange={(e) => setFormData({ ...formData, isIndependent: e.target.value === 'independent' })}
-                        className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
                       >
                         <option value="independent">Independent Financial Adviser (Whole of Market)</option>
                         <option value="restricted">Restricted Financial Adviser</option>
@@ -241,13 +241,13 @@ export default function OnboardingQuestionnairePage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         Mortgage Warning Required?
                       </label>
                       <select
                         value={formData.mortgageWarningRequired ? 'yes' : 'no'}
                         onChange={(e) => setFormData({ ...formData, mortgageWarningRequired: e.target.value === 'yes' })}
-                        className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
                       >
                         <option value="yes">Yes ("Your home may be repossessed...")</option>
                         <option value="no">No (Wealth / Pension Advice Only)</option>
@@ -257,76 +257,75 @@ export default function OnboardingQuestionnairePage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         Contact Phone *
                       </label>
                       <input
                         type="text"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         Contact Email *
                       </label>
                       <input
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
-                      Fee Structure Summary (For Disclosure Card)
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Fee Structure Summary
                     </label>
                     <input
                       type="text"
                       value={formData.feeStructureSummary}
                       onChange={(e) => setFormData({ ...formData, feeStructureSummary: e.target.value })}
-                      placeholder="e.g. Fixed initial advice fee + 0.50% - 0.75% p.a. ongoing management."
-                      className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
                     />
                   </div>
                 </div>
               </div>
             )}
 
-            {/* STEP 2: Branding */}
+            {/* STEP 2 */}
             {step === 2 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
-                  <h2 className="text-xl font-bold text-white flex items-center space-x-2">
-                    <Palette className="w-5 h-5 text-amber-400" />
-                    <span>Branding, Palette &amp; Hero Messaging</span>
+                  <h2 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                    <Palette className="w-5 h-5 text-amber-500" />
+                    <span>Branding, Colors &amp; Hero Messaging</span>
                   </h2>
-                  <p className="text-xs text-slate-400">Customize client colors and landing page messaging.</p>
+                  <p className="text-xs text-slate-500">Customize client primary color and hero title.</p>
                 </div>
 
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
-                        Primary Brand Color
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                        Primary Color
                       </label>
                       <div className="flex items-center space-x-3">
                         <input
                           type="color"
                           value={formData.primaryColor}
                           onChange={(e) => setFormData({ ...formData, primaryColor: e.target.value })}
-                          className="w-12 h-10 bg-slate-950 border border-slate-800 rounded-lg cursor-pointer"
+                          className="w-12 h-10 bg-white border border-slate-200 rounded-lg cursor-pointer"
                         />
-                        <span className="text-xs font-mono text-slate-300 uppercase">{formData.primaryColor}</span>
+                        <span className="text-xs font-mono text-slate-800 font-bold uppercase">{formData.primaryColor}</span>
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         Secondary Gold/Accent
                       </label>
                       <div className="flex items-center space-x-3">
@@ -334,49 +333,49 @@ export default function OnboardingQuestionnairePage() {
                           type="color"
                           value={formData.secondaryColor}
                           onChange={(e) => setFormData({ ...formData, secondaryColor: e.target.value })}
-                          className="w-12 h-10 bg-slate-950 border border-slate-800 rounded-lg cursor-pointer"
+                          className="w-12 h-10 bg-white border border-slate-200 rounded-lg cursor-pointer"
                         />
-                        <span className="text-xs font-mono text-slate-300 uppercase">{formData.secondaryColor}</span>
+                        <span className="text-xs font-mono text-slate-800 font-bold uppercase">{formData.secondaryColor}</span>
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                       Hero Headline
                     </label>
                     <input
                       type="text"
                       value={formData.heroHeadline}
                       onChange={(e) => setFormData({ ...formData, heroHeadline: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                       Hero Subheadline
                     </label>
                     <textarea
                       rows={3}
                       value={formData.heroSubheadline}
                       onChange={(e) => setFormData({ ...formData, heroSubheadline: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:border-amber-400 focus:outline-none"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
                     />
                   </div>
                 </div>
               </div>
             )}
 
-            {/* STEP 3: Services */}
+            {/* STEP 3 */}
             {step === 3 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
-                  <h2 className="text-xl font-bold text-white flex items-center space-x-2">
-                    <Briefcase className="w-5 h-5 text-amber-400" />
-                    <span>Select Advisory Services Included</span>
+                  <h2 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                    <Briefcase className="w-5 h-5 text-amber-500" />
+                    <span>Select Advisory Services</span>
                   </h2>
-                  <p className="text-xs text-slate-400">Choose which financial advice areas this client provides.</p>
+                  <p className="text-xs text-slate-500">Choose which financial advice areas this client provides.</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -386,18 +385,18 @@ export default function OnboardingQuestionnairePage() {
                       <div
                         key={svc.id}
                         onClick={() => toggleService(svc.id)}
-                        className={`p-4 rounded-xl border cursor-pointer transition-all flex items-start space-x-3 ${
+                        className={`p-4 rounded-2xl border cursor-pointer transition-all flex items-start space-x-3 ${
                           isSelected
-                            ? 'bg-amber-400/10 border-amber-400 text-white'
-                            : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                            ? 'bg-amber-50 border-amber-500 text-slate-900 shadow-xs'
+                            : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300'
                         }`}
                       >
-                        <div className={`w-5 h-5 rounded-md flex items-center justify-center mt-0.5 ${isSelected ? 'bg-amber-400 text-slate-950' : 'border border-slate-700'}`}>
+                        <div className={`w-5 h-5 rounded-md flex items-center justify-center mt-0.5 ${isSelected ? 'bg-amber-500 text-white' : 'border border-slate-300 bg-white'}`}>
                           {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                         </div>
                         <div>
-                          <h4 className="font-bold text-sm text-white">{svc.title}</h4>
-                          <p className="text-xs text-slate-400 line-clamp-2 mt-1">{svc.shortDescription}</p>
+                          <h4 className="font-bold text-sm text-slate-900">{svc.title}</h4>
+                          <p className="text-xs text-slate-500 line-clamp-2 mt-1">{svc.shortDescription}</p>
                         </div>
                       </div>
                     );
@@ -406,15 +405,15 @@ export default function OnboardingQuestionnairePage() {
               </div>
             )}
 
-            {/* STEP 4: Template */}
+            {/* STEP 4 */}
             {step === 4 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
-                  <h2 className="text-xl font-bold text-white flex items-center space-x-2">
-                    <Layout className="w-5 h-5 text-amber-400" />
+                  <h2 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                    <Layout className="w-5 h-5 text-amber-500" />
                     <span>Choose Pre-designed Website Template</span>
                   </h2>
-                  <p className="text-xs text-slate-400">Select the layout style for the client portal.</p>
+                  <p className="text-xs text-slate-500">Select the layout style for the client portal.</p>
                 </div>
 
                 <div className="space-y-4">
@@ -422,81 +421,81 @@ export default function OnboardingQuestionnairePage() {
                     onClick={() => setFormData({ ...formData, templateId: 'modern-wealth' })}
                     className={`p-5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
                       formData.templateId === 'modern-wealth'
-                        ? 'bg-amber-400/10 border-amber-400 text-white'
-                        : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                        ? 'bg-amber-50 border-amber-500 text-slate-900 shadow-xs'
+                        : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300'
                     }`}
                   >
                     <div>
-                      <h4 className="font-bold text-base text-white">Modern Wealth (Inspired by MLP Wealth)</h4>
-                      <p className="text-xs text-slate-400">Navy/Gold theme, high trust hero, 4-step advice journey, fee transparency.</p>
+                      <h4 className="font-bold text-base text-slate-900">Modern Wealth (Inspired by MLP Wealth)</h4>
+                      <p className="text-xs text-slate-500">Navy/Gold theme, high trust hero, 4-stage advice journey, fee transparency.</p>
                     </div>
-                    {formData.templateId === 'modern-wealth' && <CheckCircle2 className="w-6 h-6 text-amber-400 shrink-0" />}
+                    {formData.templateId === 'modern-wealth' && <CheckCircle2 className="w-6 h-6 text-amber-600 shrink-0" />}
                   </div>
 
                   <div
                     onClick={() => setFormData({ ...formData, templateId: 'heritage-trust' })}
                     className={`p-5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
                       formData.templateId === 'heritage-trust'
-                        ? 'bg-amber-400/10 border-amber-400 text-white'
-                        : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                        ? 'bg-amber-50 border-amber-500 text-slate-900 shadow-xs'
+                        : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300'
                     }`}
                   >
                     <div>
-                      <h4 className="font-bold text-base text-white">Heritage &amp; Trust (Executive Classic)</h4>
-                      <p className="text-xs text-slate-400">Executive serif typography, retirement planning spotlight, and legacy wealth focus.</p>
+                      <h4 className="font-bold text-base text-slate-900">Heritage &amp; Trust (Executive Classic)</h4>
+                      <p className="text-xs text-slate-500">Executive serif typography, retirement planning spotlight, and legacy wealth focus.</p>
                     </div>
-                    {formData.templateId === 'heritage-trust' && <CheckCircle2 className="w-6 h-6 text-amber-400 shrink-0" />}
+                    {formData.templateId === 'heritage-trust' && <CheckCircle2 className="w-6 h-6 text-amber-600 shrink-0" />}
                   </div>
 
                   <div
                     onClick={() => setFormData({ ...formData, templateId: 'agile-dynamic' })}
                     className={`p-5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
                       formData.templateId === 'agile-dynamic'
-                        ? 'bg-amber-400/10 border-amber-400 text-white'
-                        : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                        ? 'bg-amber-50 border-amber-500 text-slate-900 shadow-xs'
+                        : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300'
                     }`}
                   >
                     <div>
-                      <h4 className="font-bold text-base text-white">Agile Dynamic (Inspired by Agile IFA)</h4>
-                      <p className="text-xs text-slate-400">Modern glassmorphism emerald layout with interactive pension pot calculator &amp; instant booking.</p>
+                      <h4 className="font-bold text-base text-slate-900">Agile Dynamic (Inspired by Agile IFA)</h4>
+                      <p className="text-xs text-slate-500">Modern glassmorphism emerald layout with interactive pension pot calculator &amp; instant booking.</p>
                     </div>
-                    {formData.templateId === 'agile-dynamic' && <CheckCircle2 className="w-6 h-6 text-amber-400 shrink-0" />}
+                    {formData.templateId === 'agile-dynamic' && <CheckCircle2 className="w-6 h-6 text-amber-600 shrink-0" />}
                   </div>
                 </div>
               </div>
             )}
 
-            {/* STEP 5: Publish */}
+            {/* STEP 5 */}
             {step === 5 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
-                  <h2 className="text-xl font-bold text-white flex items-center space-x-2">
-                    <Sparkles className="w-5 h-5 text-amber-400" />
+                  <h2 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                    <Sparkles className="w-5 h-5 text-amber-500" />
                     <span>Review &amp; Deploy Client Website</span>
                   </h2>
-                  <p className="text-xs text-slate-400">Confirm practice setup details and launch the live portal.</p>
+                  <p className="text-xs text-slate-500">Confirm practice setup details and launch the live portal.</p>
                 </div>
 
-                <div className="bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-3 text-xs">
-                  <div className="flex justify-between border-b border-slate-800 pb-2">
-                    <span className="text-slate-400">Firm Name:</span>
-                    <strong className="text-white text-sm">{formData.firmName}</strong>
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-3 text-xs">
+                  <div className="flex justify-between border-b border-slate-200 pb-2">
+                    <span className="text-slate-500">Firm Name:</span>
+                    <strong className="text-slate-900 text-sm">{formData.firmName}</strong>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800 pb-2">
-                    <span className="text-slate-400">FCA FRN:</span>
-                    <strong className="text-amber-400 font-mono">{formData.fcaFrn}</strong>
+                  <div className="flex justify-between border-b border-slate-200 pb-2">
+                    <span className="text-slate-500">FCA FRN:</span>
+                    <strong className="text-amber-600 font-mono">{formData.fcaFrn}</strong>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800 pb-2">
-                    <span className="text-slate-400">Advice Model:</span>
-                    <strong className="text-emerald-400">{formData.isIndependent ? 'Independent (Whole of Market)' : 'Restricted'}</strong>
+                  <div className="flex justify-between border-b border-slate-200 pb-2">
+                    <span className="text-slate-500">Advice Model:</span>
+                    <strong className="text-emerald-700">{formData.isIndependent ? 'Independent (Whole of Market)' : 'Restricted'}</strong>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800 pb-2">
-                    <span className="text-slate-400">Template Layout:</span>
-                    <strong className="text-white capitalize">{formData.templateId.replace('-', ' ')}</strong>
+                  <div className="flex justify-between border-b border-slate-200 pb-2">
+                    <span className="text-slate-500">Template Layout:</span>
+                    <strong className="text-slate-900 capitalize">{formData.templateId.replace('-', ' ')}</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Target Slug URL:</span>
-                    <strong className="text-amber-400 font-mono">
+                    <span className="text-slate-500">Target Slug URL:</span>
+                    <strong className="text-amber-600 font-mono">
                       /portal/{formData.firmName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
                     </strong>
                   </div>
@@ -504,20 +503,20 @@ export default function OnboardingQuestionnairePage() {
 
                 <button
                   onClick={handlePublish}
-                  className="w-full py-4 px-6 rounded-2xl bg-amber-400 text-slate-950 font-extrabold text-sm uppercase tracking-wider shadow-2xl hover:bg-amber-300 transition-all flex items-center justify-center space-x-2"
+                  className="w-full py-4 px-6 rounded-2xl bg-amber-500 text-white font-extrabold text-xs uppercase tracking-widest shadow-xl hover:bg-amber-600 hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2"
                 >
-                  <Sparkles className="w-5 h-5" />
+                  <Sparkles className="w-5 h-5 text-amber-200" />
                   <span>Publish &amp; Open Client Portal</span>
                 </button>
               </div>
             )}
 
             {/* Navigation Buttons */}
-            <div className="flex items-center justify-between pt-6 border-t border-slate-800">
+            <div className="flex items-center justify-between pt-6 border-t border-slate-100">
               <button
                 onClick={handleBack}
                 disabled={step === 1}
-                className="px-5 py-2.5 rounded-xl border border-slate-800 text-slate-300 font-bold text-xs uppercase tracking-wider hover:bg-slate-800 disabled:opacity-40 transition-colors"
+                className="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-bold text-xs uppercase tracking-wider hover:bg-slate-50 disabled:opacity-40 transition-colors"
               >
                 Back
               </button>
@@ -525,39 +524,41 @@ export default function OnboardingQuestionnairePage() {
               {step < 5 && (
                 <button
                   onClick={handleNext}
-                  className="px-6 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-amber-300 transition-colors flex items-center space-x-1"
+                  className="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs uppercase tracking-wider hover:bg-slate-800 transition-colors flex items-center space-x-1 shadow-md"
                 >
                   <span>Next Step</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 text-amber-400" />
                 </button>
               )}
             </div>
           </div>
 
-          {/* Right Live Preview Card Pane */}
+          {/* Right Real-Time Live Preview Pane */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center space-x-1.5">
-                <Eye className="w-4 h-4 text-amber-400" />
-                <span>Real-Time Practice Card Preview</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-slate-500 flex items-center space-x-1.5">
+                <Eye className="w-4 h-4 text-amber-600" />
+                <span>Real-Time Practice Preview</span>
               </span>
-              <span className="text-[10px] text-emerald-400 font-mono">LIVE PREVIEW</span>
+              <span className="text-[10px] text-emerald-700 font-bold font-mono bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                LIVE PREVIEW
+              </span>
             </div>
 
-            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-6">
+            <div className="bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm space-y-6">
               {/* Header Preview */}
-              <div className="flex items-center space-x-3 border-b border-slate-800 pb-4">
+              <div className="flex items-center space-x-3 border-b border-slate-100 pb-4">
                 <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold text-2xl shadow-lg"
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-md"
                   style={{ backgroundColor: formData.primaryColor }}
                 >
                   {formData.firmName ? formData.firmName.charAt(0) : 'I'}
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white tracking-tight">
+                  <h3 className="text-lg font-bold text-slate-900 tracking-tight">
                     {formData.firmName || 'Practice Name'}
                   </h3>
-                  <span className="text-xs text-amber-400 font-mono block">
+                  <span className="text-xs text-amber-600 font-mono font-bold block">
                     FCA FRN: {formData.fcaFrn || 'XXXXXX'}
                   </span>
                 </div>
@@ -565,39 +566,39 @@ export default function OnboardingQuestionnairePage() {
 
               {/* Hero Banner Preview */}
               <div 
-                className="p-5 rounded-2xl border border-slate-800 space-y-3"
-                style={{ backgroundColor: formData.primaryColor + '20' }}
+                className="p-5 rounded-2xl border border-slate-200/80 space-y-3"
+                style={{ backgroundColor: formData.primaryColor + '10' }}
               >
-                <div className="inline-flex items-center space-x-1 text-[10px] text-amber-400 font-bold uppercase tracking-wider">
-                  <ShieldCheck className="w-3.5 h-3.5" />
+                <div className="inline-flex items-center space-x-1 text-[10px] text-amber-700 font-bold uppercase tracking-wider">
+                  <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
                   <span>{formData.isIndependent ? 'Independent Adviser' : 'Restricted Adviser'}</span>
                 </div>
-                <h4 className="text-base font-bold text-white leading-snug">
+                <h4 className="text-base font-bold text-slate-900 leading-snug">
                   {formData.heroHeadline || 'Hero Headline'}
                 </h4>
-                <p className="text-xs text-slate-300 line-clamp-2">
+                <p className="text-xs text-slate-600 line-clamp-2">
                   {formData.heroSubheadline || 'Hero Subheadline...'}
                 </p>
               </div>
 
-              {/* Contact Information Preview */}
-              <div className="space-y-2 text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800">
-                <div className="flex items-center space-x-2 text-slate-300">
-                  <Phone className="w-3.5 h-3.5 text-amber-400" />
+              {/* Contact Preview */}
+              <div className="space-y-2 text-xs text-slate-600 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
+                <div className="flex items-center space-x-2 text-slate-800">
+                  <Phone className="w-3.5 h-3.5 text-amber-600" />
                   <span>{formData.phone}</span>
                 </div>
-                <div className="flex items-center space-x-2 text-slate-300">
-                  <Mail className="w-3.5 h-3.5 text-amber-400" />
+                <div className="flex items-center space-x-2 text-slate-800">
+                  <Mail className="w-3.5 h-3.5 text-amber-600" />
                   <span>{formData.email}</span>
                 </div>
-                <div className="flex items-start space-x-2 text-slate-300">
-                  <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                <div className="flex items-start space-x-2 text-slate-800">
+                  <MapPin className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
                   <span>{formData.address}</span>
                 </div>
               </div>
 
-              <div className="text-[11px] text-slate-500 text-center border-t border-slate-800 pt-3">
-                Selected Template: <strong className="text-slate-300 capitalize">{formData.templateId.replace('-', ' ')}</strong>
+              <div className="text-[11px] text-slate-500 text-center border-t border-slate-100 pt-3">
+                Selected Template: <strong className="text-slate-900 capitalize">{formData.templateId.replace('-', ' ')}</strong>
               </div>
             </div>
           </div>
