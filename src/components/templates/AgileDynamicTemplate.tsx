@@ -7,10 +7,12 @@ import {
 } from 'lucide-react';
 import { IFAClient } from '@/lib/types';
 import { FCABadgeFooter } from '@/components/common/FCABadgeFooter';
-import { PensionCalculator } from '@/components/calculators/PensionCalculator';
+import { CalculatorSuite } from '@/components/calculators/CalculatorSuite';
 import { ConsultationModal } from '@/components/modals/ConsultationModal';
 import { AdviceJourneySection } from '@/components/common/AdviceJourneySection';
 import { FeeTransparencyModule } from '@/components/common/FeeTransparencyModule';
+import { LeadMagnetSection } from '@/components/common/LeadMagnetSection';
+import { WhatsAppLeadBot } from '@/components/common/WhatsAppLeadBot';
 
 interface TemplateProps {
   client: IFAClient;
@@ -62,7 +64,8 @@ export const AgileDynamicTemplate: React.FC<TemplateProps> = ({ client }) => {
           <nav className="hidden md:flex items-center space-x-8 text-xs font-bold text-slate-600 uppercase tracking-wider">
             <a href="#services" className="hover:text-emerald-600 transition-colors">Services</a>
             <a href="#journey" className="hover:text-emerald-600 transition-colors">Advice Process</a>
-            <a href="#calculator" className="hover:text-emerald-600 transition-colors">Pension Calculator</a>
+            <a href="#guides" className="hover:text-emerald-600 transition-colors">Guides &amp; Scorecard</a>
+            <a href="#calculator" className="hover:text-emerald-600 transition-colors">Calculators</a>
           </nav>
 
           <button
@@ -98,16 +101,14 @@ export const AgileDynamicTemplate: React.FC<TemplateProps> = ({ client }) => {
               className="w-full sm:w-auto px-8 py-4 rounded-2xl text-white font-extrabold text-xs uppercase tracking-widest shadow-xl hover:scale-105 transition-all flex items-center justify-center space-x-2"
               style={{ backgroundColor: branding.primaryColor }}
             >
-              <span>Book Meeting In 2 Minutes</span>
+              <span>Get Started &bull; Free Discovery</span>
               <ArrowRight className="w-4 h-4 text-emerald-300" />
             </button>
-
             <a
               href="#calculator"
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white border border-slate-300 text-slate-800 font-bold text-xs uppercase tracking-widest hover:bg-slate-50 transition-colors shadow-xs flex items-center justify-center space-x-2"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white border border-slate-300 text-slate-800 font-bold text-xs uppercase tracking-widest hover:bg-slate-50 transition-all shadow-xs"
             >
-              <PiggyBank className="w-4 h-4 text-emerald-600" />
-              <span>Try Pension Calculator</span>
+              Interactive Planning
             </a>
           </div>
         </div>
@@ -116,24 +117,26 @@ export const AgileDynamicTemplate: React.FC<TemplateProps> = ({ client }) => {
       {/* Services */}
       <section id="services" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-2">
-          <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">Tailored Solutions</span>
-          <h2 className="text-3xl font-extrabold text-slate-900">Modern Independent Advisory</h2>
+          <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">What We Do</span>
+          <h2 className="text-3xl font-black text-slate-900">Comprehensive Independent Advice</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {client.services.map((svc) => (
-            <div key={svc.id} className="bg-white border border-slate-200/90 rounded-3xl p-7 space-y-4 hover:border-emerald-500 hover:shadow-lg transition-all flex flex-col justify-between">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {client.services.map((service) => (
+            <div
+              key={service.id}
+              className="bg-white border border-emerald-100 rounded-3xl p-7 space-y-4 hover:shadow-xl transition-all flex flex-col justify-between"
+            >
               <div className="space-y-3">
                 <div 
-                  className="w-11 h-11 rounded-2xl flex items-center justify-center text-white shadow-md"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold"
                   style={{ backgroundColor: branding.primaryColor }}
                 >
-                  <TrendingUp className="w-5 h-5 text-emerald-300" />
+                  <Sparkles className="w-5 h-5" />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900">{svc.title}</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">{svc.fullDescription}</p>
+                <h3 className="text-lg font-bold text-slate-900">{service.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{service.shortDescription}</p>
               </div>
-
               <button
                 onClick={() => setIsModalOpen(true)}
                 className="text-xs font-bold text-emerald-700 hover:text-emerald-900 flex items-center space-x-1 pt-3 border-t border-slate-100"
@@ -146,23 +149,55 @@ export const AgileDynamicTemplate: React.FC<TemplateProps> = ({ client }) => {
         </div>
       </section>
 
-      {/* Advice Journey */}
+      {/* Advice Process */}
       <div id="journey">
-        <AdviceJourneySection firmName={client.firmName} primaryColor={branding.primaryColor} onOpenConsultation={() => setIsModalOpen(true)} />
+        <AdviceJourneySection
+          firmName={client.firmName}
+          primaryColor={branding.primaryColor}
+          onOpenConsultation={() => setIsModalOpen(true)}
+        />
       </div>
 
       {/* Fee Transparency */}
-      <FeeTransparencyModule firmName={client.firmName} isIndependent={client.isIndependent} feeSummary={client.compliance?.feeStructureSummary} />
+      <div id="fees">
+        <FeeTransparencyModule
+          firmName={client.firmName}
+          isIndependent={client.isIndependent}
+          feeSummary={client.compliance?.feeStructureSummary}
+        />
+      </div>
 
-      {/* Pension Calculator */}
-      <section id="calculator" className="py-20 bg-slate-900 text-white">
+      {/* Lead Magnets & Scorecard */}
+      <div id="guides">
+        <LeadMagnetSection client={client} />
+      </div>
+
+      {/* Calculator Section */}
+      <section id="calculator" className="py-20 bg-slate-950 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <PensionCalculator primaryColor={branding.primaryColor} onOpenConsultation={() => setIsModalOpen(true)} />
+          <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">UK Planning Tools</span>
+            <h2 className="text-3xl font-extrabold text-white">Advisory Calculators</h2>
+          </div>
+          <CalculatorSuite
+            client={client}
+            onOpenConsultation={() => setIsModalOpen(true)}
+          />
         </div>
       </section>
 
+      {/* FCA Footer */}
       <FCABadgeFooter client={client} themeMode="bright" />
-      <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} client={client} />
+
+      {/* WhatsApp Lead Bot */}
+      <WhatsAppLeadBot client={client} />
+
+      {/* Consultation Modal */}
+      <ConsultationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        client={client}
+      />
     </div>
   );
 };

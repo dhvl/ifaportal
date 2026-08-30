@@ -3,12 +3,16 @@
 import React, { useState } from 'react';
 import { 
   ShieldCheck, Award, ArrowRight, Phone, Mail, 
-  PiggyBank, TrendingUp, Star, Building, Lock
+  PiggyBank, TrendingUp, Star, Building, Lock, ExternalLink
 } from 'lucide-react';
 import { IFAClient } from '@/lib/types';
 import { FCABadgeFooter } from '@/components/common/FCABadgeFooter';
-import { PensionCalculator } from '@/components/calculators/PensionCalculator';
+import { CalculatorSuite } from '@/components/calculators/CalculatorSuite';
 import { ConsultationModal } from '@/components/modals/ConsultationModal';
+import { AdviceJourneySection } from '@/components/common/AdviceJourneySection';
+import { FeeTransparencyModule } from '@/components/common/FeeTransparencyModule';
+import { LeadMagnetSection } from '@/components/common/LeadMagnetSection';
+import { WhatsAppLeadBot } from '@/components/common/WhatsAppLeadBot';
 
 interface TemplateProps {
   client: IFAClient;
@@ -17,6 +21,7 @@ interface TemplateProps {
 export const HeritageTrustTemplate: React.FC<TemplateProps> = ({ client }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { branding } = client;
+  const plan = client.planTier || 'elite';
 
   return (
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 font-serif antialiased">
@@ -27,6 +32,17 @@ export const HeritageTrustTemplate: React.FC<TemplateProps> = ({ client }) => {
           <span>FCA Authorised Independent Firm: FRN <strong>{client.fcaFrn}</strong></span>
         </div>
         <div className="flex items-center space-x-4">
+          {client.clientPortalUrl && (
+            <a 
+              href={client.clientPortalUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center space-x-1 text-amber-400 hover:text-white font-bold transition-colors"
+            >
+              <ExternalLink className="w-3 h-3" />
+              <span>Client Portal Access</span>
+            </a>
+          )}
           <span>Tel: <a href={`tel:${client.phone}`} className="text-white font-bold hover:text-amber-400">{client.phone}</a></span>
         </div>
       </div>
@@ -51,8 +67,10 @@ export const HeritageTrustTemplate: React.FC<TemplateProps> = ({ client }) => {
 
           <nav className="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-stone-600">
             <a href="#services" className="hover:text-stone-900 transition-colors">Our Practice</a>
-            <a href="#pension" className="hover:text-stone-900 transition-colors">Pension Forecasting</a>
-            <a href="#testimonials" className="hover:text-stone-900 transition-colors">Governance</a>
+            <a href="#journey" className="hover:text-stone-900 transition-colors">Client Journey</a>
+            <a href="#fees" className="hover:text-stone-900 transition-colors">Fee Schedule</a>
+            <a href="#guides" className="hover:text-stone-900 transition-colors">Executive Briefings</a>
+            <a href="#calculators" className="hover:text-stone-900 transition-colors">Planning Suite</a>
           </nav>
 
           <button
@@ -70,7 +88,7 @@ export const HeritageTrustTemplate: React.FC<TemplateProps> = ({ client }) => {
         <div className="max-w-5xl mx-auto px-6 text-center space-y-8">
           <div className="inline-flex items-center space-x-2 bg-amber-100/80 border border-amber-300/80 px-4 py-1.5 rounded-full text-xs font-sans font-bold text-amber-900">
             <Award className="w-4 h-4 text-amber-700" />
-            <span>Chartered Financial Planning Practice</span>
+            <span>Chartered Financial Planning Practice &bull; Elite Advisory</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-stone-900 leading-tight">
@@ -89,6 +107,12 @@ export const HeritageTrustTemplate: React.FC<TemplateProps> = ({ client }) => {
             >
               Book Executive Review
             </button>
+            <a
+              href="#calculators"
+              className="px-8 py-4 rounded-xl bg-white border border-stone-300 text-stone-800 font-bold text-xs uppercase tracking-widest hover:bg-stone-50 transition-all shadow-xs"
+            >
+              UK Tax &amp; Pension Calculators
+            </a>
           </div>
         </div>
       </section>
@@ -116,15 +140,44 @@ export const HeritageTrustTemplate: React.FC<TemplateProps> = ({ client }) => {
         </div>
       </section>
 
-      {/* Pension Calculator */}
-      <section id="pension" className="py-16 bg-slate-900 text-white font-sans">
+      {/* Advice Journey */}
+      <div id="journey" className="font-sans">
+        <AdviceJourneySection
+          firmName={client.firmName}
+          primaryColor={branding.primaryColor}
+          onOpenConsultation={() => setIsModalOpen(true)}
+        />
+      </div>
+
+      {/* Fee Transparency */}
+      <div id="fees" className="font-sans">
+        <FeeTransparencyModule
+          firmName={client.firmName}
+          isIndependent={client.isIndependent}
+          feeSummary={client.compliance?.feeStructureSummary}
+        />
+      </div>
+
+      {/* Lead Magnets & Scorecard */}
+      <div id="guides">
+        <LeadMagnetSection client={client} />
+      </div>
+
+      {/* Calculator Suite */}
+      <section id="calculators" className="py-16 bg-slate-950 text-white font-sans">
         <div className="max-w-7xl mx-auto px-6">
-          <PensionCalculator primaryColor={branding.primaryColor} onOpenConsultation={() => setIsModalOpen(true)} />
+          <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-amber-400">Executive Planning Tools</span>
+            <h2 className="text-3xl font-extrabold text-white">UK Wealth &amp; Estate Calculators</h2>
+          </div>
+          <CalculatorSuite client={client} onOpenConsultation={() => setIsModalOpen(true)} />
         </div>
       </section>
 
       <FCABadgeFooter client={client} themeMode="bright" />
+      <WhatsAppLeadBot client={client} />
       <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} client={client} />
     </div>
   );
 };
+

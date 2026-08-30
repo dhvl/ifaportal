@@ -1,4 +1,5 @@
 export type TemplateId = 'modern-wealth' | 'heritage-trust' | 'agile-dynamic';
+export type PlanTier = 'starter' | 'pro' | 'elite';
 
 export interface IFABranding {
   primaryColor: string;
@@ -68,6 +69,10 @@ export interface IFAClient {
   compliance: IFAComplianceDetails;
   branding: IFABranding;
   templateId: TemplateId;
+  planTier: PlanTier;
+  hasDfySocialMedia?: boolean;
+  whatsappNumber?: string;
+  clientPortalUrl?: string;
   services: IFAService[];
   team: TeamMember[];
   testimonials: Testimonial[];
@@ -93,6 +98,10 @@ export interface AdminQuestionnaireFormData {
   mortgageWarningRequired: boolean;
   feeStructureSummary: string;
   templateId: TemplateId;
+  planTier: PlanTier;
+  hasDfySocialMedia: boolean;
+  whatsappNumber?: string;
+  clientPortalUrl?: string;
   primaryColor: string;
   secondaryColor: string;
   fontFamily: 'inter' | 'playfair' | 'plus-jakarta';
@@ -100,3 +109,4 @@ export interface AdminQuestionnaireFormData {
   heroSubheadline: string;
   selectedServiceIds: string[];
 }
+

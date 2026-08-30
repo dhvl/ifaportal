@@ -3,14 +3,17 @@
 import React, { useState } from 'react';
 import { 
   ShieldCheck, Award, ArrowRight, CheckCircle2, Phone, Mail, 
-  PiggyBank, TrendingUp, Home, HeartHandshake, Briefcase, Star, Sparkles, UserCheck, Check
+  PiggyBank, TrendingUp, Home, HeartHandshake, Briefcase, Star, Sparkles, UserCheck, Check,
+  ExternalLink, MessageCircle
 } from 'lucide-react';
 import { IFAClient } from '@/lib/types';
 import { FCABadgeFooter } from '@/components/common/FCABadgeFooter';
-import { PensionCalculator } from '@/components/calculators/PensionCalculator';
+import { CalculatorSuite } from '@/components/calculators/CalculatorSuite';
 import { ConsultationModal } from '@/components/modals/ConsultationModal';
 import { AdviceJourneySection } from '@/components/common/AdviceJourneySection';
 import { FeeTransparencyModule } from '@/components/common/FeeTransparencyModule';
+import { LeadMagnetSection } from '@/components/common/LeadMagnetSection';
+import { WhatsAppLeadBot } from '@/components/common/WhatsAppLeadBot';
 
 interface TemplateProps {
   client: IFAClient;
@@ -19,6 +22,7 @@ interface TemplateProps {
 export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { branding } = client;
+  const plan = client.planTier || 'pro';
 
   const iconMap: Record<string, React.ReactNode> = {
     PiggyBank: <PiggyBank className="w-5 h-5" />,
@@ -43,7 +47,18 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
             {client.isIndependent ? 'Chartered Independent Financial Practice' : 'Regulated Financial Advisory'}
           </span>
         </div>
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-4 sm:space-x-6">
+          {client.clientPortalUrl && plan === 'elite' && (
+            <a 
+              href={client.clientPortalUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center space-x-1 text-amber-300 hover:text-white transition-colors font-bold"
+            >
+              <ExternalLink className="w-3 h-3" />
+              <span>Client Portal</span>
+            </a>
+          )}
           <a href={`tel:${client.phone}`} className="flex items-center space-x-1.5 hover:text-amber-400 transition-colors font-medium">
             <Phone className="w-3.5 h-3.5 text-amber-400" />
             <span>{client.phone}</span>
@@ -77,18 +92,21 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
             <a href="#services" className="hover:text-slate-900 transition-colors">Services</a>
             <a href="#journey" className="hover:text-slate-900 transition-colors">Advice Journey</a>
             <a href="#fees" className="hover:text-slate-900 transition-colors">Fee Transparency</a>
-            <a href="#calculator" className="hover:text-slate-900 transition-colors">Pension Calculator</a>
+            <a href="#guides" className="hover:text-slate-900 transition-colors">Guides &amp; Scorecard</a>
+            <a href="#calculator" className="hover:text-slate-900 transition-colors">Calculators</a>
             <a href="#team" className="hover:text-slate-900 transition-colors">Advisers</a>
           </nav>
 
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center space-x-2"
-            style={{ backgroundColor: branding.primaryColor }}
-          >
-            <Sparkles className="w-4 h-4 text-amber-300" />
-            <span>Book Initial Review</span>
-          </button>
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center space-x-2"
+              style={{ backgroundColor: branding.primaryColor }}
+            >
+              <Sparkles className="w-4 h-4 text-amber-300" />
+              <span>Book Consultation</span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -125,7 +143,7 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
                   className="px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-800 font-bold text-xs uppercase tracking-widest hover:bg-slate-100 transition-colors flex items-center justify-center space-x-2 shadow-xs"
                 >
                   <PiggyBank className="w-4 h-4 text-amber-600" />
-                  <span>Pension Calculator</span>
+                  <span>Interactive Calculators</span>
                 </a>
               </div>
 
@@ -147,10 +165,17 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
 
             <div className="lg:col-span-5">
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-xl space-y-6 relative">
-                <div className="absolute -top-4 -right-4 bg-slate-900 text-white rounded-2xl px-4 py-2.5 shadow-lg border border-slate-800 flex items-center space-x-2 text-xs font-bold">
-                  <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                  <span>4.9 / 5.0 VouchedFor Rating</span>
-                </div>
+                {plan !== 'starter' ? (
+                  <div className="absolute -top-4 -right-4 bg-slate-900 text-white rounded-2xl px-4 py-2.5 shadow-lg border border-slate-800 flex items-center space-x-2 text-xs font-bold animate-fade-in">
+                    <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    <span>4.9 / 5.0 VouchedFor Top Rated</span>
+                  </div>
+                ) : (
+                  <div className="absolute -top-4 -right-4 bg-emerald-700 text-white rounded-2xl px-4 py-2.5 shadow-lg border border-emerald-600 flex items-center space-x-2 text-xs font-bold">
+                    <ShieldCheck className="w-4 h-4 text-emerald-200" />
+                    <span>FCA Reg #{client.fcaFrn}</span>
+                  </div>
+                )}
 
                 <div className="border-b border-slate-100 pb-4">
                   <span className="text-xs font-bold uppercase tracking-widest text-amber-600 block mb-1">
@@ -232,7 +257,7 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
         />
       </div>
 
-      {/* Fee Transparency & Independent vs Restricted Comparison */}
+      {/* Fee Transparency */}
       <div id="fees">
         <FeeTransparencyModule
           firmName={client.firmName}
@@ -241,11 +266,20 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
         />
       </div>
 
-      {/* Interactive Pension Calculator */}
-      <section id="calculator" className="py-20 bg-slate-900 text-white">
+      {/* Lead Magnet & Scorecard Section */}
+      <div id="guides">
+        <LeadMagnetSection client={client} />
+      </div>
+
+      {/* Interactive Calculator Suite */}
+      <section id="calculator" className="py-20 bg-slate-950 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <PensionCalculator 
-            primaryColor={branding.primaryColor}
+          <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-amber-400">UK Interactive Planning Suite</span>
+            <h2 className="text-3xl font-extrabold text-white">Advisory Calculators &amp; Projections</h2>
+          </div>
+          <CalculatorSuite 
+            client={client}
             onOpenConsultation={() => setIsModalOpen(true)} 
           />
         </div>
@@ -287,6 +321,9 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
       {/* FCA Footer */}
       <FCABadgeFooter client={client} themeMode="bright" />
 
+      {/* WhatsApp & AI Automation Bot */}
+      <WhatsAppLeadBot client={client} />
+
       {/* Consultation Modal */}
       <ConsultationModal
         isOpen={isModalOpen}
@@ -296,3 +333,4 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
     </div>
   );
 };
+

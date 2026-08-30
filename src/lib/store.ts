@@ -57,6 +57,51 @@ export const DEFAULT_SERVICES = [
   },
 ];
 
+export const PLAN_DETAILS = {
+  starter: {
+    name: 'Starter Growth',
+    priceMonthly: 49,
+    priceYearly: 490,
+    badge: 'Starter',
+    leadMagnetsCount: 1,
+    calculators: ['pension'],
+    hasWhatsAppClick: true,
+    hasWhatsAppBot: false,
+    hasAiBot: false,
+    hasVouchedForSync: false,
+    hasMultiAdviser: false,
+    hasClientPortal: false,
+  },
+  pro: {
+    name: 'Client Acquisition Pro',
+    priceMonthly: 99,
+    priceYearly: 990,
+    badge: 'Most Popular',
+    leadMagnetsCount: 3,
+    calculators: ['pension', 'inheritanceTax', 'investmentGrowth'],
+    hasWhatsAppClick: true,
+    hasWhatsAppBot: true,
+    hasAiBot: false,
+    hasVouchedForSync: true,
+    hasMultiAdviser: true,
+    hasClientPortal: false,
+  },
+  elite: {
+    name: 'Elite Wealth Automation',
+    priceMonthly: 189,
+    priceYearly: 1890,
+    badge: 'Enterprise',
+    leadMagnetsCount: 99,
+    calculators: ['pension', 'inheritanceTax', 'investmentGrowth'],
+    hasWhatsAppClick: true,
+    hasWhatsAppBot: true,
+    hasAiBot: true,
+    hasVouchedForSync: true,
+    hasMultiAdviser: true,
+    hasClientPortal: true,
+  },
+};
+
 export const INITIAL_CLIENTS: IFAClient[] = [
   {
     id: 'client-mlp-wealth',
@@ -87,6 +132,10 @@ export const INITIAL_CLIENTS: IFAClient[] = [
       heroSubheadline: 'Chartered Independent Financial Advisers providing bespoke wealth management, retirement strategies, and estate planning across the UK.',
     },
     templateId: 'modern-wealth',
+    planTier: 'pro',
+    hasDfySocialMedia: true,
+    whatsappNumber: '+441132458900',
+    clientPortalUrl: 'https://moneyinfo.co.uk/demo',
     services: DEFAULT_SERVICES,
     team: [
       {
@@ -169,6 +218,9 @@ export const INITIAL_CLIENTS: IFAClient[] = [
       heroSubheadline: 'Transparent, tech-enabled independent advice covering pensions, investments, and mortgage protection with zero hidden costs.',
     },
     templateId: 'agile-dynamic',
+    planTier: 'starter',
+    hasDfySocialMedia: false,
+    whatsappNumber: '+441216804420',
     services: DEFAULT_SERVICES,
     team: [
       {
@@ -231,6 +283,10 @@ export const INITIAL_CLIENTS: IFAClient[] = [
       heroSubheadline: 'Established UK Independent Financial Advisers dedicated to wealth preservation, retirement stability, and family legacy planning.',
     },
     templateId: 'heritage-trust',
+    planTier: 'elite',
+    hasDfySocialMedia: true,
+    whatsappNumber: '+441618329900',
+    clientPortalUrl: 'https://advicefront.com/demo',
     services: DEFAULT_SERVICES,
     team: [
       {
@@ -277,9 +333,12 @@ export function getClients(): IFAClient[] {
       return INITIAL_CLIENTS;
     }
     const parsed = JSON.parse(data);
-    // Ensure backwards compatibility with compliance object
+    // Ensure backwards compatibility with compliance object and planTier
     return parsed.map((c: any) => ({
       ...c,
+      planTier: c.planTier || 'pro',
+      hasDfySocialMedia: c.hasDfySocialMedia ?? false,
+      whatsappNumber: c.whatsappNumber || c.phone || '+442079460123',
       compliance: c.compliance || {
         fcaFrn: c.fcaFrn || '123456',
         isIndependent: c.isIndependent ?? true,

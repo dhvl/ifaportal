@@ -1,96 +1,105 @@
-# Implementation Plan - UK IFA Portal Creator Platform
+# Implementation Plan: 3-Tier Plan Integration Across Onboarding, Admin Dashboard & Dynamic Templates
 
-Create a state-of-the-art UK Independent Financial Adviser (IFA) Website & Portal Creator platform. The system will allow administrators to onboard new IFA practices via a guided questionnaire, customize branding, colors, and services, select pre-designed FCA-compliant website templates, and instantly generate live, responsive, SEO-optimized IFA client portals.
+Integrate our newly defined **3-Tier Product Plans** into the IFA Portal platform:
+1. **Starter Growth (£49/mo)**
+2. **Client Acquisition Pro (£99/mo)** *(Best Value / Recommended)*
+3. **Elite Wealth Automation (£189/mo)**
+4. **DFY LinkedIn & Blog Marketing Add-On (£169/mo bundled / £199/mo)**
+
+Each template and portal will dynamically display the appropriate widgets, lead magnets, calculators, and chatbot automations based on the active plan tier.
+
+---
 
 ## User Review Required
 
 > [!IMPORTANT]
-> **Key Architecture Decisions:**
-> 1. **Framework & Styling**: Next.js 16 App Router + Tailwind CSS v4 + Lucide Icons + Framer Motion for smooth micro-interactions.
-> 2. **Template Architecture**: 3 pre-designed IFA Website Templates tailored after UK industry leaders (*MLP Wealth* & *Agile IFA*):
->    - **Template 1: Modern Wealth (Clean & Minimalist)** - Clean navy/gold aesthetic, high conversion focus, ideal for wealth management practices.
->    - **Template 2: Heritage & Trust (Classic Executive)** - Deep forest green/warm cream tones, focusing on retirement & estate planning tradition.
->    - **Template 3: Dynamic Agile (Tech-Forward & Modern)** - Slate/emerald glassmorphism layout with live interactive pension calculators and quick booking widgets.
-> 3. **Admin Onboarding & Client Management System**:
->    - Interactive multi-step Onboarding Questionnaire (Firm Details, FCA FRN, Brand Palette, Services, Team Members, Selected Template).
->    - Real-Time Live Preview Pane during onboarding.
->    - Persistent Client Storage (JSON-backed local state with pre-populated sample clients like *MLP Wealth Management* & *Agile Financial Planning*).
-> 4. **UK IFA Compliance & Trust Features**:
->    - Mandatory FCA Disclaimers & FRN badge generator.
->    - Independent vs. Restricted advice explanation block.
->    - VouchedFor & Trustpilot rating widgets.
->    - Interactive UK Pension & Retirement Tax Calculator.
+> - **Default Demo Clients**: We will assign each demo client to a specific plan to immediately showcase all 3 tiers (`agile-ifa` = Starter, `mlp-wealth` = Pro, `heritage-trust` = Elite).
+> - **Onboarding Step**: A new dedicated "Plan & Growth Add-ons" step will be added to the onboarding wizard with real-time preview of the tier features.
 
 ---
 
 ## Proposed Changes
 
-### Core UI & Component Library Setup
+### Data Model & Store Layer
 
-#### [NEW] [package.json](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/package.json)
-- Add `lucide-react`, `framer-motion`, `clsx`, `tailwind-merge` for UI components.
+#### [MODIFY] [types.ts](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/lib/types.ts)
+- Add `PlanTier = 'starter' | 'pro' | 'elite'`.
+- Add `planTier: PlanTier`, `hasDfySocialMedia?: boolean`, `whatsappNumber?: string`, `clientPortalUrl?: string` to `IFAClient` and `AdminQuestionnaireFormData`.
+- Add types for `LeadMagnetItem`, `ScorecardQuiz`, and `ChatbotConfig`.
 
-#### [NEW] [lib/types.ts](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/lib/types.ts)
-- Define TypeScript models for `IFAClient`, `IFABranding`, `IFAService`, `TeamMember`, `TemplateId`, `CalculatorSettings`, and `AdminQuestionnaire`.
-
-#### [NEW] [lib/store.ts](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/lib/store.ts)
-- Implement client store with localStorage persistence and default demo clients (*MLP Wealth Management*, *Agile Financial Advice*, *Premier Capital IFA*).
-
----
-
-### Admin Onboarding & Dashboard System
-
-#### [NEW] [app/admin/page.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/app/admin/page.tsx)
-- Admin Portal Dashboard showing onboarded IFA clients, template status, quick actions (Edit, View Live Site, Duplicate, Delete).
-
-#### [NEW] [app/admin/onboard/page.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/app/admin/onboard/page.tsx)
-- Multi-step interactive onboarding questionnaire:
-  - Step 1: Practice Information & FCA FRN Number
-  - Step 2: Branding & Color Customizer (Primary, Secondary, Fonts, Logo Upload)
-  - Step 3: Service Selection & Advisory Details
-  - Step 4: Team Profiles & Credentials
-  - Step 5: Template Selector & Live Instant Preview
-  - Step 6: Confirmation & Deployment
+#### [MODIFY] [store.ts](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/lib/store.ts)
+- Update default clients to showcase distinct plan tiers:
+  - `Agile Financial Advice` (`agile-ifa`) -> **Starter Growth (£49/mo)**
+  - `MLP Wealth Management` (`mlp-wealth`) -> **Client Acquisition Pro (£99/mo)**
+  - `Heritage & Trust Financial` (`heritage-trust`) -> **Elite Wealth Automation (£189/mo)** + DFY LinkedIn Add-On.
+- Provide helper methods for calculating monthly MRR and plan feature flags.
 
 ---
 
-### IFA Client Website Templates & Dynamic Renderer
+### Interactive Widgets & Lead Generation Components
 
-#### [NEW] [app/portal/[slug]/page.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/app/portal/[slug]/page.tsx)
-- Dynamic route for rendering any onboarded client website with their custom branding, template selection, and full SEO metadata.
+#### [NEW] [WhatsAppLeadBot.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/common/WhatsAppLeadBot.tsx)
+- **Starter Mode**: Floating WhatsApp Click-to-Chat button with pre-filled message ("Hi, I'd like to ask a question about pension/wealth advice").
+- **Pro Mode**: Interactive WhatsApp Lead Qualifier Drawer (collects asset size, main advice goal, postcode, phone number) with direct WhatsApp redirect + instant notification preview.
+- **Elite Mode**: 24/7 AI Financial Concierge Bot (FCA-safe conversational Q&A, booking integration, client portal gateway).
 
-#### [NEW] [components/templates/ModernWealthTemplate.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/templates/ModernWealthTemplate.tsx)
-- Inspired by *MLP Wealth*: High-trust hero, wealth audit CTA, pension/retirement modules, VouchedFor testimonials, fee transparency modal.
+#### [NEW] [LeadMagnetSection.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/common/LeadMagnetSection.tsx)
+- **Starter**: Single high-converting lead magnet (UK Retirement Readiness Guide 2026).
+- **Pro & Elite**: Multi-guide tabbed selector (Inheritance Tax Guide, Pension Maximizer, High-Net-Worth Tax Matrix) + 2-minute "Financial Health Scorecard" interactive assessment modal.
 
-#### [NEW] [components/templates/HeritageTrustTemplate.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/templates/HeritageTrustTemplate.tsx)
-- Classic executive IFA styling with dark green/gold palette, retirement planning spotlight, estate planning calculator, team bio modal.
-
-#### [NEW] [components/templates/AgileDynamicTemplate.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/templates/AgileDynamicTemplate.tsx)
-- Inspired by *Agile IFA*: Tech-forward glassmorphism, instant booking widget, interactive retirement projection tool, mobile-first design.
+#### [NEW] [CalculatorSuite.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/calculators/CalculatorSuite.tsx)
+- Unifies Pension Calculator, Inheritance Tax (IHT) Calculator, and Compound Growth Calculator with seamless tab navigation based on client plan tier.
 
 ---
 
-### Interactive IFA Tools & Compliance Components
+### Templates Layer (Dynamic Feature Rendering by Plan)
 
-#### [NEW] [components/calculators/PensionCalculator.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/calculators/PensionCalculator.tsx)
-- Interactive UK Retirement & Pension Pot Projection tool (Monthly contribution, growth rate, tax relief estimates).
+#### [MODIFY] [ModernWealthTemplate.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/templates/ModernWealthTemplate.tsx)
+- Integrate Plan-aware widgets:
+  - Embed `CalculatorSuite`
+  - Embed `LeadMagnetSection`
+  - Embed `WhatsAppLeadBot`
+  - Show VouchedFor/Unbiased review badge for Pro/Elite tiers
+  - Show Client Portal login button for Elite tier.
 
-#### [NEW] [components/common/FCABadgeFooter.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/common/FCABadgeFooter.tsx)
-- Standard UK FCA regulation notice, FRN validator display, risk warnings ("Capital at Risk"), and legal links.
+#### [MODIFY] [AgileDynamicTemplate.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/templates/AgileDynamicTemplate.tsx)
+- Update to support dynamic plan features with modern tech aesthetic.
 
-#### [NEW] [components/modals/ConsultationModal.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/modals/ConsultationModal.tsx)
-- Interactive lead-capture modal for booking initial financial reviews.
+#### [MODIFY] [HeritageTrustTemplate.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/components/templates/HeritageTrustTemplate.tsx)
+- Update to support executive/elite styling with multi-location directory and wealth concierge.
+
+---
+
+### Onboarding & Demo Admin Backend
+
+#### [MODIFY] [onboard/page.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/app/admin/onboard/page.tsx)
+- Add dedicated **Plan Selection & DFY Marketing Step**:
+  - Interactive cards for **Starter (£49/mo)**, **Pro (£99/mo - Recommended)**, **Elite (£189/mo)**.
+  - Checkbox toggle for **DFY LinkedIn & Blog Marketing Engine (+£169/mo)**.
+  - Live preview badge showing current plan features in the split preview panel.
+
+#### [MODIFY] [admin/page.tsx](file:///Users/apple/Documents/gemini/antigravity-ide/scratch/ifa-portal-uix/src/app/admin/page.tsx)
+- Display Plan Tier badges on client cards.
+- Add MRR / Subscription stats overview (£49/£99/£189).
+- Allow instant plan switching in the client editor.
 
 ---
 
 ## Verification Plan
 
-### Automated Verification
-- Run `npm run build` to ensure error-free TypeScript compilation and server components validation.
-- Verify zero console errors or broken imports.
+### Automated Build & Typecheck
+- Run `npm run build` or `npx tsc --noEmit` to verify type safety.
 
 ### Manual Verification
-- Test Admin Onboarding flow: create a new custom IFA client (e.g. "Apex Independent Wealth"), configure brand colors, select template, and launch.
-- Test live website rendering at `/portal/apex-wealth` and `/portal/mlp-wealth`.
-- Verify interactive pension calculator calculations.
-- Test responsive mobile layout and theme customizer.
+1. Open `/admin` and verify that the 3 demo IFA clients clearly show their respective plans (Starter, Pro, Elite) with active MRR calculation.
+2. Open `/admin/onboard` and test selecting each of the 3 plans + DFY LinkedIn add-on, observing real-time preview updates.
+3. Open `/portal/mlp-wealth` (Pro Plan):
+   - Check Full Calculator Suite (Pension, IHT, Growth).
+   - Check Lead Magnets & Scorecard Quiz.
+   - Check WhatsApp Lead Qualifier Chatbot.
+   - Check VouchedFor live review badge.
+4. Open `/portal/agile-ifa` (Starter Plan):
+   - Check WhatsApp Click-to-Chat widget.
+   - Check Single Pension Calculator & Retirement Guide lead magnet.
+5. Open `/portal/heritage-trust` (Elite Plan):
+   - Check 24/7 AI Concierge Bot & Client Portal link.

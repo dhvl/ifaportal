@@ -5,10 +5,11 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
   ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Building2, 
-  Palette, Briefcase, Users, Layout, Eye, Sparkles, Check, Phone, Mail, MapPin, AlertCircle
+  Palette, Briefcase, Users, Layout, Eye, Sparkles, Check, Phone, Mail, MapPin, 
+  AlertCircle, MessageCircle, Bot, TrendingUp, Award, Zap, FileText, CheckSquare
 } from 'lucide-react';
-import { IFAClient, AdminQuestionnaireFormData } from '@/lib/types';
-import { DEFAULT_SERVICES, saveClient } from '@/lib/store';
+import { IFAClient, AdminQuestionnaireFormData, PlanTier, TemplateId } from '@/lib/types';
+import { DEFAULT_SERVICES, saveClient, PLAN_DETAILS } from '@/lib/store';
 
 export default function OnboardingQuestionnairePage() {
   const router = useRouter();
@@ -26,6 +27,10 @@ export default function OnboardingQuestionnairePage() {
     mortgageWarningRequired: true,
     feeStructureSummary: 'Transparent fixed initial consultation fee + 0.50% - 0.75% p.a. ongoing discretionary management with zero exit penalties.',
     templateId: 'modern-wealth',
+    planTier: 'pro',
+    hasDfySocialMedia: true,
+    whatsappNumber: '+442079460123',
+    clientPortalUrl: 'https://moneyinfo.co.uk/crown-wealth',
     primaryColor: '#0f2744',
     secondaryColor: '#c5a059',
     fontFamily: 'playfair',
@@ -34,7 +39,8 @@ export default function OnboardingQuestionnairePage() {
     selectedServiceIds: ['retirement-planning', 'wealth-management', 'inheritance-tax', 'mortgages-property'],
   });
 
-  const handleNext = () => setStep((prev) => Math.min(prev + 1, 5));
+  const totalSteps = 6;
+  const handleNext = () => setStep((prev) => Math.min(prev + 1, totalSteps));
   const handleBack = () => setStep((prev) => Math.max(prev - 1, 1));
 
   const handlePublish = () => {
@@ -70,6 +76,10 @@ export default function OnboardingQuestionnairePage() {
         heroSubheadline: formData.heroSubheadline,
       },
       templateId: formData.templateId,
+      planTier: formData.planTier,
+      hasDfySocialMedia: formData.hasDfySocialMedia,
+      whatsappNumber: formData.whatsappNumber || formData.phone,
+      clientPortalUrl: formData.clientPortalUrl,
       services: selectedServices,
       team: [
         {
@@ -97,8 +107,8 @@ export default function OnboardingQuestionnairePage() {
       ],
       calculatorsEnabled: {
         pension: true,
-        inheritanceTax: true,
-        investmentGrowth: true,
+        inheritanceTax: formData.planTier !== 'starter',
+        investmentGrowth: formData.planTier !== 'starter',
       },
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -120,6 +130,12 @@ export default function OnboardingQuestionnairePage() {
     });
   };
 
+  // Pricing calculations
+  const planInfo = PLAN_DETAILS[formData.planTier] || PLAN_DETAILS.pro;
+  const basePrice = planInfo.priceMonthly;
+  const dfyPrice = formData.hasDfySocialMedia ? 169 : 0;
+  const totalMonthlyPrice = basePrice + dfyPrice;
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
       {/* Top Bright Header */}
@@ -133,8 +149,8 @@ export default function OnboardingQuestionnairePage() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-lg font-extrabold text-slate-900 tracking-tight">Practice Onboarding Questionnaire</h1>
-              <span className="text-xs text-amber-600 font-bold">Step {step} of 5 &bull; Practice &amp; Regulatory Setup</span>
+              <h1 className="text-lg font-extrabold text-slate-900 tracking-tight">Practice Onboarding &amp; Plan Configuration</h1>
+              <span className="text-xs text-amber-600 font-bold">Step {step} of {totalSteps} &bull; Practice &amp; Growth Plan Setup</span>
             </div>
           </div>
 
@@ -151,30 +167,25 @@ export default function OnboardingQuestionnairePage() {
           {/* Left Questionnaire Card */}
           <div className="lg:col-span-7 space-y-8 bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm">
             {/* Step Progress Bar */}
-            <div className="flex justify-between items-center border-b border-slate-100 pb-6 text-xs font-bold">
-              <div className={`flex items-center space-x-2 ${step >= 1 ? 'text-amber-600' : 'text-slate-400'}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 1 ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>1</div>
-                <span className="hidden sm:inline">Firm Details</span>
-              </div>
-              <div className={`flex items-center space-x-2 ${step >= 2 ? 'text-amber-600' : 'text-slate-400'}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 2 ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>2</div>
-                <span className="hidden sm:inline">Branding</span>
-              </div>
-              <div className={`flex items-center space-x-2 ${step >= 3 ? 'text-amber-600' : 'text-slate-400'}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 3 ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>3</div>
-                <span className="hidden sm:inline">Services</span>
-              </div>
-              <div className={`flex items-center space-x-2 ${step >= 4 ? 'text-amber-600' : 'text-slate-400'}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 4 ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>4</div>
-                <span className="hidden sm:inline">Template</span>
-              </div>
-              <div className={`flex items-center space-x-2 ${step >= 5 ? 'text-amber-600' : 'text-slate-400'}`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= 5 ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>5</div>
-                <span className="hidden sm:inline">Publish</span>
-              </div>
+            <div className="flex justify-between items-center border-b border-slate-100 pb-6 text-xs font-bold overflow-x-auto">
+              {[
+                { num: 1, label: 'Firm Details' },
+                { num: 2, label: 'Branding' },
+                { num: 3, label: 'Services' },
+                { num: 4, label: 'Growth Plan' },
+                { num: 5, label: 'Template' },
+                { num: 6, label: 'Launch' },
+              ].map((s) => (
+                <div key={s.num} className={`flex items-center space-x-1.5 shrink-0 px-2 ${step >= s.num ? 'text-amber-600' : 'text-slate-400'}`}>
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${step >= s.num ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-400'}`}>
+                    {s.num}
+                  </div>
+                  <span className="hidden sm:inline text-[11px]">{s.label}</span>
+                </div>
+              ))}
             </div>
 
-            {/* STEP 1 */}
+            {/* STEP 1: Firm Details */}
             {step === 1 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
@@ -296,7 +307,7 @@ export default function OnboardingQuestionnairePage() {
               </div>
             )}
 
-            {/* STEP 2 */}
+            {/* STEP 2: Branding & Hero */}
             {step === 2 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
@@ -367,7 +378,7 @@ export default function OnboardingQuestionnairePage() {
               </div>
             )}
 
-            {/* STEP 3 */}
+            {/* STEP 3: Services */}
             {step === 3 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
@@ -405,8 +416,183 @@ export default function OnboardingQuestionnairePage() {
               </div>
             )}
 
-            {/* STEP 4 */}
+            {/* STEP 4: Choose Growth Plan & Automation Add-ons */}
             {step === 4 && (
+              <div className="space-y-6 animate-fade-in">
+                <div className="space-y-1">
+                  <h2 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
+                    <TrendingUp className="w-5 h-5 text-amber-500" />
+                    <span>Select Core Growth Plan &amp; Automation Tier</span>
+                  </h2>
+                  <p className="text-xs text-slate-500">Choose the feature tier and automation capabilities for this IFA firm.</p>
+                </div>
+
+                {/* 3 Plan Cards */}
+                <div className="grid grid-cols-1 gap-4">
+                  {/* Plan 1: Starter */}
+                  <div
+                    onClick={() => setFormData({ ...formData, planTier: 'starter' })}
+                    className={`p-5 rounded-3xl border-2 cursor-pointer transition-all ${
+                      formData.planTier === 'starter'
+                        ? 'border-amber-500 bg-amber-50/50 shadow-md'
+                        : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-9 h-9 rounded-xl bg-slate-200 flex items-center justify-center font-bold text-slate-700">
+                          1
+                        </div>
+                        <div>
+                          <h4 className="font-extrabold text-base text-slate-900">Starter Growth</h4>
+                          <span className="text-xs text-slate-500">Solo IFAs &amp; Appointed Representatives</span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-black text-slate-900">£49 <span className="text-xs font-normal text-slate-500">/mo</span></div>
+                        <span className="text-[10px] text-emerald-700 font-bold">£0 Setup Fee</span>
+                      </div>
+                    </div>
+                    <div className="mt-3 pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2 text-[11px] text-slate-600">
+                      <div>&bull; 1 High-converting Modern Theme</div>
+                      <div>&bull; WhatsApp Click-to-Chat Widget</div>
+                      <div>&bull; Single Pension Calculator</div>
+                      <div>&bull; 1 Lead Magnet (Retirement Guide)</div>
+                    </div>
+                  </div>
+
+                  {/* Plan 2: Client Acquisition Pro */}
+                  <div
+                    onClick={() => setFormData({ ...formData, planTier: 'pro' })}
+                    className={`p-5 rounded-3xl border-2 cursor-pointer transition-all relative ${
+                      formData.planTier === 'pro'
+                        ? 'border-amber-500 bg-amber-50 shadow-md'
+                        : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="absolute -top-3 right-6 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm">
+                      ⭐ Recommended • Best Value
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-9 h-9 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold">
+                          2
+                        </div>
+                        <div>
+                          <h4 className="font-extrabold text-base text-slate-900">Client Acquisition Pro</h4>
+                          <span className="text-xs text-slate-500">Growing Practices &amp; Boutiques (2–5 Advisers)</span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-black text-slate-900">£99 <span className="text-xs font-normal text-slate-500">/mo</span></div>
+                        <span className="text-[10px] text-emerald-700 font-bold">£0 Setup Fee</span>
+                      </div>
+                    </div>
+                    <div className="mt-3 pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2 text-[11px] text-slate-700 font-medium">
+                      <div>&bull; <b>All 3 Premium Templates</b></div>
+                      <div>&bull; <b>Automated WhatsApp Qualifier Bot</b></div>
+                      <div>&bull; <b>Full Suite:</b> Pension + IHT + ISA</div>
+                      <div>&bull; <b>3 Lead Magnets &amp; Scorecard Quiz</b></div>
+                      <div>&bull; <b>Live VouchedFor Review Sync</b></div>
+                      <div>&bull; Instant WhatsApp Lead Mobile Alerts</div>
+                    </div>
+                  </div>
+
+                  {/* Plan 3: Elite Wealth Automation */}
+                  <div
+                    onClick={() => setFormData({ ...formData, planTier: 'elite' })}
+                    className={`p-5 rounded-3xl border-2 cursor-pointer transition-all ${
+                      formData.planTier === 'elite'
+                        ? 'border-indigo-600 bg-indigo-50/60 shadow-md'
+                        : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-9 h-9 rounded-xl bg-indigo-900 text-white flex items-center justify-center font-bold">
+                          3
+                        </div>
+                        <div>
+                          <h4 className="font-extrabold text-base text-slate-900">Elite Wealth Automation</h4>
+                          <span className="text-xs text-slate-500">Multi-Branch Networks &amp; Family Offices</span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-black text-slate-900">£189 <span className="text-xs font-normal text-slate-500">/mo</span></div>
+                        <span className="text-[10px] text-emerald-700 font-bold">£0 Setup Fee</span>
+                      </div>
+                    </div>
+                    <div className="mt-3 pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2 text-[11px] text-slate-700 font-medium">
+                      <div>&bull; <b>24/7 AI Financial Assistant Bot</b></div>
+                      <div>&bull; <b>Client Portal Gateway Integration</b></div>
+                      <div>&bull; Bespoke Theme &amp; CSS Customizer</div>
+                      <div>&bull; Unlimited Lead Magnets &amp; Funnels</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* DFY Social Media Marketing Add-On */}
+                <div className="p-5 rounded-3xl bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 border border-emerald-200 space-y-3">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-start space-x-3">
+                      <input
+                        type="checkbox"
+                        id="dfyCheckbox"
+                        checked={formData.hasDfySocialMedia}
+                        onChange={(e) => setFormData({ ...formData, hasDfySocialMedia: e.target.checked })}
+                        className="w-5 h-5 rounded-lg text-emerald-600 focus:ring-emerald-500 border-slate-300 mt-0.5 cursor-pointer"
+                      />
+                      <div>
+                        <label htmlFor="dfyCheckbox" className="font-extrabold text-sm text-slate-900 cursor-pointer flex items-center space-x-1.5">
+                          <span>Add Done-For-You (DFY) LinkedIn &amp; Blog Marketing</span>
+                          <span className="bg-emerald-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">Recommended</span>
+                        </label>
+                        <p className="text-xs text-slate-600 mt-1">
+                          8-10 FCA-compliant LinkedIn posts/mo + 2 long-form SEO blog &amp; LinkedIn thought leadership articles in your firm's brand colors.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="text-sm font-black text-emerald-900">+£169 <span className="text-[10px] font-normal text-slate-500">/mo</span></div>
+                      <span className="text-[10px] text-slate-500 line-through">£199 /mo</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* WhatsApp & Client Portal Config */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Adviser WhatsApp Phone Number (For Alerts)
+                    </label>
+                    <input
+                      type="tel"
+                      value={formData.whatsappNumber}
+                      onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
+                      placeholder="+447123456789"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Client Portal URL (Optional)
+                    </label>
+                    <input
+                      type="url"
+                      value={formData.clientPortalUrl}
+                      onChange={(e) => setFormData({ ...formData, clientPortalUrl: e.target.value })}
+                      placeholder="https://moneyinfo.co.uk/..."
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* STEP 5: Template Selection */}
+            {step === 5 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
                   <h2 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
@@ -457,7 +643,7 @@ export default function OnboardingQuestionnairePage() {
                   >
                     <div>
                       <h4 className="font-bold text-base text-slate-900">Agile Dynamic (Inspired by Agile IFA)</h4>
-                      <p className="text-xs text-slate-500">Modern glassmorphism emerald layout with interactive pension pot calculator &amp; instant booking.</p>
+                      <p className="text-xs text-slate-500">Modern glassmorphism emerald layout with interactive planning tools &amp; instant booking.</p>
                     </div>
                     {formData.templateId === 'agile-dynamic' && <CheckCircle2 className="w-6 h-6 text-amber-600 shrink-0" />}
                   </div>
@@ -465,36 +651,42 @@ export default function OnboardingQuestionnairePage() {
               </div>
             )}
 
-            {/* STEP 5 */}
-            {step === 5 && (
+            {/* STEP 6: Review & Launch */}
+            {step === 6 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
                   <h2 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
                     <Sparkles className="w-5 h-5 text-amber-500" />
-                    <span>Review &amp; Deploy Client Website</span>
+                    <span>Review &amp; Deploy Client Portal</span>
                   </h2>
-                  <p className="text-xs text-slate-500">Confirm practice setup details and launch the live portal.</p>
+                  <p className="text-xs text-slate-500">Confirm practice setup details, active plan tier, and launch the live portal.</p>
                 </div>
 
-                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-3 text-xs">
-                  <div className="flex justify-between border-b border-slate-200 pb-2">
+                <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-3.5 text-xs">
+                  <div className="flex justify-between border-b border-slate-200 pb-2.5">
                     <span className="text-slate-500">Firm Name:</span>
                     <strong className="text-slate-900 text-sm">{formData.firmName}</strong>
                   </div>
-                  <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <div className="flex justify-between border-b border-slate-200 pb-2.5">
                     <span className="text-slate-500">FCA FRN:</span>
                     <strong className="text-amber-600 font-mono">{formData.fcaFrn}</strong>
                   </div>
-                  <div className="flex justify-between border-b border-slate-200 pb-2">
-                    <span className="text-slate-500">Advice Model:</span>
-                    <strong className="text-emerald-700">{formData.isIndependent ? 'Independent (Whole of Market)' : 'Restricted'}</strong>
+                  <div className="flex justify-between border-b border-slate-200 pb-2.5">
+                    <span className="text-slate-500">Selected Plan Tier:</span>
+                    <strong className="text-indigo-700 font-bold uppercase">{planInfo.name} (£{basePrice}/mo)</strong>
                   </div>
-                  <div className="flex justify-between border-b border-slate-200 pb-2">
-                    <span className="text-slate-500">Template Layout:</span>
-                    <strong className="text-slate-900 capitalize">{formData.templateId.replace('-', ' ')}</strong>
+                  {formData.hasDfySocialMedia && (
+                    <div className="flex justify-between border-b border-slate-200 pb-2.5">
+                      <span className="text-slate-500">DFY Marketing Add-on:</span>
+                      <strong className="text-emerald-700 font-bold">Active (+£169/mo bundled)</strong>
+                    </div>
+                  )}
+                  <div className="flex justify-between border-b border-slate-200 pb-2.5">
+                    <span className="text-slate-500">Total Monthly Investment:</span>
+                    <strong className="text-slate-950 font-black text-sm">£{totalMonthlyPrice} / month (£0 setup fee)</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Target Slug URL:</span>
+                    <span className="text-slate-500">Live Portal Slug:</span>
                     <strong className="text-amber-600 font-mono">
                       /portal/{formData.firmName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
                     </strong>
@@ -503,10 +695,10 @@ export default function OnboardingQuestionnairePage() {
 
                 <button
                   onClick={handlePublish}
-                  className="w-full py-4 px-6 rounded-2xl bg-amber-500 text-white font-extrabold text-xs uppercase tracking-widest shadow-xl hover:bg-amber-600 hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2"
+                  className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs uppercase tracking-widest shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2"
                 >
-                  <Sparkles className="w-5 h-5 text-amber-200" />
-                  <span>Publish &amp; Open Client Portal</span>
+                  <Sparkles className="w-5 h-5 text-slate-950" />
+                  <span>Deploy &amp; Launch Client Portal Live</span>
                 </button>
               </div>
             )}
@@ -521,7 +713,7 @@ export default function OnboardingQuestionnairePage() {
                 Back
               </button>
 
-              {step < 5 && (
+              {step < totalSteps && (
                 <button
                   onClick={handleNext}
                   className="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs uppercase tracking-wider hover:bg-slate-800 transition-colors flex items-center space-x-1 shadow-md"
@@ -540,65 +732,85 @@ export default function OnboardingQuestionnairePage() {
                 <Eye className="w-4 h-4 text-amber-600" />
                 <span>Real-Time Practice Preview</span>
               </span>
-              <span className="text-[10px] text-emerald-700 font-bold font-mono bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
-                LIVE PREVIEW
+              <span className="text-[10px] text-emerald-700 font-bold font-mono bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                {planInfo.name} (£{totalMonthlyPrice}/mo)
               </span>
             </div>
 
             <div className="bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm space-y-6">
               {/* Header Preview */}
               <div className="flex items-center space-x-3 border-b border-slate-100 pb-4">
-                <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-md"
+                <div 
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm"
                   style={{ backgroundColor: formData.primaryColor }}
                 >
-                  {formData.firmName ? formData.firmName.charAt(0) : 'I'}
+                  {formData.firmName.charAt(0) || 'C'}
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 tracking-tight">
-                    {formData.firmName || 'Practice Name'}
-                  </h3>
-                  <span className="text-xs text-amber-600 font-mono font-bold block">
-                    FCA FRN: {formData.fcaFrn || 'XXXXXX'}
+                  <h4 className="font-bold text-sm text-slate-900">{formData.firmName}</h4>
+                  <span className="text-[10px] text-amber-600 font-bold uppercase">
+                    FCA FRN: {formData.fcaFrn} &bull; {formData.isIndependent ? 'Independent' : 'Restricted'}
                   </span>
                 </div>
               </div>
 
-              {/* Hero Banner Preview */}
-              <div 
-                className="p-5 rounded-2xl border border-slate-200/80 space-y-3"
-                style={{ backgroundColor: formData.primaryColor + '10' }}
-              >
-                <div className="inline-flex items-center space-x-1 text-[10px] text-amber-700 font-bold uppercase tracking-wider">
-                  <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
-                  <span>{formData.isIndependent ? 'Independent Adviser' : 'Restricted Adviser'}</span>
-                </div>
-                <h4 className="text-base font-bold text-slate-900 leading-snug">
-                  {formData.heroHeadline || 'Hero Headline'}
-                </h4>
-                <p className="text-xs text-slate-600 line-clamp-2">
-                  {formData.heroSubheadline || 'Hero Subheadline...'}
+              {/* Hero Preview */}
+              <div className="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
+                  {formData.heroHeadline}
+                </h3>
+                <p className="text-xs text-slate-500 line-clamp-2">
+                  {formData.heroSubheadline}
                 </p>
-              </div>
-
-              {/* Contact Preview */}
-              <div className="space-y-2 text-xs text-slate-600 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
-                <div className="flex items-center space-x-2 text-slate-800">
-                  <Phone className="w-3.5 h-3.5 text-amber-600" />
-                  <span>{formData.phone}</span>
-                </div>
-                <div className="flex items-center space-x-2 text-slate-800">
-                  <Mail className="w-3.5 h-3.5 text-amber-600" />
-                  <span>{formData.email}</span>
-                </div>
-                <div className="flex items-start space-x-2 text-slate-800">
-                  <MapPin className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
-                  <span>{formData.address}</span>
+                <div className="flex space-x-2 pt-1">
+                  <span 
+                    className="px-3 py-1 text-white text-[10px] font-bold rounded-lg uppercase"
+                    style={{ backgroundColor: formData.primaryColor }}
+                  >
+                    Book Discovery
+                  </span>
+                  <span className="px-3 py-1 bg-white border border-slate-200 text-slate-700 text-[10px] font-bold rounded-lg uppercase">
+                    Planning Tools
+                  </span>
                 </div>
               </div>
 
-              <div className="text-[11px] text-slate-500 text-center border-t border-slate-100 pt-3">
-                Selected Template: <strong className="text-slate-900 capitalize">{formData.templateId.replace('-', ' ')}</strong>
+              {/* Active Plan Modules Preview */}
+              <div className="space-y-2.5 pt-2">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Included Automation Features:</span>
+                <div className="space-y-2 text-xs">
+                  <div className="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-100 flex items-center space-x-2 text-emerald-900 font-medium">
+                    <MessageCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>
+                      {formData.planTier === 'starter' && 'WhatsApp Click-to-Chat Button'}
+                      {formData.planTier === 'pro' && 'Automated WhatsApp Lead Qualifier Bot'}
+                      {formData.planTier === 'elite' && '24/7 AI Financial Assistant Bot + WhatsApp'}
+                    </span>
+                  </div>
+
+                  <div className="p-2.5 rounded-xl bg-amber-50/70 border border-amber-100 flex items-center space-x-2 text-amber-900 font-medium">
+                    <FileText className="w-4 h-4 text-amber-600 shrink-0" />
+                    <span>
+                      {formData.planTier === 'starter' && '1 Lead Magnet: UK Retirement Readiness'}
+                      {formData.planTier !== 'starter' && '3 Lead Magnets + 2-Min Scorecard Quiz'}
+                    </span>
+                  </div>
+
+                  <div className="p-2.5 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center space-x-2 text-blue-900 font-medium">
+                    <TrendingUp className="w-4 h-4 text-blue-600 shrink-0" />
+                    <span>
+                      {formData.planTier === 'starter' && 'Pension Calculator'}
+                      {formData.planTier !== 'starter' && 'Full Suite: Pension, IHT 40% & ISA Growth'}
+                    </span>
+                  </div>
+
+                  {formData.hasDfySocialMedia && (
+                    <div className="p-2.5 rounded-xl bg-teal-50/70 border border-teal-100 flex items-center space-x-2 text-teal-900 font-medium">
+                      <Sparkles className="w-4 h-4 text-teal-600 shrink-0" />
+                      <span>DFY LinkedIn &amp; Blog Thought Leadership Active</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

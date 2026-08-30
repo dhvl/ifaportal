@@ -4,10 +4,11 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   Building2, PlusCircle, ExternalLink, Trash2, ShieldCheck, 
-  Sparkles, Layers, Eye, Users, RefreshCw, CheckCircle2, ChevronRight, Award, FileText
+  Sparkles, Layers, Eye, Users, RefreshCw, CheckCircle2, ChevronRight, 
+  Award, FileText, TrendingUp, MessageCircle, Bot, Zap, ArrowUpRight
 } from 'lucide-react';
-import { IFAClient } from '@/lib/types';
-import { getClients, deleteClient } from '@/lib/store';
+import { IFAClient, PlanTier } from '@/lib/types';
+import { getClients, deleteClient, saveClient, PLAN_DETAILS } from '@/lib/store';
 
 export default function AdminDashboardPage() {
   const [clients, setClients] = useState<IFAClient[]>([]);
@@ -23,6 +24,39 @@ export default function AdminDashboardPage() {
       setClients(updated);
     }
   };
+
+  const handlePlanChange = (client: IFAClient, newPlan: PlanTier) => {
+    const updatedClient: IFAClient = {
+      ...client,
+      planTier: newPlan,
+      calculatorsEnabled: {
+        pension: true,
+        inheritanceTax: newPlan !== 'starter',
+        investmentGrowth: newPlan !== 'starter',
+      },
+      updatedAt: new Date().toISOString(),
+    };
+    const updatedList = saveClient(updatedClient);
+    setClients(updatedList);
+  };
+
+  const toggleDfy = (client: IFAClient) => {
+    const updatedClient: IFAClient = {
+      ...client,
+      hasDfySocialMedia: !client.hasDfySocialMedia,
+      updatedAt: new Date().toISOString(),
+    };
+    const updatedList = saveClient(updatedClient);
+    setClients(updatedList);
+  };
+
+  // Calculate Monthly Recurring Revenue (MRR)
+  const totalMRR = clients.reduce((acc, c) => {
+    const plan = PLAN_DETAILS[c.planTier || 'pro'];
+    const planFee = plan ? plan.priceMonthly : 99;
+    const dfyFee = c.hasDfySocialMedia ? 169 : 0;
+    return acc + planFee + dfyFee;
+  }, 0);
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
@@ -56,36 +90,36 @@ export default function AdminDashboardPage() {
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
         {/* Warm & Inviting Hero Banner */}
-        <div className="bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white rounded-3xl p-8 sm:p-10 shadow-xl relative overflow-hidden">
-          <div className="absolute -top-10 -right-10 w-80 h-80 bg-white/10 rounded-full blur-2xl pointer-events-none" />
-          <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-black/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden border border-slate-800">
+          <div className="absolute -top-10 -right-10 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs px-4 py-1.5 rounded-full font-bold shadow-xs">
-              <ShieldCheck className="w-4 h-4 text-amber-200" />
-              <span>FCA Regulated Client Onboarding Engine</span>
+            <div className="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs px-4 py-1.5 rounded-full font-bold shadow-xs">
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <span>3 Growth Plans &bull; WhatsApp Funnels &bull; DFY Marketing</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
-              Practice Management Dashboard
+              Practice Management &amp; Revenue Hub
             </h1>
 
-            <p className="text-amber-50 text-sm leading-relaxed max-w-2xl font-medium">
-              Create, customize, and publish high-conversion UK IFA client portals in minutes. Complete with whole-of-market FCA disclaimers, pension calculators, and fee transparency disclosures.
+            <p className="text-slate-300 text-sm leading-relaxed max-w-2xl font-normal">
+              Manage client practices across <b>Starter (£49/mo)</b>, <b>Client Acquisition Pro (£99/mo)</b>, and <b>Elite Wealth Automation (£189/mo)</b>. Each portal includes automated FCA compliance, interactive calculators, and WhatsApp lead bots.
             </p>
 
-            <div className="pt-4 flex flex-wrap gap-4 text-xs font-bold text-slate-900 border-t border-white/20">
-              <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-xs flex items-center space-x-2">
+            <div className="pt-4 flex flex-wrap gap-4 text-xs font-bold text-slate-900 border-t border-slate-800">
+              <div className="bg-white px-4 py-2.5 rounded-2xl shadow-md flex items-center space-x-2.5">
+                <TrendingUp className="w-4 h-4 text-emerald-600" />
+                <span>Monthly Recurring Revenue: <strong className="text-emerald-700 text-sm">£{totalMRR.toLocaleString()} / mo</strong></span>
+              </div>
+              <div className="bg-white px-4 py-2.5 rounded-2xl shadow-md flex items-center space-x-2.5">
                 <Building2 className="w-4 h-4 text-amber-600" />
-                <span>Onboarded Practices: <strong>{clients.length} Active</strong></span>
+                <span>Active Practices: <strong>{clients.length} Firms</strong></span>
               </div>
-              <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-xs flex items-center space-x-2">
-                <Layers className="w-4 h-4 text-amber-600" />
-                <span>FCA Compliant Templates: <strong>3 Available</strong></span>
-              </div>
-              <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-xs flex items-center space-x-2">
+              <div className="bg-white px-4 py-2.5 rounded-2xl shadow-md flex items-center space-x-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>Regulatory Engine: <strong>Active</strong></span>
+                <span>FCA Compliance Engine: <strong>Active</strong></span>
               </div>
             </div>
           </div>
@@ -121,27 +155,48 @@ export default function AdminDashboardPage() {
         {activeTab === 'clients' && (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-xl font-bold text-slate-900">Active IFA Client Roster</h2>
+              <h2 className="text-xl font-bold text-slate-900">Active IFA Client Portals</h2>
               <Link
                 href="/admin/onboard"
                 className="text-xs font-bold text-amber-600 hover:text-amber-700 flex items-center space-x-1"
               >
-                <span>+ Onboard Practice</span>
+                <span>+ Onboard New Practice</span>
                 <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {clients.map((client) => (
-                <div
-                  key={client.id}
-                  className="bg-white border border-slate-200/90 rounded-3xl p-6 space-y-5 shadow-xs hover:shadow-xl hover:-translate-y-0.5 transition-all flex flex-col justify-between group"
-                >
-                  <div className="space-y-4">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center space-x-3">
+              {clients.map((client) => {
+                const plan = client.planTier || 'pro';
+                const planMeta = PLAN_DETAILS[plan] || PLAN_DETAILS.pro;
+                const monthlyTotal = planMeta.priceMonthly + (client.hasDfySocialMedia ? 169 : 0);
+
+                return (
+                  <div
+                    key={client.id}
+                    className="bg-white border border-slate-200/90 rounded-3xl p-6 space-y-5 shadow-xs hover:shadow-xl hover:-translate-y-0.5 transition-all flex flex-col justify-between group relative"
+                  >
+                    {/* Top Tier Badge */}
+                    <div className="flex items-center justify-between">
+                      <span className={`text-[10px] font-black uppercase px-2.5 py-1 rounded-full border ${
+                        plan === 'starter' ? 'bg-slate-100 text-slate-800 border-slate-300' :
+                        plan === 'pro' ? 'bg-amber-100 text-amber-900 border-amber-300' :
+                        'bg-indigo-100 text-indigo-950 border-indigo-300'
+                      }`}>
+                        {planMeta.name} (£{monthlyTotal}/mo)
+                      </span>
+
+                      {client.hasDfySocialMedia && (
+                        <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+                          +DFY LinkedIn
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex items-start space-x-3">
                         <div
-                          className="w-11 h-11 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-md"
+                          className="w-11 h-11 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-md shrink-0"
                           style={{ backgroundColor: client.branding.primaryColor }}
                         >
                           {client.firmName.charAt(0)}
@@ -151,53 +206,91 @@ export default function AdminDashboardPage() {
                             {client.firmName}
                           </h3>
                           <span className="text-[11px] text-amber-600 font-mono font-bold block">
-                            FCA FRN: {client.fcaFrn}
+                            FCA FRN: {client.fcaFrn} &bull; {client.isIndependent ? 'Independent' : 'Restricted'}
                           </span>
                         </div>
                       </div>
+
+                      <div className="space-y-2 text-xs text-slate-600">
+                        <div className="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-100">
+                          <span className="font-medium text-slate-500">Active Template:</span>
+                          <span className="font-bold text-slate-900 capitalize">
+                            {client.templateId.replace('-', ' ')}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-100">
+                          <span className="font-medium text-slate-500">Lead Bot Type:</span>
+                          <span className="font-bold text-emerald-700 flex items-center space-x-1">
+                            {plan === 'starter' && <span>WhatsApp Direct</span>}
+                            {plan === 'pro' && <span>WhatsApp Qualifier</span>}
+                            {plan === 'elite' && <span>24/7 AI Concierge</span>}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-100">
+                          <span className="font-medium text-slate-500">Lead Magnets:</span>
+                          <span className="font-bold text-slate-800">
+                            {plan === 'starter' ? '1 Guide' : '3 Guides + Quiz'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Instant Plan Tier Switcher */}
+                      <div className="pt-2 border-t border-slate-100 space-y-1.5">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Switch Plan Tier:</span>
+                        <div className="grid grid-cols-3 gap-1 text-[10px] font-bold">
+                          {(['starter', 'pro', 'elite'] as PlanTier[]).map((t) => (
+                            <button
+                              key={t}
+                              type="button"
+                              onClick={() => handlePlanChange(client, t)}
+                              className={`py-1 rounded-lg border uppercase transition-all ${
+                                plan === t
+                                  ? 'bg-slate-900 text-white border-slate-900 shadow-xs'
+                                  : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                              }`}
+                            >
+                              {t}
+                            </button>
+                          ))}
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => toggleDfy(client)}
+                          className="w-full text-left pt-1 flex items-center justify-between text-[11px] text-slate-600 hover:text-slate-900"
+                        >
+                          <span>DFY LinkedIn Add-on (£169/mo):</span>
+                          <span className={`font-bold ${client.hasDfySocialMedia ? 'text-emerald-600' : 'text-slate-400'}`}>
+                            {client.hasDfySocialMedia ? 'Enabled' : 'Disabled'}
+                          </span>
+                        </button>
+                      </div>
                     </div>
 
-                    <div className="space-y-2 text-xs text-slate-600">
-                      <div className="flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-                        <span className="font-medium text-slate-500">Template Style:</span>
-                        <span className="font-bold text-slate-900 capitalize">
-                          {client.templateId.replace('-', ' ')}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-                        <span className="font-medium text-slate-500">Contact Tel:</span>
-                        <span className="font-semibold text-slate-800">{client.phone}</span>
-                      </div>
-                      <div className="flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-                        <span className="font-medium text-slate-500">Advice Services:</span>
-                        <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
-                          {client.services.length} Active
-                        </span>
-                      </div>
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                      <Link
+                        href={`/portal/${client.slug}`}
+                        target="_blank"
+                        className="flex-1 py-2.5 px-3 bg-slate-900 text-white rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-slate-800 transition-colors flex items-center justify-center space-x-1.5 shadow-xs"
+                      >
+                        <Eye className="w-3.5 h-3.5 text-amber-400" />
+                        <span>View Live Portal</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </Link>
+
+                      <button
+                        onClick={() => handleDelete(client.id, client.firmName)}
+                        className="p-2.5 bg-slate-100 hover:bg-rose-50 text-slate-500 hover:text-rose-600 border border-slate-200/80 rounded-xl transition-colors"
+                        title="Remove Client"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
                     </div>
                   </div>
-
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
-                    <Link
-                      href={`/portal/${client.slug}`}
-                      target="_blank"
-                      className="flex-1 py-2.5 px-3 bg-slate-900 text-white rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-slate-800 transition-colors flex items-center justify-center space-x-1.5 shadow-xs"
-                    >
-                      <Eye className="w-3.5 h-3.5 text-amber-400" />
-                      <span>View Live Portal</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </Link>
-
-                    <button
-                      onClick={() => handleDelete(client.id, client.firmName)}
-                      className="p-2.5 bg-slate-100 hover:bg-rose-50 text-slate-500 hover:text-rose-600 border border-slate-200/80 rounded-xl transition-colors"
-                      title="Remove Client"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
@@ -212,14 +305,14 @@ export default function AdminDashboardPage() {
               </div>
               <h3 className="text-lg font-bold text-slate-900">Modern Wealth</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Navy &amp; gold modern wealth layout featuring fee transparency, whole-of-market disclosures, 4-stage advice journey, and VouchedFor reviews.
+                Navy &amp; gold modern wealth layout featuring fee transparency, whole-of-market disclosures, 4-stage advice journey, lead magnets, and VouchedFor reviews.
               </p>
               <Link
                 href="/portal/mlp-wealth"
                 target="_blank"
                 className="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-600 hover:text-amber-700"
               >
-                <span>Preview Template</span>
+                <span>Preview Template (Pro Tier)</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -231,14 +324,14 @@ export default function AdminDashboardPage() {
               </div>
               <h3 className="text-lg font-bold text-slate-900">Heritage &amp; Trust</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Executive classic serif typography for established practices focusing on pension consolidations &amp; estate trusts.
+                Executive classic serif typography for established practices with 24/7 AI wealth concierge, client portal gateway, and IHT calculations.
               </p>
               <Link
                 href="/portal/heritage-trust"
                 target="_blank"
                 className="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-600 hover:text-amber-700"
               >
-                <span>Preview Template</span>
+                <span>Preview Template (Elite Tier)</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -250,14 +343,14 @@ export default function AdminDashboardPage() {
               </div>
               <h3 className="text-lg font-bold text-slate-900">Agile Dynamic</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Tech-forward glassmorphism style featuring interactive UK pension pot calculators and 2-minute booking widget.
+                Tech-forward glassmorphism style featuring interactive UK pension pot calculators, retirement lead magnet, and direct WhatsApp button.
               </p>
               <Link
                 href="/portal/agile-ifa"
                 target="_blank"
                 className="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-600 hover:text-amber-700"
               >
-                <span>Preview Template</span>
+                <span>Preview Template (Starter Tier)</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>
