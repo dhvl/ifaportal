@@ -134,7 +134,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
     templateId: 'modern-wealth',
     planTier: 'pro',
     hasDfySocialMedia: true,
-    whatsappNumber: '+441132458900',
+    whatsappNumber: '+447766145235',
     clientPortalUrl: 'https://moneyinfo.co.uk/demo',
     services: DEFAULT_SERVICES,
     team: [
@@ -220,7 +220,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
     templateId: 'agile-dynamic',
     planTier: 'starter',
     hasDfySocialMedia: false,
-    whatsappNumber: '+441216804420',
+    whatsappNumber: '+447766145235',
     services: DEFAULT_SERVICES,
     team: [
       {
@@ -285,7 +285,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
     templateId: 'heritage-trust',
     planTier: 'elite',
     hasDfySocialMedia: true,
-    whatsappNumber: '+441618329900',
+    whatsappNumber: '+447766145235',
     clientPortalUrl: 'https://advicefront.com/demo',
     services: DEFAULT_SERVICES,
     team: [
@@ -338,7 +338,7 @@ export function getClients(): IFAClient[] {
       ...c,
       planTier: c.planTier || 'pro',
       hasDfySocialMedia: c.hasDfySocialMedia ?? false,
-      whatsappNumber: c.whatsappNumber || c.phone || '+442079460123',
+      whatsappNumber: c.whatsappNumber || '+447766145235',
       compliance: c.compliance || {
         fcaFrn: c.fcaFrn || '123456',
         isIndependent: c.isIndependent ?? true,

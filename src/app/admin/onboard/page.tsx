@@ -29,7 +29,7 @@ export default function OnboardingQuestionnairePage() {
     templateId: 'modern-wealth',
     planTier: 'pro',
     hasDfySocialMedia: true,
-    whatsappNumber: '+442079460123',
+    whatsappNumber: '+44 7766 145235',
     clientPortalUrl: 'https://moneyinfo.co.uk/crown-wealth',
     primaryColor: '#0f2744',
     secondaryColor: '#c5a059',

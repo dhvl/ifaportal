@@ -31,13 +31,14 @@ export const WhatsAppLeadBot: React.FC<WhatsAppLeadBotProps> = ({ client }) => {
   const [inputQuestion, setInputQuestion] = useState('');
 
   const plan = client.planTier || 'pro';
-  const whatsappNumber = client.whatsappNumber || client.phone.replace(/[^0-9+]/g, '');
+  const rawNumber = client.whatsappNumber || '+447766145235';
+  const cleanNumber = rawNumber.replace(/[^0-9]/g, '');
 
   const handleStarterWhatsAppRedirect = () => {
     const text = encodeURIComponent(
       `Hello ${client.firmName}, I visited your website and would like to ask a question regarding independent financial advice.`
     );
-    window.open(`https://wa.me/${whatsappNumber.replace('+', '')}?text=${text}`, '_blank');
+    window.open(`https://wa.me/${cleanNumber}?text=${text}`, '_blank');
   };
 
   const handleProLeadSubmit = (e: React.FormEvent) => {
@@ -56,7 +57,7 @@ export const WhatsAppLeadBot: React.FC<WhatsAppLeadBotProps> = ({ client }) => {
 
     // Open WhatsApp after brief delay
     setTimeout(() => {
-      window.open(`https://wa.me/${whatsappNumber.replace('+', '')}?text=${message}`, '_blank');
+      window.open(`https://wa.me/${cleanNumber}?text=${message}`, '_blank');
     }, 1200);
   };
 
