@@ -60,47 +60,72 @@ export const DEFAULT_SERVICES = [
 export const PLAN_DETAILS = {
   starter: {
     name: 'Starter Growth',
-    priceMonthly: 49,
-    priceYearly: 490,
+    priceMonthly: 249,
+    setupFeeQuarterly: 0,
+    setupFeeMonthly: 200,
+    defaultRetainerMonths: 3,
     badge: 'Starter',
-    leadMagnetsCount: 1,
-    calculators: ['pension'],
+    leadMagnetsCount: 0,
+    calculators: [],
     hasWhatsAppClick: true,
     hasWhatsAppBot: false,
     hasAiBot: false,
+    hasDfySocialMedia: true,
     hasVouchedForSync: false,
     hasMultiAdviser: false,
     hasClientPortal: false,
+    tagline: 'High-converting bespoke website + WhatsApp inquiry button + 3-month built-in social media retainer.',
   },
   pro: {
     name: 'Client Acquisition Pro',
-    priceMonthly: 99,
-    priceYearly: 990,
-    badge: 'Most Popular',
+    priceMonthly: 599,
+    setupFeeQuarterly: 0,
+    setupFeeMonthly: 1000,
+    defaultRetainerMonths: 3,
+    badge: 'Pro (Recommended)',
     leadMagnetsCount: 3,
     calculators: ['pension', 'inheritanceTax', 'investmentGrowth'],
     hasWhatsAppClick: true,
-    hasWhatsAppBot: true,
-    hasAiBot: false,
-    hasVouchedForSync: true,
-    hasMultiAdviser: true,
-    hasClientPortal: false,
-  },
-  elite: {
-    name: 'Elite Wealth Automation',
-    priceMonthly: 189,
-    priceYearly: 1890,
-    badge: 'Enterprise',
-    leadMagnetsCount: 99,
-    calculators: ['pension', 'inheritanceTax', 'investmentGrowth'],
-    hasWhatsAppClick: true,
-    hasWhatsAppBot: true,
+    hasWhatsAppBot: false,
     hasAiBot: true,
+    hasDfySocialMedia: true,
     hasVouchedForSync: true,
     hasMultiAdviser: true,
     hasClientPortal: true,
+    tagline: 'Full AI Concierge Chatbot + 3 Interactive Financial Calculators + Lead Magnets + 3-month built-in social media retainer.',
   },
 };
+
+export const ADDON_MARKETPLACE = [
+  {
+    id: 'crm-integration',
+    title: 'Financial CRM 2-Way Integration',
+    description: 'Direct automated lead and client sync with Intelliflo Office, Adviser Cloud, Plannr, or HubSpot.',
+    priceMonthly: 79,
+    category: 'CRM',
+  },
+  {
+    id: 'workflow-automation',
+    title: 'Bespoke Drip Automations & Zapier',
+    description: 'Automated welcome sequences, annual review triggers, and seasonal UK tax-year-end reminders.',
+    priceMonthly: 99,
+    category: 'Automation',
+  },
+  {
+    id: 'client-portal-sync',
+    title: 'Client Portal & Document Vault Gateway',
+    description: 'Single sign-on access to provider portals and client document vaults (moneyinfo, Advicefront, Transact).',
+    priceMonthly: 69,
+    category: 'Portal',
+  },
+  {
+    id: 'local-seo-funnel',
+    title: 'Bespoke Local SEO & Google Ads Funnel',
+    description: 'Targeted Google Business Profile optimisation and hyper-local IFA search campaign management.',
+    priceMonthly: 199,
+    category: 'Marketing',
+  },
+];
 
 export const INITIAL_CLIENTS: IFAClient[] = [
   {
@@ -132,11 +157,19 @@ export const INITIAL_CLIENTS: IFAClient[] = [
       heroSubheadline: 'Chartered Independent Financial Advisers providing bespoke wealth management, retirement strategies, and estate planning across the UK.',
     },
     templateId: 'modern-wealth',
-    planTier: 'pro',
+    planTier: 'starter',
+    contractDuration: 'quarterly',
+    setupFee: 0,
     hasDfySocialMedia: true,
+    selectedAddons: [],
     whatsappNumber: '+447766145235',
     clientPortalUrl: 'https://moneyinfo.co.uk/demo',
     services: DEFAULT_SERVICES,
+    calculatorsEnabled: {
+      pension: false,
+      inheritanceTax: false,
+      investmentGrowth: false,
+    },
     team: [
       {
         id: 'team-1',
@@ -181,11 +214,6 @@ export const INITIAL_CLIENTS: IFAClient[] = [
         verifiedSource: 'VouchedFor',
       },
     ],
-    calculatorsEnabled: {
-      pension: true,
-      inheritanceTax: true,
-      investmentGrowth: true,
-    },
     createdAt: '2026-01-10T10:00:00Z',
     updatedAt: '2026-08-19T10:00:00Z',
   },
@@ -283,8 +311,11 @@ export const INITIAL_CLIENTS: IFAClient[] = [
       heroSubheadline: 'Established UK Independent Financial Advisers dedicated to wealth preservation, retirement stability, and family legacy planning.',
     },
     templateId: 'heritage-trust',
-    planTier: 'elite',
+    planTier: 'pro',
+    contractDuration: 'quarterly',
+    setupFee: 0,
     hasDfySocialMedia: true,
+    selectedAddons: ['crm-integration'],
     whatsappNumber: '+447766145235',
     clientPortalUrl: 'https://advicefront.com/demo',
     services: DEFAULT_SERVICES,
@@ -322,7 +353,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
   },
 ];
 
-const STORAGE_KEY = 'ifa_portal_clients';
+const STORAGE_KEY = 'ifa_portal_clients_v2';
 
 export function getClients(): IFAClient[] {
   if (typeof window === 'undefined') return INITIAL_CLIENTS;
@@ -333,23 +364,31 @@ export function getClients(): IFAClient[] {
       return INITIAL_CLIENTS;
     }
     const parsed = JSON.parse(data);
-    // Ensure backwards compatibility with compliance object and planTier
-    return parsed.map((c: any) => ({
-      ...c,
-      planTier: c.planTier || 'pro',
-      hasDfySocialMedia: c.hasDfySocialMedia ?? false,
-      whatsappNumber: c.whatsappNumber || '+447766145235',
-      compliance: c.compliance || {
-        fcaFrn: c.fcaFrn || '123456',
-        isIndependent: c.isIndependent ?? true,
-        registeredOffice: c.registeredOffice || c.address,
-        companyRegistrationNumber: '00000000',
-        fscsProtected: true,
-        mortgageWarningRequired: true,
-        feeStructureSummary: 'Transparent initial consultation + ongoing advisory management.',
-        fcaStatusText: `${c.firmName} is authorised and regulated by the Financial Conduct Authority (FCA FRN: ${c.fcaFrn || '123456'}).`,
-      },
-    }));
+    // Ensure backwards compatibility with compliance object and planTier ('starter' | 'pro')
+    return parsed.map((c: Partial<IFAClient> & Record<string, unknown>) => {
+      const planTier = c.planTier === 'starter' ? 'starter' : 'pro';
+      const contractDuration = (c.contractDuration as 'quarterly' | 'monthly') || 'quarterly';
+      const setupFee = (c.setupFee as number | undefined) ?? (contractDuration === 'monthly' ? (planTier === 'starter' ? 200 : 1000) : 0);
+      return {
+        ...c,
+        planTier,
+        contractDuration,
+        setupFee,
+        hasDfySocialMedia: c.hasDfySocialMedia ?? true,
+        selectedAddons: c.selectedAddons || [],
+        whatsappNumber: c.whatsappNumber || '+447766145235',
+        compliance: c.compliance || {
+          fcaFrn: c.fcaFrn || '123456',
+          isIndependent: c.isIndependent ?? true,
+          registeredOffice: c.registeredOffice || c.address,
+          companyRegistrationNumber: '00000000',
+          fscsProtected: true,
+          mortgageWarningRequired: true,
+          feeStructureSummary: 'Transparent initial consultation + ongoing advisory management.',
+          fcaStatusText: `${c.firmName} is authorised and regulated by the Financial Conduct Authority (FCA FRN: ${c.fcaFrn || '123456'}).`,
+        },
+      };
+    });
   } catch (e) {
     console.error('Failed to load clients from localStorage', e);
     return INITIAL_CLIENTS;
@@ -358,7 +397,14 @@ export function getClients(): IFAClient[] {
 
 export function getClientBySlug(slug: string): IFAClient | undefined {
   const clients = getClients();
-  return clients.find((c) => c.slug.toLowerCase() === slug.toLowerCase());
+  const lower = slug.toLowerCase();
+  if (lower === 'starter') {
+    return clients.find((c) => c.slug === 'mlp-wealth') || clients.find((c) => c.planTier === 'starter');
+  }
+  if (lower === 'pro' || lower === 'premium') {
+    return clients.find((c) => c.slug === 'heritage-trust') || clients.find((c) => c.planTier === 'pro');
+  }
+  return clients.find((c) => c.slug.toLowerCase() === lower);
 }
 
 export function saveClient(client: IFAClient): IFAClient[] {

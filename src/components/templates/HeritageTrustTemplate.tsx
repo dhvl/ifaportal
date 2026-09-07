@@ -21,7 +21,7 @@ interface TemplateProps {
 export const HeritageTrustTemplate: React.FC<TemplateProps> = ({ client }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { branding } = client;
-  const plan = client.planTier || 'elite';
+  const plan = client.planTier || 'pro';
 
   return (
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 font-serif antialiased">

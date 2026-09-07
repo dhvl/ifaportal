@@ -8,14 +8,17 @@ import {
   Award, FileText, TrendingUp, MessageCircle, Bot, Zap, ArrowUpRight
 } from 'lucide-react';
 import { IFAClient, PlanTier } from '@/lib/types';
-import { getClients, deleteClient, saveClient, PLAN_DETAILS } from '@/lib/store';
+import { getClients, deleteClient, saveClient, PLAN_DETAILS, ADDON_MARKETPLACE } from '@/lib/store';
 
 export default function AdminDashboardPage() {
   const [clients, setClients] = useState<IFAClient[]>([]);
   const [activeTab, setActiveTab] = useState<'clients' | 'templates'>('clients');
 
   useEffect(() => {
-    setClients(getClients());
+    const timer = setTimeout(() => {
+      setClients(getClients());
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleDelete = (id: string, name: string) => {
@@ -30,20 +33,10 @@ export default function AdminDashboardPage() {
       ...client,
       planTier: newPlan,
       calculatorsEnabled: {
-        pension: true,
-        inheritanceTax: newPlan !== 'starter',
-        investmentGrowth: newPlan !== 'starter',
+        pension: newPlan === 'pro',
+        inheritanceTax: newPlan === 'pro',
+        investmentGrowth: newPlan === 'pro',
       },
-      updatedAt: new Date().toISOString(),
-    };
-    const updatedList = saveClient(updatedClient);
-    setClients(updatedList);
-  };
-
-  const toggleDfy = (client: IFAClient) => {
-    const updatedClient: IFAClient = {
-      ...client,
-      hasDfySocialMedia: !client.hasDfySocialMedia,
       updatedAt: new Date().toISOString(),
     };
     const updatedList = saveClient(updatedClient);
@@ -52,10 +45,13 @@ export default function AdminDashboardPage() {
 
   // Calculate Monthly Recurring Revenue (MRR)
   const totalMRR = clients.reduce((acc, c) => {
-    const plan = PLAN_DETAILS[c.planTier || 'pro'];
-    const planFee = plan ? plan.priceMonthly : 99;
-    const dfyFee = c.hasDfySocialMedia ? 169 : 0;
-    return acc + planFee + dfyFee;
+    const plan = PLAN_DETAILS[c.planTier || 'pro'] || PLAN_DETAILS.pro;
+    const planFee = plan ? plan.priceMonthly : 249;
+    const addonsFee = (c.selectedAddons || []).reduce((sum, aId) => {
+      const addon = ADDON_MARKETPLACE.find((a) => a.id === aId);
+      return sum + (addon ? addon.priceMonthly : 0);
+    }, 0);
+    return acc + planFee + addonsFee;
   }, 0);
 
   return (
@@ -97,7 +93,7 @@ export default function AdminDashboardPage() {
           <div className="relative z-10 max-w-3xl space-y-4">
             <div className="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs px-4 py-1.5 rounded-full font-bold shadow-xs">
               <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>3 Growth Plans &bull; WhatsApp Funnels &bull; DFY Marketing</span>
+              <span>2 Streamlined Growth Plans &bull; Built-in Social Media Retainer &bull; Add-on Marketplace</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
@@ -105,7 +101,7 @@ export default function AdminDashboardPage() {
             </h1>
 
             <p className="text-slate-300 text-sm leading-relaxed max-w-2xl font-normal">
-              Manage client practices across <b>Starter (£49/mo)</b>, <b>Client Acquisition Pro (£99/mo)</b>, and <b>Elite Wealth Automation (£189/mo)</b>. Each portal includes automated FCA compliance, interactive calculators, and WhatsApp lead bots.
+              Manage client practices across <b>Starter (£249/mo)</b> and <b>Client Acquisition Pro (£599/mo)</b>. Both plans include built-in social media management on a 3-month retainer with zero setup fees on quarterly terms.
             </p>
 
             <div className="pt-4 flex flex-wrap gap-4 text-xs font-bold text-slate-900 border-t border-slate-800">
@@ -167,9 +163,13 @@ export default function AdminDashboardPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {clients.map((client) => {
-                const plan = client.planTier || 'pro';
+                const plan = client.planTier === 'starter' ? 'starter' : 'pro';
                 const planMeta = PLAN_DETAILS[plan] || PLAN_DETAILS.pro;
-                const monthlyTotal = planMeta.priceMonthly + (client.hasDfySocialMedia ? 169 : 0);
+                const addonsFee = (client.selectedAddons || []).reduce((sum, aId) => {
+                  const addon = ADDON_MARKETPLACE.find((a) => a.id === aId);
+                  return sum + (addon ? addon.priceMonthly : 0);
+                }, 0);
+                const monthlyTotal = planMeta.priceMonthly + addonsFee;
 
                 return (
                   <div
@@ -179,18 +179,18 @@ export default function AdminDashboardPage() {
                     {/* Top Tier Badge */}
                     <div className="flex items-center justify-between">
                       <span className={`text-[10px] font-black uppercase px-2.5 py-1 rounded-full border ${
-                        plan === 'starter' ? 'bg-slate-100 text-slate-800 border-slate-300' :
-                        plan === 'pro' ? 'bg-amber-100 text-amber-900 border-amber-300' :
-                        'bg-indigo-100 text-indigo-950 border-indigo-300'
+                        plan === 'starter'
+                          ? 'bg-slate-100 text-slate-800 border-slate-300'
+                          : 'bg-indigo-100 text-indigo-950 border-indigo-300'
                       }`}>
                         {planMeta.name} (£{monthlyTotal}/mo)
                       </span>
 
-                      {client.hasDfySocialMedia && (
-                        <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
-                          +DFY LinkedIn
-                        </span>
-                      )}
+                      <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+                        {client.contractDuration === 'monthly'
+                          ? `Monthly (${client.setupFee ? `£${client.setupFee} Setup` : 'Setup Fee'})`
+                          : '3-Mo Retainer (£0 Setup)'}
+                      </span>
                     </div>
 
                     <div className="space-y-4">
@@ -222,50 +222,50 @@ export default function AdminDashboardPage() {
                         <div className="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-100">
                           <span className="font-medium text-slate-500">Lead Bot Type:</span>
                           <span className="font-bold text-emerald-700 flex items-center space-x-1">
-                            {plan === 'starter' && <span>WhatsApp Direct</span>}
-                            {plan === 'pro' && <span>WhatsApp Qualifier</span>}
-                            {plan === 'elite' && <span>24/7 AI Concierge</span>}
+                            {plan === 'starter' && <span>WhatsApp Direct Button</span>}
+                            {plan === 'pro' && <span>24/7 AI Concierge Bot</span>}
                           </span>
                         </div>
 
                         <div className="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-100">
-                          <span className="font-medium text-slate-500">Lead Magnets:</span>
+                          <span className="font-medium text-slate-500">Calculators &amp; Guides:</span>
                           <span className="font-bold text-slate-800">
-                            {plan === 'starter' ? '1 Guide' : '3 Guides + Quiz'}
+                            {plan === 'starter' ? 'Disabled (Starter)' : 'Full Suite (Pension, IHT, ISA)'}
                           </span>
                         </div>
+
+                        <div className="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-100">
+                          <span className="font-medium text-slate-500">Social Media Retainer:</span>
+                          <span className="font-bold text-emerald-700">Built-in (3-Month)</span>
+                        </div>
+
+                        {client.selectedAddons && client.selectedAddons.length > 0 && (
+                          <div className="flex items-center justify-between bg-amber-50/60 p-2 rounded-xl border border-amber-200/60">
+                            <span className="font-medium text-amber-800">Active Add-ons:</span>
+                            <span className="font-bold text-amber-900">{client.selectedAddons.length} Selected (+£{addonsFee}/mo)</span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Instant Plan Tier Switcher */}
                       <div className="pt-2 border-t border-slate-100 space-y-1.5">
                         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Switch Plan Tier:</span>
-                        <div className="grid grid-cols-3 gap-1 text-[10px] font-bold">
-                          {(['starter', 'pro', 'elite'] as PlanTier[]).map((t) => (
+                        <div className="grid grid-cols-2 gap-2 text-[10px] font-bold">
+                          {(['starter', 'pro'] as PlanTier[]).map((t) => (
                             <button
                               key={t}
                               type="button"
                               onClick={() => handlePlanChange(client, t)}
-                              className={`py-1 rounded-lg border uppercase transition-all ${
+                              className={`py-1.5 rounded-lg border uppercase transition-all ${
                                 plan === t
                                   ? 'bg-slate-900 text-white border-slate-900 shadow-xs'
                                   : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
                               }`}
                             >
-                              {t}
+                              {t === 'starter' ? 'Starter (£249)' : 'Pro (£599)'}
                             </button>
                           ))}
                         </div>
-
-                        <button
-                          type="button"
-                          onClick={() => toggleDfy(client)}
-                          className="w-full text-left pt-1 flex items-center justify-between text-[11px] text-slate-600 hover:text-slate-900"
-                        >
-                          <span>DFY LinkedIn Add-on (£169/mo):</span>
-                          <span className={`font-bold ${client.hasDfySocialMedia ? 'text-emerald-600' : 'text-slate-400'}`}>
-                            {client.hasDfySocialMedia ? 'Enabled' : 'Disabled'}
-                          </span>
-                        </button>
                       </div>
                     </div>
 

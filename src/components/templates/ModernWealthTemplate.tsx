@@ -48,7 +48,7 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
           </span>
         </div>
         <div className="flex items-center space-x-4 sm:space-x-6">
-          {client.clientPortalUrl && plan === 'elite' && (
+          {client.clientPortalUrl && plan === 'pro' && (
             <a 
               href={client.clientPortalUrl} 
               target="_blank" 
@@ -92,8 +92,12 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
             <a href="#services" className="hover:text-slate-900 transition-colors">Services</a>
             <a href="#journey" className="hover:text-slate-900 transition-colors">Advice Journey</a>
             <a href="#fees" className="hover:text-slate-900 transition-colors">Fee Transparency</a>
-            <a href="#guides" className="hover:text-slate-900 transition-colors">Guides &amp; Scorecard</a>
-            <a href="#calculator" className="hover:text-slate-900 transition-colors">Calculators</a>
+            {plan === 'pro' && (
+              <>
+                <a href="#guides" className="hover:text-slate-900 transition-colors">Guides &amp; Scorecard</a>
+                <a href="#calculator" className="hover:text-slate-900 transition-colors">Calculators</a>
+              </>
+            )}
             <a href="#team" className="hover:text-slate-900 transition-colors">Advisers</a>
           </nav>
 
@@ -134,17 +138,29 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
                   className="px-8 py-4 rounded-xl text-white font-bold text-xs uppercase tracking-widest shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2"
                   style={{ backgroundColor: branding.primaryColor }}
                 >
-                  <span>Request Free Wealth Audit</span>
+                  <span>{plan === 'starter' ? 'Book Direct Consultation' : 'Request Free Wealth Audit'}</span>
                   <ArrowRight className="w-4 h-4 text-amber-300" />
                 </button>
 
-                <a
-                  href="#calculator"
-                  className="px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-800 font-bold text-xs uppercase tracking-widest hover:bg-slate-100 transition-colors flex items-center justify-center space-x-2 shadow-xs"
-                >
-                  <PiggyBank className="w-4 h-4 text-amber-600" />
-                  <span>Interactive Calculators</span>
-                </a>
+                {plan === 'pro' ? (
+                  <a
+                    href="#calculator"
+                    className="px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-800 font-bold text-xs uppercase tracking-widest hover:bg-slate-100 transition-colors flex items-center justify-center space-x-2 shadow-xs"
+                  >
+                    <PiggyBank className="w-4 h-4 text-amber-600" />
+                    <span>Interactive Calculators</span>
+                  </a>
+                ) : (
+                  <a
+                    href={`https://wa.me/${(client.whatsappNumber || '+447766145235').replace(/[^0-9]/g, '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center space-x-2 shadow-xs"
+                  >
+                    <MessageCircle className="w-4 h-4 text-emerald-200" />
+                    <span>WhatsApp Inquiry</span>
+                  </a>
+                )}
               </div>
 
               <div className="pt-6 border-t border-slate-200/80 grid grid-cols-3 gap-4 text-xs font-semibold text-slate-600">
@@ -266,24 +282,67 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
         />
       </div>
 
-      {/* Lead Magnet & Scorecard Section */}
-      <div id="guides">
-        <LeadMagnetSection client={client} />
-      </div>
-
-      {/* Interactive Calculator Suite */}
-      <section id="calculator" className="py-20 bg-slate-950 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-amber-400">UK Interactive Planning Suite</span>
-            <h2 className="text-3xl font-extrabold text-white">Advisory Calculators &amp; Projections</h2>
+      {/* Pro Tier Only: Lead Magnets & Calculator Suite */}
+      {plan === 'pro' ? (
+        <>
+          <div id="guides">
+            <LeadMagnetSection client={client} />
           </div>
-          <CalculatorSuite 
-            client={client}
-            onOpenConsultation={() => setIsModalOpen(true)} 
-          />
-        </div>
-      </section>
+
+          <section id="calculator" className="py-20 bg-slate-950 text-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-amber-400">UK Interactive Planning Suite</span>
+                <h2 className="text-3xl font-extrabold text-white">Advisory Calculators &amp; Projections</h2>
+              </div>
+              <CalculatorSuite 
+                client={client}
+                onOpenConsultation={() => setIsModalOpen(true)} 
+              />
+            </div>
+          </section>
+        </>
+      ) : (
+        /* Starter Tier: Direct Advisory Access & Social Media Retainer Banner */
+        <section id="starter-contact" className="py-16 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white border-y border-slate-700">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <div className="inline-flex items-center space-x-2 bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs px-4 py-1.5 rounded-full font-bold">
+              <MessageCircle className="w-4 h-4 text-emerald-400" />
+              <span>Direct Independent Advisory • Fast WhatsApp Response</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+              Speak Directly with Our Regulated Financial Advisers
+            </h3>
+            <p className="text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              We provide whole-of-market independent counsel tailored to your circumstances. Click below to start an informal conversation directly on WhatsApp or book a structured introductory review.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-2">
+              <a
+                href={`https://wa.me/${(client.whatsappNumber || '+447766145235').replace(/[^0-9]/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-widest transition-all flex items-center space-x-2 shadow-lg hover:shadow-emerald-600/30"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>Message Us on WhatsApp</span>
+              </a>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="px-8 py-3.5 rounded-xl bg-white text-slate-900 font-bold text-xs uppercase tracking-widest hover:bg-slate-100 transition-all flex items-center space-x-2 shadow-md"
+              >
+                <Sparkles className="w-4 h-4 text-amber-500" />
+                <span>Schedule Discovery Call</span>
+              </button>
+            </div>
+            {client.hasDfySocialMedia && (
+              <div className="pt-4 text-xs text-slate-400 flex items-center justify-center space-x-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>Follow our weekly financial insights and UK market updates on LinkedIn</span>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Team Section */}
       <section id="team" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

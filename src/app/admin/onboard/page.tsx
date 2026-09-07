@@ -8,8 +8,8 @@ import {
   Palette, Briefcase, Users, Layout, Eye, Sparkles, Check, Phone, Mail, MapPin, 
   AlertCircle, MessageCircle, Bot, TrendingUp, Award, Zap, FileText, CheckSquare
 } from 'lucide-react';
-import { IFAClient, AdminQuestionnaireFormData, PlanTier, TemplateId } from '@/lib/types';
-import { DEFAULT_SERVICES, saveClient, PLAN_DETAILS } from '@/lib/store';
+import { IFAClient, AdminQuestionnaireFormData, PlanTier, TemplateId, ContractDuration } from '@/lib/types';
+import { DEFAULT_SERVICES, saveClient, PLAN_DETAILS, ADDON_MARKETPLACE } from '@/lib/store';
 
 export default function OnboardingQuestionnairePage() {
   const router = useRouter();
@@ -28,7 +28,9 @@ export default function OnboardingQuestionnairePage() {
     feeStructureSummary: 'Transparent fixed initial consultation fee + 0.50% - 0.75% p.a. ongoing discretionary management with zero exit penalties.',
     templateId: 'modern-wealth',
     planTier: 'pro',
+    contractDuration: 'quarterly',
     hasDfySocialMedia: true,
+    selectedAddonIds: [],
     whatsappNumber: '+44 7766 145235',
     clientPortalUrl: 'https://moneyinfo.co.uk/crown-wealth',
     primaryColor: '#0f2744',
@@ -77,7 +79,10 @@ export default function OnboardingQuestionnairePage() {
       },
       templateId: formData.templateId,
       planTier: formData.planTier,
-      hasDfySocialMedia: formData.hasDfySocialMedia,
+      contractDuration: formData.contractDuration,
+      setupFee: formData.contractDuration === 'quarterly' ? 0 : (formData.planTier === 'starter' ? 200 : 1000),
+      hasDfySocialMedia: true,
+      selectedAddons: formData.selectedAddonIds,
       whatsappNumber: formData.whatsappNumber || formData.phone,
       clientPortalUrl: formData.clientPortalUrl,
       services: selectedServices,
@@ -106,9 +111,9 @@ export default function OnboardingQuestionnairePage() {
         },
       ],
       calculatorsEnabled: {
-        pension: true,
-        inheritanceTax: formData.planTier !== 'starter',
-        investmentGrowth: formData.planTier !== 'starter',
+        pension: formData.planTier === 'pro',
+        inheritanceTax: formData.planTier === 'pro',
+        investmentGrowth: formData.planTier === 'pro',
       },
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -130,11 +135,27 @@ export default function OnboardingQuestionnairePage() {
     });
   };
 
+  const toggleAddon = (id: string) => {
+    setFormData((prev) => {
+      const exists = prev.selectedAddonIds.includes(id);
+      return {
+        ...prev,
+        selectedAddonIds: exists
+          ? prev.selectedAddonIds.filter((aId) => aId !== id)
+          : [...prev.selectedAddonIds, id],
+      };
+    });
+  };
+
   // Pricing calculations
   const planInfo = PLAN_DETAILS[formData.planTier] || PLAN_DETAILS.pro;
   const basePrice = planInfo.priceMonthly;
-  const dfyPrice = formData.hasDfySocialMedia ? 169 : 0;
-  const totalMonthlyPrice = basePrice + dfyPrice;
+  const setupFee = formData.contractDuration === 'quarterly' ? 0 : (formData.planTier === 'starter' ? 200 : 1000);
+  const addonsTotal = formData.selectedAddonIds.reduce((sum, addonId) => {
+    const addon = ADDON_MARKETPLACE.find((a) => a.id === addonId);
+    return sum + (addon ? addon.priceMonthly : 0);
+  }, 0);
+  const totalMonthlyPrice = basePrice + addonsTotal;
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
@@ -260,7 +281,7 @@ export default function OnboardingQuestionnairePage() {
                         onChange={(e) => setFormData({ ...formData, mortgageWarningRequired: e.target.value === 'yes' })}
                         className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none"
                       >
-                        <option value="yes">Yes ("Your home may be repossessed...")</option>
+                        <option value="yes">Yes (&quot;Your home may be repossessed...&quot;)</option>
                         <option value="no">No (Wealth / Pension Advice Only)</option>
                       </select>
                     </div>
@@ -416,147 +437,201 @@ export default function OnboardingQuestionnairePage() {
               </div>
             )}
 
-            {/* STEP 4: Choose Growth Plan & Automation Add-ons */}
+            {/* STEP 4: Choose Growth Plan & Contract Terms */}
             {step === 4 && (
               <div className="space-y-6 animate-fade-in">
                 <div className="space-y-1">
                   <h2 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
                     <TrendingUp className="w-5 h-5 text-amber-500" />
-                    <span>Select Core Growth Plan &amp; Automation Tier</span>
+                    <span>Select Core Growth Plan &amp; Contract Terms</span>
                   </h2>
-                  <p className="text-xs text-slate-500">Choose the feature tier and automation capabilities for this IFA firm.</p>
+                  <p className="text-xs text-slate-500">
+                    Both plans include built-in social media management on a default 3-month retainer.
+                  </p>
                 </div>
 
-                {/* 3 Plan Cards */}
+                {/* Contract Duration Selector */}
+                <div className="bg-slate-50 border border-slate-200 rounded-3xl p-5 space-y-3">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-700 block">
+                    Contract Terms &amp; Setup Fee Model
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, contractDuration: 'quarterly' })}
+                      className={`p-4 rounded-2xl text-left border-2 transition-all ${
+                        formData.contractDuration === 'quarterly'
+                          ? 'border-emerald-600 bg-emerald-50/70 shadow-sm'
+                          : 'border-slate-200 bg-white hover:border-slate-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-black uppercase text-emerald-800 tracking-wider">
+                          3-Month Retainer (Default)
+                        </span>
+                        <span className="bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full">
+                          £0 Setup Fee
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 mt-1">
+                        Zero setup fee when opting for standard quarterly commitment. Social media retainer built-in.
+                      </p>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, contractDuration: 'monthly' })}
+                      className={`p-4 rounded-2xl text-left border-2 transition-all ${
+                        formData.contractDuration === 'monthly'
+                          ? 'border-amber-600 bg-amber-50/70 shadow-sm'
+                          : 'border-slate-200 bg-white hover:border-slate-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-black uppercase text-amber-800 tracking-wider">
+                          Month-to-Month Rolling
+                        </span>
+                        <span className="bg-amber-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full">
+                          Setup Fee Required
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 mt-1">
+                        Flexible rolling monthly terms. £200 setup fee for Starter, £1,000 setup fee for Pro.
+                      </p>
+                    </button>
+                  </div>
+                </div>
+
+                {/* 2 Core Plan Cards */}
                 <div className="grid grid-cols-1 gap-4">
                   {/* Plan 1: Starter */}
                   <div
                     onClick={() => setFormData({ ...formData, planTier: 'starter' })}
-                    className={`p-5 rounded-3xl border-2 cursor-pointer transition-all ${
+                    className={`p-6 rounded-3xl border-2 cursor-pointer transition-all ${
                       formData.planTier === 'starter'
                         ? 'border-amber-500 bg-amber-50/50 shadow-md'
-                        : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                        : 'border-slate-200 bg-white hover:border-slate-300'
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <div className="w-9 h-9 rounded-xl bg-slate-200 flex items-center justify-center font-bold text-slate-700">
+                        <div className="w-10 h-10 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center font-black text-slate-800">
                           1
                         </div>
                         <div>
-                          <h4 className="font-extrabold text-base text-slate-900">Starter Growth</h4>
-                          <span className="text-xs text-slate-500">Solo IFAs &amp; Appointed Representatives</span>
+                          <div className="flex items-center space-x-2">
+                            <h4 className="font-extrabold text-base text-slate-900">Starter Plan</h4>
+                            <span className="bg-slate-200 text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Essential</span>
+                          </div>
+                          <span className="text-xs text-slate-500">Website &amp; WhatsApp Direct with Built-in Social Media</span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-lg font-black text-slate-900">£49 <span className="text-xs font-normal text-slate-500">/mo</span></div>
-                        <span className="text-[10px] text-emerald-700 font-bold">£0 Setup Fee</span>
+                        <div className="text-xl font-black text-slate-900">£249 <span className="text-xs font-normal text-slate-500">/mo</span></div>
+                        <span className={`text-[10px] font-bold ${formData.contractDuration === 'quarterly' ? 'text-emerald-700' : 'text-amber-700'}`}>
+                          {formData.contractDuration === 'quarterly' ? '£0 Setup Fee' : '£200 Setup Fee'}
+                        </span>
                       </div>
                     </div>
-                    <div className="mt-3 pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2 text-[11px] text-slate-600">
-                      <div>&bull; 1 High-converting Modern Theme</div>
-                      <div>&bull; WhatsApp Click-to-Chat Widget</div>
-                      <div>&bull; Single Pension Calculator</div>
-                      <div>&bull; 1 Lead Magnet (Retirement Guide)</div>
+                    <div className="mt-4 pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2 text-xs text-slate-700 font-medium">
+                      <div>&bull; Bespoke High-Converting IFA Website</div>
+                      <div>&bull; Direct WhatsApp Inquiry Button</div>
+                      <div>&bull; FCA FRN &amp; FSCS Consumer Duty Badges</div>
+                      <div>&bull; <b>Built-in Social Media Retainer (3 Months)</b></div>
                     </div>
                   </div>
 
                   {/* Plan 2: Client Acquisition Pro */}
                   <div
                     onClick={() => setFormData({ ...formData, planTier: 'pro' })}
-                    className={`p-5 rounded-3xl border-2 cursor-pointer transition-all relative ${
+                    className={`p-6 rounded-3xl border-2 cursor-pointer transition-all relative ${
                       formData.planTier === 'pro'
-                        ? 'border-amber-500 bg-amber-50 shadow-md'
-                        : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                        ? 'border-indigo-600 bg-indigo-50/50 shadow-lg'
+                        : 'border-slate-200 bg-white hover:border-slate-300'
                     }`}
                   >
-                    <div className="absolute -top-3 right-6 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm">
-                      ⭐ Recommended • Best Value
+                    <div className="absolute -top-3 right-6 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm">
+                      ⭐ Recommended • Wealth Pro
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <div className="w-9 h-9 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold">
+                        <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-black">
                           2
                         </div>
                         <div>
-                          <h4 className="font-extrabold text-base text-slate-900">Client Acquisition Pro</h4>
-                          <span className="text-xs text-slate-500">Growing Practices &amp; Boutiques (2–5 Advisers)</span>
+                          <div className="flex items-center space-x-2">
+                            <h4 className="font-extrabold text-base text-slate-900">Pro Plan</h4>
+                            <span className="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Yardstick Challenger</span>
+                          </div>
+                          <span className="text-xs text-slate-500">Full AI Chatbot + Calculators + Lead Magnets + Social Media</span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-lg font-black text-slate-900">£99 <span className="text-xs font-normal text-slate-500">/mo</span></div>
-                        <span className="text-[10px] text-emerald-700 font-bold">£0 Setup Fee</span>
+                        <div className="text-xl font-black text-slate-900">£599 <span className="text-xs font-normal text-slate-500">/mo</span></div>
+                        <span className={`text-[10px] font-bold ${formData.contractDuration === 'quarterly' ? 'text-emerald-700' : 'text-amber-700'}`}>
+                          {formData.contractDuration === 'quarterly' ? '£0 Setup Fee' : '£1,000 Setup Fee'}
+                        </span>
                       </div>
                     </div>
-                    <div className="mt-3 pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2 text-[11px] text-slate-700 font-medium">
-                      <div>&bull; <b>All 3 Premium Templates</b></div>
-                      <div>&bull; <b>Automated WhatsApp Qualifier Bot</b></div>
-                      <div>&bull; <b>Full Suite:</b> Pension + IHT + ISA</div>
-                      <div>&bull; <b>3 Lead Magnets &amp; Scorecard Quiz</b></div>
-                      <div>&bull; <b>Live VouchedFor Review Sync</b></div>
-                      <div>&bull; Instant WhatsApp Lead Mobile Alerts</div>
-                    </div>
-                  </div>
-
-                  {/* Plan 3: Elite Wealth Automation */}
-                  <div
-                    onClick={() => setFormData({ ...formData, planTier: 'elite' })}
-                    className={`p-5 rounded-3xl border-2 cursor-pointer transition-all ${
-                      formData.planTier === 'elite'
-                        ? 'border-indigo-600 bg-indigo-50/60 shadow-md'
-                        : 'border-slate-200 bg-slate-50 hover:border-slate-300'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-9 h-9 rounded-xl bg-indigo-900 text-white flex items-center justify-center font-bold">
-                          3
-                        </div>
-                        <div>
-                          <h4 className="font-extrabold text-base text-slate-900">Elite Wealth Automation</h4>
-                          <span className="text-xs text-slate-500">Multi-Branch Networks &amp; Family Offices</span>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-lg font-black text-slate-900">£189 <span className="text-xs font-normal text-slate-500">/mo</span></div>
-                        <span className="text-[10px] text-emerald-700 font-bold">£0 Setup Fee</span>
-                      </div>
-                    </div>
-                    <div className="mt-3 pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2 text-[11px] text-slate-700 font-medium">
-                      <div>&bull; <b>24/7 AI Financial Assistant Bot</b></div>
-                      <div>&bull; <b>Client Portal Gateway Integration</b></div>
-                      <div>&bull; Bespoke Theme &amp; CSS Customizer</div>
-                      <div>&bull; Unlimited Lead Magnets &amp; Funnels</div>
+                    <div className="mt-4 pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2 text-xs text-slate-700 font-medium">
+                      <div>&bull; <b>Full 24/7 AI Wealth Concierge Chatbot</b></div>
+                      <div>&bull; <b>3 Interactive Calculators (Pension, IHT, ISA)</b></div>
+                      <div>&bull; <b>Automated Lead Magnets &amp; PDF Guides</b></div>
+                      <div>&bull; <b>Built-in Social Media Retainer (3 Months)</b></div>
+                      <div>&bull; Bespoke Interactive Advice Journey UI</div>
+                      <div>&bull; Live VouchedFor / Trustpilot Review Sync</div>
                     </div>
                   </div>
                 </div>
 
-                {/* DFY Social Media Marketing Add-On */}
-                <div className="p-5 rounded-3xl bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 border border-emerald-200 space-y-3">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start space-x-3">
-                      <input
-                        type="checkbox"
-                        id="dfyCheckbox"
-                        checked={formData.hasDfySocialMedia}
-                        onChange={(e) => setFormData({ ...formData, hasDfySocialMedia: e.target.checked })}
-                        className="w-5 h-5 rounded-lg text-emerald-600 focus:ring-emerald-500 border-slate-300 mt-0.5 cursor-pointer"
-                      />
-                      <div>
-                        <label htmlFor="dfyCheckbox" className="font-extrabold text-sm text-slate-900 cursor-pointer flex items-center space-x-1.5">
-                          <span>Add Done-For-You (DFY) LinkedIn &amp; Blog Marketing</span>
-                          <span className="bg-emerald-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">Recommended</span>
-                        </label>
-                        <p className="text-xs text-slate-600 mt-1">
-                          8-10 FCA-compliant LinkedIn posts/mo + 2 long-form SEO blog &amp; LinkedIn thought leadership articles in your firm's brand colors.
-                        </p>
-                      </div>
+                {/* Built-in Social Media Included Notice */}
+                <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center space-x-3 text-xs text-emerald-900">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <div>
+                    <strong>Built-in Social Media Retainer Included:</strong> Both Starter and Pro tiers include complete DFY financial advice social media campaigns on a default 3-month retainer.
+                  </div>
+                </div>
+
+                {/* Modular Add-On Marketplace */}
+                <div className="space-y-3 pt-2">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900">Optional Modular Add-Ons</h3>
+                      <p className="text-xs text-slate-500">Select any bespoke add-ons needed for this practice.</p>
                     </div>
-                    <div className="text-right shrink-0">
-                      <div className="text-sm font-black text-emerald-900">+£169 <span className="text-[10px] font-normal text-slate-500">/mo</span></div>
-                      <span className="text-[10px] text-slate-500 line-through">£199 /mo</span>
-                    </div>
+                    <span className="text-xs text-slate-400 font-medium">Add-on Marketplace</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {ADDON_MARKETPLACE.map((addon) => {
+                      const isSelected = formData.selectedAddonIds.includes(addon.id);
+                      return (
+                        <div
+                          key={addon.id}
+                          onClick={() => toggleAddon(addon.id)}
+                          className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between ${
+                            isSelected
+                              ? 'border-amber-500 bg-amber-50/60 shadow-xs'
+                              : 'border-slate-200 bg-white hover:border-slate-300'
+                          }`}
+                        >
+                          <div className="space-y-1.5">
+                            <div className="flex items-start justify-between">
+                              <span className="text-xs font-extrabold text-slate-900">{addon.title}</span>
+                              <div className={`w-4 h-4 rounded-md flex items-center justify-center shrink-0 ${isSelected ? 'bg-amber-500 text-white' : 'border border-slate-300 bg-white'}`}>
+                                {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
+                              </div>
+                            </div>
+                            <p className="text-[11px] text-slate-500 leading-relaxed">{addon.description}</p>
+                          </div>
+                          <div className="mt-3 pt-2 border-t border-slate-100 flex justify-between items-center text-xs font-bold text-slate-800">
+                            <span className="text-[10px] text-slate-400 uppercase tracking-wider">{addon.category}</span>
+                            <span>+£{addon.priceMonthly} / mo</span>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -675,15 +750,33 @@ export default function OnboardingQuestionnairePage() {
                     <span className="text-slate-500">Selected Plan Tier:</span>
                     <strong className="text-indigo-700 font-bold uppercase">{planInfo.name} (£{basePrice}/mo)</strong>
                   </div>
-                  {formData.hasDfySocialMedia && (
+                  <div className="flex justify-between border-b border-slate-200 pb-2.5">
+                    <span className="text-slate-500">Contract Terms:</span>
+                    <strong className="text-slate-900 font-bold">
+                      {formData.contractDuration === 'quarterly' ? '3-Month Retainer (Default)' : 'Monthly Rolling'}
+                    </strong>
+                  </div>
+                  <div className="flex justify-between border-b border-slate-200 pb-2.5">
+                    <span className="text-slate-500">Setup Fee:</span>
+                    <strong className={setupFee === 0 ? 'text-emerald-700 font-bold' : 'text-amber-700 font-bold'}>
+                      {setupFee === 0 ? '£0 (Waived on 3-Month Contract)' : `£${setupFee} One-Time`}
+                    </strong>
+                  </div>
+                  <div className="flex justify-between border-b border-slate-200 pb-2.5">
+                    <span className="text-slate-500">Social Media Retainer:</span>
+                    <strong className="text-emerald-700 font-bold">Included by Default (3-Month)</strong>
+                  </div>
+                  {formData.selectedAddonIds.length > 0 && (
                     <div className="flex justify-between border-b border-slate-200 pb-2.5">
-                      <span className="text-slate-500">DFY Marketing Add-on:</span>
-                      <strong className="text-emerald-700 font-bold">Active (+£169/mo bundled)</strong>
+                      <span className="text-slate-500">Selected Add-ons ({formData.selectedAddonIds.length}):</span>
+                      <strong className="text-amber-700 font-bold">+£{addonsTotal}/mo</strong>
                     </div>
                   )}
                   <div className="flex justify-between border-b border-slate-200 pb-2.5">
                     <span className="text-slate-500">Total Monthly Investment:</span>
-                    <strong className="text-slate-950 font-black text-sm">£{totalMonthlyPrice} / month (£0 setup fee)</strong>
+                    <strong className="text-slate-950 font-black text-sm">
+                      £{totalMonthlyPrice} / month {setupFee > 0 ? `(+ £${setupFee} setup fee)` : '(£0 setup fee)'}
+                    </strong>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-500">Live Portal Slug:</span>
@@ -782,25 +875,24 @@ export default function OnboardingQuestionnairePage() {
                   <div className="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-100 flex items-center space-x-2 text-emerald-900 font-medium">
                     <MessageCircle className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>
-                      {formData.planTier === 'starter' && 'WhatsApp Click-to-Chat Button'}
-                      {formData.planTier === 'pro' && 'Automated WhatsApp Lead Qualifier Bot'}
-                      {formData.planTier === 'elite' && '24/7 AI Financial Assistant Bot + WhatsApp'}
+                      {formData.planTier === 'starter' && 'Direct WhatsApp Instant Lead Button'}
+                      {formData.planTier === 'pro' && '24/7 AI Concierge Bot + WhatsApp Routing'}
                     </span>
                   </div>
 
                   <div className="p-2.5 rounded-xl bg-amber-50/70 border border-amber-100 flex items-center space-x-2 text-amber-900 font-medium">
                     <FileText className="w-4 h-4 text-amber-600 shrink-0" />
                     <span>
-                      {formData.planTier === 'starter' && '1 Lead Magnet: UK Retirement Readiness'}
-                      {formData.planTier !== 'starter' && '3 Lead Magnets + 2-Min Scorecard Quiz'}
+                      {formData.planTier === 'starter' && 'Frictionless Direct Consultation CTAs'}
+                      {formData.planTier === 'pro' && '3 Downloadable HNW Lead Magnet Guides'}
                     </span>
                   </div>
 
                   <div className="p-2.5 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center space-x-2 text-blue-900 font-medium">
                     <TrendingUp className="w-4 h-4 text-blue-600 shrink-0" />
                     <span>
-                      {formData.planTier === 'starter' && 'Pension Calculator'}
-                      {formData.planTier !== 'starter' && 'Full Suite: Pension, IHT 40% & ISA Growth'}
+                      {formData.planTier === 'starter' && 'Standard Advisory Consultation Booking'}
+                      {formData.planTier === 'pro' && 'Full Interactive Suite: Pension, IHT 40% & Compound Wealth'}
                     </span>
                   </div>
 

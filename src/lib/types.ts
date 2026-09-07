@@ -1,5 +1,6 @@
 export type TemplateId = 'modern-wealth' | 'heritage-trust' | 'agile-dynamic';
-export type PlanTier = 'starter' | 'pro' | 'elite';
+export type PlanTier = 'starter' | 'pro';
+export type ContractDuration = 'quarterly' | 'monthly';
 
 export interface IFABranding {
   primaryColor: string;
@@ -70,7 +71,10 @@ export interface IFAClient {
   branding: IFABranding;
   templateId: TemplateId;
   planTier: PlanTier;
+  contractDuration?: ContractDuration;
+  setupFee?: number;
   hasDfySocialMedia?: boolean;
+  selectedAddons?: string[];
   whatsappNumber?: string;
   clientPortalUrl?: string;
   services: IFAService[];
@@ -99,7 +103,9 @@ export interface AdminQuestionnaireFormData {
   feeStructureSummary: string;
   templateId: TemplateId;
   planTier: PlanTier;
+  contractDuration: ContractDuration;
   hasDfySocialMedia: boolean;
+  selectedAddonIds: string[];
   whatsappNumber?: string;
   clientPortalUrl?: string;
   primaryColor: string;

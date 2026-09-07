@@ -139,6 +139,19 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                 />
               </div>
 
+              {/* UK GDPR Consent Checkbox */}
+              <div className="flex items-start space-x-2.5 pt-1">
+                <input
+                  type="checkbox"
+                  id="gdprConsent"
+                  required
+                  className="w-4 h-4 rounded text-amber-500 bg-slate-950 border-slate-700 focus:ring-amber-400 mt-0.5 cursor-pointer"
+                />
+                <label htmlFor="gdprConsent" className="text-[11px] text-slate-400 leading-tight select-none">
+                  I consent to {client.firmName} securely holding and processing my details in accordance with the UK Data Protection Act 2018 &amp; UK GDPR to respond to my financial inquiry.
+                </label>
+              </div>
+
               <div className="pt-2">
                 <button
                   type="submit"
@@ -152,7 +165,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
 
               <p className="text-[11px] text-slate-500 text-center flex items-center justify-center space-x-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 inline" />
-                <span>Your data is confidential & protected under UK GDPR. FCA FRN: {client.fcaFrn}</span>
+                <span>Encrypted 256-bit TLS &bull; UK GDPR Compliant &bull; FCA FRN: {client.fcaFrn}</span>
               </p>
             </form>
           </div>

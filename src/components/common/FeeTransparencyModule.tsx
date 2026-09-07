@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { Check, X, ShieldCheck, FileCheck } from 'lucide-react';
+import { Check, X, ShieldCheck } from 'lucide-react';
 
 interface FeeTransparencyProps {
   firmName: string;
-  isIndependent: boolean;
+  isIndependent?: boolean;
   feeSummary?: string;
 }
 
@@ -80,7 +80,7 @@ export const FeeTransparencyModule: React.FC<FeeTransparencyProps> = ({
             <ul className="space-y-3 text-xs text-slate-500">
               <li className="flex items-start space-x-2.5">
                 <X className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
-                <span>Restricted to a single bank's own products or a limited panel of 2-3 providers.</span>
+                <span>Restricted to a single bank&apos;s own products or a limited panel of 2-3 providers.</span>
               </li>
               <li className="flex items-start space-x-2.5">
                 <X className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
