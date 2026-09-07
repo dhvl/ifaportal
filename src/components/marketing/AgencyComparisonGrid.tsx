@@ -1,140 +1,190 @@
 'use client';
 
 import React from 'react';
-import { ShieldCheck, ExternalLink } from 'lucide-react';
-
-const YARDSTICK_CLIENTS = [
-  { name: 'Boolers', location: 'Leicester', niche: 'SIPP & SSAS Pensions', domain: 'boolers.co.uk' },
-  { name: 'Rowley Turton', location: 'Leicester', niche: 'Award-Winning HNW Wealth', domain: 'rowleyturton.co.uk' },
-  { name: 'Balance: Wealth Planning', location: 'Nottingham', niche: 'Lifestyle Financial Planning', domain: 'balancewealth.uk' },
-  { name: 'Chapters Financial', location: 'Guildford', niche: 'HNW Retirement & Trusts', domain: 'chaptersfinancial.com' },
-  { name: 'Pen-life Associates', location: 'York', niche: 'Wealth Preservation', domain: 'pen-life.co.uk' },
-  { name: 'Informed Financial Planning', location: 'Hull / Leeds', niche: 'Corporate Pensions & Tax', domain: 'informedfinancialplanning.co.uk' },
-];
+import { ShieldCheck, CheckCircle2, XCircle, ArrowRight, Zap } from 'lucide-react';
+import Link from 'next/link';
 
 export const AgencyComparisonGrid: React.FC = () => {
   return (
-    <section id="benchmark" className="py-20 bg-slate-900 text-white border-t border-slate-800">
+    <section id="benchmark" className="py-20 bg-white border-t border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800 text-amber-400 text-xs font-black uppercase tracking-wider border border-slate-700">
-            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-            <span>UK Agency Competitor Audit</span>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 text-amber-900 text-xs font-black uppercase tracking-wider border border-amber-200">
+            <ShieldCheck className="w-4 h-4 text-amber-700" />
+            <span>Commercial Value Analysis</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-[1.15]">
-            Why Pay £4k–£12k Upfront for a WordPress Site?
+          
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.12]">
+            Traditional Web Agencies vs. The IFA Portal
           </h2>
-          <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-            Legacy agencies like The Yardstick Agency charge £4,000 to £12,000 upfront for static WordPress builds. Here is how our modern Next.js cloud platform outperforms them in lead generation, speed, and economics.
+          
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            UK financial marketing agencies typically charge <strong>£4,000 to £12,000 upfront</strong> for static WordPress sites with 12-week turnaround times. Here is how our modern platform compares on speed, lead capture, and commercial value.
           </p>
         </div>
 
-        {/* Comparison Table */}
-        <div className="max-w-4xl mx-auto bg-slate-800/80 border border-slate-700/80 rounded-3xl overflow-hidden shadow-2xl">
-          <div className="grid grid-cols-3 bg-slate-950 p-4 sm:p-5 text-xs font-black text-center border-b border-slate-800">
-            <div className="text-left pl-2 text-slate-400 uppercase tracking-wider">Capability</div>
-            <div className="text-amber-400 uppercase tracking-wider">Our Next.js + AI Platform</div>
-            <div className="text-slate-400 uppercase tracking-wider">Legacy Agencies (£4k–£12k)</div>
-          </div>
-
-          <div className="divide-y divide-slate-700/60 text-xs sm:text-sm">
-            <div className="grid grid-cols-3 p-4 sm:p-5 items-center">
-              <div className="font-extrabold text-white pl-2">Lead Conversion Tech</div>
-              <div className="text-center font-bold text-emerald-400 bg-emerald-950/50 py-2 px-3 rounded-xl border border-emerald-500/20">
-                24/7 AI Concierge + WhatsApp Direct
-              </div>
-              <div className="text-center text-slate-400">
-                Static Contact Form 7 (&gt;70% mobile bounce)
-              </div>
+        {/* Comparison Table / Box Matrix (Actuaries & Fintuity Style) */}
+        <div className="max-w-5xl mx-auto bg-[#FDFCF9] border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+          {/* Table Header */}
+          <div className="grid grid-cols-12 bg-[#0B1B2B] text-white p-5 sm:p-6 text-xs sm:text-sm font-black items-center">
+            <div className="col-span-5 sm:col-span-4 text-slate-300 uppercase tracking-wider">
+              Capability &amp; Scope
             </div>
-
-            <div className="grid grid-cols-3 p-4 sm:p-5 items-center">
-              <div className="font-extrabold text-white pl-2">Interactive Financial Tools</div>
-              <div className="text-center font-bold text-emerald-400 bg-emerald-950/50 py-2 px-3 rounded-xl border border-emerald-500/20">
-                3 UK Calculators: Pension, IHT &amp; Growth
-              </div>
-              <div className="text-center text-slate-400">
-                None (Static PDF brochure downloads)
-              </div>
+            <div className="col-span-4 sm:col-span-4 text-center text-amber-400 uppercase tracking-wider font-extrabold flex items-center justify-center space-x-1.5">
+              <Zap className="w-4 h-4 text-amber-400 hidden sm:inline" />
+              <span>Our IFA Portal</span>
             </div>
-
-            <div className="grid grid-cols-3 p-4 sm:p-5 items-center">
-              <div className="font-extrabold text-white pl-2">Social Media Retainer</div>
-              <div className="text-center font-bold text-emerald-400 bg-emerald-950/50 py-2 px-3 rounded-xl border border-emerald-500/20">
-                Built-in 3-Month Retainer Standard
-              </div>
-              <div className="text-center text-slate-400">
-                Separate £800 – £1,500/mo upsell retainer
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 p-4 sm:p-5 items-center">
-              <div className="font-extrabold text-white pl-2">Client Turnaround Time</div>
-              <div className="text-center font-bold text-emerald-400 bg-emerald-950/50 py-2 px-3 rounded-xl border border-emerald-500/20">
-                Live in 2 minutes via Onboarding Flow
-              </div>
-              <div className="text-center text-slate-400">
-                8 to 14 weeks agency backlog
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 p-4 sm:p-5 items-center">
-              <div className="font-extrabold text-white pl-2">Upfront Setup Capital</div>
-              <div className="text-center font-bold text-emerald-400 bg-emerald-950/50 py-2 px-3 rounded-xl border border-emerald-500/20">
-                £0 Setup on 3-Month Commitment
-              </div>
-              <div className="text-center text-slate-400">
-                £4,000 to £12,000 upfront sunk cost
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 p-4 sm:p-5 items-center">
-              <div className="font-extrabold text-white pl-2">Hosting &amp; Architecture</div>
-              <div className="text-center font-bold text-emerald-400 bg-emerald-950/50 py-2 px-3 rounded-xl border border-emerald-500/20">
-                Serverless Next.js 15 + Edge CDN
-              </div>
-              <div className="text-center text-slate-400">
-                Monolithic PHP + WordPress plugins
-              </div>
+            <div className="col-span-3 sm:col-span-4 text-center text-slate-400 uppercase tracking-wider">
+              Traditional Agency Builds
             </div>
           </div>
-        </div>
 
-        {/* Live Verification Links Directory for Partner */}
-        <div className="p-6 bg-slate-950 rounded-3xl border border-slate-800 space-y-4 max-w-4xl mx-auto">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-black uppercase tracking-wider text-amber-400">
-              Verified Yardstick Agency Clients (Inspect Source Code &amp; Confirm WordPress)
-            </span>
-            <span className="text-[11px] text-slate-500">Audited Portfolio</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {YARDSTICK_CLIENTS.map((client) => (
-              <a
-                key={client.domain}
-                href={`https://${client.domain}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-slate-900 rounded-2xl border border-slate-800 hover:border-amber-400/50 hover:bg-slate-850 transition-all flex items-center justify-between group"
-              >
-                <div>
-                  <span className="font-bold text-xs text-white block group-hover:text-amber-400 transition-colors">
-                    {client.name}
-                  </span>
-                  <span className="text-[10px] text-slate-400 block font-mono">
-                    {client.domain} &bull; {client.location}
-                  </span>
+          {/* Table Rows */}
+          <div className="divide-y divide-slate-200/80 text-xs sm:text-sm bg-white">
+            {/* Row 1: Upfront Setup Capital */}
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-slate-50/60 transition-colors">
+              <div className="col-span-5 sm:col-span-4 pr-2">
+                <span className="font-extrabold text-slate-900 block">Upfront Setup Capital</span>
+                <span className="text-[11px] text-slate-500 hidden sm:block">Cash outlay required before going live</span>
+              </div>
+              <div className="col-span-4 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1.5 font-black text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 font-mono">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>£0 Setup (Quarterly)</span>
                 </div>
-                <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-amber-400 transition-colors shrink-0" />
-              </a>
-            ))}
+              </div>
+              <div className="col-span-3 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1 font-bold text-slate-600 font-mono">
+                  <XCircle className="w-4 h-4 text-rose-500 shrink-0 hidden sm:inline" />
+                  <span>£4,000 – £12,000</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Row 2: Turnaround Time */}
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-slate-50/60 transition-colors">
+              <div className="col-span-5 sm:col-span-4 pr-2">
+                <span className="font-extrabold text-slate-900 block">Deployment Speed</span>
+                <span className="text-[11px] text-slate-500 hidden sm:block">From onboarding to live FCA portal</span>
+              </div>
+              <div className="col-span-4 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1.5 font-black text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 font-mono">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Live in 2 Minutes</span>
+                </div>
+              </div>
+              <div className="col-span-3 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1 font-bold text-slate-600">
+                  <XCircle className="w-4 h-4 text-rose-500 shrink-0 hidden sm:inline" />
+                  <span>8 – 14 Weeks Agency Backlog</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Row 3: 24/7 Lead Qualification */}
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-slate-50/60 transition-colors">
+              <div className="col-span-5 sm:col-span-4 pr-2">
+                <span className="font-extrabold text-slate-900 block">Lead Conversion Tech</span>
+                <span className="text-[11px] text-slate-500 hidden sm:block">Capturing prospects after business hours</span>
+              </div>
+              <div className="col-span-4 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1.5 font-black text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>24/7 AI Concierge + WhatsApp</span>
+                </div>
+              </div>
+              <div className="col-span-3 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1 font-bold text-slate-600">
+                  <XCircle className="w-4 h-4 text-rose-500 shrink-0 hidden sm:inline" />
+                  <span>Static Contact Form (&gt;70% dropoff)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Row 4: Interactive Client Calculators */}
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-slate-50/60 transition-colors">
+              <div className="col-span-5 sm:col-span-4 pr-2">
+                <span className="font-extrabold text-slate-900 block">Financial Tools</span>
+                <span className="text-[11px] text-slate-500 hidden sm:block">Pension, IHT &amp; Compound calculators</span>
+              </div>
+              <div className="col-span-4 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1.5 font-black text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>3 Live Interactive UK Calculators</span>
+                </div>
+              </div>
+              <div className="col-span-3 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1 font-bold text-slate-600">
+                  <XCircle className="w-4 h-4 text-rose-500 shrink-0 hidden sm:inline" />
+                  <span>None (Static PDF downloads)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Row 5: Social Media Growth Retainer */}
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-slate-50/60 transition-colors">
+              <div className="col-span-5 sm:col-span-4 pr-2">
+                <span className="font-extrabold text-slate-900 block">Social Media Retainer</span>
+                <span className="text-[11px] text-slate-500 hidden sm:block">Ongoing LinkedIn and content support</span>
+              </div>
+              <div className="col-span-4 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1.5 font-black text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Included 3-Month DFY Retainer</span>
+                </div>
+              </div>
+              <div className="col-span-3 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1 font-bold text-slate-600 font-mono">
+                  <XCircle className="w-4 h-4 text-rose-500 shrink-0 hidden sm:inline" />
+                  <span>+£800 – £1,500/mo Extra Surcharge</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Row 6: Technology Stack */}
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-slate-50/60 transition-colors">
+              <div className="col-span-5 sm:col-span-4 pr-2">
+                <span className="font-extrabold text-slate-900 block">Architecture &amp; Speed</span>
+                <span className="text-[11px] text-slate-500 hidden sm:block">Hosting, security &amp; mobile speed</span>
+              </div>
+              <div className="col-span-4 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1.5 font-black text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Next.js 15 + Edge Serverless CDN</span>
+                </div>
+              </div>
+              <div className="col-span-3 sm:col-span-4 text-center">
+                <div className="inline-flex items-center space-x-1 font-bold text-slate-600">
+                  <XCircle className="w-4 h-4 text-rose-500 shrink-0 hidden sm:inline" />
+                  <span>Monolithic PHP / WordPress</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Commercial Takeaway Card (Unbiased / Fintuity style) */}
+        <div className="max-w-4xl mx-auto bg-amber-50/60 border border-amber-200/80 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+          <div className="space-y-2">
+            <span className="text-[10px] font-black uppercase tracking-widest text-amber-800">
+              The Commercial Advantage
+            </span>
+            <h4 className="text-xl font-extrabold text-slate-900">
+              Save over £8,000 in Year 1 while generating 3x more qualified leads
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Eliminate large upfront design fees and avoid ongoing maintenance headaches. Focus entirely on client advisory and portfolio management.
+            </p>
           </div>
 
-          <p className="text-[11px] text-slate-400 text-center pt-1">
-            Right-click and &quot;View Page Source&quot; on any of these domains to confirm they rely on WordPress, PHP, and standard Contact Form 7.
-          </p>
+          <Link
+            href="/admin/onboard"
+            className="shrink-0 px-6 py-3.5 rounded-2xl bg-[#0B1B2B] hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center space-x-2"
+          >
+            <span>Onboard Your Practice</span>
+            <ArrowRight className="w-4 h-4 text-amber-400" />
+          </Link>
         </div>
       </div>
     </section>

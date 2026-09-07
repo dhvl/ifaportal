@@ -4,298 +4,337 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { 
   Bot, Calculator, MessageSquare, ShieldCheck, Sparkles, 
-  ExternalLink, Award, Clock, Layers
+  ExternalLink, Award, Clock, Layers, ArrowRight, CheckCircle2
 } from 'lucide-react';
 
 export const InteractivePreviewWidget: React.FC = () => {
   const [activeTier, setActiveTier] = useState<'pro' | 'starter'>('pro');
 
   return (
-    <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6 max-w-5xl mx-auto">
-      {/* Tier Switcher Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-slate-100">
+    <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg space-y-8 max-w-5xl mx-auto">
+      {/* Top Header & Switcher */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pb-6 border-b border-slate-100">
         <div>
-          <span className="text-[10px] font-black uppercase tracking-widest text-amber-600 block">
-            Interactive Portal Benchmark
-          </span>
-          <h3 className="text-xl font-extrabold text-slate-900">
-            Compare Our Two Flagship Client Tiers
+          <div className="inline-flex items-center space-x-2 text-[11px] font-black uppercase tracking-widest text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200/80 mb-2">
+            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+            <span>Interactive Flagship Demos</span>
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            Explore Our Two UK Practice Tier Demos
           </h3>
+          <p className="text-xs sm:text-sm text-slate-500 pt-0.5">
+            Click between tiers to view the live client-facing templates and conversion features.
+          </p>
         </div>
 
-        {/* Toggle Pills */}
-        <div className="flex items-center p-1.5 bg-slate-100/90 rounded-2xl border border-slate-200/80 w-full sm:w-auto">
+        {/* Toggle Pills (Fintuity style) */}
+        <div className="flex items-center p-1.5 bg-slate-100 rounded-2xl border border-slate-200/80 w-full sm:w-auto">
           <button
             onClick={() => setActiveTier('pro')}
-            className={`flex-1 sm:flex-none px-5 py-2.5 rounded-xl font-extrabold text-xs tracking-wider uppercase transition-all flex items-center justify-center space-x-2 ${
+            className={`flex-1 sm:flex-none px-6 py-3 rounded-xl font-black text-xs tracking-wider uppercase transition-all flex items-center justify-center space-x-2 ${
               activeTier === 'pro'
                 ? 'bg-[#0B1B2B] text-white shadow-md'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>Client 1: Pro / Premium</span>
+            <Sparkles className="w-4 h-4 text-amber-400" />
+            <span>Client 1: Wealth Pro (£599/mo)</span>
           </button>
 
           <button
             onClick={() => setActiveTier('starter')}
-            className={`flex-1 sm:flex-none px-5 py-2.5 rounded-xl font-extrabold text-xs tracking-wider uppercase transition-all flex items-center justify-center space-x-2 ${
+            className={`flex-1 sm:flex-none px-6 py-3 rounded-xl font-black text-xs tracking-wider uppercase transition-all flex items-center justify-center space-x-2 ${
               activeTier === 'starter'
                 ? 'bg-[#0B1B2B] text-white shadow-md'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Layers className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Client 2: Starter</span>
+            <Layers className="w-4 h-4 text-emerald-400" />
+            <span>Client 2: Starter (£249/mo)</span>
           </button>
         </div>
       </div>
 
       {/* Dynamic Content Panel */}
       {activeTier === 'pro' ? (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center animate-in fade-in duration-300">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-in fade-in duration-300">
           {/* Left Details */}
-          <div className="lg:col-span-7 space-y-5">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#1e293b] text-amber-400 font-serif font-bold text-xl flex items-center justify-center shadow-md">
-                H
-              </div>
-              <div>
-                <div className="flex items-center space-x-2">
-                  <h4 className="text-xl font-black text-slate-900">Heritage &amp; Trust Financial</h4>
-                  <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-amber-100 text-amber-900">
-                    Pro Tier Flagship
+          <div className="lg:col-span-7 space-y-6 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3.5">
+                <div className="w-12 h-12 rounded-2xl bg-[#0B1B2B] text-amber-400 font-serif font-black text-2xl flex items-center justify-center shadow-md">
+                  H
+                </div>
+                <div>
+                  <div className="flex items-center space-x-2">
+                    <h4 className="text-xl font-black text-slate-900">Heritage &amp; Trust Financial</h4>
+                    <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200">
+                      Wealth Pro
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-500 font-mono">
+                    FCA FRN: 419203 &bull; St. Peter Square, Manchester
                   </span>
                 </div>
-                <span className="text-xs text-slate-500 font-mono">FCA FRN: 419203 &bull; St. Peter Square, Manchester</span>
+              </div>
+
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Engineered for multi-adviser wealth management firms managing private client portfolios. Includes the <strong>24/7 AI Concierge Chatbot</strong>, <strong>3 UK financial calculators</strong>, and downloadable retirement guides with automated lead capture.
+              </p>
+
+              {/* Feature Grid Box */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="p-3.5 bg-amber-50/70 border border-amber-200/70 rounded-2xl space-y-1">
+                  <div className="flex items-center space-x-2 font-bold text-xs text-amber-950">
+                    <Bot className="w-4 h-4 text-amber-700" />
+                    <span>24/7 AI Lead Concierge</span>
+                  </div>
+                  <p className="text-[11px] text-amber-900/80">
+                    Trained on UK pensions &amp; FCA COBS 4 rules to pre-qualify HNW visitors.
+                  </p>
+                </div>
+
+                <div className="p-3.5 bg-blue-50/70 border border-blue-200/70 rounded-2xl space-y-1">
+                  <div className="flex items-center space-x-2 font-bold text-xs text-blue-950">
+                    <Calculator className="w-4 h-4 text-blue-700" />
+                    <span>3 UK Financial Calculators</span>
+                  </div>
+                  <p className="text-[11px] text-blue-900/80">
+                    Interactive Pension Drawdown, 40% IHT Tax, and Compound Growth models.
+                  </p>
+                </div>
+
+                <div className="p-3.5 bg-purple-50/70 border border-purple-200/70 rounded-2xl space-y-1">
+                  <div className="flex items-center space-x-2 font-bold text-xs text-purple-950">
+                    <Award className="w-4 h-4 text-purple-700" />
+                    <span>Lead Magnet Guide</span>
+                  </div>
+                  <p className="text-[11px] text-purple-900/80">
+                    High-converting HNW retirement checklist for building email lists.
+                  </p>
+                </div>
+
+                <div className="p-3.5 bg-emerald-50/70 border border-emerald-200/70 rounded-2xl space-y-1">
+                  <div className="flex items-center space-x-2 font-bold text-xs text-emerald-950">
+                    <Clock className="w-4 h-4 text-emerald-700" />
+                    <span>3-Month Social Retainer</span>
+                  </div>
+                  <p className="text-[11px] text-emerald-900/80">
+                    DFY LinkedIn thought leadership and newsletters to drive traffic.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Designed for established wealth management practices managing multi-generational private clients. Converts passive visitors using an active <strong>24/7 AI Concierge Chatbot</strong>, <strong>3 UK financial calculators</strong>, and automated downloadable retirement guides.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              <div className="p-3 bg-amber-50/60 border border-amber-200/60 rounded-2xl space-y-1">
-                <div className="flex items-center space-x-2 font-bold text-xs text-amber-950">
-                  <Bot className="w-4 h-4 text-amber-600" />
-                  <span>24/7 AI Lead Qualifier</span>
-                </div>
-                <p className="text-[11px] text-amber-900/80">
-                  Trained on FCA COBS 4 rules; answers client pension questions &amp; routes qualified leads.
-                </p>
-              </div>
-
-              <div className="p-3 bg-blue-50/60 border border-blue-200/60 rounded-2xl space-y-1">
-                <div className="flex items-center space-x-2 font-bold text-xs text-blue-950">
-                  <Calculator className="w-4 h-4 text-blue-600" />
-                  <span>3 Live UK Calculators</span>
-                </div>
-                <p className="text-[11px] text-blue-900/80">
-                  Pension drawdown forecasting, 40% IHT tax liability, and compound ISA wealth models.
-                </p>
-              </div>
-
-              <div className="p-3 bg-purple-50/60 border border-purple-200/60 rounded-2xl space-y-1">
-                <div className="flex items-center space-x-2 font-bold text-xs text-purple-950">
-                  <Sparkles className="w-4 h-4 text-purple-600" />
-                  <span>HNW Lead Magnets</span>
-                </div>
-                <p className="text-[11px] text-purple-900/80">
-                  Downloadable retirement guides that automatically capture qualified prospect emails.
-                </p>
-              </div>
-
-              <div className="p-3 bg-emerald-50/60 border border-emerald-200/60 rounded-2xl space-y-1">
-                <div className="flex items-center space-x-2 font-bold text-xs text-emerald-950">
-                  <Clock className="w-4 h-4 text-emerald-600" />
-                  <span>Built-in Social Retainer</span>
-                </div>
-                <p className="text-[11px] text-emerald-900/80">
-                  3-month LinkedIn &amp; Facebook content strategy included by default.
-                </p>
-              </div>
-            </div>
-
-            <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100">
               <Link
                 href="/portal/heritage-trust"
                 target="_blank"
-                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-all"
+                className="px-6 py-3 rounded-xl bg-[#0B1B2B] hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center space-x-2"
               >
-                <span>Launch Live Pro Portal Demo</span>
-                <ExternalLink className="w-4 h-4" />
+                <span>Launch Live Pro Demo</span>
+                <ExternalLink className="w-3.5 h-3.5 text-amber-400" />
               </Link>
-              <span className="text-xs text-slate-500 font-medium">
-                Or navigate via subdomain: <code className="text-slate-800 font-bold bg-slate-100 px-1.5 py-0.5 rounded">pro.(domain)</code>
+
+              <span className="text-xs text-slate-500 font-mono">
+                Subdomain Alias: <code className="text-slate-800 font-bold">pro.ifaportal.com</code>
               </span>
             </div>
           </div>
 
-          {/* Right Simulated Interactive Mockup */}
-          <div className="lg:col-span-5 bg-gradient-to-b from-slate-900 to-[#0B1B2B] rounded-3xl p-6 text-white space-y-5 shadow-xl border border-slate-800">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-                <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-              </div>
-              <span className="text-[10px] font-mono text-slate-400">heritage-trust.ifaportal.co.uk</span>
-            </div>
-
-            {/* AI Bot preview snippet */}
-            <div className="space-y-3 text-xs">
-              <div className="flex items-start space-x-2.5">
-                <div className="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center shrink-0">
-                  AI
-                </div>
-                <div className="p-3 bg-slate-800/90 rounded-2xl rounded-tl-xs text-slate-200 leading-relaxed max-w-xs">
-                  Hello! I am the Heritage &amp; Trust digital concierge. Are you exploring retirement drawdown or estate tax mitigation?
-                </div>
-              </div>
-
-              <div className="flex items-center justify-end space-x-2">
-                <span className="p-2.5 bg-amber-500 text-slate-950 font-bold rounded-2xl rounded-tr-xs text-xs">
-                  Reviewing my £650k pension pot
+          {/* Right Visual Card (Unbiased / Actuaries style box) */}
+          <div className="lg:col-span-5 bg-gradient-to-br from-slate-900 to-[#0B1B2B] text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-md border border-slate-800">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 font-bold border border-amber-400/30">
+                  Client 1: Pro Tier
+                </span>
+                <span className="text-xs font-mono text-emerald-400 font-bold flex items-center space-x-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Interactive Live</span>
                 </span>
               </div>
 
-              <div className="p-3.5 bg-slate-800/60 rounded-2xl border border-amber-500/30 space-y-2">
-                <div className="flex items-center justify-between text-[11px]">
-                  <span className="font-bold text-amber-400">Estimated Annual Tax-Free Drawdown</span>
-                  <span className="font-mono font-black text-white">£42,250 / yr</span>
+              <div className="space-y-1">
+                <span className="text-xs text-slate-400 uppercase tracking-widest font-extrabold">Commercial Tier</span>
+                <div className="flex items-baseline space-x-2">
+                  <span className="text-4xl font-black text-white font-mono">£599</span>
+                  <span className="text-xs text-slate-400 font-bold uppercase">/ month + VAT</span>
                 </div>
-                <div className="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-                  <div className="bg-amber-400 h-full w-[65%]" />
-                </div>
+                <span className="text-xs text-emerald-400 font-bold block pt-1">
+                  &bull; £0 Setup Fee on 3-Month Retainer Contract
+                </span>
+              </div>
+
+              <div className="p-4 bg-slate-800/80 rounded-2xl border border-slate-700/80 space-y-2 text-xs">
+                <div className="font-extrabold text-amber-300">Target IFA Practice Profile:</div>
+                <ul className="space-y-1.5 text-slate-300 text-[12px]">
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                    <span>Practices with £30M–£250M AUM</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                    <span>Average client portfolio &gt;£250k</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                    <span>Requiring 24/7 lead capture and qualification</span>
+                  </li>
+                </ul>
               </div>
             </div>
 
-            <div className="pt-2 text-center text-[10px] text-slate-400">
-              Active on Heritage &amp; Trust &bull; 256-Bit Encrypted &bull; UK GDPR Protected
+            <div className="pt-6">
+              <Link
+                href="/admin/onboard?plan=pro&template=heritage-trust"
+                className="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
+              >
+                <span>Onboard with Pro Template</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center animate-in fade-in duration-300">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-in fade-in duration-300">
           {/* Left Details */}
-          <div className="lg:col-span-7 space-y-5">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#0f2744] text-amber-400 font-bold text-xl flex items-center justify-center shadow-md">
-                M
-              </div>
-              <div>
-                <div className="flex items-center space-x-2">
-                  <h4 className="text-xl font-black text-slate-900">MLP Wealth Management</h4>
-                  <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-900">
-                    Starter Tier Flagship
+          <div className="lg:col-span-7 space-y-6 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3.5">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-900 text-emerald-300 font-serif font-black text-2xl flex items-center justify-center shadow-md">
+                  M
+                </div>
+                <div>
+                  <div className="flex items-center space-x-2">
+                    <h4 className="text-xl font-black text-slate-900">MLP Wealth Management</h4>
+                    <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-200">
+                      Starter Growth
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-500 font-mono">
+                    FCA FRN: 582194 &bull; Church Road, Hove, East Sussex
                   </span>
                 </div>
-                <span className="text-xs text-slate-500 font-mono">FCA FRN: 592810 &bull; 12 Park Square, Leeds</span>
+              </div>
+
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Designed for boutique and solo advisers who need an authoritative, FCA-compliant presence without complex chatbot maintenance. Comes with direct WhatsApp consultation booking, upfront fee transparency, and our DFY 3-month social growth retainer.
+              </p>
+
+              {/* Feature Grid Box */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="p-3.5 bg-emerald-50/70 border border-emerald-200/70 rounded-2xl space-y-1">
+                  <div className="flex items-center space-x-2 font-bold text-xs text-emerald-950">
+                    <MessageSquare className="w-4 h-4 text-emerald-700" />
+                    <span>WhatsApp Consultation Routing</span>
+                  </div>
+                  <p className="text-[11px] text-emerald-900/80">
+                    High-trust direct messaging for immediate prospect connection.
+                  </p>
+                </div>
+
+                <div className="p-3.5 bg-blue-50/70 border border-blue-200/70 rounded-2xl space-y-1">
+                  <div className="flex items-center space-x-2 font-bold text-xs text-blue-950">
+                    <ShieldCheck className="w-4 h-4 text-blue-700" />
+                    <span>FCA FRN &amp; FSCS Badges</span>
+                  </div>
+                  <p className="text-[11px] text-blue-900/80">
+                    Automated regulatory disclosure and £85,000 FSCS deposit badges.
+                  </p>
+                </div>
+
+                <div className="p-3.5 bg-purple-50/70 border border-purple-200/70 rounded-2xl space-y-1">
+                  <div className="flex items-center space-x-2 font-bold text-xs text-purple-950">
+                    <Award className="w-4 h-4 text-purple-700" />
+                    <span>Consumer Duty Fee Grid</span>
+                  </div>
+                  <p className="text-[11px] text-purple-900/80">
+                    Upfront clear disclosure of initial &amp; ongoing percentage tiers.
+                  </p>
+                </div>
+
+                <div className="p-3.5 bg-amber-50/70 border border-amber-200/70 rounded-2xl space-y-1">
+                  <div className="flex items-center space-x-2 font-bold text-xs text-amber-950">
+                    <Clock className="w-4 h-4 text-amber-700" />
+                    <span>3-Month Social Retainer</span>
+                  </div>
+                  <p className="text-[11px] text-amber-900/80">
+                    DFY social media posts included to build organic local reputation.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Designed for boutique independent advisers and solo practitioners. Delivers a clean, authoritative web presence with <strong>Direct WhatsApp Lead Routing</strong>, whole-of-market disclosures, and transparent fee schedules without complex calculators.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              <div className="p-3 bg-emerald-50/60 border border-emerald-200/60 rounded-2xl space-y-1">
-                <div className="flex items-center space-x-2 font-bold text-xs text-emerald-950">
-                  <MessageSquare className="w-4 h-4 text-emerald-600" />
-                  <span>Direct WhatsApp Inquiries</span>
-                </div>
-                <p className="text-[11px] text-emerald-900/80">
-                  Frictionless floating button routing prospects directly to the adviser&apos;s WhatsApp line.
-                </p>
-              </div>
-
-              <div className="p-3 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
-                <div className="flex items-center space-x-2 font-bold text-xs text-slate-900">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  <span>FCA COBS 4 Compliance</span>
-                </div>
-                <p className="text-[11px] text-slate-600">
-                  Whole of Market disclosures, FRN verification badge, and Consumer Duty statements.
-                </p>
-              </div>
-
-              <div className="p-3 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
-                <div className="flex items-center space-x-2 font-bold text-xs text-slate-900">
-                  <Award className="w-4 h-4 text-amber-600" />
-                  <span>VouchedFor Reviews</span>
-                </div>
-                <p className="text-[11px] text-slate-600">
-                  Verified client ratings and testimonial showcases that establish instant trust.
-                </p>
-              </div>
-
-              <div className="p-3 bg-teal-50/60 border border-teal-200/60 rounded-2xl space-y-1">
-                <div className="flex items-center space-x-2 font-bold text-xs text-teal-950">
-                  <Clock className="w-4 h-4 text-teal-600" />
-                  <span>Built-in Social Retainer</span>
-                </div>
-                <p className="text-[11px] text-teal-900/80">
-                  Done-For-You 3-month LinkedIn &amp; Facebook content retainer included as standard.
-                </p>
-              </div>
-            </div>
-
-            <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100">
               <Link
                 href="/portal/mlp-wealth"
                 target="_blank"
-                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#0B1B2B] hover:bg-slate-800 text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-all"
+                className="px-6 py-3 rounded-xl bg-[#0B1B2B] hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center space-x-2"
               >
-                <span>Launch Live Starter Portal Demo</span>
-                <ExternalLink className="w-4 h-4" />
+                <span>Launch Live Starter Demo</span>
+                <ExternalLink className="w-3.5 h-3.5 text-emerald-400" />
               </Link>
-              <span className="text-xs text-slate-500 font-medium">
-                Or navigate via subdomain: <code className="text-slate-800 font-bold bg-slate-100 px-1.5 py-0.5 rounded">starter.(domain)</code>
+
+              <span className="text-xs text-slate-500 font-mono">
+                Subdomain Alias: <code className="text-slate-800 font-bold">starter.ifaportal.com</code>
               </span>
             </div>
           </div>
 
-          {/* Right Simulated Interactive Mockup */}
-          <div className="lg:col-span-5 bg-gradient-to-b from-slate-900 to-[#0f2744] rounded-3xl p-6 text-white space-y-5 shadow-xl border border-slate-800">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-                <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-              </div>
-              <span className="text-[10px] font-mono text-slate-400">mlpwealth.ifaportal.co.uk</span>
-            </div>
-
-            {/* Starter snippet */}
-            <div className="space-y-3 text-xs">
-              <div className="p-4 bg-slate-800/80 rounded-2xl border border-slate-700/60 space-y-2">
-                <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest block">
-                  FCA Whole of Market Guarantee
+          {/* Right Visual Card */}
+          <div className="lg:col-span-5 bg-gradient-to-br from-emerald-950 to-slate-900 text-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-md border border-emerald-900/80">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-emerald-400/20 text-emerald-300 font-bold border border-emerald-400/30">
+                  Client 2: Starter Tier
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  &quot;Transparent fixed initial consultation + 0.50% - 0.75% p.a. ongoing discretionary management with zero exit fees.&quot;
-                </p>
+                <span className="text-xs font-mono text-emerald-400 font-bold flex items-center space-x-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Interactive Live</span>
+                </span>
               </div>
 
-              <div className="p-3.5 bg-emerald-950/60 border border-emerald-500/40 rounded-2xl flex items-center justify-between">
-                <div className="flex items-center space-x-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-emerald-500 text-slate-950 flex items-center justify-center font-bold">
-                    <MessageSquare className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="font-bold text-white text-xs block">WhatsApp Lead Inquiry</span>
-                    <span className="text-[10px] text-emerald-300">Direct connection to Senior IFA</span>
-                  </div>
+              <div className="space-y-1">
+                <span className="text-xs text-emerald-200 uppercase tracking-widest font-extrabold">Commercial Tier</span>
+                <div className="flex items-baseline space-x-2">
+                  <span className="text-4xl font-black text-white font-mono">£249</span>
+                  <span className="text-xs text-slate-300 font-bold uppercase">/ month + VAT</span>
                 </div>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500 text-slate-950 font-black uppercase">
-                  Active
+                <span className="text-xs text-emerald-300 font-bold block pt-1">
+                  &bull; £0 Setup Fee on 3-Month Retainer Contract
                 </span>
+              </div>
+
+              <div className="p-4 bg-slate-900/80 rounded-2xl border border-emerald-800/60 space-y-2 text-xs">
+                <div className="font-extrabold text-emerald-300">Target IFA Practice Profile:</div>
+                <ul className="space-y-1.5 text-slate-300 text-[12px]">
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span>Solo IFAs &amp; Boutique Advisers</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span>Focus on direct client conversations</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span>Requires zero upfront design sunk cost</span>
+                  </li>
+                </ul>
               </div>
             </div>
 
-            <div className="pt-2 text-center text-[10px] text-slate-400">
-              Active on MLP Wealth &bull; UK Data Protection Act 2018 Compliant
+            <div className="pt-6">
+              <Link
+                href="/admin/onboard?plan=starter&template=mlp-wealth"
+                className="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
+              >
+                <span>Onboard with Starter Template</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>

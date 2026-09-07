@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { PlusCircle, Lock, Compass, Sparkles } from 'lucide-react';
+import { PlusCircle, Compass, Sparkles, ShieldCheck } from 'lucide-react';
 import { MarketingHeader } from '@/components/marketing/MarketingHeader';
 import { MarketingHero } from '@/components/marketing/MarketingHero';
 import { BentoFeatureGrid } from '@/components/marketing/BentoFeatureGrid';
@@ -17,43 +17,43 @@ export default function RootHomePage() {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
-      {/* Top Header */}
+    <div className="min-h-screen bg-[#FAF9F5] text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
+      {/* 1. Top Header */}
       <MarketingHeader onOpenPrivacyModal={() => setIsPrivacyModalOpen(true)} />
 
       {/* Main Content Sections */}
       <main>
-        {/* 1. Hero with Bold Typography & Live Flagship Switcher */}
+        {/* 2. Editorial Hero with Dual Flagship Demos (Heritage & Trust + MLP Wealth) */}
         <MarketingHero />
 
-        {/* 2. Bento Feature Grid with Pastel Squircles & Content Presentation */}
+        {/* 3. Bento Feature Grid with Structured Boxes (Actuaries & Fintuity Style) */}
         <BentoFeatureGrid />
 
-        {/* 3. Interactive Practice ROI Calculator */}
+        {/* 4. Interactive Practice ROI Calculator (IBM Plex Mono Metrics) */}
         <RoiCommercialCalculator />
 
-        {/* 4. Commercial Pricing Grid & Add-On Marketplace */}
+        {/* 5. Commercial Pricing Grid (Starter £249 vs Pro £599 & Retainers) */}
         <CommercialPricingGrid />
 
-        {/* 5. Agency Competitor Benchmark (The Yardstick Agency) */}
+        {/* 6. Agency Value Benchmark (Traditional Web Agencies vs IFA Portal) */}
         <AgencyComparisonGrid />
 
-        {/* 6. Dual UK GDPR & FCA Compliance Architecture */}
+        {/* 7. Dual UK GDPR & FCA Compliance Architecture */}
         <GdprComplianceSection onOpenPrivacyModal={() => setIsPrivacyModalOpen(true)} />
 
-        {/* Bottom Practice Launch Banner */}
-        <section className="py-20 bg-[#0B1B2B] text-white border-t border-slate-800">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-            <div className="inline-flex items-center space-x-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 px-4 py-1.5 rounded-full text-xs font-bold">
+        {/* 8. Bottom Practice Launch Banner (High-Trust Navy Container) */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <div className="bg-[#0B1B2B] text-white rounded-3xl p-8 sm:p-14 text-center space-y-8 shadow-xl border border-slate-800 relative overflow-hidden">
+            <div className="inline-flex items-center space-x-2 bg-amber-500/10 text-amber-400 border border-amber-500/30 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span>Instant Multitenant Onboarding</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-[1.15]">
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-[1.15] max-w-3xl mx-auto">
               Ready to Launch Your High-Converting UK IFA Practice Portal?
             </h2>
 
-            <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
               Join leading UK financial advisers using modern Next.js and conversational AI to win qualified high-net-worth clients without £12k agency lock-ins.
             </p>
 
@@ -78,7 +78,7 @@ export default function RootHomePage() {
         </section>
       </main>
 
-      {/* Modern High-Trust Footer */}
+      {/* Modern High-Trust British Footer */}
       <footer className="bg-white border-t border-slate-200/80 py-12 text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-100">
@@ -87,7 +87,7 @@ export default function RootHomePage() {
                 IFA
               </div>
               <div>
-                <span className="font-extrabold text-slate-900 text-sm block">UK IFA Portal Creator</span>
+                <span className="font-extrabold text-slate-900 text-sm block">UK IFA Portal</span>
                 <span className="text-[10px] text-slate-400 block">FCA-Compliant Client Acquisition Engine</span>
               </div>
             </div>
@@ -95,41 +95,37 @@ export default function RootHomePage() {
             <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-slate-600">
               <Link href="#templates" className="hover:text-slate-900 transition-colors">Flagship Demos</Link>
               <Link href="#features" className="hover:text-slate-900 transition-colors">AI &amp; Calculators</Link>
-              <Link href="#roi-calculator" className="hover:text-slate-900 transition-colors">ROI Calculator</Link>
-              <Link href="#pricing" className="hover:text-slate-900 transition-colors">Pricing</Link>
+              <Link href="#roi-calculator" className="hover:text-slate-900 transition-colors">Practice ROI</Link>
+              <Link href="#pricing" className="hover:text-slate-900 transition-colors">Plans &amp; Retainers</Link>
+              <Link href="#benchmark" className="hover:text-slate-900 transition-colors">Agency Benchmark</Link>
               <button
                 onClick={() => setIsPrivacyModalOpen(true)}
-                className="hover:text-slate-900 transition-colors flex items-center space-x-1"
+                className="hover:text-slate-900 transition-colors"
               >
-                <Lock className="w-3.5 h-3.5 text-amber-600" />
-                <span>UK GDPR Privacy Notice</span>
+                UK Privacy &amp; GDPR
               </button>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
-            <p>
-              &copy; {new Date().getFullYear()} UK IFA Portal Creator. All rights reserved. Built for UK Independent Financial Advisers.
-            </p>
-            <p className="flex items-center space-x-1">
-              <span>Hosted in the United Kingdom</span>
-              <span>&bull;</span>
-              <span>256-Bit TLS Encryption</span>
-              <span>&bull;</span>
-              <span>ICO Data Controller Registered</span>
-            </p>
+            <div className="flex items-center space-x-2">
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <span>FCA COBS 4 Standard Disclosures &bull; Consumer Duty FG22/5 Ready &bull; UK GDPR Fiduciary Engine</span>
+            </div>
+            <div>
+              &copy; {new Date().getFullYear()} UK IFA Portal Creator. All rights reserved.
+            </div>
           </div>
         </div>
       </footer>
 
-      {/* UK GDPR Cookie Consent Banner */}
+      {/* Global UK GDPR Cookie Consent Banner */}
       <CookieConsentBanner onOpenPrivacyPolicy={() => setIsPrivacyModalOpen(true)} />
 
-      {/* UK GDPR Privacy Policy Modal */}
+      {/* Global UK GDPR Privacy Policy Modal */}
       <PrivacyPolicyModal
         isOpen={isPrivacyModalOpen}
         onClose={() => setIsPrivacyModalOpen(false)}
-        firmName="UK IFA Portal Creator"
       />
     </div>
   );

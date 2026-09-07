@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Calculator, TrendingUp, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Calculator, TrendingUp, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 export const RoiCommercialCalculator: React.FC = () => {
@@ -9,7 +9,7 @@ export const RoiCommercialCalculator: React.FC = () => {
   const [initialFeePercent, setInitialFeePercent] = useState<number>(2.0);
   const [ongoingFeePercent, setOngoingFeePercent] = useState<number>(0.75);
 
-  // Mathematics
+  // Financial Mathematics
   const upfrontRevenue = portfolioSize * (initialFeePercent / 100);
   const ongoingAnnualRevenue = portfolioSize * (ongoingFeePercent / 100);
   const tenYearLtv = upfrontRevenue + ongoingAnnualRevenue * 10;
@@ -32,44 +32,46 @@ export const RoiCommercialCalculator: React.FC = () => {
   };
 
   return (
-    <section id="roi-calculator" className="py-20 bg-gradient-to-b from-slate-50 via-white to-slate-50 border-y border-slate-200/80">
+    <section id="roi-calculator" className="py-20 bg-[#FAF9F5] border-y border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-black uppercase tracking-wider">
-            <TrendingUp className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Interactive Commercial Model</span>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 text-emerald-900 text-xs font-black uppercase tracking-wider border border-emerald-200">
+            <TrendingUp className="w-4 h-4 text-emerald-700" />
+            <span>Adviser Economics Model</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+          
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.12]">
             Calculate Your Practice ROI from 1 Single Client
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-            UK Independent Financial Advisers operate with exceptionally high client Lifetime Value (LTV). Adjust the parameters below to verify the mathematical return on our Pro Plan.
+          
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            UK Independent Financial Advisers operate with exceptionally high client Lifetime Value (LTV). Adjust your practice fee parameters to see why 1 single new client pays for your entire year on the Pro Plan.
           </p>
         </div>
 
         {/* Calculator Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto">
-          {/* Left Inputs Card */}
-          <div className="lg:col-span-6 bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 space-y-6 shadow-sm flex flex-col justify-between">
+          {/* Left Inputs Box (Actuaries / Fintuity structured card) */}
+          <div className="lg:col-span-6 bg-white border border-slate-200 rounded-3xl p-7 sm:p-9 space-y-6 shadow-sm flex flex-col justify-between">
             <div className="space-y-6">
-              <div className="flex items-center space-x-3 pb-3 border-b border-slate-100">
-                <div className="w-10 h-10 rounded-2xl bg-amber-100 text-amber-900 flex items-center justify-center font-bold">
+              <div className="flex items-center space-x-3.5 pb-4 border-b border-slate-100">
+                <div className="w-11 h-11 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center font-bold border border-amber-200">
                   <Calculator className="w-5 h-5 text-amber-700" />
                 </div>
                 <div>
-                  <h3 className="text-base font-extrabold text-slate-900">Practice Fee Parameters</h3>
-                  <span className="text-xs text-slate-500">Based on standard UK IFA charging models</span>
+                  <h3 className="text-base font-black text-slate-900">Practice Charging Parameters</h3>
+                  <span className="text-xs text-slate-500">Based on standard UK IFA fee structures</span>
                 </div>
               </div>
 
               {/* Slider 1: Average Client Portfolio Size */}
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700">
-                    Average Client Portfolio Size (AUM)
+                    Average Client Portfolio (AUM)
                   </label>
-                  <span className="text-base font-black text-amber-700 font-mono">
+                  <span className="text-lg font-black text-amber-800 font-mono">
                     {formatGbp(portfolioSize)}
                   </span>
                 </div>
@@ -80,9 +82,9 @@ export const RoiCommercialCalculator: React.FC = () => {
                   step={25000}
                   value={portfolioSize}
                   onChange={(e) => setPortfolioSize(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
+                  className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
                 />
-                <div className="flex justify-between text-[10px] text-slate-400 font-mono">
+                <div className="flex justify-between text-[11px] text-slate-400 font-mono">
                   <span>£100,000</span>
                   <span>£500,000</span>
                   <span>£1,000,000</span>
@@ -90,10 +92,10 @@ export const RoiCommercialCalculator: React.FC = () => {
               </div>
 
               {/* Slider 2: Initial Advice Fee % */}
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700">
-                    Initial Advice Fee
+                    Initial Advice Fee (%)
                   </label>
                   <span className="text-base font-black text-slate-900 font-mono">
                     {initialFeePercent.toFixed(2)}% ({formatGbp(upfrontRevenue)} upfront)
@@ -106,115 +108,131 @@ export const RoiCommercialCalculator: React.FC = () => {
                   step={0.25}
                   value={initialFeePercent}
                   onChange={(e) => setInitialFeePercent(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                  className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-700"
                 />
-                <div className="flex justify-between text-[10px] text-slate-400 font-mono">
-                  <span>1.0% (Fixed SIPP)</span>
-                  <span>2.0% (UK Average)</span>
-                  <span>3.0% (Complex Estate)</span>
+                <div className="flex justify-between text-[11px] text-slate-400 font-mono">
+                  <span>1.0%</span>
+                  <span>2.0%</span>
+                  <span>3.0%</span>
                 </div>
               </div>
 
               {/* Slider 3: Ongoing Annual Fee % */}
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700">
-                    Ongoing Annual Advisory Fee
+                    Ongoing Annual Servicing Fee (%)
                   </label>
                   <span className="text-base font-black text-slate-900 font-mono">
-                    {ongoingFeePercent.toFixed(2)}% ({formatGbp(ongoingAnnualRevenue)} / year)
+                    {ongoingFeePercent.toFixed(2)}% ({formatGbp(ongoingAnnualRevenue)} / yr)
                   </span>
                 </div>
                 <input
                   type="range"
                   min={0.5}
-                  max={1.25}
+                  max={1.5}
                   step={0.05}
                   value={ongoingFeePercent}
                   onChange={(e) => setOngoingFeePercent(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                  className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
                 />
-                <div className="flex justify-between text-[10px] text-slate-400 font-mono">
-                  <span>0.50% p.a.</span>
-                  <span>0.75% (UK Median)</span>
-                  <span>1.00% p.a.</span>
+                <div className="flex justify-between text-[11px] text-slate-400 font-mono">
+                  <span>0.50%</span>
+                  <span>0.75%</span>
+                  <span>1.50%</span>
                 </div>
               </div>
             </div>
 
-            {/* Micro benchmark badge */}
-            <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-100 flex items-center space-x-2.5 text-xs text-slate-600">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>
-                10-Year Client Lifetime Value (LTV): <strong className="text-slate-900">{formatGbp(tenYearLtv)}</strong> per client.
-              </span>
+            {/* Inferred Single Client LTV Pill */}
+            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs flex items-center justify-between">
+              <span className="font-extrabold text-slate-700">10-Year LTV of 1 Single Client:</span>
+              <span className="font-black text-slate-900 font-mono text-base">{formatGbp(tenYearLtv)}</span>
             </div>
           </div>
 
-          {/* Right Results Card */}
-          <div className="lg:col-span-6 bg-[#0B1B2B] text-white border border-slate-800 rounded-3xl p-7 sm:p-8 space-y-6 shadow-xl flex flex-col justify-between">
+          {/* Right Results Box (Unbiased / Fintuity contrast card) */}
+          <div className="lg:col-span-6 bg-white border border-slate-200 rounded-3xl p-7 sm:p-9 space-y-6 shadow-sm flex flex-col justify-between">
             <div className="space-y-6">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <span className="text-[10px] font-black uppercase tracking-widest text-amber-400">
-                  Calculated Practice Payback
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                <div className="space-y-0.5">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-700">
+                    Annual Platform Economics
+                  </span>
+                  <h3 className="text-lg font-black text-slate-900">Wealth Pro ROI Projection</h3>
+                </div>
+                <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-slate-100 text-slate-800">
+                  Annual Cost: {formatGbp(annualProCost)}
                 </span>
-                <span className="text-xs text-slate-400">Pro Plan (£599/mo)</span>
               </div>
 
               {/* Scenario 1: Just 1 Client */}
-              <div className="p-4 bg-slate-900/90 rounded-2xl border border-slate-800 space-y-2">
-                <div className="flex items-baseline justify-between">
-                  <span className="text-xs font-bold text-slate-300">If you convert just 1 client:</span>
-                  <span className="text-2xl font-black text-amber-400 font-mono">
-                    {formatGbp(netLtvFromOneClient)}
+              <div className="p-5 bg-emerald-50/70 border border-emerald-200/80 rounded-2xl space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-black uppercase tracking-wider text-emerald-950 flex items-center space-x-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+                    <span>Scenario A: Acquiring Just 1 Client / Year</span>
+                  </span>
+                  <span className="text-xs font-mono font-black text-emerald-900 px-2 py-0.5 rounded-md bg-emerald-100">
+                    Pays Platform For Life
                   </span>
                 </div>
-                <div className="text-[11px] text-slate-400 flex items-center justify-between">
-                  <span>Annual Pro Investment: {formatGbp(annualProCost)}</span>
-                  <span className="text-emerald-400 font-bold">
-                    Net Lifetime Gain: +{((netLtvFromOneClient / annualProCost) * 100).toFixed(0)}% ROI
-                  </span>
-                </div>
-              </div>
 
-              {/* Scenario 2: 3 Clients (Realistic with AI + Calculators + Social Media) */}
-              <div className="p-4 bg-gradient-to-r from-emerald-950/60 to-slate-900 rounded-2xl border border-emerald-500/30 space-y-2">
-                <div className="flex items-baseline justify-between">
-                  <div className="space-y-0.5">
-                    <span className="text-xs font-bold text-emerald-300 block">
-                      Realistic Scenario (3 Clients in Year 1):
+                <div className="flex items-baseline justify-between pt-1">
+                  <div>
+                    <span className="text-3xl sm:text-4xl font-black text-emerald-800 font-mono">
+                      {formatGbp(netLtvFromOneClient)}
                     </span>
-                    <span className="text-[10px] text-slate-400">With AI Concierge &amp; Built-in Social Media</span>
+                    <span className="text-xs text-emerald-900 block font-bold pt-0.5">
+                      Net 10-Year Profit (after deducting annual Pro platform cost)
+                    </span>
                   </div>
-                  <span className="text-3xl font-black text-emerald-400 font-mono">
-                    {formatGbp(netLtvFromThreeClients)}
-                  </span>
                 </div>
-                <div className="text-[11px] text-slate-300 flex items-center justify-between pt-1 border-t border-slate-800/80">
-                  <span>Year 1 Net Profit (Cash in Bank):</span>
-                  <span className="font-bold text-white font-mono">{formatGbp(netYearOneThreeClients)}</span>
-                </div>
+
+                <p className="text-[11px] text-emerald-800/80 leading-relaxed pt-1">
+                  Initial fee ({formatGbp(upfrontRevenue)}) covers {((upfrontRevenue / annualProCost) * 100).toFixed(0)}% of your annual software cost on Day 1.
+                </p>
               </div>
 
-              <div className="space-y-2 text-xs text-slate-300">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Your entire year of technology &amp; marketing pays for itself from 1 client.</span>
+              {/* Scenario 2: 3 Clients (Target) */}
+              <div className="p-5 bg-amber-50/70 border border-amber-200/80 rounded-2xl space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-black uppercase tracking-wider text-amber-950 flex items-center space-x-1.5">
+                    <Sparkles className="w-4 h-4 text-amber-700 shrink-0" />
+                    <span>Scenario B: Target 3 Clients / Year</span>
+                  </span>
+                  <span className="text-xs font-mono font-black text-amber-900 px-2 py-0.5 rounded-md bg-amber-100">
+                    High Growth
+                  </span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>No £4,000 - £12,000 upfront sunk costs like legacy agencies require.</span>
+
+                <div className="flex items-baseline justify-between pt-1">
+                  <div>
+                    <span className="text-3xl sm:text-4xl font-black text-amber-900 font-mono">
+                      {formatGbp(netLtvFromThreeClients)}
+                    </span>
+                    <span className="text-xs text-amber-950 block font-bold pt-0.5">
+                      Net 10-Year Cumulative Practice Value
+                    </span>
+                  </div>
+                </div>
+
+                <div className="pt-2 text-xs font-semibold text-amber-900 flex items-center justify-between border-t border-amber-200/60">
+                  <span>Year 1 Net Cash Inflow:</span>
+                  <span className="font-mono font-black text-amber-950 text-sm">+{formatGbp(netYearOneThreeClients)}</span>
                 </div>
               </div>
             </div>
 
-            <Link
-              href="/admin/onboard"
-              className="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs uppercase tracking-wider text-center transition-all shadow-lg flex items-center justify-center space-x-2 mt-4"
-            >
-              <span>Launch Practice on Pro Plan (£0 Setup on Quarterly)</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div className="pt-2">
+              <Link
+                href="/admin/onboard?plan=pro"
+                className="w-full py-4 rounded-2xl bg-[#0B1B2B] hover:bg-slate-800 text-white font-black text-xs uppercase tracking-widest transition-all shadow-md flex items-center justify-center space-x-2"
+              >
+                <span>Deploy Practice on Wealth Pro</span>
+                <ArrowRight className="w-4 h-4 text-amber-400" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
