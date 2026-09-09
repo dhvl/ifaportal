@@ -92,7 +92,7 @@ export const MarketingHero: React.FC = () => {
                     <Calculator className="w-3.5 h-3.5 text-[#1D4ED8]" />
                   </div>
                   <span className="text-[11px] text-[#636F75] font-medium">
-                    Interactive Drawdown &amp; IHT Lead Magnets
+                    Wealth Pro (£599/mo) &bull; Drawdown &amp; IHT Calculators
                   </span>
                 </button>
               </div>
