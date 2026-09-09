@@ -1,29 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --font-geist-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-geist-mono: 'IBM Plex Mono', monospace;
+  --background: #F7F4EC;
+  --foreground: #121C22;
+  --font-plus-jakarta: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ibm-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-plus-jakarta);
+  --font-mono: var(--font-ibm-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F7F4EC;
+  color: #121C22;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.012em;
+}
+
+/* Custom Box Shadows and Borders for Actuaries & Fintuity Style */
+.box-chunky {
+  background: #FFFFFF;
+  border: 2px solid #E6E1D5;
+  border-radius: 28px;
+  box-shadow: 0 4px 20px -2px rgba(18, 28, 34, 0.04), 0 2px 6px -1px rgba(18, 28, 34, 0.02);
+}
+
+.box-chunky:hover {
+  border-color: #08232C;
+  box-shadow: 0 12px 32px -4px rgba(18, 28, 34, 0.08);
+}
+
+.box-navy {
+  background: #08232C;
+  border: 2px solid #143540;
+  border-radius: 28px;
+  color: #FFFFFF;
+}
+
+/* Unbiased Signature Pastel Badges */
+.badge-eucalyptus {
+  background-color: #E8F8F2;
+  color: #0A6B48;
+  border: 1px solid #B4ECD6;
+}
+
+.badge-peach {
+  background-color: #FDF0EC;
+  color: #B43403;
+  border: 1px solid #FACBC0;
+}
+
+.badge-skyblue {
+  background-color: #EEF5FF;
+  color: #1A56DB;
+  border: 1px solid #BFD9FE;
+}
+
+.badge-topaz {
+  background-color: #FEF8E7;
+  color: #92400E;
+  border: 1px solid #FDE68A;
+}
+
+.badge-mauve {
+  background-color: #F8F0FE;
+  color: #7E22CE;
+  border: 1px solid #E9D5FF;
 }
