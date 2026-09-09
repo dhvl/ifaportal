@@ -89,7 +89,7 @@ export const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
             setShowPreferences(true);
             setIsVisible(true);
           }}
-          className="fixed bottom-4 left-4 z-40 p-2.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 text-slate-600 hover:text-slate-900 shadow-md hover:shadow-lg transition-all text-xs flex items-center space-x-2 group"
+          className="fixed bottom-4 left-4 z-40 p-2.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-slate-900 shadow-md hover:shadow-lg transition-colors text-xs flex items-center space-x-2 group"
           title="Manage Cookie Preferences (UK GDPR)"
           aria-label="Cookie Settings"
         >
@@ -101,7 +101,7 @@ export const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
       {/* Main Consent Banner */}
       {isVisible && !showPreferences && (
         <div className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-md z-50 animate-in fade-in slide-in-from-bottom-5 duration-300">
-          <div className="bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-5 shadow-2xl space-y-4">
+          <div className="bg-white border border-slate-200/90 rounded-3xl p-5 shadow-2xl space-y-4">
             <div className="flex items-start space-x-3">
               <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
                 <ShieldCheck className="w-5 h-5 text-amber-600" />
