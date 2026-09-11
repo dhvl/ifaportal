@@ -1,0 +1,21 @@
+{
+  "name": "UK IFA Portal Creator",
+  "short_name": "IFA Portal",
+  "description": "FCA-compliant Independent Financial Adviser website portals with custom branding, AI concierge chatbots, and built-in social media retainers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08232C",
+  "theme_color": "#08232C",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
