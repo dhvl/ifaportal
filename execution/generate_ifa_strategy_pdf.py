@@ -108,72 +108,167 @@ class PDFCanvas:
         self.draw_text(self.margin_x, self.y - 14, text, font="/F2", size=10.5, rgb=(0.12, 0.23, 0.38))
         self.y -= 20
 
-    def add_paragraph(self, text, font="/F1", size=8.8, rgb=(0.2, 0.24, 0.3), line_spacing=12.5):
-        # Approximate word wrap at ~95 characters
-        words = text.split(' ')
-        lines = []
-        cur_line = []
-        cur_len = 0
-        max_chars = int(self.content_width / (size * 0.52))
-
-        for w in words:
-            if cur_len + len(w) + 1 > max_chars:
-                lines.append(" ".join(cur_line))
-                cur_line = [w]
-                cur_len = len(w)
+    def get_text_width(self, text, size, is_bold=False):
+        base_factor = 1.08 if is_bold else 1.0
+        w_sum = 0
+        for ch in text:
+            if ch in "ijlftrI1.:;,!'|[]()-/\\":
+                w_sum += 280
+            elif ch in "mwMW@%#+=":
+                w_sum += 850
+            elif ch.isupper() or ch in "&?$":
+                w_sum += 680
+            elif ch in " ":
+                w_sum += 278
+            elif ch in "0123456789":
+                w_sum += 556
             else:
-                cur_line.append(w)
-                cur_len += len(w) + 1
-        if cur_line:
-            lines.append(" ".join(cur_line))
+                w_sum += 520
+        return (w_sum / 1000.0) * size * base_factor
 
-        needed = len(lines) * line_spacing + 6
+    def wrap_text(self, text, max_width, size, is_bold=False):
+        text_str = str(text)
+        raw_lines = text_str.split("\n")
+        wrapped_lines = []
+        for raw_line in raw_lines:
+            words = raw_line.split(" ")
+            cur_line = []
+            for word in words:
+                if not word:
+                    continue
+                # If a single unbroken word exceeds max_width, split by characters
+                if self.get_text_width(word, size, is_bold) > max_width:
+                    if cur_line:
+                        wrapped_lines.append(" ".join(cur_line))
+                        cur_line = []
+                    sub = ""
+                    for ch in word:
+                        if self.get_text_width(sub + ch, size, is_bold) <= max_width:
+                            sub += ch
+                        else:
+                            if sub:
+                                wrapped_lines.append(sub)
+                            sub = ch
+                    if sub:
+                        cur_line = [sub]
+                    continue
+
+                test_line = " ".join(cur_line + [word]) if cur_line else word
+                if self.get_text_width(test_line, size, is_bold) <= max_width:
+                    cur_line.append(word)
+                else:
+                    if cur_line:
+                        wrapped_lines.append(" ".join(cur_line))
+                        cur_line = [word]
+                    else:
+                        wrapped_lines.append(word)
+                        cur_line = []
+            if cur_line:
+                wrapped_lines.append(" ".join(cur_line))
+        return wrapped_lines if wrapped_lines else [text_str]
+
+    def add_paragraph(self, text, font="/F1", size=8.8, rgb=(0.2, 0.24, 0.3), line_spacing=12.5):
+        lines = self.wrap_text(text, self.content_width, size, is_bold=(font == "/F2"))
+        needed = len(lines) * line_spacing + 6.0
         self.check_space(needed)
         for line in lines:
             self.draw_text(self.margin_x, self.y - size, line, font=font, size=size, rgb=rgb)
             self.y -= line_spacing
-        self.y -= 4
+        self.y -= 4.0
 
     def add_callout(self, title, items, fill_rgb=(0.96, 0.97, 0.99), stroke_rgb=(0.82, 0.87, 0.93)):
-        box_h = 24 + len(items) * 14.0
-        self.check_space(box_h + 10)
+        title_size = 9.5
+        title_line_spacing = 13.0
+        item_size = 8.5
+        item_line_spacing = 11.5
+        item_gap = 4.0
+        top_padding = 9.0
+        bottom_padding = 9.0
+
+        wrapped_title = self.wrap_text(title, self.content_width - 24.0, title_size, is_bold=True)
+        title_h = len(wrapped_title) * title_line_spacing + 6.0
+
+        all_wrapped_items = []
+        for item in items:
+            lines = self.wrap_text(item, self.content_width - 34.0, item_size, is_bold=False)
+            all_wrapped_items.append(lines)
+
+        total_items_h = sum(len(lines) * item_line_spacing + item_gap for lines in all_wrapped_items) - item_gap
+        box_h = top_padding + title_h + total_items_h + bottom_padding
+
+        self.check_space(box_h + 10.0)
         self.draw_rect(self.margin_x, self.y - box_h, self.content_width, box_h, fill_rgb=fill_rgb, stroke_rgb=stroke_rgb, line_width=0.75)
         self.draw_rect(self.margin_x, self.y - box_h, 4.0, box_h, fill_rgb=(0.06, 0.15, 0.27))
         
-        self.draw_text(self.margin_x + 14, self.y - 16, title, font="/F2", size=9.5, rgb=(0.06, 0.15, 0.27))
-        cy = self.y - 32
-        for item in items:
-            self.draw_text(self.margin_x + 16, cy, f"•  {item}", font="/F1", size=8.5, rgb=(0.25, 0.28, 0.35))
-            cy -= 14.0
-        self.y -= (box_h + 12)
+        ty = self.y - top_padding - (title_size * 0.85)
+        for t_line in wrapped_title:
+            self.draw_text(self.margin_x + 14.0, ty, t_line, font="/F2", size=title_size, rgb=(0.06, 0.15, 0.27))
+            ty -= title_line_spacing
+
+        cy = self.y - top_padding - title_h - (item_size * 0.85)
+        for lines in all_wrapped_items:
+            # Bullet point symbol
+            self.draw_text(self.margin_x + 14.0, cy, "*", font="/F2", size=item_size, rgb=(0.85, 0.63, 0.20))
+            for line in lines:
+                self.draw_text(self.margin_x + 23.0, cy, line, font="/F1", size=item_size, rgb=(0.25, 0.28, 0.35))
+                cy -= item_line_spacing
+            cy -= item_gap
+        self.y -= (box_h + 12.0)
 
     def add_table(self, headers, rows, col_widths, col_align=None):
-        row_h = 16.5
-        header_h = 20.0
-        total_h = header_h + len(rows) * row_h
-        self.check_space(total_h + 10)
+        header_padding_y = 5.0
+        header_font_size = 8.5
+        header_line_spacing = 11.0
+        wrapped_headers = [self.wrap_text(h, w - 12.0, header_font_size, is_bold=True) for h, w in zip(headers, col_widths)]
+        max_header_lines = max(len(h_lines) for h_lines in wrapped_headers)
+        header_h = max(20.0, header_padding_y * 2 + max_header_lines * header_line_spacing)
 
-        # Header background
-        self.draw_rect(self.margin_x, self.y - header_h, self.content_width, header_h, fill_rgb=(0.06, 0.15, 0.27))
-        cx = self.margin_x
-        for i, (h, w) in enumerate(zip(headers, col_widths)):
-            self.draw_text(cx + 6, self.y - 14, h, font="/F2", size=8.5, rgb=(1, 1, 1))
-            cx += w
+        def draw_table_header():
+            self.draw_rect(self.margin_x, self.y - header_h, self.content_width, header_h, fill_rgb=(0.06, 0.15, 0.27))
+            cx = self.margin_x
+            for h_lines, w in zip(wrapped_headers, col_widths):
+                for l_idx, line in enumerate(h_lines):
+                    line_y = self.y - header_padding_y - (header_font_size * 0.85) - (l_idx * header_line_spacing)
+                    self.draw_text(cx + 6.0, line_y, line, font="/F2", size=header_font_size, rgb=(1, 1, 1))
+                cx += w
+            self.y -= header_h
 
-        cy = self.y - header_h
+        self.check_space(header_h + 25.0)
+        draw_table_header()
+
+        cell_font_size = 7.8
+        cell_line_spacing = 10.5
+        cell_padding_y = 4.5
+
         for r_idx, row in enumerate(rows):
-            fill = (0.97, 0.98, 0.99) if r_idx % 2 == 1 else (1.0, 1.0, 1.0)
-            self.draw_rect(self.margin_x, cy - row_h, self.content_width, row_h, fill_rgb=fill, stroke_rgb=(0.88, 0.9, 0.93), line_width=0.5)
-            
-            rx = self.margin_x
+            row_cells_wrapped = []
             for c_idx, (cell, w) in enumerate(zip(row, col_widths)):
+                is_bold = (c_idx == 0)
+                wrapped = self.wrap_text(str(cell), w - 12.0, cell_font_size, is_bold=is_bold)
+                row_cells_wrapped.append(wrapped)
+
+            max_cell_lines = max(len(lines) for lines in row_cells_wrapped)
+            row_h = max(18.0, cell_padding_y * 2 + max_cell_lines * cell_line_spacing)
+
+            if self.y - row_h < self.margin_bottom:
+                self.new_page()
+                draw_table_header()
+
+            fill = (0.97, 0.98, 0.99) if r_idx % 2 == 1 else (1.0, 1.0, 1.0)
+            self.draw_rect(self.margin_x, self.y - row_h, self.content_width, row_h, fill_rgb=fill, stroke_rgb=(0.88, 0.9, 0.93), line_width=0.5)
+
+            rx = self.margin_x
+            for c_idx, (cell_lines, w) in enumerate(zip(row_cells_wrapped, col_widths)):
                 font = "/F2" if c_idx == 0 else "/F1"
                 text_color = (0.06, 0.15, 0.27) if c_idx == 0 else (0.2, 0.25, 0.32)
-                self.draw_text(rx + 6, cy - 11.5, str(cell), font=font, size=7.8, rgb=text_color)
+                for l_idx, line in enumerate(cell_lines):
+                    line_y = self.y - cell_padding_y - (cell_font_size * 0.85) - (l_idx * cell_line_spacing)
+                    self.draw_text(rx + 6.0, line_y, line, font=font, size=cell_font_size, rgb=text_color)
                 rx += w
-            cy -= row_h
 
-        self.y -= (total_h + 12)
+            self.y -= row_h
+
+        self.y -= 12.0
 
     def finalize(self):
         if self.current_ops:
@@ -446,6 +541,12 @@ def build_full_report():
     )
 
     pdf.finalize()
+
+    import shutil
+    pub_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "public", "UK_IFA_Competitor_Analysis_and_Pricing_Strategy_Report.pdf")
+    if os.path.exists(pub_path) or os.path.exists(os.path.dirname(pub_path)):
+        shutil.copyfile("UK_IFA_Competitor_Analysis_and_Pricing_Strategy_Report.pdf", pub_path)
+        print(f"[SUCCESS] Copied to public static assets: {pub_path}")
 
 if __name__ == "__main__":
     build_full_report()
