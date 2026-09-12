@@ -6,11 +6,11 @@ import Link from 'next/link';
 
 export const AgencyComparisonGrid: React.FC = () => {
   return (
-    <section id="benchmark" className="py-24 bg-[#F7F4EC] border-t-2 border-[#E5DFD1]">
+    <section id="benchmark" className="py-24 bg-[#F0F7FB] border-t-2 border-[#D8E5EE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#E5DFD1] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#D8E5EE] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
             <ShieldCheck className="w-4 h-4 text-[#B45309]" />
             <span>Commercial Value Analysis</span>
           </div>
@@ -25,7 +25,7 @@ export const AgencyComparisonGrid: React.FC = () => {
         </div>
 
         {/* Comparison Table / Box Matrix (Actuaries & Fintuity Style) */}
-        <div className="max-w-5xl mx-auto bg-white border-2 border-[#E5DFD1] rounded-[32px] overflow-hidden shadow-sm">
+        <div className="max-w-5xl mx-auto bg-white border-2 border-[#D8E5EE] rounded-[32px] overflow-hidden shadow-sm">
           {/* Table Header */}
           <div className="grid grid-cols-12 bg-[#08232C] text-white p-5 sm:p-6 text-xs sm:text-sm font-black items-center border-b-2 border-[#143946]">
             <div className="col-span-5 sm:col-span-4 text-[#AFC3C9] uppercase tracking-wider">
@@ -41,9 +41,9 @@ export const AgencyComparisonGrid: React.FC = () => {
           </div>
 
           {/* Table Rows */}
-          <div className="divide-y-2 divide-[#F0EBE0] text-xs sm:text-sm bg-white">
+          <div className="divide-y-2 divide-[#E2EEF5] text-xs sm:text-sm bg-white">
             {/* Row 1: Upfront Setup Capital */}
-            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#FAF8F2] transition-colors">
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#F4F9FD] transition-colors">
               <div className="col-span-5 sm:col-span-4 pr-2">
                 <span className="font-black text-[#08232C] block">Upfront Setup Capital</span>
                 <span className="text-[11px] text-[#636F75] hidden sm:block">Cash outlay required before going live</span>
@@ -63,7 +63,7 @@ export const AgencyComparisonGrid: React.FC = () => {
             </div>
 
             {/* Row 2: Turnaround Time */}
-            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#FAF8F2] transition-colors">
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#F4F9FD] transition-colors">
               <div className="col-span-5 sm:col-span-4 pr-2">
                 <span className="font-black text-[#08232C] block">Deployment Speed</span>
                 <span className="text-[11px] text-[#636F75] hidden sm:block">From onboarding to live FCA portal</span>
@@ -83,7 +83,7 @@ export const AgencyComparisonGrid: React.FC = () => {
             </div>
 
             {/* Row 3: 24/7 Lead Qualification */}
-            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#FAF8F2] transition-colors">
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#F4F9FD] transition-colors">
               <div className="col-span-5 sm:col-span-4 pr-2">
                 <span className="font-black text-[#08232C] block">Lead Conversion Tech</span>
                 <span className="text-[11px] text-[#636F75] hidden sm:block">Capturing prospects after business hours</span>
@@ -103,7 +103,7 @@ export const AgencyComparisonGrid: React.FC = () => {
             </div>
 
             {/* Row 4: Interactive Client Calculators */}
-            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#FAF8F2] transition-colors">
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#F4F9FD] transition-colors">
               <div className="col-span-5 sm:col-span-4 pr-2">
                 <span className="font-black text-[#08232C] block">Financial Tools</span>
                 <span className="text-[11px] text-[#636F75] hidden sm:block">Pension, IHT &amp; Compound calculators</span>
@@ -123,7 +123,7 @@ export const AgencyComparisonGrid: React.FC = () => {
             </div>
 
             {/* Row 5: Social Media Growth Retainer */}
-            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#FAF8F2] transition-colors">
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#F4F9FD] transition-colors">
               <div className="col-span-5 sm:col-span-4 pr-2">
                 <span className="font-black text-[#08232C] block">Social Media Retainer</span>
                 <span className="text-[11px] text-[#636F75] hidden sm:block">Ongoing LinkedIn and content support</span>
@@ -143,7 +143,7 @@ export const AgencyComparisonGrid: React.FC = () => {
             </div>
 
             {/* Row 6: Technology Stack */}
-            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#FAF8F2] transition-colors">
+            <div className="grid grid-cols-12 p-4 sm:p-6 items-center hover:bg-[#F4F9FD] transition-colors">
               <div className="col-span-5 sm:col-span-4 pr-2">
                 <span className="font-black text-[#08232C] block">Architecture &amp; Speed</span>
                 <span className="text-[11px] text-[#636F75] hidden sm:block">Hosting, security &amp; mobile performance</span>

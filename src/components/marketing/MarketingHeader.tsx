@@ -10,7 +10,7 @@ interface MarketingHeaderProps {
 
 export const MarketingHeader: React.FC<MarketingHeaderProps> = ({ onOpenPrivacyModal }) => {
   return (
-    <header className="sticky top-0 z-50 bg-[#F7F4EC] border-b-2 border-[#E5DFD1] isolate shadow-2xs">
+    <header className="sticky top-0 z-50 bg-[#F0F7FB] border-b-2 border-[#D8E5EE] isolate shadow-2xs">
       {/* Top Institutional Regulatory Bar (Actuaries & Unbiased Style) */}
       <div className="bg-[#08232C] text-[#DCE7EB] py-2 px-4 text-[11px] font-medium border-b border-[#143946]">
         <div className="max-w-7xl mx-auto flex items-center justify-between">

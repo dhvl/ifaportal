@@ -32,11 +32,11 @@ export const RoiCommercialCalculator: React.FC = () => {
   };
 
   return (
-    <section id="roi-calculator" className="py-24 bg-[#F7F4EC] border-y-2 border-[#E5DFD1]">
+    <section id="roi-calculator" className="py-24 bg-[#F0F7FB] border-y-2 border-[#D8E5EE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#E5DFD1] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#D8E5EE] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
             <TrendingUp className="w-4 h-4 text-[#0A6B48]" />
             <span>Practice Unit Economics</span>
           </div>
@@ -53,9 +53,9 @@ export const RoiCommercialCalculator: React.FC = () => {
         {/* Calculator Chunky Grid (Actuaries & Fintuity Style) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto">
           {/* Left Inputs Card (White Chunky Box) */}
-          <div className="lg:col-span-6 bg-white border-2 border-[#E5DFD1] rounded-[32px] p-8 sm:p-10 space-y-6 shadow-sm flex flex-col justify-between">
+          <div className="lg:col-span-6 bg-white border-2 border-[#D8E5EE] rounded-[32px] p-8 sm:p-10 space-y-6 shadow-sm flex flex-col justify-between">
             <div className="space-y-6">
-              <div className="flex items-center space-x-3.5 pb-4 border-b-2 border-[#F0EBE0]">
+              <div className="flex items-center space-x-3.5 pb-4 border-b-2 border-[#E2EEF5]">
                 <div className="w-12 h-12 rounded-2xl bg-[#FEF8E7] text-[#92400E] flex items-center justify-center font-bold border-2 border-[#FDE68A]">
                   <Calculator className="w-6 h-6 text-[#92400E]" />
                 </div>
@@ -82,7 +82,7 @@ export const RoiCommercialCalculator: React.FC = () => {
                   step={25000}
                   value={portfolioSize}
                   onChange={(e) => setPortfolioSize(Number(e.target.value))}
-                  className="w-full h-3 bg-[#E5DFD1] rounded-lg appearance-none cursor-pointer accent-[#08232C]"
+                  className="w-full h-3 bg-[#D8E5EE] rounded-lg appearance-none cursor-pointer accent-[#08232C]"
                 />
                 <div className="flex justify-between text-[11px] text-[#869299] font-mono">
                   <span>£100k</span>
@@ -108,7 +108,7 @@ export const RoiCommercialCalculator: React.FC = () => {
                   step={0.25}
                   value={initialFeePercent}
                   onChange={(e) => setInitialFeePercent(Number(e.target.value))}
-                  className="w-full h-3 bg-[#E5DFD1] rounded-lg appearance-none cursor-pointer accent-[#08232C]"
+                  className="w-full h-3 bg-[#D8E5EE] rounded-lg appearance-none cursor-pointer accent-[#08232C]"
                 />
                 <div className="flex justify-between text-[11px] text-[#869299] font-mono">
                   <span>1.0%</span>
@@ -134,7 +134,7 @@ export const RoiCommercialCalculator: React.FC = () => {
                   step={0.05}
                   value={ongoingFeePercent}
                   onChange={(e) => setOngoingFeePercent(Number(e.target.value))}
-                  className="w-full h-3 bg-[#E5DFD1] rounded-lg appearance-none cursor-pointer accent-[#0A6B48]"
+                  className="w-full h-3 bg-[#D8E5EE] rounded-lg appearance-none cursor-pointer accent-[#0A6B48]"
                 />
                 <div className="flex justify-between text-[11px] text-[#869299] font-mono">
                   <span>0.50%</span>
@@ -145,7 +145,7 @@ export const RoiCommercialCalculator: React.FC = () => {
             </div>
 
             {/* Inferred Single Client LTV Pill */}
-            <div className="p-4 bg-[#FAF8F2] rounded-2xl border-2 border-[#E5DFD1] text-xs flex items-center justify-between">
+            <div className="p-4 bg-[#EAF3F9] rounded-2xl border-2 border-[#D8E5EE] text-xs flex items-center justify-between">
               <span className="font-extrabold text-[#08232C]">10-Year Cumulative LTV of 1 Client:</span>
               <span className="font-black text-[#0A6B48] font-mono text-lg">{formatGbp(tenYearLtv)}</span>
             </div>

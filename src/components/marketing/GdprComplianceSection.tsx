@@ -9,11 +9,11 @@ interface GdprComplianceSectionProps {
 
 export const GdprComplianceSection: React.FC<GdprComplianceSectionProps> = ({ onOpenPrivacyModal }) => {
   return (
-    <section className="py-24 bg-[#F7F4EC] border-t-2 border-[#E5DFD1]">
+    <section className="py-24 bg-[#F0F7FB] border-t-2 border-[#D8E5EE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#E5DFD1] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#D8E5EE] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
             <Lock className="w-4 h-4 text-[#7E22CE]" />
             <span>Fiduciary Data Governance</span>
           </div>
@@ -30,7 +30,7 @@ export const GdprComplianceSection: React.FC<GdprComplianceSectionProps> = ({ on
         {/* 2-Column Split: Chunky Boxes (Actuaries & Fintuity Style) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
           {/* Box 1: Client Portal Built-in Protection (Soft Mauve) */}
-          <div className="bg-white border-2 border-[#E5DFD1] hover:border-[#08232C] rounded-[32px] p-8 sm:p-10 space-y-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+          <div className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[32px] p-8 sm:p-10 space-y-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
             <div className="space-y-5">
               <div className="w-14 h-14 rounded-2xl bg-[#F8F0FE] border-2 border-[#E9D5FF] text-[#7E22CE] flex items-center justify-center font-bold">
                 <ShieldCheck className="w-7 h-7" />
@@ -65,13 +65,13 @@ export const GdprComplianceSection: React.FC<GdprComplianceSectionProps> = ({ on
               </ul>
             </div>
 
-            <div className="p-4 bg-[#FAF8F2] rounded-2xl border border-[#E5DFD1] text-xs text-[#636F75] font-medium">
+            <div className="p-4 bg-[#EAF3F9] rounded-2xl border border-[#D8E5EE] text-xs text-[#636F75] font-medium">
               Eliminates ICO regulatory fines and ensures complete legal confidence with high-net-worth clients.
             </div>
           </div>
 
           {/* Box 2: Platform Cloud Security (Sky Topaz) */}
-          <div className="bg-white border-2 border-[#E5DFD1] hover:border-[#08232C] rounded-[32px] p-8 sm:p-10 space-y-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+          <div className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[32px] p-8 sm:p-10 space-y-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
             <div className="space-y-5">
               <div className="w-14 h-14 rounded-2xl bg-[#EEF5FF] border-2 border-[#BFD9FE] text-[#1A56DB] flex items-center justify-center font-bold">
                 <Database className="w-7 h-7" />
@@ -106,7 +106,7 @@ export const GdprComplianceSection: React.FC<GdprComplianceSectionProps> = ({ on
               </ul>
             </div>
 
-            <div className="p-4 bg-[#FAF8F2] rounded-2xl border border-[#E5DFD1] flex items-center justify-between text-xs font-bold text-[#08232C]">
+            <div className="p-4 bg-[#EAF3F9] rounded-2xl border border-[#D8E5EE] flex items-center justify-between text-xs font-bold text-[#08232C]">
               <button
                 onClick={onOpenPrivacyModal}
                 className="text-[#007B81] hover:text-[#08232C] flex items-center space-x-1.5 transition-colors cursor-pointer"

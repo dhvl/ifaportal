@@ -14,7 +14,7 @@ export const CommercialPricingGrid: React.FC = () => {
     <section id="pricing" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#E5DFD1] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
+        <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#D8E5EE] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
           <Sparkles className="w-4 h-4 text-[#B45309]" />
           <span>Transparent British Commercial Terms</span>
         </div>
@@ -28,7 +28,7 @@ export const CommercialPricingGrid: React.FC = () => {
         </p>
 
         {/* Contract Duration Selector Pill (Fintuity & Unbiased Style) */}
-        <div className="pt-3 inline-flex items-center p-1.5 bg-white rounded-2xl border-2 border-[#E5DFD1] shadow-2xs">
+        <div className="pt-3 inline-flex items-center p-1.5 bg-white rounded-2xl border-2 border-[#D8E5EE] shadow-2xs">
           <button
             onClick={() => setContractTerm('quarterly')}
             className={`px-6 py-3 rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center space-x-2 cursor-pointer ${
@@ -57,9 +57,9 @@ export const CommercialPricingGrid: React.FC = () => {
       {/* 2 Core Plan Cards (Actuaries & Fintuity Chunky Boxes) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
         {/* Starter Plan (White Chunky Box) */}
-        <div className="bg-white border-2 border-[#E5DFD1] hover:border-[#08232C] rounded-[32px] p-8 sm:p-10 space-y-7 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+        <div className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[32px] p-8 sm:p-10 space-y-7 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
           <div className="space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b-2 border-[#F0EBE0]">
+            <div className="flex items-center justify-between pb-4 border-b-2 border-[#E2EEF5]">
               <div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-[#636F75] block">
                   Solo IFAs &amp; Boutique Firms
@@ -76,7 +76,7 @@ export const CommercialPricingGrid: React.FC = () => {
             </p>
 
             {/* Price Box */}
-            <div className="p-6 bg-[#FAF8F2] rounded-2xl border-2 border-[#E5DFD1] space-y-2">
+            <div className="p-6 bg-[#EAF3F9] rounded-2xl border-2 border-[#D8E5EE] space-y-2">
               <div className="flex items-baseline space-x-2">
                 <span className="text-5xl font-black text-[#08232C] font-mono">£249</span>
                 <span className="text-xs text-[#636F75] font-bold uppercase tracking-wider">/ month + VAT</span>
@@ -126,7 +126,7 @@ export const CommercialPricingGrid: React.FC = () => {
             </div>
           </div>
 
-          <div className="pt-6 border-t-2 border-[#F0EBE0]">
+          <div className="pt-6 border-t-2 border-[#E2EEF5]">
             <Link
               href={`/admin/onboard?plan=starter&contract=${contractTerm}`}
               className="w-full py-4 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2 border border-[#184654]"
@@ -243,11 +243,11 @@ export const CommercialPricingGrid: React.FC = () => {
           {ADDON_MARKETPLACE.map((addon) => (
             <div
               key={addon.id}
-              className="bg-white border-2 border-[#E5DFD1] hover:border-[#08232C] rounded-[28px] p-7 space-y-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[28px] p-7 space-y-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-md bg-[#FAF8F2] border border-[#E5DFD1] text-[#08232C]">
+                  <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-md bg-[#EAF3F9] border border-[#D8E5EE] text-[#08232C]">
                     {addon.category}
                   </span>
                   <span className="text-base font-black text-[#08232C] font-mono">
@@ -260,7 +260,7 @@ export const CommercialPricingGrid: React.FC = () => {
                 <p className="text-xs text-[#475760] leading-relaxed">{addon.description}</p>
               </div>
 
-              <div className="pt-3 border-t-2 border-[#F0EBE0] flex items-center justify-between text-xs font-bold text-[#08232C]">
+              <div className="pt-3 border-t-2 border-[#E2EEF5] flex items-center justify-between text-xs font-bold text-[#08232C]">
                 <span>Included in Wizard</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#B45309]" />
               </div>

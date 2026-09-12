@@ -11,7 +11,7 @@ export const BentoFeatureGrid: React.FC = () => {
     <section id="features" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#E5DFD1] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
+        <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#D8E5EE] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
           <Sparkles className="w-4 h-4 text-[#B45309]" />
           <span>FCA-Compliant Architecture</span>
         </div>
@@ -28,7 +28,7 @@ export const BentoFeatureGrid: React.FC = () => {
       {/* Chunky Box Architecture Grid (Actuaries & Fintuity Style) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
         {/* Box 1: 24/7 AI Concierge (Warm Coral Peach) */}
-        <div className="bg-white border-2 border-[#E5DFD1] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
+        <div className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="w-14 h-14 rounded-2xl bg-[#FDF0EC] border-2 border-[#FACBC0] text-[#B43403] flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
@@ -50,7 +50,7 @@ export const BentoFeatureGrid: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 bg-[#FAF8F2] rounded-2xl border border-[#E5DFD1] text-xs space-y-1.5">
+          <div className="p-4 bg-[#EAF3F9] rounded-2xl border border-[#D8E5EE] text-xs space-y-1.5">
             <div className="flex items-center space-x-2 font-black text-[#08232C]">
               <Check className="w-4 h-4 text-[#0A6B48] shrink-0" />
               <span>Zero Regulatory Advice Risk</span>
@@ -62,7 +62,7 @@ export const BentoFeatureGrid: React.FC = () => {
         </div>
 
         {/* Box 2: 3 UK Financial Calculators (Sky Topaz) */}
-        <div className="bg-white border-2 border-[#E5DFD1] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
+        <div className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="w-14 h-14 rounded-2xl bg-[#EEF5FF] border-2 border-[#BFD9FE] text-[#1A56DB] flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
@@ -84,7 +84,7 @@ export const BentoFeatureGrid: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 bg-[#FAF8F2] rounded-2xl border border-[#E5DFD1] text-xs space-y-1.5">
+          <div className="p-4 bg-[#EAF3F9] rounded-2xl border border-[#D8E5EE] text-xs space-y-1.5">
             <div className="flex items-center space-x-2 font-black text-[#08232C]">
               <TrendingUp className="w-4 h-4 text-[#1A56DB] shrink-0" />
               <span>5x Higher Engagement</span>
@@ -96,7 +96,7 @@ export const BentoFeatureGrid: React.FC = () => {
         </div>
 
         {/* Box 3: Built-in 3-Month Social Media Retainer (Golden Topaz) */}
-        <div className="bg-white border-2 border-[#E5DFD1] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
+        <div className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="w-14 h-14 rounded-2xl bg-[#FEF8E7] border-2 border-[#FDE68A] text-[#92400E] flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
@@ -130,7 +130,7 @@ export const BentoFeatureGrid: React.FC = () => {
         </div>
 
         {/* Box 4: FCA Compliance Engine (Eucalyptus Mint) */}
-        <div className="bg-white border-2 border-[#E5DFD1] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
+        <div className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="w-14 h-14 rounded-2xl bg-[#E8F8F2] border-2 border-[#B4ECD6] text-[#0A6B48] flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
@@ -152,7 +152,7 @@ export const BentoFeatureGrid: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 bg-[#FAF8F2] rounded-2xl border border-[#E5DFD1] text-xs space-y-1.5">
+          <div className="p-4 bg-[#EAF3F9] rounded-2xl border border-[#D8E5EE] text-xs space-y-1.5">
             <div className="flex items-center space-x-2 font-black text-[#08232C]">
               <Check className="w-4 h-4 text-[#0A6B48] shrink-0" />
               <span>Consumer Duty FG22/5 Ready</span>
@@ -164,7 +164,7 @@ export const BentoFeatureGrid: React.FC = () => {
         </div>
 
         {/* Box 5: UK GDPR Data Sovereignty (Soft Mauve) */}
-        <div className="bg-white border-2 border-[#E5DFD1] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
+        <div className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="w-14 h-14 rounded-2xl bg-[#F8F0FE] border-2 border-[#E9D5FF] text-[#7E22CE] flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
@@ -186,7 +186,7 @@ export const BentoFeatureGrid: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 bg-[#FAF8F2] rounded-2xl border border-[#E5DFD1] text-xs space-y-1.5">
+          <div className="p-4 bg-[#EAF3F9] rounded-2xl border border-[#D8E5EE] text-xs space-y-1.5">
             <div className="flex items-center space-x-2 font-black text-[#08232C]">
               <Check className="w-4 h-4 text-[#7E22CE] shrink-0" />
               <span>Strict Fiduciary Protection</span>
@@ -198,7 +198,7 @@ export const BentoFeatureGrid: React.FC = () => {
         </div>
 
         {/* Box 6: 2-Minute Onboarding Wizard (Waterspout Teal) */}
-        <div className="bg-white border-2 border-[#E5DFD1] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
+        <div className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[32px] p-8 space-y-6 shadow-sm hover:shadow-md transition-colors duration-150 flex flex-col justify-between group">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="w-14 h-14 rounded-2xl bg-[#E0F7F6] border-2 border-[#A7F3D0] text-[#047857] flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
@@ -220,7 +220,7 @@ export const BentoFeatureGrid: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 bg-[#FAF8F2] rounded-2xl border border-[#E5DFD1] text-xs space-y-1.5">
+          <div className="p-4 bg-[#EAF3F9] rounded-2xl border border-[#D8E5EE] text-xs space-y-1.5">
             <div className="flex items-center space-x-2 font-black text-[#08232C]">
               <Check className="w-4 h-4 text-[#047857] shrink-0" />
               <span>Automated Subdomains &amp; SSL</span>

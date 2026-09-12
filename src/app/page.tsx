@@ -17,7 +17,7 @@ export default function RootHomePage() {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#F7F4EC] text-[#121C22] font-sans antialiased selection:bg-[#FEF8E7] selection:text-[#92400E]">
+    <div className="min-h-screen bg-[#F0F7FB] text-[#121C22] font-sans antialiased selection:bg-[#D9EDF8] selection:text-[#0C4A6E]">
       {/* 1. Institutional British Header */}
       <MarketingHeader onOpenPrivacyModal={() => setIsPrivacyModalOpen(true)} />
 
@@ -79,9 +79,9 @@ export default function RootHomePage() {
       </main>
 
       {/* Modern High-Trust British Footer */}
-      <footer className="bg-white border-t-2 border-[#E5DFD1] py-14 text-xs text-[#636F75]">
+      <footer className="bg-white border-t-2 border-[#D8E5EE] py-14 text-xs text-[#636F75]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b-2 border-[#F0EBE0]">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b-2 border-[#E2EEF5]">
             <div className="flex items-center space-x-3.5">
               <div className="w-10 h-10 rounded-2xl bg-[#08232C] text-[#F3C044] flex items-center justify-center font-black text-lg shadow-sm border border-[#184654]">
                 IFA

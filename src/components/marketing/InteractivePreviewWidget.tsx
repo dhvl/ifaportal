@@ -17,9 +17,9 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
   const activeTier: 'pro' | 'starter' = userSelectedTier ?? (selectedPreset === 'starter' ? 'starter' : 'pro');
 
   return (
-    <div className="bg-white border-2 border-[#E5DFD1] rounded-[32px] p-6 sm:p-10 shadow-sm space-y-8 max-w-6xl mx-auto transition-all">
+    <div className="bg-white border-2 border-[#D8E5EE] rounded-[32px] p-6 sm:p-10 shadow-sm space-y-8 max-w-6xl mx-auto transition-all">
       {/* Top Header & Clean Plan Switcher (Zero Overflow) */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b-2 border-[#F0EBE0]">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b-2 border-[#E2EEF5]">
         <div>
           <div className="inline-flex items-center space-x-2 text-[11px] font-black uppercase tracking-widest text-[#B43403] bg-[#FDF0EC] px-3.5 py-1 rounded-full border border-[#FACBC0] mb-2">
             <Sparkles className="w-3.5 h-3.5 text-[#B43403]" />
@@ -34,7 +34,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
         </div>
 
         {/* Responsive, No-Spill Plan Selector Pill */}
-        <div className="inline-flex flex-wrap sm:flex-nowrap items-center p-1.5 bg-[#F7F4EC] rounded-2xl border-2 border-[#E5DFD1] gap-1 self-start lg:self-center shrink-0">
+        <div className="inline-flex flex-wrap sm:flex-nowrap items-center p-1.5 bg-[#F0F7FB] rounded-2xl border-2 border-[#D8E5EE] gap-1 self-start lg:self-center shrink-0">
           <button
             onClick={() => setUserSelectedTier('pro')}
             className={`px-5 py-2.5 rounded-xl font-black text-xs tracking-wider uppercase transition-all flex items-center justify-center space-x-2 cursor-pointer whitespace-nowrap ${
@@ -133,7 +133,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-4 border-t-2 border-[#F0EBE0]">
+            <div className="flex flex-wrap items-center gap-4 pt-4 border-t-2 border-[#E2EEF5]">
               <Link
                 href="/portal/heritage-trust"
                 target="_blank"
@@ -145,7 +145,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
 
               <div className="flex items-center space-x-2 text-xs font-mono text-[#636F75]">
                 <span>Demo Subdomain:</span>
-                <span className="px-2 py-1 rounded-md bg-[#F7F4EC] border border-[#E5DFD1] font-bold text-[#08232C]">
+                <span className="px-2 py-1 rounded-md bg-[#F0F7FB] border border-[#D8E5EE] font-bold text-[#08232C]">
                   pro.ifaportal.com
                 </span>
               </div>
@@ -277,7 +277,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-4 border-t-2 border-[#F0EBE0]">
+            <div className="flex flex-wrap items-center gap-4 pt-4 border-t-2 border-[#E2EEF5]">
               <Link
                 href="/portal/mlp-wealth"
                 target="_blank"
@@ -289,7 +289,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
 
               <div className="flex items-center space-x-2 text-xs font-mono text-[#636F75]">
                 <span>Demo Subdomain:</span>
-                <span className="px-2 py-1 rounded-md bg-[#F7F4EC] border border-[#E5DFD1] font-bold text-[#08232C]">
+                <span className="px-2 py-1 rounded-md bg-[#F0F7FB] border border-[#D8E5EE] font-bold text-[#08232C]">
                   starter.ifaportal.com
                 </span>
               </div>
