@@ -504,19 +504,19 @@ def build_full_report():
     sub_headers = ["Subdomain Route", "Underlying Flagship Client", "Target Audience", "Live URL Link"]
     sub_rows = [
         [
-            "starter.(domain)",
+            "starter.ifamedia.co.uk",
             "MLP Wealth Management",
             "Solo advisers & boutique practices",
-            "starter.ifaportal.vercel.app"
+            "starter.ifamedia.co.uk"
         ],
         [
-            "pro.(domain)",
+            "pro.ifamedia.co.uk",
             "Heritage & Trust Financial",
             "Multi-adviser & established wealth managers",
-            "pro.ifaportal.vercel.app"
+            "pro.ifamedia.co.uk"
         ]
     ]
-    col_w_sub = [105, 130, 140, 130]
+    col_w_sub = [115, 130, 135, 125]
     pdf.add_table(sub_headers, sub_rows, col_w_sub)
 
     pdf.add_heading1("8. Strategic Recommendation & Next Steps")

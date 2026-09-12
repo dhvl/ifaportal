@@ -134,20 +134,27 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-4 border-t-2 border-[#E2EEF5]">
-              <Link
-                href="/portal/heritage-trust"
+              <a
+                href="https://pro.ifamedia.co.uk"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3.5 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center space-x-2 border border-[#184654]"
               >
                 <span>Preview Live Pro Portal</span>
                 <ExternalLink className="w-3.5 h-3.5 text-[#F3C044]" />
-              </Link>
+              </a>
 
               <div className="flex items-center space-x-2 text-xs font-mono text-[#636F75]">
                 <span>Demo Subdomain:</span>
-                <span className="px-2 py-1 rounded-md bg-[#F0F7FB] border border-[#D8E5EE] font-bold text-[#08232C]">
-                  pro.ifaportal.com
-                </span>
+                <a
+                  href="https://pro.ifamedia.co.uk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-md bg-[#F0F7FB] hover:bg-[#E2EEF5] border border-[#D8E5EE] font-bold text-[#08232C] transition-colors inline-flex items-center gap-1"
+                >
+                  pro.ifamedia.co.uk
+                  <span className="text-[10px] text-[#0A6B48]">↗</span>
+                </a>
               </div>
             </div>
           </div>
@@ -278,20 +285,27 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-4 border-t-2 border-[#E2EEF5]">
-              <Link
-                href="/portal/mlp-wealth"
+              <a
+                href="https://starter.ifamedia.co.uk"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3.5 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center space-x-2 border border-[#184654]"
               >
                 <span>Preview Live Starter Portal</span>
                 <ExternalLink className="w-3.5 h-3.5 text-[#5CDFB0]" />
-              </Link>
+              </a>
 
               <div className="flex items-center space-x-2 text-xs font-mono text-[#636F75]">
                 <span>Demo Subdomain:</span>
-                <span className="px-2 py-1 rounded-md bg-[#F0F7FB] border border-[#D8E5EE] font-bold text-[#08232C]">
-                  starter.ifaportal.com
-                </span>
+                <a
+                  href="https://starter.ifamedia.co.uk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-md bg-[#F0F7FB] hover:bg-[#E2EEF5] border border-[#D8E5EE] font-bold text-[#08232C] transition-colors inline-flex items-center gap-1"
+                >
+                  starter.ifamedia.co.uk
+                  <span className="text-[10px] text-[#0A6B48]">↗</span>
+                </a>
               </div>
             </div>
           </div>

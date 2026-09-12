@@ -6,7 +6,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "UK IFA Portal Creator | Multitenant Client Practice Builder",
+  metadataBase: new URL("https://ifamedia.co.uk"),
+  title: "IFA Media | FCA-Compliant Client Portal & Website Builder for UK Advisers",
   description: "FCA-compliant Independent Financial Adviser website portals with custom branding, AI concierge chatbots, and built-in social media retainers.",
   icons: {
     icon: [
