@@ -510,10 +510,10 @@ def build_full_report():
             "starter.ifamedia.co.uk"
         ],
         [
-            "pro.ifamedia.co.uk",
+            "growth.ifamedia.co.uk",
             "Trustworthy Advisors",
             "Multi-adviser & established wealth managers",
-            "pro.ifamedia.co.uk"
+            "growth.ifamedia.co.uk"
         ]
     ]
     col_w_sub = [115, 130, 135, 125]

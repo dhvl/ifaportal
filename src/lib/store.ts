@@ -401,7 +401,7 @@ export function getClientBySlug(slug: string): IFAClient | undefined {
   if (lower === 'starter' || lower === 'reliable-advisors' || lower === 'mlp-wealth') {
     return clients.find((c) => c.slug === 'reliable-advisors') || clients.find((c) => c.slug === 'mlp-wealth') || clients.find((c) => c.planTier === 'starter');
   }
-  if (lower === 'pro' || lower === 'premium' || lower === 'trustworthy-advisors' || lower === 'heritage-trust') {
+  if (lower === 'growth' || lower === 'pro' || lower === 'premium' || lower === 'trustworthy-advisors' || lower === 'heritage-trust') {
     return clients.find((c) => c.slug === 'trustworthy-advisors') || clients.find((c) => c.slug === 'heritage-trust') || clients.find((c) => c.planTier === 'pro');
   }
   return clients.find((c) => c.slug.toLowerCase() === lower);

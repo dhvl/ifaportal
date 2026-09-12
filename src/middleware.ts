@@ -26,8 +26,10 @@ export function middleware(request: NextRequest) {
     subdomain = hostname.slice(0, -'.ifaportal.vercel.app'.length);
   } else if (hostname.startsWith('starter.') || hostname.startsWith('starter-')) {
     subdomain = 'starter';
+  } else if (hostname.startsWith('growth.') || hostname.startsWith('growth-')) {
+    subdomain = 'growth';
   } else if (hostname.startsWith('pro.') || hostname.startsWith('pro-')) {
-    subdomain = 'pro';
+    subdomain = 'growth';
   } else {
     // Multi-part TLD handling (e.g. .co.uk, .org.uk)
     const parts = hostname.split('.');
@@ -47,8 +49,8 @@ export function middleware(request: NextRequest) {
         return NextResponse.rewrite(url);
       }
     }
-    // Flagship Wealth Pro portal (Trustworthy Advisors)
-    else if (subdomain === 'pro') {
+    // Flagship Growth portal (Trustworthy Advisors)
+    else if (subdomain === 'growth' || subdomain === 'pro') {
       if (url.pathname === '/' || url.pathname === '') {
         url.pathname = '/portal/trustworthy-advisors';
         return NextResponse.rewrite(url);
