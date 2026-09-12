@@ -28,21 +28,21 @@ export const RoiCommercialCalculator: React.FC = () => {
   };
 
   return (
-    <section id="roi-calculator" className="py-24 bg-[#F0F7FB] border-y-2 border-[#D8E5EE]">
+    <section id="roi-calculator" className="py-20 bg-[#F0F7FB] border-y-2 border-[#D8E5EE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Section Header */}
+        {/* Friendly Agency Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#D8E5EE] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
             <TrendingUp className="w-4 h-4 text-[#0A6B48]" />
-            <span>Practice Unit Economics</span>
+            <span>Practice Economics</span>
           </div>
           
           <h2 className="text-3xl sm:text-5xl font-black text-[#08232C] tracking-tight leading-[1.10]">
-            Calculate Your Practice Revenue from 1 Single Client
+            The maths is simple: 1 new client pays for everything.
           </h2>
           
           <p className="text-base sm:text-lg text-[#636F75] leading-relaxed">
-            UK Independent Financial Advisers operate with exceptionally high client Lifetime Value (LTV). Adjust your practice parameters to see the revenue generated from just 1 new client acquired through our high-converting portals.
+            You don&apos;t need thousands of website visitors. With UK financial advice fees, winning just one new client creates substantial recurring revenue for your practice.
           </p>
         </div>
 

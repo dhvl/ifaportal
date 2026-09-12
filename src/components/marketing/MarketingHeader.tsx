@@ -65,11 +65,11 @@ export const MarketingHeader: React.FC<MarketingHeaderProps> = ({ onOpenPrivacyM
 
         {/* Navigation Anchors (Plus Jakarta Sans Bold) */}
         <nav className="hidden lg:flex items-center space-x-8 text-[13px] font-extrabold text-[#1E2E35]">
-          <Link href="#templates" className="hover:text-[#007B81] transition-colors">
-            Flagship Demos
+          <Link href="#pricing" className="hover:text-[#007B81] transition-colors">
+            Practice Plans
           </Link>
-          <Link href="#features" className="hover:text-[#007B81] transition-colors">
-            AI &amp; Calculators
+          <Link href="#demos" className="hover:text-[#007B81] transition-colors">
+            Live Demos
           </Link>
           <Link href="#roi-calculator" className="hover:text-[#007B81] transition-colors flex items-center space-x-1.5">
             <span>Practice Economics</span>
@@ -77,11 +77,11 @@ export const MarketingHeader: React.FC<MarketingHeaderProps> = ({ onOpenPrivacyM
               ROI
             </span>
           </Link>
-          <Link href="#pricing" className="hover:text-[#007B81] transition-colors">
-            Practice Plans
+          <Link href="#features" className="hover:text-[#007B81] transition-colors">
+            Features
           </Link>
           <Link href="#benchmark" className="hover:text-[#007B81] transition-colors">
-            Agency Benchmark
+            Why Us
           </Link>
         </nav>
 
