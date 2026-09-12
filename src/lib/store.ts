@@ -130,23 +130,23 @@ export const ADDON_MARKETPLACE = [
 export const INITIAL_CLIENTS: IFAClient[] = [
   {
     id: 'client-mlp-wealth',
-    slug: 'mlp-wealth',
-    firmName: 'MLP Wealth Management',
+    slug: 'reliable-advisors',
+    firmName: 'Reliable Advisors',
     fcaFrn: '592810',
     isIndependent: true,
-    registeredOffice: 'MLP House, 12 Park Square, Leeds, LS1 2JH',
+    registeredOffice: 'Reliable House, 12 Park Square, Leeds, LS1 2JH',
     phone: '0113 245 8900',
-    email: 'enquiries@mlpwealth.co.uk',
+    email: 'enquiries@reliableadvisors.co.uk',
     address: '12 Park Square, Leeds, West Yorkshire, LS1 2JH',
     compliance: {
       fcaFrn: '592810',
       isIndependent: true,
-      registeredOffice: 'MLP House, 12 Park Square, Leeds, LS1 2JH',
+      registeredOffice: 'Reliable House, 12 Park Square, Leeds, LS1 2JH',
       companyRegistrationNumber: '08129402',
       fscsProtected: true,
       mortgageWarningRequired: true,
       feeStructureSummary: 'Transparent fixed initial consultation + 0.50% - 0.75% p.a. ongoing discretionary management with zero exit fees.',
-      fcaStatusText: 'MLP Wealth Management is authorised and regulated by the Financial Conduct Authority (FCA Firm Reference Number: 592810).',
+      fcaStatusText: 'Reliable Advisors is authorised and regulated by the Financial Conduct Authority (FCA Firm Reference Number: 592810).',
     },
     branding: {
       primaryColor: '#0f2744',
@@ -179,7 +179,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
         fcaIrn: 'MLP01284',
         bio: 'Over 22 years of experience providing high-net-worth individuals, business owners, and trustees with strategic financial guidance.',
         phone: '0113 245 8901',
-        email: 'mark@mlpwealth.co.uk',
+        email: 'mark@reliableadvisors.co.uk',
       },
       {
         id: 'team-2',
@@ -189,7 +189,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
         fcaIrn: 'SXJ99214',
         bio: 'Specializes in complex UK pension consolidations, inheritance tax mitigation, and family trust structures.',
         phone: '0113 245 8902',
-        email: 'sarah@mlpwealth.co.uk',
+        email: 'sarah@reliableadvisors.co.uk',
       },
     ],
     testimonials: [
@@ -199,7 +199,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
         location: 'Harrogate',
         serviceCategory: 'Retirement Planning',
         rating: 5,
-        quote: 'MLP Wealth transformed our pension outlook. Their independent advice gave us the confidence to retire 3 years earlier than planned.',
+        quote: 'Reliable Advisors transformed our pension outlook. Their independent advice gave us the confidence to retire 3 years earlier than planned.',
         date: 'June 2026',
         verifiedSource: 'VouchedFor',
       },
@@ -284,13 +284,13 @@ export const INITIAL_CLIENTS: IFAClient[] = [
   },
   {
     id: 'client-heritage-trust',
-    slug: 'heritage-trust',
-    firmName: 'Heritage & Trust Financial',
+    slug: 'trustworthy-advisors',
+    firmName: 'Trustworthy Advisors',
     fcaFrn: '419203',
     isIndependent: true,
     registeredOffice: 'The Old Rectory, St. Peter Square, Manchester, M2 3DE',
     phone: '0161 832 9900',
-    email: 'info@heritagetrust.co.uk',
+    email: 'info@trustworthyadvisors.co.uk',
     address: 'St. Peter Square, Manchester, M2 3DE',
     compliance: {
       fcaFrn: '419203',
@@ -300,7 +300,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
       fscsProtected: true,
       mortgageWarningRequired: false,
       feeStructureSummary: 'Bespoke retainer & agreed percentage management for estate trusts.',
-      fcaStatusText: 'Heritage & Trust Financial is authorised and regulated by the Financial Conduct Authority (FCA Firm Reference Number: 419203).',
+      fcaStatusText: 'Trustworthy Advisors is authorised and regulated by the Financial Conduct Authority (FCA Firm Reference Number: 419203).',
     },
     branding: {
       primaryColor: '#1e293b',
@@ -328,7 +328,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
         fcaIrn: 'EWM33019',
         bio: 'Specialist in multi-generational wealth transfer, trust management, and executive pension schemes.',
         phone: '0161 832 9901',
-        email: 'edward@heritagetrust.co.uk',
+        email: 'edward@trustworthyadvisors.co.uk',
       },
     ],
     testimonials: [
@@ -338,7 +338,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
         location: 'Cheshire',
         serviceCategory: 'Estate Planning',
         rating: 5,
-        quote: 'The team at Heritage & Trust provided empathetic, highly professional counsel for our family estate.',
+        quote: 'The team at Trustworthy Advisors provided empathetic, highly professional counsel for our family estate.',
         date: 'August 2026',
         verifiedSource: 'VouchedFor',
       },
@@ -353,7 +353,7 @@ export const INITIAL_CLIENTS: IFAClient[] = [
   },
 ];
 
-const STORAGE_KEY = 'ifa_portal_clients_v2';
+const STORAGE_KEY = 'ifa_media_clients_v3';
 
 export function getClients(): IFAClient[] {
   if (typeof window === 'undefined') return INITIAL_CLIENTS;
@@ -398,11 +398,11 @@ export function getClients(): IFAClient[] {
 export function getClientBySlug(slug: string): IFAClient | undefined {
   const clients = getClients();
   const lower = slug.toLowerCase();
-  if (lower === 'starter') {
-    return clients.find((c) => c.slug === 'mlp-wealth') || clients.find((c) => c.planTier === 'starter');
+  if (lower === 'starter' || lower === 'reliable-advisors' || lower === 'mlp-wealth') {
+    return clients.find((c) => c.slug === 'reliable-advisors') || clients.find((c) => c.slug === 'mlp-wealth') || clients.find((c) => c.planTier === 'starter');
   }
-  if (lower === 'pro' || lower === 'premium') {
-    return clients.find((c) => c.slug === 'heritage-trust') || clients.find((c) => c.planTier === 'pro');
+  if (lower === 'pro' || lower === 'premium' || lower === 'trustworthy-advisors' || lower === 'heritage-trust') {
+    return clients.find((c) => c.slug === 'trustworthy-advisors') || clients.find((c) => c.slug === 'heritage-trust') || clients.find((c) => c.planTier === 'pro');
   }
   return clients.find((c) => c.slug.toLowerCase() === lower);
 }

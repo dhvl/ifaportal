@@ -505,13 +505,13 @@ def build_full_report():
     sub_rows = [
         [
             "starter.ifamedia.co.uk",
-            "MLP Wealth Management",
+            "Reliable Advisors",
             "Solo advisers & boutique practices",
             "starter.ifamedia.co.uk"
         ],
         [
             "pro.ifamedia.co.uk",
-            "Heritage & Trust Financial",
+            "Trustworthy Advisors",
             "Multi-adviser & established wealth managers",
             "pro.ifamedia.co.uk"
         ]

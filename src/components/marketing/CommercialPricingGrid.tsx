@@ -1,56 +1,39 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { 
-  Check, Sparkles, ArrowRight
+  Check, Sparkles, ArrowRight, Mail
 } from 'lucide-react';
 import { ADDON_MARKETPLACE } from '@/lib/store';
 
 export const CommercialPricingGrid: React.FC = () => {
-  const [contractTerm, setContractTerm] = useState<'quarterly' | 'monthly'>('quarterly');
-
   return (
     <section id="pricing" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#D8E5EE] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
           <Sparkles className="w-4 h-4 text-[#B45309]" />
-          <span>Transparent British Commercial Terms</span>
+          <span>FCA-Ready Practice Platforms</span>
         </div>
         
         <h2 className="text-3xl sm:text-5xl font-black text-[#08232C] tracking-tight leading-[1.10]">
-          Two Practice Plans with Built-in Social Media
+          Two Practice Platforms with Built-in Social Media
         </h2>
         
         <p className="text-base sm:text-lg text-[#636F75] leading-relaxed">
-          Both plans include our Done-For-You 3-Month Social Media Retainer as standard. Select a <strong>Quarterly Contract</strong> to waive all onboarding and setup fees (£0 Setup).
+          Both platforms include our Done-For-You 3-Month Social Media Retainer as standard. For tailored practice pricing, bespoke enterprise setups, or network licensing, drop an inquiry to our team.
         </p>
 
-        {/* Contract Duration Selector Pill (Fintuity & Unbiased Style) */}
-        <div className="pt-3 inline-flex items-center p-1.5 bg-white rounded-2xl border-2 border-[#D8E5EE] shadow-2xs">
-          <button
-            onClick={() => setContractTerm('quarterly')}
-            className={`px-6 py-3 rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center space-x-2 cursor-pointer ${
-              contractTerm === 'quarterly'
-                ? 'bg-[#08232C] text-white shadow-md'
-                : 'text-[#475760] hover:text-[#08232C]'
-            }`}
+        {/* Pricing Inquiry Action Pill */}
+        <div className="pt-3">
+          <a
+            href="mailto:inquiry@ifamedia.co.uk?subject=Practice%20Platform%20Pricing%20Inquiry%20-%20IFA%20Media"
+            className="inline-flex items-center space-x-2.5 px-6 py-3 rounded-2xl bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs hover:shadow-md transition-all"
           >
-            <Check className="w-4 h-4 text-[#5CDFB0]" />
-            <span>Quarterly (3-Mo Retainer) &bull; £0 Setup Fee</span>
-          </button>
-
-          <button
-            onClick={() => setContractTerm('monthly')}
-            className={`px-6 py-3 rounded-xl font-black text-xs uppercase tracking-wider transition-all flex items-center space-x-2 cursor-pointer ${
-              contractTerm === 'monthly'
-                ? 'bg-[#08232C] text-white shadow-md'
-                : 'text-[#475760] hover:text-[#08232C]'
-            }`}
-          >
-            <span>Monthly Rolling &bull; Standard Setup Fee</span>
-          </button>
+            <Mail className="w-4 h-4 text-[#0A6B48]" />
+            <span>Drop an Inquiry: inquiry@ifamedia.co.uk</span>
+          </a>
         </div>
       </div>
 
@@ -78,21 +61,19 @@ export const CommercialPricingGrid: React.FC = () => {
             {/* Price Box */}
             <div className="p-6 bg-[#EAF3F9] rounded-2xl border-2 border-[#D8E5EE] space-y-2">
               <div className="flex items-baseline space-x-2">
-                <span className="text-5xl font-black text-[#08232C] font-mono">£249</span>
-                <span className="text-xs text-[#636F75] font-bold uppercase tracking-wider">/ month + VAT</span>
+                <span className="text-3xl sm:text-4xl font-black text-[#08232C]">Bespoke Quote</span>
               </div>
-
-              <div className="pt-1 text-xs">
-                {contractTerm === 'quarterly' ? (
-                  <div className="flex items-center space-x-2 text-[#0A6B48] font-black">
-                    <Check className="w-4 h-4 text-[#0A6B48]" />
-                    <span>Quarterly Retainer: £0 Setup Fee (Save £200)</span>
-                  </div>
-                ) : (
-                  <div className="text-[#475760] font-medium">
-                    Monthly Rolling: <strong className="text-[#08232C]">£200 one-off setup fee</strong>
-                  </div>
-                )}
+              <div className="pt-1 text-xs text-[#475760] font-medium">
+                Pricing available on request &bull; Tailored to boutique &amp; solo practices
+              </div>
+              <div className="pt-2">
+                <a
+                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Growth%20Platform"
+                  className="inline-flex items-center space-x-1.5 text-xs font-black text-[#0A6B48] hover:underline"
+                >
+                  <Mail className="w-4 h-4 text-[#0A6B48]" />
+                  <span>Inquire: inquiry@ifamedia.co.uk</span>
+                </a>
               </div>
             </div>
 
@@ -127,13 +108,13 @@ export const CommercialPricingGrid: React.FC = () => {
           </div>
 
           <div className="pt-6 border-t-2 border-[#E2EEF5]">
-            <Link
-              href={`/admin/onboard?plan=starter&contract=${contractTerm}`}
+            <a
+              href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Growth%20Platform"
               className="w-full py-4 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2 border border-[#184654]"
             >
-              <span>Onboard Starter Practice</span>
+              <span>Inquire for Starter Platform</span>
               <ArrowRight className="w-4 h-4 text-[#5CDFB0]" />
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -165,21 +146,19 @@ export const CommercialPricingGrid: React.FC = () => {
             {/* Price Box */}
             <div className="p-6 bg-[#0E3542] rounded-2xl border-2 border-[#1D4A59] space-y-2">
               <div className="flex items-baseline space-x-2">
-                <span className="text-5xl font-black text-white font-mono">£599</span>
-                <span className="text-xs text-[#AFC3C9] font-bold uppercase tracking-wider">/ month + VAT</span>
+                <span className="text-3xl sm:text-4xl font-black text-white">Bespoke Quote</span>
               </div>
-
-              <div className="pt-1 text-xs">
-                {contractTerm === 'quarterly' ? (
-                  <div className="flex items-center space-x-2 text-[#5CDFB0] font-black">
-                    <Check className="w-4 h-4 text-[#5CDFB0]" />
-                    <span>Quarterly Retainer: £0 Setup Fee (Save £1,000)</span>
-                  </div>
-                ) : (
-                  <div className="text-[#AFC3C9] font-medium">
-                    Monthly Rolling: <strong className="text-white">£1,000 one-off setup fee</strong>
-                  </div>
-                )}
+              <div className="pt-1 text-xs text-[#AFC3C9] font-medium">
+                Pricing available on request &bull; Tailored for multi-adviser wealth practices
+              </div>
+              <div className="pt-2">
+                <a
+                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Wealth%20Pro%20Platform"
+                  className="inline-flex items-center space-x-1.5 text-xs font-black text-[#F3C044] hover:underline"
+                >
+                  <Mail className="w-4 h-4 text-[#F3C044]" />
+                  <span>Inquire: inquiry@ifamedia.co.uk</span>
+                </a>
               </div>
             </div>
 
@@ -214,13 +193,13 @@ export const CommercialPricingGrid: React.FC = () => {
           </div>
 
           <div className="pt-6 border-t border-[#143946]">
-            <Link
-              href={`/admin/onboard?plan=pro&contract=${contractTerm}`}
+            <a
+              href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Wealth%20Pro%20Platform"
               className="w-full py-4 rounded-2xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
             >
-              <span>Onboard Wealth Pro Practice</span>
+              <span>Inquire for Wealth Pro Platform</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -235,7 +214,7 @@ export const CommercialPricingGrid: React.FC = () => {
             Modular Add-On Marketplace
           </h3>
           <p className="text-xs sm:text-sm text-[#636F75]">
-            Add specialized capabilities to either plan anytime from your Adviser Admin console.
+            Add specialized capabilities to either platform anytime. Inquire for custom module packaging.
           </p>
         </div>
 
@@ -250,9 +229,8 @@ export const CommercialPricingGrid: React.FC = () => {
                   <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-md bg-[#EAF3F9] border border-[#D8E5EE] text-[#08232C]">
                     {addon.category}
                   </span>
-                  <span className="text-base font-black text-[#08232C] font-mono">
-                    £{addon.priceMonthly}
-                    <span className="text-[11px] text-[#636F75] font-sans font-normal">/mo</span>
+                  <span className="text-xs font-bold text-[#08232C] px-2 py-0.5 rounded-md bg-[#F0F7FB] border border-[#D8E5EE]">
+                    Custom Add-On
                   </span>
                 </div>
 
@@ -261,11 +239,38 @@ export const CommercialPricingGrid: React.FC = () => {
               </div>
 
               <div className="pt-3 border-t-2 border-[#E2EEF5] flex items-center justify-between text-xs font-bold text-[#08232C]">
-                <span>Included in Wizard</span>
+                <a
+                  href={`mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20${encodeURIComponent(addon.title)}%20Add-On`}
+                  className="hover:underline flex items-center space-x-1 text-[#0A6B48]"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>Inquire for Module</span>
+                </a>
                 <ArrowRight className="w-3.5 h-3.5 text-[#B45309]" />
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Enterprise & Network Inquiry Box */}
+      <div className="pt-6 max-w-4xl mx-auto">
+        <div className="bg-white border-2 border-[#D8E5EE] rounded-[32px] p-8 text-center space-y-4 shadow-sm">
+          <h3 className="text-xl font-black text-[#08232C]">
+            Custom Practice Pricing &amp; Enterprise Network Licensing
+          </h3>
+          <p className="text-xs sm:text-sm text-[#636F75] max-w-2xl mx-auto leading-relaxed">
+            All practice deployments are customized to your firm&apos;s FCA permissions, adviser headcount, and integration stack. Drop us an inquiry directly for confidential terms.
+          </p>
+          <div className="pt-2">
+            <a
+              href="mailto:inquiry@ifamedia.co.uk?subject=Enterprise%20Practice%20Pricing%20Inquiry%20-%20IFA%20Media"
+              className="inline-flex items-center space-x-2 px-8 py-3.5 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white text-xs font-black uppercase tracking-wider transition-all shadow-md"
+            >
+              <Mail className="w-4 h-4 text-[#F3C044]" />
+              <span>Inquire: inquiry@ifamedia.co.uk</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

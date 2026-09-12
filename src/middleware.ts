@@ -40,21 +40,21 @@ export function middleware(request: NextRequest) {
 
   // If a valid subdomain exists (excluding www)
   if (subdomain && subdomain !== 'www') {
-    // Flagship Starter Growth portal
+    // Flagship Starter Growth portal (Reliable Advisors)
     if (subdomain === 'starter') {
       if (url.pathname === '/' || url.pathname === '') {
-        url.pathname = '/portal/mlp-wealth';
+        url.pathname = '/portal/reliable-advisors';
         return NextResponse.rewrite(url);
       }
     }
-    // Flagship Wealth Pro portal
+    // Flagship Wealth Pro portal (Trustworthy Advisors)
     else if (subdomain === 'pro') {
       if (url.pathname === '/' || url.pathname === '') {
-        url.pathname = '/portal/heritage-trust';
+        url.pathname = '/portal/trustworthy-advisors';
         return NextResponse.rewrite(url);
       }
     }
-    // Flagship Agile IFA portal
+    // Flagship Agile IFA Media client
     else if (subdomain === 'agile') {
       if (url.pathname === '/' || url.pathname === '') {
         url.pathname = '/portal/agile-ifa';

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { 
   Building2, PlusCircle, ExternalLink, Trash2, ShieldCheck, 
   Sparkles, Layers, Eye, Users, RefreshCw, CheckCircle2, ChevronRight, 
-  Award, FileText, TrendingUp, MessageCircle, Bot, Zap, ArrowUpRight
+  Award, FileText, TrendingUp, MessageCircle, Bot, Zap, ArrowUpRight, Mail
 } from 'lucide-react';
 import { IFAClient, PlanTier } from '@/lib/types';
 import { getClients, deleteClient, saveClient, PLAN_DETAILS, ADDON_MARKETPLACE } from '@/lib/store';
@@ -43,17 +43,6 @@ export default function AdminDashboardPage() {
     setClients(updatedList);
   };
 
-  // Calculate Monthly Recurring Revenue (MRR)
-  const totalMRR = clients.reduce((acc, c) => {
-    const plan = PLAN_DETAILS[c.planTier || 'pro'] || PLAN_DETAILS.pro;
-    const planFee = plan ? plan.priceMonthly : 249;
-    const addonsFee = (c.selectedAddons || []).reduce((sum, aId) => {
-      const addon = ADDON_MARKETPLACE.find((a) => a.id === aId);
-      return sum + (addon ? addon.priceMonthly : 0);
-    }, 0);
-    return acc + planFee + addonsFee;
-  }, 0);
-
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
       {/* Top Bright Glass Navigation Header */}
@@ -64,7 +53,7 @@ export default function AdminDashboardPage() {
               IFA
             </div>
             <div>
-              <span className="text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">UK IFA Portal Creator</span>
+              <span className="text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">IFA Media</span>
               <span className="text-[10px] text-amber-600 font-bold uppercase tracking-widest block">
                 Practice Onboarding &amp; Regulatory Management
               </span>
@@ -93,21 +82,21 @@ export default function AdminDashboardPage() {
           <div className="relative z-10 max-w-3xl space-y-4">
             <div className="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs px-4 py-1.5 rounded-full font-bold shadow-xs">
               <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>2 Streamlined Growth Plans &bull; Built-in Social Media Retainer &bull; Add-on Marketplace</span>
+              <span>2 Streamlined Growth Platforms &bull; Built-in Social Media Retainer &bull; Modular Add-ons</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
-              Practice Management &amp; Revenue Hub
+              Practice Management &amp; Adviser Console
             </h1>
 
             <p className="text-slate-300 text-sm leading-relaxed max-w-2xl font-normal">
-              Manage client practices across <b>Starter (£249/mo)</b> and <b>Client Acquisition Pro (£599/mo)</b>. Both plans include built-in social media management on a 3-month retainer with zero setup fees on quarterly terms.
+              Manage client practices across <b>Starter Growth</b> and <b>Wealth Pro</b> platforms. Both platforms include built-in social media management on a 3-month retainer. For custom practice pricing, drop an inquiry to <a href="mailto:inquiry@ifamedia.co.uk" className="text-amber-400 underline">inquiry@ifamedia.co.uk</a>.
             </p>
 
             <div className="pt-4 flex flex-wrap gap-4 text-xs font-bold text-slate-900 border-t border-slate-800">
               <div className="bg-white px-4 py-2.5 rounded-2xl shadow-md flex items-center space-x-2.5">
-                <TrendingUp className="w-4 h-4 text-emerald-600" />
-                <span>Monthly Recurring Revenue: <strong className="text-emerald-700 text-sm">£{totalMRR.toLocaleString()} / mo</strong></span>
+                <Mail className="w-4 h-4 text-emerald-600" />
+                <span>Pricing Inquiries: <a href="mailto:inquiry@ifamedia.co.uk" className="text-emerald-700 font-bold hover:underline">inquiry@ifamedia.co.uk</a></span>
               </div>
               <div className="bg-white px-4 py-2.5 rounded-2xl shadow-md flex items-center space-x-2.5">
                 <Building2 className="w-4 h-4 text-amber-600" />
@@ -165,11 +154,6 @@ export default function AdminDashboardPage() {
               {clients.map((client) => {
                 const plan = client.planTier === 'starter' ? 'starter' : 'pro';
                 const planMeta = PLAN_DETAILS[plan] || PLAN_DETAILS.pro;
-                const addonsFee = (client.selectedAddons || []).reduce((sum, aId) => {
-                  const addon = ADDON_MARKETPLACE.find((a) => a.id === aId);
-                  return sum + (addon ? addon.priceMonthly : 0);
-                }, 0);
-                const monthlyTotal = planMeta.priceMonthly + addonsFee;
 
                 return (
                   <div
@@ -183,13 +167,13 @@ export default function AdminDashboardPage() {
                           ? 'bg-slate-100 text-slate-800 border-slate-300'
                           : 'bg-indigo-100 text-indigo-950 border-indigo-300'
                       }`}>
-                        {planMeta.name} (£{monthlyTotal}/mo)
+                        {planMeta.name}
                       </span>
 
                       <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
                         {client.contractDuration === 'monthly'
-                          ? `Monthly (${client.setupFee ? `£${client.setupFee} Setup` : 'Setup Fee'})`
-                          : '3-Mo Retainer (£0 Setup)'}
+                          ? 'Monthly Rolling'
+                          : '3-Mo Retainer (DFY Social)'}
                       </span>
                     </div>
 
@@ -215,7 +199,7 @@ export default function AdminDashboardPage() {
                         <div className="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-100">
                           <span className="font-medium text-slate-500">Active Template:</span>
                           <span className="font-bold text-slate-900 capitalize">
-                            {client.templateId.replace('-', ' ')}
+                            {client.templateId === 'modern-wealth' ? 'Reliable Advisors' : client.templateId === 'heritage-trust' ? 'Trustworthy Advisors' : client.templateId.replace('-', ' ')}
                           </span>
                         </div>
 
@@ -242,7 +226,7 @@ export default function AdminDashboardPage() {
                         {client.selectedAddons && client.selectedAddons.length > 0 && (
                           <div className="flex items-center justify-between bg-amber-50/60 p-2 rounded-xl border border-amber-200/60">
                             <span className="font-medium text-amber-800">Active Add-ons:</span>
-                            <span className="font-bold text-amber-900">{client.selectedAddons.length} Selected (+£{addonsFee}/mo)</span>
+                            <span className="font-bold text-amber-900">{client.selectedAddons.length} Selected</span>
                           </div>
                         )}
                       </div>
@@ -262,7 +246,7 @@ export default function AdminDashboardPage() {
                                   : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
                               }`}
                             >
-                              {t === 'starter' ? 'Starter (£249)' : 'Pro (£599)'}
+                              {t === 'starter' ? 'Starter Growth' : 'Wealth Pro'}
                             </button>
                           ))}
                         </div>
@@ -301,18 +285,18 @@ export default function AdminDashboardPage() {
             {/* Template 1 */}
             <div className="bg-white border border-slate-200/90 rounded-3xl p-6 space-y-4 shadow-xs hover:shadow-lg transition-all">
               <div className="w-full h-40 bg-slate-900 rounded-2xl flex items-center justify-center text-amber-400 font-bold shadow-inner">
-                Modern Wealth Layout (MLP Inspired)
+                Reliable Advisors Layout
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Modern Wealth</h3>
+              <h3 className="text-lg font-bold text-slate-900">Reliable Advisors</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Navy &amp; gold modern wealth layout featuring fee transparency, whole-of-market disclosures, 4-stage advice journey, lead magnets, and VouchedFor reviews.
               </p>
               <Link
-                href="/portal/mlp-wealth"
+                href="/portal/reliable-advisors"
                 target="_blank"
                 className="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-600 hover:text-amber-700"
               >
-                <span>Preview Template (Pro Tier)</span>
+                <span>Preview Template (Starter Platform)</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -320,18 +304,18 @@ export default function AdminDashboardPage() {
             {/* Template 2 */}
             <div className="bg-white border border-slate-200/90 rounded-3xl p-6 space-y-4 shadow-xs hover:shadow-lg transition-all">
               <div className="w-full h-40 bg-[#faf8f5] border border-stone-200 rounded-2xl flex items-center justify-center text-stone-900 font-serif font-bold">
-                Heritage &amp; Trust (Executive Classic)
+                Trustworthy Advisors (Executive Classic)
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Heritage &amp; Trust</h3>
+              <h3 className="text-lg font-bold text-slate-900">Trustworthy Advisors</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Executive classic serif typography for established practices with 24/7 AI wealth concierge, client portal gateway, and IHT calculations.
               </p>
               <Link
-                href="/portal/heritage-trust"
+                href="/portal/trustworthy-advisors"
                 target="_blank"
                 className="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-600 hover:text-amber-700"
               >
-                <span>Preview Template (Elite Tier)</span>
+                <span>Preview Template (Wealth Pro Platform)</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -350,7 +334,7 @@ export default function AdminDashboardPage() {
                 target="_blank"
                 className="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-600 hover:text-amber-700"
               >
-                <span>Preview Template (Starter Tier)</span>
+                <span>Preview Template (Interactive Demo)</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>

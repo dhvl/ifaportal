@@ -32,10 +32,10 @@ export default function RootHomePage() {
         {/* 4. Interactive Practice ROI Economics Calculator (IBM Plex Mono Figures) */}
         <RoiCommercialCalculator />
 
-        {/* 5. Commercial Pricing Grid (Starter £249 vs Pro £599 & Modular Add-Ons) */}
+        {/* 5. Commercial Pricing Grid (Starter vs Pro & Modular Add-Ons) */}
         <CommercialPricingGrid />
 
-        {/* 6. Agency Value Benchmark (Traditional Web Agencies vs IFA Portal) */}
+        {/* 6. Agency Value Benchmark (Traditional Web Agencies vs IFA Media) */}
         <AgencyComparisonGrid />
 
         {/* 7. Dual UK GDPR & FCA Compliance Architecture */}
@@ -87,7 +87,7 @@ export default function RootHomePage() {
                 IFA
               </div>
               <div>
-                <span className="font-extrabold text-[#08232C] text-base block">UK IFA Portal</span>
+                <span className="font-extrabold text-[#08232C] text-base block">IFA Media</span>
                 <span className="text-[11px] text-[#636F75] font-medium block">FCA-Compliant Client Acquisition Engine</span>
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function RootHomePage() {
               <Link href="#templates" className="hover:text-[#007B81] transition-colors">Flagship Demos</Link>
               <Link href="#features" className="hover:text-[#007B81] transition-colors">AI &amp; Calculators</Link>
               <Link href="#roi-calculator" className="hover:text-[#007B81] transition-colors">Practice ROI</Link>
-              <Link href="#pricing" className="hover:text-[#007B81] transition-colors">Plans &amp; Retainers</Link>
+              <Link href="#pricing" className="hover:text-[#007B81] transition-colors">Practice Plans</Link>
               <Link href="#benchmark" className="hover:text-[#007B81] transition-colors">Agency Benchmark</Link>
               <button
                 onClick={() => setIsPrivacyModalOpen(true)}
@@ -113,7 +113,7 @@ export default function RootHomePage() {
               <span>FCA COBS 4 Standard Disclosures &bull; Consumer Duty FG22/5 Ready &bull; UK GDPR Fiduciary Safeguards</span>
             </div>
             <div>
-              &copy; {new Date().getFullYear()} UK IFA Portal Creator. All rights reserved.
+              &copy; {new Date().getFullYear()} IFA Media. All rights reserved.
             </div>
           </div>
         </div>

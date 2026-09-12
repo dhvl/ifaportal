@@ -16,7 +16,7 @@ export const AgencyComparisonGrid: React.FC = () => {
           </div>
           
           <h2 className="text-3xl sm:text-5xl font-black text-[#08232C] tracking-tight leading-[1.10]">
-            Traditional Web Agencies vs. The IFA Portal
+            Traditional Web Agencies vs. IFA Media
           </h2>
           
           <p className="text-base sm:text-lg text-[#636F75] leading-relaxed">
@@ -33,7 +33,7 @@ export const AgencyComparisonGrid: React.FC = () => {
             </div>
             <div className="col-span-4 sm:col-span-4 text-center text-[#F3C044] uppercase tracking-wider font-extrabold flex items-center justify-center space-x-1.5">
               <Zap className="w-4 h-4 text-[#F3C044] hidden sm:inline" />
-              <span>Our IFA Portal Platform</span>
+              <span>IFA Media Platform</span>
             </div>
             <div className="col-span-3 sm:col-span-4 text-center text-[#AFC3C9] uppercase tracking-wider">
               Traditional Agency Builds
@@ -49,9 +49,9 @@ export const AgencyComparisonGrid: React.FC = () => {
                 <span className="text-[11px] text-[#636F75] hidden sm:block">Cash outlay required before going live</span>
               </div>
               <div className="col-span-4 sm:col-span-4 text-center">
-                <div className="inline-flex items-center space-x-1.5 font-black text-[#0A6B48] bg-[#E8F8F2] px-3.5 py-1.5 rounded-xl border border-[#B4ECD6] font-mono">
+                <div className="inline-flex items-center space-x-1.5 font-black text-[#0A6B48] bg-[#E8F8F2] px-3.5 py-1.5 rounded-xl border border-[#B4ECD6]">
                   <Check className="w-4 h-4 text-[#0A6B48] shrink-0" />
-                  <span>£0 Setup (Quarterly)</span>
+                  <span>Included Onboarding</span>
                 </div>
               </div>
               <div className="col-span-3 sm:col-span-4 text-center">

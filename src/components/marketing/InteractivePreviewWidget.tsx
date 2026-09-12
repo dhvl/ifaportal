@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { 
   Bot, Calculator, MessageSquare, ShieldCheck, Sparkles, 
-  ExternalLink, Award, Clock, Layers, ArrowRight, Check
+  ExternalLink, Award, Clock, Layers, ArrowRight, Check, Mail
 } from 'lucide-react';
 
 interface InteractivePreviewWidgetProps {
@@ -44,7 +44,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
             }`}
           >
             <Sparkles className="w-4 h-4 text-[#F3C044]" />
-            <span>Wealth Pro (£599/mo)</span>
+            <span>Wealth Pro Platform</span>
           </button>
 
           <button
@@ -56,7 +56,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
             }`}
           >
             <Layers className="w-4 h-4 text-[#0A6B48]" />
-            <span>Starter Growth (£249/mo)</span>
+            <span>Starter Growth Platform</span>
           </button>
         </div>
       </div>
@@ -79,7 +79,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                     </span>
                   </div>
                   <span className="text-xs text-[#636F75] font-medium block pt-0.5">
-                    Live Demo Portal: <span className="font-mono text-[#08232C] font-bold">Heritage &amp; Trust Financial</span> (FRN: 419203)
+                    Live Demo Portal: <span className="font-mono text-[#08232C] font-bold">Trustworthy Advisors</span> (FRN: 419203)
                   </span>
                 </div>
               </div>
@@ -172,15 +172,23 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                 </span>
               </div>
 
-              <div className="space-y-1">
-                <span className="text-xs text-[#AFC3C9] uppercase tracking-wider font-extrabold">Monthly Retainer</span>
+              <div className="space-y-2">
+                <span className="text-xs text-[#AFC3C9] uppercase tracking-wider font-extrabold">Practice Plan</span>
                 <div className="flex items-baseline space-x-2">
-                  <span className="text-5xl font-black text-white font-mono">£599</span>
-                  <span className="text-xs text-[#AFC3C9] font-bold uppercase">/ month + VAT</span>
+                  <span className="text-3xl font-black text-white">Bespoke Quote</span>
                 </div>
-                <span className="text-xs text-[#5CDFB0] font-bold block pt-1">
-                  &bull; £0 Setup Fee on 3-Month Retainer Commitment
-                </span>
+                <p className="text-xs text-[#AFC3C9] leading-relaxed">
+                  Tailored commercial terms with built-in 3-month social growth retainer and £0 setup on quarterly contract.
+                </p>
+                <div className="pt-1">
+                  <a
+                    href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Wealth%20Pro%20Plan"
+                    className="inline-flex items-center space-x-1.5 text-xs text-[#F3C044] font-bold hover:underline"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-[#F3C044]" />
+                    <span>Inquire: inquiry@ifamedia.co.uk</span>
+                  </a>
+                </div>
               </div>
 
               <div className="p-4 bg-[#0E3542] rounded-2xl border border-[#1D4A59] space-y-2.5 text-xs">
@@ -203,13 +211,13 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
             </div>
 
             <div className="pt-6">
-              <Link
-                href="/admin/onboard?plan=pro"
+              <a
+                href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Wealth%20Pro%20Plan"
                 className="w-full py-4 rounded-2xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
               >
-                <span>Choose Wealth Pro Plan</span>
+                <span>Inquire for Pricing</span>
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -230,7 +238,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                     </span>
                   </div>
                   <span className="text-xs text-[#636F75] font-medium block pt-0.5">
-                    Live Demo Portal: <span className="font-mono text-[#08232C] font-bold">MLP Wealth Management</span> (FRN: 582194)
+                    Live Demo Portal: <span className="font-mono text-[#08232C] font-bold">Reliable Advisors</span> (FRN: 582194)
                   </span>
                 </div>
               </div>
@@ -323,15 +331,23 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                 </span>
               </div>
 
-              <div className="space-y-1">
-                <span className="text-xs text-[#A7F3D0] uppercase tracking-wider font-extrabold">Monthly Retainer</span>
+              <div className="space-y-2">
+                <span className="text-xs text-[#A7F3D0] uppercase tracking-wider font-extrabold">Practice Plan</span>
                 <div className="flex items-baseline space-x-2">
-                  <span className="text-5xl font-black text-white font-mono">£249</span>
-                  <span className="text-xs text-[#A7F3D0] font-bold uppercase">/ month + VAT</span>
+                  <span className="text-3xl font-black text-white">Bespoke Quote</span>
                 </div>
-                <span className="text-xs text-[#A7F3D0] font-bold block pt-1">
-                  &bull; £0 Setup Fee on 3-Month Retainer Commitment
-                </span>
+                <p className="text-xs text-[#A7F3D0] leading-relaxed">
+                  Tailored commercial terms with built-in 3-month social growth retainer and direct WhatsApp booking routing.
+                </p>
+                <div className="pt-1">
+                  <a
+                    href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Growth%20Plan"
+                    className="inline-flex items-center space-x-1.5 text-xs text-[#5CDFB0] font-bold hover:underline"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-[#5CDFB0]" />
+                    <span>Inquire: inquiry@ifamedia.co.uk</span>
+                  </a>
+                </div>
               </div>
 
               <div className="p-4 bg-[#043327] rounded-2xl border border-[#0D7A53] space-y-2.5 text-xs">
@@ -354,13 +370,13 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
             </div>
 
             <div className="pt-6">
-              <Link
-                href="/admin/onboard?plan=starter"
+              <a
+                href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Growth%20Plan"
                 className="w-full py-4 rounded-2xl bg-[#5CDFB0] hover:bg-[#4BD2A3] text-[#064E3B] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
               >
-                <span>Choose Starter Growth Plan</span>
+                <span>Inquire for Pricing</span>
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>

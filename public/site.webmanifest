@@ -1,6 +1,6 @@
 {
-  "name": "UK IFA Portal Creator",
-  "short_name": "IFA Portal",
+  "name": "IFA Media",
+  "short_name": "IFA Media",
   "description": "FCA-compliant Independent Financial Adviser website portals with custom branding, AI concierge chatbots, and built-in social media retainers.",
   "start_url": "/",
   "display": "standalone",

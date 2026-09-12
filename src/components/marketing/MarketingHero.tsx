@@ -56,7 +56,7 @@ export const MarketingHero: React.FC = () => {
                     <Sparkles className="w-3.5 h-3.5 text-[#B45309]" />
                   </div>
                   <span className="text-[11px] text-[#636F75] font-medium">
-                    Wealth Pro (£599/mo) &bull; AI Concierge &amp; Calculators
+                    Wealth Pro Platform &bull; AI Concierge &amp; Calculators
                   </span>
                 </button>
 
@@ -74,7 +74,7 @@ export const MarketingHero: React.FC = () => {
                     <UserCheck className="w-3.5 h-3.5 text-[#0A6B48]" />
                   </div>
                   <span className="text-[11px] text-[#636F75] font-medium">
-                    Starter Growth (£249/mo) &bull; Direct WhatsApp Booking
+                    Starter Growth Platform &bull; Direct WhatsApp Booking
                   </span>
                 </button>
 
@@ -92,7 +92,7 @@ export const MarketingHero: React.FC = () => {
                     <Calculator className="w-3.5 h-3.5 text-[#1D4ED8]" />
                   </div>
                   <span className="text-[11px] text-[#636F75] font-medium">
-                    Wealth Pro (£599/mo) &bull; Drawdown &amp; IHT Calculators
+                    Wealth Pro Platform &bull; Drawdown &amp; IHT Calculators
                   </span>
                 </button>
               </div>

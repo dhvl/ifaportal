@@ -51,7 +51,7 @@ export const MarketingHeader: React.FC<MarketingHeaderProps> = ({ onOpenPrivacyM
           <div>
             <div className="flex items-center space-x-2">
               <span className="text-xl font-black text-[#08232C] tracking-tight leading-none">
-                IFA Portal
+                IFA Media
               </span>
               <span className="text-[10px] bg-[#E8F8F2] text-[#0A6B48] border border-[#B4ECD6] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">
                 UK PLATFORM
@@ -78,7 +78,7 @@ export const MarketingHeader: React.FC<MarketingHeaderProps> = ({ onOpenPrivacyM
             </span>
           </Link>
           <Link href="#pricing" className="hover:text-[#007B81] transition-colors">
-            Plans &amp; Retainers
+            Practice Plans
           </Link>
           <Link href="#benchmark" className="hover:text-[#007B81] transition-colors">
             Agency Benchmark

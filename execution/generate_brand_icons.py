@@ -75,8 +75,8 @@ BRAND_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 </svg>"""
 
 MANIFEST_JSON = """{
-  "name": "UK IFA Portal Creator",
-  "short_name": "IFA Portal",
+  "name": "IFA Media",
+  "short_name": "IFA Media",
   "description": "FCA-compliant Independent Financial Adviser website portals with custom branding, AI concierge chatbots, and built-in social media retainers.",
   "start_url": "/",
   "display": "standalone",

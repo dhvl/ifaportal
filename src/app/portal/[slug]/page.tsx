@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: [
       client.firmName,
       'Independent Financial Adviser UK',
-      'IFA Portal',
+      'IFA Media',
       'Pension Planning UK',
       'Wealth Management',
       'FCA Regulated',

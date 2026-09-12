@@ -470,11 +470,11 @@ export default function OnboardingQuestionnairePage() {
                           3-Month Retainer (Default)
                         </span>
                         <span className="bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full">
-                          £0 Setup Fee
+                          Included Onboarding
                         </span>
                       </div>
                       <p className="text-xs text-slate-600 mt-1">
-                        Zero setup fee when opting for standard quarterly commitment. Social media retainer built-in.
+                        Standard quarterly commitment with built-in social media growth retainer.
                       </p>
                     </button>
 
@@ -492,11 +492,11 @@ export default function OnboardingQuestionnairePage() {
                           Month-to-Month Rolling
                         </span>
                         <span className="bg-amber-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full">
-                          Setup Fee Required
+                          Flexible Terms
                         </span>
                       </div>
                       <p className="text-xs text-slate-600 mt-1">
-                        Flexible rolling monthly terms. £200 setup fee for Starter, £1,000 setup fee for Pro.
+                        Flexible rolling monthly terms for independent financial advisory practices.
                       </p>
                     </button>
                   </div>
@@ -520,16 +520,16 @@ export default function OnboardingQuestionnairePage() {
                         </div>
                         <div>
                           <div className="flex items-center space-x-2">
-                            <h4 className="font-extrabold text-base text-slate-900">Starter Plan</h4>
+                            <h4 className="font-extrabold text-base text-slate-900">Starter Growth Platform</h4>
                             <span className="bg-slate-200 text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Essential</span>
                           </div>
                           <span className="text-xs text-slate-500">Website &amp; WhatsApp Direct with Built-in Social Media</span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-xl font-black text-slate-900">£249 <span className="text-xs font-normal text-slate-500">/mo</span></div>
-                        <span className={`text-[10px] font-bold ${formData.contractDuration === 'quarterly' ? 'text-emerald-700' : 'text-amber-700'}`}>
-                          {formData.contractDuration === 'quarterly' ? '£0 Setup Fee' : '£200 Setup Fee'}
+                        <div className="text-base font-black text-slate-900">Bespoke Quote</div>
+                        <span className="text-[10px] text-slate-500 font-medium">
+                          inquiry@ifamedia.co.uk
                         </span>
                       </div>
                     </div>
@@ -561,16 +561,16 @@ export default function OnboardingQuestionnairePage() {
                         </div>
                         <div>
                           <div className="flex items-center space-x-2">
-                            <h4 className="font-extrabold text-base text-slate-900">Pro Plan</h4>
-                            <span className="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Yardstick Challenger</span>
+                            <h4 className="font-extrabold text-base text-slate-900">Wealth Pro Platform</h4>
+                            <span className="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Full Engine</span>
                           </div>
                           <span className="text-xs text-slate-500">Full AI Chatbot + Calculators + Lead Magnets + Social Media</span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-xl font-black text-slate-900">£599 <span className="text-xs font-normal text-slate-500">/mo</span></div>
-                        <span className={`text-[10px] font-bold ${formData.contractDuration === 'quarterly' ? 'text-emerald-700' : 'text-amber-700'}`}>
-                          {formData.contractDuration === 'quarterly' ? '£0 Setup Fee' : '£1,000 Setup Fee'}
+                        <div className="text-base font-black text-slate-900">Bespoke Quote</div>
+                        <span className="text-[10px] text-slate-500 font-medium">
+                          inquiry@ifamedia.co.uk
                         </span>
                       </div>
                     </div>
@@ -627,7 +627,7 @@ export default function OnboardingQuestionnairePage() {
                           </div>
                           <div className="mt-3 pt-2 border-t border-slate-100 flex justify-between items-center text-xs font-bold text-slate-800">
                             <span className="text-[10px] text-slate-400 uppercase tracking-wider">{addon.category}</span>
-                            <span>+£{addon.priceMonthly} / mo</span>
+                            <span className="text-amber-700">Custom Add-On</span>
                           </div>
                         </div>
                       );
@@ -687,7 +687,7 @@ export default function OnboardingQuestionnairePage() {
                     }`}
                   >
                     <div>
-                      <h4 className="font-bold text-base text-slate-900">Modern Wealth (Inspired by MLP Wealth)</h4>
+                      <h4 className="font-bold text-base text-slate-900">Reliable Advisors Layout</h4>
                       <p className="text-xs text-slate-500">Navy/Gold theme, high trust hero, 4-stage advice journey, fee transparency.</p>
                     </div>
                     {formData.templateId === 'modern-wealth' && <CheckCircle2 className="w-6 h-6 text-amber-600 shrink-0" />}
@@ -702,7 +702,7 @@ export default function OnboardingQuestionnairePage() {
                     }`}
                   >
                     <div>
-                      <h4 className="font-bold text-base text-slate-900">Heritage &amp; Trust (Executive Classic)</h4>
+                      <h4 className="font-bold text-base text-slate-900">Trustworthy Advisors (Executive Classic)</h4>
                       <p className="text-xs text-slate-500">Executive serif typography, retirement planning spotlight, and legacy wealth focus.</p>
                     </div>
                     {formData.templateId === 'heritage-trust' && <CheckCircle2 className="w-6 h-6 text-amber-600 shrink-0" />}
@@ -748,7 +748,7 @@ export default function OnboardingQuestionnairePage() {
                   </div>
                   <div className="flex justify-between border-b border-slate-200 pb-2.5">
                     <span className="text-slate-500">Selected Plan Tier:</span>
-                    <strong className="text-indigo-700 font-bold uppercase">{planInfo.name} (£{basePrice}/mo)</strong>
+                    <strong className="text-indigo-700 font-bold uppercase">{planInfo.name}</strong>
                   </div>
                   <div className="flex justify-between border-b border-slate-200 pb-2.5">
                     <span className="text-slate-500">Contract Terms:</span>
@@ -758,8 +758,8 @@ export default function OnboardingQuestionnairePage() {
                   </div>
                   <div className="flex justify-between border-b border-slate-200 pb-2.5">
                     <span className="text-slate-500">Setup Fee:</span>
-                    <strong className={setupFee === 0 ? 'text-emerald-700 font-bold' : 'text-amber-700 font-bold'}>
-                      {setupFee === 0 ? '£0 (Waived on 3-Month Contract)' : `£${setupFee} One-Time`}
+                    <strong className="text-emerald-700 font-bold">
+                      {formData.contractDuration === 'quarterly' ? 'Waived on 3-Month Contract' : 'Bespoke Quote'}
                     </strong>
                   </div>
                   <div className="flex justify-between border-b border-slate-200 pb-2.5">
@@ -769,14 +769,17 @@ export default function OnboardingQuestionnairePage() {
                   {formData.selectedAddonIds.length > 0 && (
                     <div className="flex justify-between border-b border-slate-200 pb-2.5">
                       <span className="text-slate-500">Selected Add-ons ({formData.selectedAddonIds.length}):</span>
-                      <strong className="text-amber-700 font-bold">+£{addonsTotal}/mo</strong>
+                      <strong className="text-amber-700 font-bold">Custom Scope</strong>
                     </div>
                   )}
-                  <div className="flex justify-between border-b border-slate-200 pb-2.5">
-                    <span className="text-slate-500">Total Monthly Investment:</span>
-                    <strong className="text-slate-950 font-black text-sm">
-                      £{totalMonthlyPrice} / month {setupFee > 0 ? `(+ £${setupFee} setup fee)` : '(£0 setup fee)'}
-                    </strong>
+                  <div className="flex justify-between border-b border-slate-200 pb-2.5 items-center">
+                    <span className="text-slate-500">Commercial Investment:</span>
+                    <a
+                      href="mailto:inquiry@ifamedia.co.uk?subject=Commercial%20Pricing%20Inquiry%20-%20Practice%20Onboarding"
+                      className="text-amber-700 font-bold hover:underline inline-flex items-center space-x-1"
+                    >
+                      <span>Bespoke Quote (inquiry@ifamedia.co.uk)</span>
+                    </a>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-500">Live Portal Slug:</span>
@@ -826,7 +829,7 @@ export default function OnboardingQuestionnairePage() {
                 <span>Real-Time Practice Preview</span>
               </span>
               <span className="text-[10px] text-emerald-700 font-bold font-mono bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-                {planInfo.name} (£{totalMonthlyPrice}/mo)
+                {planInfo.name}
               </span>
             </div>
 

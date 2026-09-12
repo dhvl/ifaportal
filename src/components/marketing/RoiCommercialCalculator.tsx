@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Calculator, TrendingUp, ArrowRight, Sparkles, Check } from 'lucide-react';
+import { Calculator, TrendingUp, ArrowRight, Sparkles, Check, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 export const RoiCommercialCalculator: React.FC = () => {
@@ -14,14 +14,10 @@ export const RoiCommercialCalculator: React.FC = () => {
   const ongoingAnnualRevenue = portfolioSize * (ongoingFeePercent / 100);
   const tenYearLtv = upfrontRevenue + ongoingAnnualRevenue * 10;
 
-  const annualProCost = 599 * 12; // £7,188
-
-  // 1 Client ROI
-  const netLtvFromOneClient = tenYearLtv - annualProCost;
-
-  // 3 Clients ROI
-  const netLtvFromThreeClients = tenYearLtv * 3 - annualProCost;
-  const netYearOneThreeClients = (upfrontRevenue + ongoingAnnualRevenue) * 3 - annualProCost;
+  // Practice Revenue Projections
+  const ltvFromOneClient = tenYearLtv;
+  const ltvFromThreeClients = tenYearLtv * 3;
+  const yearOneThreeClients = (upfrontRevenue + ongoingAnnualRevenue) * 3;
 
   const formatGbp = (val: number) => {
     return new Intl.NumberFormat('en-GB', {
@@ -42,11 +38,11 @@ export const RoiCommercialCalculator: React.FC = () => {
           </div>
           
           <h2 className="text-3xl sm:text-5xl font-black text-[#08232C] tracking-tight leading-[1.10]">
-            Calculate Your Practice ROI from 1 Single Client
+            Calculate Your Practice Revenue from 1 Single Client
           </h2>
           
           <p className="text-base sm:text-lg text-[#636F75] leading-relaxed">
-            UK Independent Financial Advisers operate with exceptionally high client Lifetime Value (LTV). Adjust your practice parameters to see why 1 single new client pays for your entire year on the Pro Plan.
+            UK Independent Financial Advisers operate with exceptionally high client Lifetime Value (LTV). Adjust your practice parameters to see the revenue generated from just 1 new client acquired through our high-converting portals.
           </p>
         </div>
 
@@ -159,10 +155,10 @@ export const RoiCommercialCalculator: React.FC = () => {
                   <span className="text-[10px] font-black uppercase tracking-widest text-[#5CDFB0]">
                     Commercial Economics
                   </span>
-                  <h3 className="text-xl font-black text-white">Wealth Pro ROI Projection</h3>
+                  <h3 className="text-xl font-black text-white">Practice Revenue Projection</h3>
                 </div>
-                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#143946] text-[#AFC3C9] border border-[#235364]">
-                  Cost: {formatGbp(annualProCost)}/yr
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#143946] text-[#5CDFB0] border border-[#235364]">
+                  High Client LTV
                 </span>
               </div>
 
@@ -174,23 +170,23 @@ export const RoiCommercialCalculator: React.FC = () => {
                     <span>Scenario A: Winning Just 1 Client in Year 1</span>
                   </span>
                   <span className="text-xs font-mono font-black text-[#08232C] px-2 py-0.5 rounded-md bg-[#5CDFB0]">
-                    100% Sunk Cost Recouped
+                    1 Client Yield
                   </span>
                 </div>
 
                 <div className="flex items-baseline justify-between pt-1">
                   <div>
                     <span className="text-4xl sm:text-5xl font-black text-white font-mono">
-                      {formatGbp(netLtvFromOneClient)}
+                      {formatGbp(ltvFromOneClient)}
                     </span>
                     <span className="text-xs text-[#AFC3C9] block font-bold pt-1">
-                      Net 10-Year Profit (after deducting annual Pro platform cost)
+                      10-Year Cumulative Practice Value
                     </span>
                   </div>
                 </div>
 
                 <p className="text-[11px] text-[#AFC3C9] leading-relaxed pt-1">
-                  Upfront fee of {formatGbp(upfrontRevenue)} pays for {((upfrontRevenue / annualProCost) * 100).toFixed(0)}% of your annual software cost on Day 1.
+                  Initial advice fee of {formatGbp(upfrontRevenue)} upfront plus {formatGbp(ongoingAnnualRevenue)} per year in recurring servicing revenue.
                 </p>
               </div>
 
@@ -209,29 +205,29 @@ export const RoiCommercialCalculator: React.FC = () => {
                 <div className="flex items-baseline justify-between pt-1">
                   <div>
                     <span className="text-4xl sm:text-5xl font-black text-[#F3C044] font-mono">
-                      {formatGbp(netLtvFromThreeClients)}
+                      {formatGbp(ltvFromThreeClients)}
                     </span>
                     <span className="text-xs text-[#DCE7EB] block font-bold pt-1">
-                      Net 10-Year Cumulative Practice Value
+                      10-Year Cumulative Practice Value
                     </span>
                   </div>
                 </div>
 
                 <div className="pt-2 text-xs font-semibold text-[#AFC3C9] flex items-center justify-between border-t border-[#235364]">
-                  <span>Year 1 Net Practice Cash Inflow:</span>
-                  <span className="font-mono font-black text-[#5CDFB0] text-sm">+{formatGbp(netYearOneThreeClients)}</span>
+                  <span>Year 1 Practice Cash Inflow:</span>
+                  <span className="font-mono font-black text-[#5CDFB0] text-sm">+{formatGbp(yearOneThreeClients)}</span>
                 </div>
               </div>
             </div>
 
             <div className="pt-4">
-              <Link
-                href="/admin/onboard?plan=pro"
+              <a
+                href="mailto:inquiry@ifamedia.co.uk?subject=Practice%20ROI%20and%20Pricing%20Inquiry%20-%20IFA%20Media"
                 className="w-full py-4 rounded-2xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-black text-xs uppercase tracking-widest transition-all shadow-md flex items-center justify-center space-x-2"
               >
-                <span>Deploy Practice on Wealth Pro</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+                <Mail className="w-4 h-4 text-[#08232C]" />
+                <span>Inquire for Practice Pricing (inquiry@ifamedia.co.uk)</span>
+              </a>
             </div>
           </div>
         </div>

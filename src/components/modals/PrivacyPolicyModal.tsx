@@ -12,7 +12,7 @@ interface PrivacyPolicyModalProps {
 export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
   isOpen,
   onClose,
-  firmName = 'UK IFA Portal Creator',
+  firmName = 'IFA Media',
 }) => {
   if (!isOpen) return null;
 

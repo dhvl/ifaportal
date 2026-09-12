@@ -137,7 +137,7 @@ export const FCABadgeFooter: React.FC<FCABadgeFooterProps> = ({ client, themeMod
         {/* Copyright */}
         <div className="flex flex-col sm:flex-row items-center justify-between pt-6 border-t border-slate-800 text-xs text-slate-500 gap-4">
           <div>
-            &copy; {new Date().getFullYear()} {client.firmName}. All rights reserved. Powered by UK IFA Portal.
+            &copy; {new Date().getFullYear()} {client.firmName}. All rights reserved. Powered by IFA Media.
           </div>
           <div className="flex items-center space-x-6">
             <a href="#privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</a>
