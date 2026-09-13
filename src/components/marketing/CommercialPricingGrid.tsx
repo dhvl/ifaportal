@@ -47,7 +47,7 @@ export const CommercialPricingGrid: React.FC = () => {
                 <span className="text-[10px] font-black uppercase tracking-widest text-[#636F75] block">
                   Boutique &amp; Solo IFAs
                 </span>
-                <h3 className="text-2xl font-black text-[#08232C]">Starter Growth</h3>
+                <h3 className="text-2xl font-black text-[#08232C]">Starter Plan</h3>
               </div>
               <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase bg-[#E8F8F2] text-[#0A6B48] border border-[#B4ECD6]">
                 Starter Tier
@@ -61,14 +61,14 @@ export const CommercialPricingGrid: React.FC = () => {
             {/* Price Box */}
             <div className="p-6 bg-[#EAF3F9] rounded-2xl border-2 border-[#D8E5EE] space-y-2">
               <div className="flex items-baseline space-x-2">
-                <span className="text-3xl sm:text-4xl font-black text-[#08232C]">Bespoke Quote</span>
+                <span className="text-3xl sm:text-4xl font-black text-[#08232C]">Pricing on Request</span>
               </div>
               <div className="pt-1 text-xs text-[#475760] font-medium">
-                Tailored commercial terms &bull; Includes 3-month social media growth retainer
+                Fixed package pricing &bull; Includes 3-month social media growth retainer
               </div>
               <div className="pt-2">
                 <a
-                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Growth%20Platform"
+                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan"
                   className="inline-flex items-center space-x-1.5 text-xs font-black text-[#0A6B48] hover:underline"
                 >
                   <Mail className="w-4 h-4 text-[#0A6B48]" />
@@ -105,16 +105,16 @@ export const CommercialPricingGrid: React.FC = () => {
 
           <div className="pt-6 border-t-2 border-[#E2EEF5]">
             <a
-              href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Growth%20Platform"
+              href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan"
               className="w-full py-4 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2 border border-[#184654]"
             >
-              <span>Inquire for Starter Platform</span>
+              <span>Inquire for Starter Plan</span>
               <ArrowRight className="w-4 h-4 text-[#5CDFB0]" />
             </a>
           </div>
         </div>
 
-        {/* Growth Plan (Wealth Pro) */}
+        {/* Growth Plan */}
         <div className="bg-[#08232C] text-white border-2 border-[#143946] rounded-[32px] p-8 sm:p-10 space-y-7 shadow-xl relative flex flex-col justify-between">
           <div className="absolute -top-4 right-8">
             <span className="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest bg-[#F3C044] text-[#08232C] shadow-md border border-[#F5CA5E]">
@@ -128,10 +128,10 @@ export const CommercialPricingGrid: React.FC = () => {
                 <span className="text-[10px] font-black uppercase tracking-widest text-[#F3C044] block">
                   Established Wealth Managers
                 </span>
-                <h3 className="text-2xl font-black text-white">Growth Platform</h3>
+                <h3 className="text-2xl font-black text-white">Growth Plan</h3>
               </div>
               <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase bg-[#143946] text-[#F3C044] border border-[#235364]">
-                Pro Tier
+                Growth Tier
               </span>
             </div>
 
@@ -142,14 +142,14 @@ export const CommercialPricingGrid: React.FC = () => {
             {/* Price Box */}
             <div className="p-6 bg-[#0E3542] rounded-2xl border-2 border-[#1D4A59] space-y-2">
               <div className="flex items-baseline space-x-2">
-                <span className="text-3xl sm:text-4xl font-black text-white">Bespoke Quote</span>
+                <span className="text-3xl sm:text-4xl font-black text-white">Pricing on Request</span>
               </div>
               <div className="pt-1 text-xs text-[#AFC3C9] font-medium">
-                Custom scope &bull; Includes 3-month social growth retainer, AI concierge &amp; calculators
+                Fixed package pricing &bull; Includes 3-month social growth retainer, AI concierge &amp; calculators
               </div>
               <div className="pt-2">
                 <a
-                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Platform"
+                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan"
                   className="inline-flex items-center space-x-1.5 text-xs font-black text-[#F3C044] hover:underline"
                 >
                   <Mail className="w-4 h-4 text-[#F3C044]" />
@@ -161,7 +161,7 @@ export const CommercialPricingGrid: React.FC = () => {
             {/* Inclusions */}
             <div className="space-y-3 pt-1">
               <span className="text-[11px] font-black uppercase tracking-widest text-[#F3C044] block">
-                Everything in Starter, Plus:
+                Everything in Starter Plan, Plus:
               </span>
               <ul className="space-y-3 text-xs text-[#DCE7EB]">
                 <li className="flex items-start space-x-3">
@@ -186,10 +186,10 @@ export const CommercialPricingGrid: React.FC = () => {
 
           <div className="pt-6 border-t border-[#143946]">
             <a
-              href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Platform"
+              href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan"
               className="w-full py-4 rounded-2xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
             >
-              <span>Inquire for Growth Platform</span>
+              <span>Inquire for Growth Plan</span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>

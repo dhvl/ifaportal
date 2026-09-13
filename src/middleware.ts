@@ -42,7 +42,7 @@ export function middleware(request: NextRequest) {
 
   // If a valid subdomain exists (excluding www)
   if (subdomain && subdomain !== 'www') {
-    // Flagship Starter Growth portal (Reliable Advisors)
+    // Flagship Starter Plan portal (Reliable Advisors)
     if (subdomain === 'starter') {
       if (url.pathname === '/' || url.pathname === '') {
         url.pathname = '/portal/reliable-advisors';

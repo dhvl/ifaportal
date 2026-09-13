@@ -90,7 +90,7 @@ export default function AdminDashboardPage() {
             </h1>
 
             <p className="text-slate-300 text-sm leading-relaxed max-w-2xl font-normal">
-              Manage client practices across <b>Starter Growth</b> and <b>Wealth Pro</b> platforms. Both platforms include built-in social media management on a 3-month retainer. For custom practice pricing, drop an inquiry to <a href="mailto:inquiry@ifamedia.co.uk" className="text-amber-400 underline">inquiry@ifamedia.co.uk</a>.
+              Manage client practices across <b>Starter Plan</b> and <b>Growth Plan</b> platforms. Both platforms include built-in social media management on a 3-month retainer. For custom practice pricing, drop an inquiry to <a href="mailto:inquiry@ifamedia.co.uk" className="text-amber-400 underline">inquiry@ifamedia.co.uk</a>.
             </p>
 
             <div className="pt-4 flex flex-wrap gap-4 text-xs font-bold text-slate-900 border-t border-slate-800">
@@ -246,7 +246,7 @@ export default function AdminDashboardPage() {
                                   : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
                               }`}
                             >
-                              {t === 'starter' ? 'Starter Growth' : 'Wealth Pro'}
+                              {t === 'starter' ? 'Starter Plan' : 'Growth Plan'}
                             </button>
                           ))}
                         </div>
@@ -296,7 +296,7 @@ export default function AdminDashboardPage() {
                 target="_blank"
                 className="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-600 hover:text-amber-700"
               >
-                <span>Preview Template (Starter Platform)</span>
+                <span>Preview Template (Starter Plan)</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -315,7 +315,7 @@ export default function AdminDashboardPage() {
                 target="_blank"
                 className="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-600 hover:text-amber-700"
               >
-                <span>Preview Template (Wealth Pro Platform)</span>
+                <span>Preview Template (Growth Plan)</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>

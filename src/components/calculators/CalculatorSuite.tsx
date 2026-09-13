@@ -95,7 +95,7 @@ export const CalculatorSuite: React.FC<CalculatorSuiteProps> = ({
           ) : (
             <div className="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-slate-800/40 text-slate-500 text-xs border border-slate-700/50">
               <Lock className="w-3.5 h-3.5" />
-              <span>Full IHT &amp; ISA Suite unlocked on Pro plan</span>
+              <span>Full IHT &amp; ISA Suite unlocked on Growth plan</span>
             </div>
           )}
         </div>

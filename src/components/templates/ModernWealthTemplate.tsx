@@ -282,7 +282,7 @@ export const ModernWealthTemplate: React.FC<TemplateProps> = ({ client }) => {
         />
       </div>
 
-      {/* Pro Tier Only: Lead Magnets & Calculator Suite */}
+      {/* Growth Tier Only: Lead Magnets & Calculator Suite */}
       {plan === 'pro' ? (
         <>
           <div id="guides">

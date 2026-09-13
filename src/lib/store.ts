@@ -59,10 +59,10 @@ export const DEFAULT_SERVICES = [
 
 export const PLAN_DETAILS = {
   starter: {
-    name: 'Starter Growth',
-    priceMonthly: 249,
+    name: 'Starter Plan',
+    priceMonthly: 0,
     setupFeeQuarterly: 0,
-    setupFeeMonthly: 200,
+    setupFeeMonthly: 0,
     defaultRetainerMonths: 3,
     badge: 'Starter',
     leadMagnetsCount: 0,
@@ -74,15 +74,15 @@ export const PLAN_DETAILS = {
     hasVouchedForSync: false,
     hasMultiAdviser: false,
     hasClientPortal: false,
-    tagline: 'High-converting bespoke website + WhatsApp inquiry button + 3-month built-in social media retainer.',
+    tagline: 'High-converting website + WhatsApp inquiry button + 3-month built-in social media retainer.',
   },
   pro: {
-    name: 'Client Acquisition Pro',
-    priceMonthly: 599,
+    name: 'Growth Plan',
+    priceMonthly: 0,
     setupFeeQuarterly: 0,
-    setupFeeMonthly: 1000,
+    setupFeeMonthly: 0,
     defaultRetainerMonths: 3,
-    badge: 'Pro (Recommended)',
+    badge: 'Growth (Recommended)',
     leadMagnetsCount: 3,
     calculators: ['pension', 'inheritanceTax', 'investmentGrowth'],
     hasWhatsAppClick: true,
@@ -98,18 +98,11 @@ export const PLAN_DETAILS = {
 
 export const ADDON_MARKETPLACE = [
   {
-    id: 'crm-integration',
-    title: 'Financial CRM 2-Way Integration',
-    description: 'Direct automated lead and client sync with Intelliflo Office, Adviser Cloud, Plannr, or HubSpot.',
-    priceMonthly: 79,
-    category: 'CRM',
-  },
-  {
-    id: 'workflow-automation',
-    title: 'Bespoke Drip Automations & Zapier',
-    description: 'Automated welcome sequences, annual review triggers, and seasonal UK tax-year-end reminders.',
-    priceMonthly: 99,
-    category: 'Automation',
+    id: 'crm-automation',
+    title: 'CRM Sync & Workflow Automation',
+    description: 'Automated 2-way sync with Intelliflo, Plannr, or HubSpot, plus automated onboarding & review sequences.',
+    priceMonthly: 149,
+    category: 'CRM & Automation',
   },
   {
     id: 'client-portal-sync',
@@ -120,8 +113,8 @@ export const ADDON_MARKETPLACE = [
   },
   {
     id: 'local-seo-funnel',
-    title: 'Bespoke Local SEO & Google Ads Funnel',
-    description: 'Targeted Google Business Profile optimisation and hyper-local IFA search campaign management.',
+    title: 'Local SEO & Google Ads Funnel',
+    description: 'Targeted Google Business Profile optimisation and hyper-local UK IFA search campaign management.',
     priceMonthly: 199,
     category: 'Marketing',
   },

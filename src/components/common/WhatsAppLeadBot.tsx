@@ -13,7 +13,7 @@ interface WhatsAppLeadBotProps {
 
 export const WhatsAppLeadBot: React.FC<WhatsAppLeadBotProps> = ({ client }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // AI bot state for Pro tier
+  // AI bot state for Growth tier
   const [chatMessages, setChatMessages] = useState<Array<{ sender: 'bot' | 'user'; text: string }>>([
     {
       sender: 'bot',

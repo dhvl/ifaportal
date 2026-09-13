@@ -520,28 +520,28 @@ export default function OnboardingQuestionnairePage() {
                         </div>
                         <div>
                           <div className="flex items-center space-x-2">
-                            <h4 className="font-extrabold text-base text-slate-900">Starter Growth Platform</h4>
+                            <h4 className="font-extrabold text-base text-slate-900">Starter Plan</h4>
                             <span className="bg-slate-200 text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Essential</span>
                           </div>
                           <span className="text-xs text-slate-500">Website &amp; WhatsApp Direct with Built-in Social Media</span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-base font-black text-slate-900">Bespoke Quote</div>
+                        <div className="text-base font-black text-slate-900">Pricing on Request</div>
                         <span className="text-[10px] text-slate-500 font-medium">
                           inquiry@ifamedia.co.uk
                         </span>
                       </div>
                     </div>
                     <div className="mt-4 pt-3 border-t border-slate-200/80 grid grid-cols-2 gap-2 text-xs text-slate-700 font-medium">
-                      <div>&bull; Bespoke High-Converting IFA Website</div>
+                      <div>&bull; High-Converting IFA Website</div>
                       <div>&bull; Direct WhatsApp Inquiry Button</div>
                       <div>&bull; FCA FRN &amp; FSCS Consumer Duty Badges</div>
                       <div>&bull; <b>Built-in Social Media Retainer (3 Months)</b></div>
                     </div>
                   </div>
 
-                  {/* Plan 2: Client Acquisition Pro */}
+                  {/* Plan 2: Growth Plan */}
                   <div
                     onClick={() => setFormData({ ...formData, planTier: 'pro' })}
                     className={`p-6 rounded-3xl border-2 cursor-pointer transition-all relative ${
@@ -551,7 +551,7 @@ export default function OnboardingQuestionnairePage() {
                     }`}
                   >
                     <div className="absolute -top-3 right-6 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm">
-                      ⭐ Recommended • Wealth Pro
+                      ⭐ Recommended • Growth Plan
                     </div>
 
                     <div className="flex items-center justify-between">
@@ -561,14 +561,14 @@ export default function OnboardingQuestionnairePage() {
                         </div>
                         <div>
                           <div className="flex items-center space-x-2">
-                            <h4 className="font-extrabold text-base text-slate-900">Wealth Pro Platform</h4>
+                            <h4 className="font-extrabold text-base text-slate-900">Growth Plan</h4>
                             <span className="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Full Engine</span>
                           </div>
                           <span className="text-xs text-slate-500">Full AI Chatbot + Calculators + Lead Magnets + Social Media</span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-base font-black text-slate-900">Bespoke Quote</div>
+                        <div className="text-base font-black text-slate-900">Pricing on Request</div>
                         <span className="text-[10px] text-slate-500 font-medium">
                           inquiry@ifamedia.co.uk
                         </span>
@@ -579,7 +579,7 @@ export default function OnboardingQuestionnairePage() {
                       <div>&bull; <b>3 Interactive Calculators (Pension, IHT, ISA)</b></div>
                       <div>&bull; <b>Automated Lead Magnets &amp; PDF Guides</b></div>
                       <div>&bull; <b>Built-in Social Media Retainer (3 Months)</b></div>
-                      <div>&bull; Bespoke Interactive Advice Journey UI</div>
+                      <div>&bull; Interactive Advice Journey UI</div>
                       <div>&bull; Live VouchedFor / Trustpilot Review Sync</div>
                     </div>
                   </div>
@@ -589,7 +589,7 @@ export default function OnboardingQuestionnairePage() {
                 <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center space-x-3 text-xs text-emerald-900">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                   <div>
-                    <strong>Built-in Social Media Retainer Included:</strong> Both Starter and Pro tiers include complete DFY financial advice social media campaigns on a default 3-month retainer.
+                    <strong>Built-in Social Media Retainer Included:</strong> Both Starter and Growth tiers include complete DFY financial advice social media campaigns on a default 3-month retainer.
                   </div>
                 </div>
 
@@ -598,7 +598,7 @@ export default function OnboardingQuestionnairePage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-sm font-bold text-slate-900">Optional Modular Add-Ons</h3>
-                      <p className="text-xs text-slate-500">Select any bespoke add-ons needed for this practice.</p>
+                      <p className="text-xs text-slate-500">Select any modular add-ons needed for this practice.</p>
                     </div>
                     <span className="text-xs text-slate-400 font-medium">Add-on Marketplace</span>
                   </div>
@@ -759,7 +759,7 @@ export default function OnboardingQuestionnairePage() {
                   <div className="flex justify-between border-b border-slate-200 pb-2.5">
                     <span className="text-slate-500">Setup Fee:</span>
                     <strong className="text-emerald-700 font-bold">
-                      {formData.contractDuration === 'quarterly' ? 'Waived on 3-Month Contract' : 'Bespoke Quote'}
+                      {formData.contractDuration === 'quarterly' ? 'Waived on 3-Month Contract' : 'Pricing on Request'}
                     </strong>
                   </div>
                   <div className="flex justify-between border-b border-slate-200 pb-2.5">
@@ -778,7 +778,7 @@ export default function OnboardingQuestionnairePage() {
                       href="mailto:inquiry@ifamedia.co.uk?subject=Commercial%20Pricing%20Inquiry%20-%20Practice%20Onboarding"
                       className="text-amber-700 font-bold hover:underline inline-flex items-center space-x-1"
                     >
-                      <span>Bespoke Quote (inquiry@ifamedia.co.uk)</span>
+                      <span>Pricing on Request (inquiry@ifamedia.co.uk)</span>
                     </a>
                   </div>
                   <div className="flex justify-between">

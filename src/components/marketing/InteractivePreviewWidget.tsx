@@ -4,8 +4,22 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { 
   Bot, Calculator, MessageSquare, ShieldCheck, Sparkles, 
-  ExternalLink, Award, Clock, Layers, ArrowRight, Check, Mail, CheckCircle2
+  ExternalLink, Award, Clock, ArrowRight, Check, Mail, Rocket
 } from 'lucide-react';
+
+const StepsIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M4 20h4v-4h4v-4h4V8h4" />
+  </svg>
+);
 
 interface InteractivePreviewWidgetProps {
   selectedPreset?: 'pro' | 'starter' | 'pension';
@@ -35,11 +49,11 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
       </div>
 
       <div className="bg-white border-2 border-[#D8E5EE] rounded-[32px] p-6 sm:p-10 shadow-sm space-y-8 max-w-6xl mx-auto transition-all">
-        {/* Clean Plan Switcher Tabs: Starter First, Growth Second */}
+        {/* Clean Plan Switcher Tabs: Starter Plan First, Growth Plan Second */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b-2 border-[#E2EEF5]">
           <div>
             <h3 className="text-xl sm:text-2xl font-black text-[#08232C]">
-              {activeTier === 'starter' ? 'Starter Growth Platform' : 'Growth Platform (Wealth Pro)'}
+              {activeTier === 'starter' ? 'Starter Plan' : 'Growth Plan'}
             </h3>
             <p className="text-xs text-[#636F75] font-medium pt-0.5">
               {activeTier === 'starter' 
@@ -48,7 +62,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
             </p>
           </div>
 
-          {/* Tab Selector: Starter First, Growth Second */}
+          {/* Tab Selector: Steps for Starter, Rocket for Growth */}
           <div className="inline-flex items-center p-1.5 bg-[#F0F7FB] rounded-2xl border-2 border-[#D8E5EE] gap-1 shrink-0">
             <button
               onClick={() => setUserSelectedTier('starter')}
@@ -58,8 +72,8 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                   : 'text-[#475760] hover:text-[#08232C]'
               }`}
             >
-              <Layers className="w-4 h-4 text-[#5CDFB0]" />
-              <span>1. Starter Growth</span>
+              <StepsIcon className="w-4 h-4 text-[#5CDFB0]" />
+              <span>Starter Plan</span>
             </button>
 
             <button
@@ -70,25 +84,25 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                   : 'text-[#475760] hover:text-[#08232C]'
               }`}
             >
-              <Sparkles className="w-4 h-4 text-[#F3C044]" />
-              <span>2. Growth Platform</span>
+              <Rocket className="w-4 h-4 text-[#F3C044]" />
+              <span>Growth Plan</span>
             </button>
           </div>
         </div>
 
-        {/* Tab 1: Starter Growth Platform (FIRST) */}
+        {/* Tab 1: Starter Plan (FIRST) */}
         {activeTier === 'starter' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-in fade-in duration-300">
             {/* Left Details */}
             <div className="lg:col-span-7 space-y-6 flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                  <div className="w-14 h-14 rounded-2xl bg-[#064E3B] text-[#5CDFB0] font-black text-lg flex items-center justify-center shadow-md border border-[#0A6B48]">
-                    START
+                  <div className="w-14 h-14 rounded-2xl bg-[#064E3B] text-[#5CDFB0] flex items-center justify-center shadow-md border border-[#0A6B48] shrink-0">
+                    <StepsIcon className="w-7 h-7 text-[#5CDFB0]" />
                   </div>
                   <div>
                     <div className="flex items-center space-x-2">
-                      <h4 className="text-2xl font-black text-[#08232C]">Starter Growth Platform</h4>
+                      <h4 className="text-2xl font-black text-[#08232C]">Starter Plan</h4>
                       <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-[#E8F8F2] text-[#0A6B48] border border-[#B4ECD6]">
                         Direct Routing
                       </span>
@@ -179,7 +193,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-mono uppercase px-3 py-1 rounded-full bg-[#043327] text-[#5CDFB0] font-extrabold border border-[#0D7A53]">
-                    STARTER GROWTH PLATFORM
+                    STARTER PLAN
                   </span>
                   <span className="text-xs font-mono text-[#5CDFB0] font-bold flex items-center space-x-1.5">
                     <span className="w-2 h-2 rounded-full bg-[#5CDFB0] animate-pulse" />
@@ -190,14 +204,14 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                 <div className="space-y-2">
                   <span className="text-xs text-[#A7F3D0] uppercase tracking-wider font-extrabold">Commercial Terms</span>
                   <div className="flex items-baseline space-x-2">
-                    <span className="text-3xl font-black text-white">Bespoke Quote</span>
+                    <span className="text-3xl font-black text-white">Pricing on Request</span>
                   </div>
                   <p className="text-xs text-[#A7F3D0] leading-relaxed">
-                    Tailored to solo advisers and boutique practices. Includes our 3-month social media growth retainer.
+                    Fixed package pricing for solo advisers and boutique practices. Includes our 3-month social media growth retainer.
                   </p>
                   <div className="pt-1">
                     <a
-                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Growth%20Platform"
+                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan"
                       className="inline-flex items-center space-x-1.5 text-xs text-[#5CDFB0] font-bold hover:underline"
                     >
                       <Mail className="w-3.5 h-3.5 text-[#5CDFB0]" />
@@ -209,17 +223,17 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                 <div className="p-4 bg-[#043327] rounded-2xl border border-[#0D7A53] space-y-2.5 text-xs">
                   <div className="font-extrabold text-[#5CDFB0]">Who This Is Perfect For:</div>
                   <ul className="space-y-2 text-[#D1FAE5] text-[12px]">
-                    <li className="flex items-center space-x-2.5">
+                    <li className="flex items-center space-x-2.5 whitespace-nowrap">
                       <Check className="w-4 h-4 text-[#5CDFB0] shrink-0" />
-                      <span>Solo IFAs &amp; independent wealth advisers</span>
+                      <span className="truncate">Solo IFAs &amp; boutique wealth advisers</span>
                     </li>
-                    <li className="flex items-center space-x-2.5">
+                    <li className="flex items-center space-x-2.5 whitespace-nowrap">
                       <Check className="w-4 h-4 text-[#5CDFB0] shrink-0" />
-                      <span>Firms seeking fast launch without £10k+ agency lock-in</span>
+                      <span className="truncate">Rapid launch with zero agency lock-in</span>
                     </li>
-                    <li className="flex items-center space-x-2.5">
+                    <li className="flex items-center space-x-2.5 whitespace-nowrap">
                       <Check className="w-4 h-4 text-[#5CDFB0] shrink-0" />
-                      <span>Direct phone and WhatsApp consultation capture</span>
+                      <span className="truncate">Direct WhatsApp &amp; phone lead capture</span>
                     </li>
                   </ul>
                 </div>
@@ -227,10 +241,10 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
 
               <div className="pt-6">
                 <a
-                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Growth%20Platform"
+                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan"
                   className="w-full py-4 rounded-2xl bg-[#5CDFB0] hover:bg-[#4BD2A3] text-[#064E3B] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
                 >
-                  <span>Inquire for Starter Platform</span>
+                  <span>Inquire for Starter Plan</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -238,19 +252,19 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
           </div>
         )}
 
-        {/* Tab 2: Growth Platform (SECOND) */}
+        {/* Tab 2: Growth Plan (SECOND) */}
         {activeTier === 'growth' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-in fade-in duration-300">
             {/* Left Details */}
             <div className="lg:col-span-7 space-y-6 flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                  <div className="w-14 h-14 rounded-2xl bg-[#08232C] text-[#F3C044] font-black text-xl flex items-center justify-center shadow-md border border-[#184654]">
-                    PRO
+                  <div className="w-14 h-14 rounded-2xl bg-[#08232C] text-[#F3C044] flex items-center justify-center shadow-md border border-[#184654] shrink-0">
+                    <Rocket className="w-7 h-7 text-[#F3C044]" />
                   </div>
                   <div>
                     <div className="flex items-center space-x-2">
-                      <h4 className="text-2xl font-black text-[#08232C]">Growth Platform (Wealth Pro)</h4>
+                      <h4 className="text-2xl font-black text-[#08232C]">Growth Plan</h4>
                       <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-[#FEF8E7] text-[#92400E] border border-[#FDE68A]">
                         Full AI Engine
                       </span>
@@ -341,7 +355,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-mono uppercase px-3 py-1 rounded-full bg-[#143946] text-[#F3C044] font-extrabold border border-[#235364]">
-                    GROWTH / WEALTH PRO PLAN
+                    GROWTH PLAN
                   </span>
                   <span className="text-xs font-mono text-[#F3C044] font-bold flex items-center space-x-1.5">
                     <span className="w-2 h-2 rounded-full bg-[#F3C044] animate-pulse" />
@@ -352,14 +366,14 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                 <div className="space-y-2">
                   <span className="text-xs text-[#AFC3C9] uppercase tracking-wider font-extrabold">Commercial Terms</span>
                   <div className="flex items-baseline space-x-2">
-                    <span className="text-3xl font-black text-white">Bespoke Quote</span>
+                    <span className="text-3xl font-black text-white">Pricing on Request</span>
                   </div>
                   <p className="text-xs text-[#AFC3C9] leading-relaxed">
-                    Tailored commercial terms with built-in 3-month social growth retainer, AI concierge, and lead magnets.
+                    Fixed package pricing with built-in 3-month social growth retainer, AI concierge, and lead magnets.
                   </p>
                   <div className="pt-1">
                     <a
-                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Platform"
+                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan"
                       className="inline-flex items-center space-x-1.5 text-xs text-[#F3C044] font-bold hover:underline"
                     >
                       <Mail className="w-3.5 h-3.5 text-[#F3C044]" />
@@ -371,17 +385,17 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                 <div className="p-4 bg-[#0E3542] rounded-2xl border border-[#1D4A59] space-y-2.5 text-xs">
                   <div className="font-extrabold text-[#F3C044]">Who This Is Perfect For:</div>
                   <ul className="space-y-2 text-[#AFC3C9] text-[12px]">
-                    <li className="flex items-center space-x-2.5">
+                    <li className="flex items-center space-x-2.5 whitespace-nowrap">
                       <Check className="w-4 h-4 text-[#5CDFB0] shrink-0" />
-                      <span>Established practices &amp; multi-adviser firms</span>
+                      <span className="truncate">Multi-adviser practices &amp; wealth firms</span>
                     </li>
-                    <li className="flex items-center space-x-2.5">
+                    <li className="flex items-center space-x-2.5 whitespace-nowrap">
                       <Check className="w-4 h-4 text-[#5CDFB0] shrink-0" />
-                      <span>Advisers seeking automated 24/7 lead qualification</span>
+                      <span className="truncate">24/7 automated AI lead qualification</span>
                     </li>
-                    <li className="flex items-center space-x-2.5">
+                    <li className="flex items-center space-x-2.5 whitespace-nowrap">
                       <Check className="w-4 h-4 text-[#5CDFB0] shrink-0" />
-                      <span>Practices targeting high-AUM pension consolidations</span>
+                      <span className="truncate">High-AUM pension consolidation campaigns</span>
                     </li>
                   </ul>
                 </div>
@@ -389,10 +403,10 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
 
               <div className="pt-6">
                 <a
-                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Platform"
+                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan"
                   className="w-full py-4 rounded-2xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
                 >
-                  <span>Inquire for Growth Platform</span>
+                  <span>Inquire for Growth Plan</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
