@@ -202,20 +202,22 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                 </div>
 
                 <div className="space-y-2">
-                  <span className="text-xs text-[#A7F3D0] uppercase tracking-wider font-extrabold">Commercial Terms</span>
-                  <div className="flex items-baseline space-x-2">
-                    <span className="text-3xl font-black text-white">Pricing on Request</span>
+                  <span className="text-[10px] font-mono text-[#A7F3D0] uppercase tracking-wider font-extrabold block">
+                    Unrivalled Entry Value
+                  </span>
+                  <div className="text-xl sm:text-2xl font-black text-white leading-snug">
+                    More features out-of-the-box than competitors&apos; top plans.
                   </div>
                   <p className="text-xs text-[#A7F3D0] leading-relaxed">
-                    Fixed package pricing for solo advisers and boutique practices. Includes our 3-month social media growth retainer.
+                    Full website build, Consumer Duty compliance engine, and 3-month done-for-you social retainer included as standard.
                   </p>
                   <div className="pt-1">
                     <a
-                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan"
+                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan%20Scope%20and%20Pricing"
                       className="inline-flex items-center space-x-1.5 text-xs text-[#5CDFB0] font-bold hover:underline"
                     >
                       <Mail className="w-3.5 h-3.5 text-[#5CDFB0]" />
-                      <span>Inquire: inquiry@ifamedia.co.uk</span>
+                      <span>Request Package Scope &amp; Fixed Fee</span>
                     </a>
                   </div>
                 </div>
@@ -364,20 +366,22 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                 </div>
 
                 <div className="space-y-2">
-                  <span className="text-xs text-[#AFC3C9] uppercase tracking-wider font-extrabold">Commercial Terms</span>
-                  <div className="flex items-baseline space-x-2">
-                    <span className="text-3xl font-black text-white">Pricing on Request</span>
+                  <span className="text-[10px] font-mono text-[#F3C044] uppercase tracking-wider font-extrabold block">
+                    Full Acquisition Engine
+                  </span>
+                  <div className="text-xl sm:text-2xl font-black text-white leading-snug">
+                    Complete 24/7 AI lead engine &amp; calculator platform.
                   </div>
                   <p className="text-xs text-[#AFC3C9] leading-relaxed">
-                    Fixed package pricing with built-in 3-month social growth retainer, AI concierge, and lead magnets.
+                    Conversational AI concierge, 3 UK financial calculators, multi-adviser routing, and built-in 3-month social growth retainer.
                   </p>
                   <div className="pt-1">
                     <a
-                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan"
+                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan%20Scope%20and%20Pricing"
                       className="inline-flex items-center space-x-1.5 text-xs text-[#F3C044] font-bold hover:underline"
                     >
                       <Mail className="w-3.5 h-3.5 text-[#F3C044]" />
-                      <span>Inquire: inquiry@ifamedia.co.uk</span>
+                      <span>Request Package Scope &amp; Fixed Fee</span>
                     </a>
                   </div>
                 </div>

@@ -21,8 +21,8 @@ export const CommercialPricingGrid: React.FC = () => {
           Two clear ways to work with us.
         </h2>
         
-        <p className="text-base sm:text-lg text-[#636F75] leading-relaxed">
-          Both platforms include our Done-For-You 3-Month Social Media Retainer as standard. No surprise fees, no 3-month agency delays.
+        <p className="text-base sm:text-lg text-[#636F75] leading-relaxed max-w-2xl mx-auto">
+          Even our foundation Starter Plan delivers more active capability out of the box than most agencies offer on their premium retainers.
         </p>
 
         {/* Pricing Inquiry Action Pill */}
@@ -32,7 +32,7 @@ export const CommercialPricingGrid: React.FC = () => {
             className="inline-flex items-center space-x-2.5 px-6 py-3 rounded-2xl bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs hover:shadow-md transition-all"
           >
             <Mail className="w-4 h-4 text-[#0A6B48]" />
-            <span>Drop us an email: inquiry@ifamedia.co.uk</span>
+            <span>Drop us an email for complete package scope: inquiry@ifamedia.co.uk</span>
           </a>
         </div>
       </div>
@@ -58,22 +58,35 @@ export const CommercialPricingGrid: React.FC = () => {
               Fast, high-trust, and built to turn web visitors into direct phone calls and WhatsApp consultations with zero tech hassle.
             </p>
 
-            {/* Price Box */}
-            <div className="p-6 bg-[#EAF3F9] rounded-2xl border-2 border-[#D8E5EE] space-y-2">
-              <div className="flex items-baseline space-x-2">
-                <span className="text-3xl sm:text-4xl font-black text-[#08232C]">Pricing on Request</span>
+            {/* Value & Inclusions Highlight Box (Replaced Big Pricing on Request) */}
+            <div className="p-5 sm:p-6 bg-[#EAF3F9] rounded-2xl border-2 border-[#D8E5EE] space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-white text-[#0A6B48] border border-[#B4ECD6]">
+                  Unrivalled Entry Value
+                </span>
+                <span className="text-[11px] font-bold text-[#475760]">
+                  Turnkey Fixed Package
+                </span>
               </div>
-              <div className="pt-1 text-xs text-[#475760] font-medium">
-                Fixed package pricing &bull; Includes 3-month social media growth retainer
+
+              <div className="space-y-1">
+                <div className="text-base sm:text-lg font-black text-[#08232C] leading-snug">
+                  Outperforms competitors&apos; top-tier builds from day one.
+                </div>
+                <p className="text-xs text-[#475760] leading-relaxed">
+                  While typical agencies charge £1k+/mo extra for marketing and updates, our foundation tier includes full FCA disclaimers and a dedicated 3-month social media growth retainer.
+                </p>
               </div>
-              <div className="pt-2">
+
+              <div className="pt-2 border-t border-[#D8E5EE]/80 flex items-center justify-between text-xs">
                 <a
-                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan"
-                  className="inline-flex items-center space-x-1.5 text-xs font-black text-[#0A6B48] hover:underline"
+                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan%20Scope%20and%20Pricing"
+                  className="inline-flex items-center space-x-1.5 font-bold text-[#0A6B48] hover:underline"
                 >
-                  <Mail className="w-4 h-4 text-[#0A6B48]" />
-                  <span>Inquire: inquiry@ifamedia.co.uk</span>
+                  <Mail className="w-3.5 h-3.5 text-[#0A6B48]" />
+                  <span>Request full scope &amp; fixed fee breakdown</span>
                 </a>
+                <span className="text-[10px] font-mono text-[#636F75] font-semibold">£0 Setup On Contract</span>
               </div>
             </div>
 
@@ -139,22 +152,35 @@ export const CommercialPricingGrid: React.FC = () => {
               Our flagship client acquisition engine. Comes with an active 24/7 AI Concierge, 3 interactive UK financial calculators, and retirement lead magnets.
             </p>
 
-            {/* Price Box */}
-            <div className="p-6 bg-[#0E3542] rounded-2xl border-2 border-[#1D4A59] space-y-2">
-              <div className="flex items-baseline space-x-2">
-                <span className="text-3xl sm:text-4xl font-black text-white">Pricing on Request</span>
+            {/* Value & Inclusions Highlight Box (Replaced Big Pricing on Request) */}
+            <div className="p-5 sm:p-6 bg-[#0E3542] rounded-2xl border-2 border-[#1D4A59] space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-[#143946] text-[#F3C044] border border-[#235364]">
+                  Full Acquisition Suite
+                </span>
+                <span className="text-[11px] font-bold text-[#AFC3C9]">
+                  AI &amp; Calculator Suite
+                </span>
               </div>
-              <div className="pt-1 text-xs text-[#AFC3C9] font-medium">
-                Fixed package pricing &bull; Includes 3-month social growth retainer, AI concierge &amp; calculators
+
+              <div className="space-y-1">
+                <div className="text-base sm:text-lg font-black text-white leading-snug">
+                  The digital asset traditional web studios can&apos;t match.
+                </div>
+                <p className="text-xs text-[#AFC3C9] leading-relaxed">
+                  A 24/7 conversational AI concierge, 3 interactive UK wealth calculators, and automated retirement lead magnets — pre-configured for your advisory partners.
+                </p>
               </div>
-              <div className="pt-2">
+
+              <div className="pt-2 border-t border-[#143946] flex items-center justify-between text-xs">
                 <a
-                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan"
-                  className="inline-flex items-center space-x-1.5 text-xs font-black text-[#F3C044] hover:underline"
+                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan%20Scope%20and%20Pricing"
+                  className="inline-flex items-center space-x-1.5 font-bold text-[#F3C044] hover:underline"
                 >
-                  <Mail className="w-4 h-4 text-[#F3C044]" />
-                  <span>Inquire: inquiry@ifamedia.co.uk</span>
+                  <Mail className="w-3.5 h-3.5 text-[#F3C044]" />
+                  <span>Request full scope &amp; fixed fee breakdown</span>
                 </a>
+                <span className="text-[10px] font-mono text-[#AFC3C9] font-semibold">3-Month Retainer Standard</span>
               </div>
             </div>
 

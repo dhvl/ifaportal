@@ -13,6 +13,7 @@ import { AgencyComparisonGrid } from '@/components/marketing/AgencyComparisonGri
 import { GdprComplianceSection } from '@/components/marketing/GdprComplianceSection';
 import { CookieConsentBanner } from '@/components/common/CookieConsentBanner';
 import { PrivacyPolicyModal } from '@/components/modals/PrivacyPolicyModal';
+import { MarketingAiConcierge } from '@/components/common/MarketingAiConcierge';
 
 export default function RootHomePage() {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
@@ -131,6 +132,9 @@ export default function RootHomePage() {
         isOpen={isPrivacyModalOpen}
         onClose={() => setIsPrivacyModalOpen(false)}
       />
+
+      {/* 24/7 AI Agency Concierge for IFA Media */}
+      <MarketingAiConcierge />
     </div>
   );
 }
