@@ -2,17 +2,34 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { 
   Building2, PlusCircle, ExternalLink, Trash2, ShieldCheck, 
   Sparkles, Layers, Eye, Users, RefreshCw, CheckCircle2, ChevronRight, 
-  Award, FileText, TrendingUp, MessageCircle, Bot, Zap, ArrowUpRight, Mail
+  Award, FileText, TrendingUp, MessageCircle, Bot, Zap, ArrowUpRight, Mail, LogOut
 } from 'lucide-react';
 import { IFAClient, PlanTier } from '@/lib/types';
 import { getClients, deleteClient, saveClient, PLAN_DETAILS, ADDON_MARKETPLACE } from '@/lib/store';
 
 export default function AdminDashboardPage() {
+  const router = useRouter();
   const [clients, setClients] = useState<IFAClient[]>([]);
   const [activeTab, setActiveTab] = useState<'clients' | 'templates'>('clients');
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await fetch('/api/admin/logout', { method: 'POST' });
+      router.push('/admin/login');
+      router.refresh();
+    } catch (err) {
+      console.error('Logout error:', err);
+      router.push('/admin/login');
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -60,7 +77,7 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <Link
               href="/admin/onboard"
               className="px-5 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs uppercase tracking-wider hover:bg-slate-800 transition-all flex items-center space-x-2 shadow-md hover:shadow-lg hover:-translate-y-0.5"
@@ -68,6 +85,16 @@ export default function AdminDashboardPage() {
               <PlusCircle className="w-4 h-4 text-amber-400" />
               <span>Onboard New Practice</span>
             </Link>
+
+            <button
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+              className="px-3.5 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs tracking-wider transition-all flex items-center space-x-1.5 shadow-2xs cursor-pointer disabled:opacity-50"
+              title="Sign out of Admin Console"
+            >
+              <LogOut className="w-4 h-4 text-slate-500" />
+              <span className="hidden sm:inline">Sign Out</span>
+            </button>
           </div>
         </div>
       </header>

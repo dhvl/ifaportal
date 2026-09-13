@@ -1,9 +1,30 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { ADMIN_CONFIG, isValidSessionToken } from '@/lib/auth';
 
 export function middleware(request: NextRequest) {
   const host = (request.headers.get('host') || '').toLowerCase();
   const url = request.nextUrl.clone();
+  const sessionCookie = request.cookies.get(ADMIN_CONFIG.cookieName);
+  const isAuthenticated = isValidSessionToken(sessionCookie?.value);
+
+  // Guard direct /admin routes
+  if (url.pathname.startsWith('/admin')) {
+    if (url.pathname === '/admin/login' || url.pathname.startsWith('/admin/login/')) {
+      if (isAuthenticated) {
+        return NextResponse.redirect(new URL('/admin', request.url));
+      }
+      return NextResponse.next();
+    }
+
+    if (!isAuthenticated) {
+      const loginUrl = new URL('/admin/login', request.url);
+      if (url.pathname !== '/admin') {
+        loginUrl.searchParams.set('redirect', url.pathname + url.search);
+      }
+      return NextResponse.redirect(loginUrl);
+    }
+  }
 
   // Extract hostname without port
   const hostname = host.split(':')[0];
@@ -65,6 +86,10 @@ export function middleware(request: NextRequest) {
     }
     // Adviser Console
     else if (subdomain === 'admin' || subdomain === 'app') {
+      if (!isAuthenticated) {
+        const loginUrl = new URL('/admin/login', request.url);
+        return NextResponse.redirect(loginUrl);
+      }
       if (url.pathname === '/' || url.pathname === '') {
         url.pathname = '/admin';
         return NextResponse.rewrite(url);

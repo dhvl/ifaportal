@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { 
   ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Building2, 
   Palette, Briefcase, Users, Layout, Eye, Sparkles, Check, Phone, Mail, MapPin, 
-  AlertCircle, MessageCircle, Bot, TrendingUp, Award, Zap, FileText, CheckSquare
+  AlertCircle, MessageCircle, Bot, TrendingUp, Award, Zap, FileText, CheckSquare, LogOut
 } from 'lucide-react';
 import { IFAClient, AdminQuestionnaireFormData, PlanTier, TemplateId, ContractDuration } from '@/lib/types';
 import { DEFAULT_SERVICES, saveClient, PLAN_DETAILS, ADDON_MARKETPLACE } from '@/lib/store';
@@ -14,6 +14,21 @@ import { DEFAULT_SERVICES, saveClient, PLAN_DETAILS, ADDON_MARKETPLACE } from '@
 export default function OnboardingQuestionnairePage() {
   const router = useRouter();
   const [step, setStep] = useState<number>(1);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await fetch('/api/admin/logout', { method: 'POST' });
+      router.push('/admin/login');
+      router.refresh();
+    } catch (err) {
+      console.error('Logout error:', err);
+      router.push('/admin/login');
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
 
   const [formData, setFormData] = useState<AdminQuestionnaireFormData>({
     firmName: 'Crown Independent Wealth',
@@ -178,6 +193,16 @@ export default function OnboardingQuestionnairePage() {
           <div className="flex items-center space-x-3">
             <span className="text-xs text-slate-500 font-medium hidden sm:inline">Auto-Saving Form State</span>
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+            <div className="h-4 w-px bg-slate-200 hidden sm:block mx-1"></div>
+            <button
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+              className="px-3 py-1.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs tracking-wider transition-all flex items-center space-x-1.5 shadow-2xs cursor-pointer disabled:opacity-50"
+              title="Sign out of Admin Console"
+            >
+              <LogOut className="w-3.5 h-3.5 text-slate-500" />
+              <span className="hidden sm:inline">Sign Out</span>
+            </button>
           </div>
         </div>
       </header>
