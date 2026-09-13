@@ -33,6 +33,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       'Wealth Management',
       'FCA Regulated',
     ],
+    alternates: {
+      canonical: `https://ifamedia.co.uk/portal/${slug}`,
+    },
+    openGraph: {
+      title: `${client.firmName} | Independent Financial Advisers`,
+      description: `${client.branding.heroSubheadline} Authorised and regulated by the Financial Conduct Authority.`,
+      url: `https://ifamedia.co.uk/portal/${slug}`,
+      type: 'website',
+      locale: 'en_GB',
+    },
   };
 }
 
