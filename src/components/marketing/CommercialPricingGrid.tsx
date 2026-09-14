@@ -6,9 +6,9 @@ import { Check, Globe, TrendingUp, ExternalLink } from 'lucide-react';
 export const CommercialPricingGrid: React.FC = () => {
   return (
     <section id="pricing" className="pt-6 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-      {/* Simplified Header: Select one out of the Two Plans. */}
+      {/* Simplified Header: Font Weight 600 */}
       <div className="text-center max-w-4xl mx-auto space-y-2">
-        <h2 className="text-3xl sm:text-[42px] lg:text-[48px] font-black text-[#08232C] tracking-tight leading-[1.2]">
+        <h2 className="text-3xl sm:text-[42px] lg:text-[48px] font-semibold text-[#08232C] tracking-tight leading-[1.2]">
           Select one out of the Two Plans.
         </h2>
       </div>
@@ -29,10 +29,10 @@ export const CommercialPricingGrid: React.FC = () => {
         </div>
       </div>
 
-      {/* 2 Core Plan Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
-        {/* Starter Plan */}
-        <div className="bg-white border-2 border-[#D8E5EE] rounded-[32px] p-8 sm:p-10 space-y-8 shadow-sm flex flex-col justify-between">
+      {/* 2 Core Plan Cards: items-start allows Starter Plan to be naturally shorter */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+        {/* Starter Plan (Compact, natural height) */}
+        <div className="bg-white border-2 border-[#D8E5EE] rounded-[32px] p-8 sm:p-10 space-y-6 shadow-sm flex flex-col justify-start">
           <div className="space-y-6">
             {/* Title only */}
             <div className="pb-4 border-b-2 border-[#E2EEF5]">
@@ -99,8 +99,8 @@ export const CommercialPricingGrid: React.FC = () => {
             </div>
           </div>
 
-          {/* CTA: Preview Starter Template */}
-          <div className="pt-6 border-t-2 border-[#E2EEF5]">
+          {/* CTA: Preview Starter Template (Directly below boxes with zero empty gap) */}
+          <div className="pt-4 border-t-2 border-[#E2EEF5]">
             <a
               href="https://starter.ifamedia.co.uk"
               target="_blank"
@@ -113,8 +113,8 @@ export const CommercialPricingGrid: React.FC = () => {
           </div>
         </div>
 
-        {/* Growth Plan */}
-        <div className="bg-white border-2 border-[#08232C] rounded-[32px] p-8 sm:p-10 space-y-8 shadow-xl flex flex-col justify-between relative">
+        {/* Growth Plan (Longer card displaying rich extra feature depth) */}
+        <div className="bg-white border-2 border-[#08232C] rounded-[32px] p-8 sm:p-10 space-y-6 shadow-xl flex flex-col justify-start relative">
           <div className="space-y-6">
             {/* Title only */}
             <div className="pb-4 border-b-2 border-[#E2EEF5]">
@@ -188,7 +188,7 @@ export const CommercialPricingGrid: React.FC = () => {
           </div>
 
           {/* CTA: Preview Growth Template */}
-          <div className="pt-6 border-t-2 border-[#E2EEF5]">
+          <div className="pt-4 border-t-2 border-[#E2EEF5]">
             <a
               href="https://growth.ifamedia.co.uk"
               target="_blank"
