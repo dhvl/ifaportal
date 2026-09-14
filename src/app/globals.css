@@ -75,17 +75,37 @@ body {
   border: 1px solid #E9D5FF;
 }
 
-/* Tag Shimmer & Shine Animation */
+/* Vivid Gold & Amber Tag Shimmer Animation */
 @keyframes tag-shimmer {
   0% {
-    transform: translateX(-150%) skewX(-20deg);
+    transform: translateX(-160%) skewX(-25deg);
+    opacity: 0;
   }
-  35%, 100% {
-    transform: translateX(250%) skewX(-20deg);
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(260%) skewX(-25deg);
+    opacity: 1;
+  }
+  51%, 100% {
+    transform: translateX(260%) skewX(-25deg);
+    opacity: 0;
   }
 }
 
 .animate-tag-shimmer {
-  animation: tag-shimmer 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: tag-shimmer 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.shimmer-gold-beam {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(245, 158, 11, 0.35) 20%,
+    rgba(254, 240, 138, 0.75) 50%,
+    rgba(245, 158, 11, 0.35) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
