@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { PlusCircle, Compass, Sparkles, ShieldCheck, Mail, ArrowRight } from 'lucide-react';
-import { MarketingHeader } from '@/components/marketing/MarketingHeader';
 import { MarketingHero } from '@/components/marketing/MarketingHero';
 import { CommercialPricingGrid } from '@/components/marketing/CommercialPricingGrid';
 import { InteractivePreviewWidget } from '@/components/marketing/InteractivePreviewWidget';
@@ -20,9 +19,6 @@ export default function RootHomePage() {
 
   return (
     <div className="min-h-screen bg-[#F0F7FB] text-[#121C22] font-sans antialiased selection:bg-[#D9EDF8] selection:text-[#0C4A6E]">
-      {/* 1. Institutional British Header */}
-      <MarketingHeader onOpenPrivacyModal={() => setIsPrivacyModalOpen(true)} />
-
       {/* Main Content Flow */}
       <main>
         {/* 1st Fold: Hero with simplified title & subtitle */}

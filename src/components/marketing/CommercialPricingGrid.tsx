@@ -1,292 +1,202 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { 
-  Check, Sparkles, ArrowRight, Mail, MessageSquare, Bot, Calculator, ShieldCheck
-} from 'lucide-react';
-import { ADDON_MARKETPLACE } from '@/lib/store';
+import { Check, Globe, TrendingUp, ExternalLink } from 'lucide-react';
 
 export const CommercialPricingGrid: React.FC = () => {
   return (
-    <section id="pricing" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      {/* Friendly Agency Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border-2 border-[#D8E5EE] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs">
-          <Sparkles className="w-4 h-4 text-[#B45309]" />
-          <span>Practice Plans</span>
-        </div>
-        
-        <h2 className="text-3xl sm:text-5xl font-black text-[#08232C] tracking-tight leading-[1.10]">
-          Two clear ways to work with us.
+    <section id="pricing" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      {/* Simplified Header: Just mention 2 plans */}
+      <div className="text-center max-w-3xl mx-auto space-y-2">
+        <h2 className="text-3xl sm:text-[42px] lg:text-[48px] font-black text-[#08232C] tracking-tight leading-[1.2]">
+          Two Plans.
         </h2>
-        
-        <p className="text-base sm:text-lg text-[#636F75] leading-relaxed max-w-2xl mx-auto">
-          Even our foundation Starter Plan delivers more active capability out of the box than most agencies offer on their premium retainers.
-        </p>
+      </div>
 
-        {/* Pricing Inquiry Action Pill */}
-        <div className="pt-2">
-          <a
-            href="mailto:inquiry@ifamedia.co.uk?subject=Practice%20Platform%20Pricing%20Inquiry%20-%20IFA%20Media"
-            className="inline-flex items-center space-x-2.5 px-6 py-3 rounded-2xl bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] text-[#08232C] text-xs font-black uppercase tracking-wider shadow-2xs hover:shadow-md transition-all"
-          >
-            <Mail className="w-4 h-4 text-[#0A6B48]" />
-            <span>Drop us an email for complete package scope: inquiry@ifamedia.co.uk</span>
-          </a>
+      {/* Downward Directional Arrows Pointing to Plan 1 and Plan 2 */}
+      <div className="grid grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
+        <div className="flex flex-col items-center justify-center space-y-1.5">
+          <span className="text-xs font-black uppercase tracking-widest text-[#08232C]/60">Plan 1</span>
+          <svg className="w-6 h-8 text-[#08232C] animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+        <div className="flex flex-col items-center justify-center space-y-1.5">
+          <span className="text-xs font-black uppercase tracking-widest text-[#08232C]/60">Plan 2</span>
+          <svg className="w-6 h-8 text-[#08232C] animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
       </div>
 
       {/* 2 Core Plan Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
         {/* Starter Plan */}
-        <div className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[32px] p-8 sm:p-10 space-y-7 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+        <div className="bg-white border-2 border-[#D8E5EE] rounded-[32px] p-8 sm:p-10 space-y-8 shadow-sm flex flex-col justify-between">
           <div className="space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b-2 border-[#E2EEF5]">
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-[#636F75] block">
-                  Boutique &amp; Solo IFAs
-                </span>
-                <h3 className="text-2xl font-black text-[#08232C]">Starter Plan</h3>
-              </div>
-              <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase bg-[#E8F8F2] text-[#0A6B48] border border-[#B4ECD6]">
-                Starter Tier
-              </span>
+            {/* Title only */}
+            <div className="pb-4 border-b-2 border-[#E2EEF5]">
+              <h3 className="text-3xl font-black text-[#08232C] tracking-tight">Starter Plan</h3>
             </div>
 
-            <p className="text-xs sm:text-sm text-[#475760] leading-relaxed">
-              Fast, high-trust, and built to turn web visitors into direct phone calls and WhatsApp consultations with zero tech hassle.
-            </p>
-
-            {/* Value & Inclusions Highlight Box (Replaced Big Pricing on Request) */}
-            <div className="p-5 sm:p-6 bg-[#EAF3F9] rounded-2xl border-2 border-[#D8E5EE] space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-white text-[#0A6B48] border border-[#B4ECD6]">
-                  Unrivalled Entry Value
-                </span>
-                <span className="text-[11px] font-bold text-[#475760]">
-                  Turnkey Fixed Package
-                </span>
-              </div>
-
-              <div className="space-y-1">
-                <div className="text-base sm:text-lg font-black text-[#08232C] leading-snug">
-                  Outperforms competitors&apos; top-tier builds from day one.
+            {/* Feature Boxes */}
+            <div className="space-y-4">
+              {/* Light Yellow Box: Website Features */}
+              <div className="bg-[#FFFDE7] border-2 border-[#FEF08A] rounded-2xl p-6 space-y-4">
+                <div className="flex items-center space-x-2 text-[#854D0E]">
+                  <Globe className="w-5 h-5 text-[#B45309]" />
+                  <h4 className="text-sm font-black uppercase tracking-wider">Website Features</h4>
                 </div>
-                <p className="text-xs text-[#475760] leading-relaxed">
-                  While typical agencies charge £1k+/mo extra for marketing and updates, our foundation tier includes full FCA disclaimers and a dedicated 3-month social media growth retainer.
-                </p>
+                <ul className="space-y-2.5 text-xs font-medium text-[#713F12]">
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                    <span>Modern bespoke Next.js responsive website</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                    <span>Direct WhatsApp consultation &amp; click-to-call routing</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                    <span>FCA Consumer Duty, FRN verification &amp; FSCS disclaimers</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                    <span>Dedicated adviser bios, qualifications &amp; team sections</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                    <span>High-speed UK cloud hosting with SSL security</span>
+                  </li>
+                </ul>
               </div>
 
-              <div className="pt-2 border-t border-[#D8E5EE]/80 flex items-center justify-between text-xs">
-                <a
-                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan%20Scope%20and%20Pricing"
-                  className="inline-flex items-center space-x-1.5 font-bold text-[#0A6B48] hover:underline"
-                >
-                  <Mail className="w-3.5 h-3.5 text-[#0A6B48]" />
-                  <span>Request full scope &amp; fixed fee breakdown</span>
-                </a>
-                <span className="text-[10px] font-mono text-[#636F75] font-semibold">£0 Setup On Contract</span>
+              {/* Light Sky Blue Box: Digital Marketing Features */}
+              <div className="bg-[#F0F9FF] border-2 border-[#BAE6FD] rounded-2xl p-6 space-y-4">
+                <div className="flex items-center space-x-2 text-[#0369A1]">
+                  <TrendingUp className="w-5 h-5 text-[#0284C7]" />
+                  <h4 className="text-sm font-black uppercase tracking-wider">Digital Marketing Features</h4>
+                </div>
+                <ul className="space-y-2.5 text-xs font-medium text-[#0C4A6E]">
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                    <span><strong>3-Month DFY Social Media Retainer:</strong> Included on contract</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                    <span>Weekly financial thought-leadership LinkedIn &amp; X content</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                    <span>Monthly branded client email newsletter template</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                    <span>Google Business Profile setup &amp; local search optimisation</span>
+                  </li>
+                </ul>
               </div>
-            </div>
-
-            {/* Inclusions */}
-            <div className="space-y-3 pt-1">
-              <span className="text-[11px] font-black uppercase tracking-widest text-[#08232C] block">
-                What&apos;s Included:
-              </span>
-              <ul className="space-y-3 text-xs text-[#37454D]">
-                <li className="flex items-start space-x-3">
-                  <Check className="w-4 h-4 text-[#0A6B48] shrink-0 mt-0.5" />
-                  <span><strong>3-Month DFY Social Media Retainer:</strong> Weekly thought leadership posts &amp; client newsletters.</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Check className="w-4 h-4 text-[#0A6B48] shrink-0 mt-0.5" />
-                  <span><strong>WhatsApp Lead Routing:</strong> Prospects message your advisers directly from their smartphone.</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Check className="w-4 h-4 text-[#0A6B48] shrink-0 mt-0.5" />
-                  <span><strong>FCA &amp; FSCS Disclaimers:</strong> Consumer Duty disclosures, FRN verification, and £85k badges.</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Check className="w-4 h-4 text-[#0A6B48] shrink-0 mt-0.5" />
-                  <span><strong>High-Speed UK Hosting:</strong> Ultra-fast Next.js architecture deployed in days.</span>
-                </li>
-              </ul>
             </div>
           </div>
 
+          {/* CTA: Preview Starter Template */}
           <div className="pt-6 border-t-2 border-[#E2EEF5]">
             <a
-              href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan"
-              className="w-full py-4 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2 border border-[#184654]"
+              href="https://starter.ifamedia.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-4 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2 border border-[#184654] group"
             >
-              <span>Inquire for Starter Plan</span>
-              <ArrowRight className="w-4 h-4 text-[#5CDFB0]" />
+              <span>Preview Starter Template</span>
+              <ExternalLink className="w-4 h-4 text-[#F3C044] group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
         </div>
 
         {/* Growth Plan */}
-        <div className="bg-[#08232C] text-white border-2 border-[#143946] rounded-[32px] p-8 sm:p-10 space-y-7 shadow-xl relative flex flex-col justify-between">
-          <div className="absolute -top-4 right-8">
-            <span className="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest bg-[#F3C044] text-[#08232C] shadow-md border border-[#F5CA5E]">
-              Most Popular &bull; Full AI Engine
-            </span>
-          </div>
-
+        <div className="bg-white border-2 border-[#08232C] rounded-[32px] p-8 sm:p-10 space-y-8 shadow-xl flex flex-col justify-between relative">
           <div className="space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-[#143946]">
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-[#F3C044] block">
-                  Established Wealth Managers
-                </span>
-                <h3 className="text-2xl font-black text-white">Growth Plan</h3>
-              </div>
-              <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase bg-[#143946] text-[#F3C044] border border-[#235364]">
-                Growth Tier
-              </span>
+            {/* Title only */}
+            <div className="pb-4 border-b-2 border-[#E2EEF5]">
+              <h3 className="text-3xl font-black text-[#08232C] tracking-tight">Growth Plan</h3>
             </div>
 
-            <p className="text-xs sm:text-sm text-[#AFC3C9] leading-relaxed">
-              Our flagship client acquisition engine. Comes with an active 24/7 AI Concierge, 3 interactive UK financial calculators, and retirement lead magnets.
-            </p>
+            {/* Subtitle / Header */}
+            <div className="text-xs font-black uppercase tracking-widest text-[#08232C] flex items-center space-x-2">
+              <span className="w-2 h-2 rounded-full bg-[#0A6B48]" />
+              <span>All of Starter Plan features, plus:</span>
+            </div>
 
-            {/* Value & Inclusions Highlight Box (Replaced Big Pricing on Request) */}
-            <div className="p-5 sm:p-6 bg-[#0E3542] rounded-2xl border-2 border-[#1D4A59] space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-[#143946] text-[#F3C044] border border-[#235364]">
-                  Full Acquisition Suite
-                </span>
-                <span className="text-[11px] font-bold text-[#AFC3C9]">
-                  AI &amp; Calculator Suite
-                </span>
-              </div>
-
-              <div className="space-y-1">
-                <div className="text-base sm:text-lg font-black text-white leading-snug">
-                  The digital asset traditional web studios can&apos;t match.
+            {/* Feature Boxes */}
+            <div className="space-y-4">
+              {/* Light Yellow Box: Additional Website Features */}
+              <div className="bg-[#FFFDE7] border-2 border-[#FEF08A] rounded-2xl p-6 space-y-4">
+                <div className="flex items-center space-x-2 text-[#854D0E]">
+                  <Globe className="w-5 h-5 text-[#B45309]" />
+                  <h4 className="text-sm font-black uppercase tracking-wider">Website Features</h4>
                 </div>
-                <p className="text-xs text-[#AFC3C9] leading-relaxed">
-                  A 24/7 conversational AI concierge, 3 interactive UK wealth calculators, and automated retirement lead magnets — pre-configured for your advisory partners.
-                </p>
+                <ul className="space-y-2.5 text-xs font-medium text-[#713F12]">
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                    <span><strong>24/7 Conversational AI Concierge:</strong> Answers questions &amp; qualifies wealth prospects</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                    <span><strong>3 Interactive UK Wealth Calculators:</strong> Pension Drawdown, 40% IHT &amp; Compound ISA</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                    <span>Gated downloadable retirement &amp; wealth lead magnet guide</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                    <span>Multi-adviser booking calendar integration (Calendly / HubSpot)</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                    <span>Client portal login integration (moneyinfo / Intelliflo)</span>
+                  </li>
+                </ul>
               </div>
 
-              <div className="pt-2 border-t border-[#143946] flex items-center justify-between text-xs">
-                <a
-                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan%20Scope%20and%20Pricing"
-                  className="inline-flex items-center space-x-1.5 font-bold text-[#F3C044] hover:underline"
-                >
-                  <Mail className="w-3.5 h-3.5 text-[#F3C044]" />
-                  <span>Request full scope &amp; fixed fee breakdown</span>
-                </a>
-                <span className="text-[10px] font-mono text-[#AFC3C9] font-semibold">3-Month Retainer Standard</span>
+              {/* Light Sky Blue Box: Additional Digital Marketing Features */}
+              <div className="bg-[#F0F9FF] border-2 border-[#BAE6FD] rounded-2xl p-6 space-y-4">
+                <div className="flex items-center space-x-2 text-[#0369A1]">
+                  <TrendingUp className="w-5 h-5 text-[#0284C7]" />
+                  <h4 className="text-sm font-black uppercase tracking-wider">Digital Marketing Features</h4>
+                </div>
+                <ul className="space-y-2.5 text-xs font-medium text-[#0C4A6E]">
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                    <span>Expanded multi-channel social media campaigns &amp; bespoke visual assets</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                    <span>Automated high-intent email lead capture &amp; nurturing sequences</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                    <span>Quarterly UK local search authority building &amp; citation management</span>
+                  </li>
+                  <li className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                    <span>Dedicated monthly lead acquisition &amp; engagement reporting</span>
+                  </li>
+                </ul>
               </div>
-            </div>
-
-            {/* Inclusions */}
-            <div className="space-y-3 pt-1">
-              <span className="text-[11px] font-black uppercase tracking-widest text-[#F3C044] block">
-                Everything in Starter Plan, Plus:
-              </span>
-              <ul className="space-y-3 text-xs text-[#DCE7EB]">
-                <li className="flex items-start space-x-3">
-                  <Check className="w-4 h-4 text-[#5CDFB0] shrink-0 mt-0.5" />
-                  <span><strong>24/7 Conversational AI Concierge:</strong> Answers questions, qualifies asset size, and books appointments.</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Check className="w-4 h-4 text-[#5CDFB0] shrink-0 mt-0.5" />
-                  <span><strong>3 Interactive UK Calculators:</strong> Pension Drawdown, 40% IHT, and Compound ISA models.</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Check className="w-4 h-4 text-[#5CDFB0] shrink-0 mt-0.5" />
-                  <span><strong>Downloadable Retirement Guide:</strong> Gated checklist for capturing high-intent email leads.</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Check className="w-4 h-4 text-[#5CDFB0] shrink-0 mt-0.5" />
-                  <span><strong>Multi-Adviser Directory:</strong> Dedicated profile cards and individual booking routes for each partner.</span>
-                </li>
-              </ul>
             </div>
           </div>
 
-          <div className="pt-6 border-t border-[#143946]">
+          {/* CTA: Preview Growth Template */}
+          <div className="pt-6 border-t-2 border-[#E2EEF5]">
             <a
-              href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan"
-              className="w-full py-4 rounded-2xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
+              href="https://growth.ifamedia.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-4 rounded-2xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2 group"
             >
-              <span>Inquire for Growth Plan</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Optional Modular Add-Ons */}
-      <div className="pt-6 max-w-5xl mx-auto space-y-6">
-        <div className="text-center space-y-1">
-          <span className="text-[11px] font-black uppercase tracking-widest text-[#636F75]">
-            Modular Upgrades
-          </span>
-          <h3 className="text-2xl font-black text-[#08232C]">
-            Plug In Extra Capabilities Anytime
-          </h3>
-          <p className="text-xs sm:text-sm text-[#636F75]">
-            Add custom integrations whenever your practice is ready.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {ADDON_MARKETPLACE.map((addon) => (
-            <div
-              key={addon.id}
-              className="bg-white border-2 border-[#D8E5EE] hover:border-[#08232C] rounded-[28px] p-7 space-y-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-md bg-[#EAF3F9] border border-[#D8E5EE] text-[#08232C]">
-                    {addon.category}
-                  </span>
-                  <span className="text-xs font-bold text-[#08232C] px-2 py-0.5 rounded-md bg-[#F0F7FB] border border-[#D8E5EE]">
-                    Custom Add-On
-                  </span>
-                </div>
-
-                <h4 className="text-base font-black text-[#08232C]">{addon.title}</h4>
-                <p className="text-xs text-[#475760] leading-relaxed">{addon.description}</p>
-              </div>
-
-              <div className="pt-3 border-t-2 border-[#E2EEF5] flex items-center justify-between text-xs font-bold text-[#08232C]">
-                <a
-                  href={`mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20${encodeURIComponent(addon.title)}%20Add-On`}
-                  className="hover:underline flex items-center space-x-1 text-[#0A6B48]"
-                >
-                  <Mail className="w-3.5 h-3.5" />
-                  <span>Inquire for Module</span>
-                </a>
-                <ArrowRight className="w-3.5 h-3.5 text-[#B45309]" />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Enterprise & Network Inquiry Card */}
-      <div className="pt-4 max-w-4xl mx-auto">
-        <div className="bg-white border-2 border-[#D8E5EE] rounded-[32px] p-8 text-center space-y-3 shadow-sm">
-          <h3 className="text-xl font-black text-[#08232C]">
-            Have Multiple Advisers or Network Requirements?
-          </h3>
-          <p className="text-xs sm:text-sm text-[#636F75] max-w-2xl mx-auto leading-relaxed">
-            We offer centralized group billing, shared compliance controls, and custom layouts for advisory networks and national wealth firms.
-          </p>
-          <div className="pt-2">
-            <a
-              href="mailto:inquiry@ifamedia.co.uk?subject=Enterprise%20Practice%20Pricing%20Inquiry%20-%20IFA%20Media"
-              className="inline-flex items-center space-x-2 px-7 py-3 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white text-xs font-black uppercase tracking-wider transition-all shadow-md"
-            >
-              <Mail className="w-4 h-4 text-[#F3C044]" />
-              <span>Talk to Us: inquiry@ifamedia.co.uk</span>
+              <span>Preview Growth Template</span>
+              <ExternalLink className="w-4 h-4 text-[#08232C] group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
         </div>
