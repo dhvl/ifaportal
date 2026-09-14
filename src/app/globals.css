@@ -75,37 +75,39 @@ body {
   border: 1px solid #E9D5FF;
 }
 
-/* Diagonal Smooth Shine Animation (Bottom-Left to Top-Right) */
+/* Diagonal Smooth Silver Shine Animation (Bottom-Left to Top-Right) */
 @keyframes diagonal-shine {
   0% {
     transform: translate3d(-100%, 100%, 0);
     opacity: 0;
   }
-  6% {
+  10% {
     opacity: 1;
   }
-  38% {
+  60% {
     transform: translate3d(100%, -100%, 0);
     opacity: 1;
   }
-  39%, 100% {
+  61%, 100% {
     transform: translate3d(100%, -100%, 0);
     opacity: 0;
   }
 }
 
 .animate-diagonal-shine {
-  animation: diagonal-shine 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: diagonal-shine 6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
 }
 
 .diagonal-shine-beam {
   background: linear-gradient(
     45deg,
-    transparent 36%,
-    rgba(254, 240, 138, 0.45) 45%,
-    rgba(255, 255, 255, 0.95) 50%,
-    rgba(254, 240, 138, 0.45) 55%,
-    transparent 64%
+    transparent 30%,
+    rgba(203, 213, 225, 0.25) 40%,
+    rgba(241, 245, 249, 0.75) 47%,
+    rgba(255, 255, 255, 0.98) 50%,
+    rgba(241, 245, 249, 0.75) 53%,
+    rgba(203, 213, 225, 0.25) 60%,
+    transparent 70%
   );
 }
 
