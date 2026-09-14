@@ -74,3 +74,18 @@ body {
   color: #7E22CE;
   border: 1px solid #E9D5FF;
 }
+
+/* Tag Shimmer & Shine Animation */
+@keyframes tag-shimmer {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  35%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.animate-tag-shimmer {
+  animation: tag-shimmer 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
