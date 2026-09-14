@@ -81,33 +81,33 @@ body {
     transform: translate3d(-100%, 100%, 0);
     opacity: 0;
   }
-  10% {
+  8% {
     opacity: 1;
   }
-  60% {
+  65% {
     transform: translate3d(100%, -100%, 0);
     opacity: 1;
   }
-  61%, 100% {
+  66%, 100% {
     transform: translate3d(100%, -100%, 0);
     opacity: 0;
   }
 }
 
 .animate-diagonal-shine {
-  animation: diagonal-shine 6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation: diagonal-shine 8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
 }
 
 .diagonal-shine-beam {
   background: linear-gradient(
     45deg,
-    transparent 30%,
-    rgba(203, 213, 225, 0.25) 40%,
-    rgba(241, 245, 249, 0.75) 47%,
-    rgba(255, 255, 255, 0.98) 50%,
-    rgba(241, 245, 249, 0.75) 53%,
-    rgba(203, 213, 225, 0.25) 60%,
-    transparent 70%
+    transparent 28%,
+    rgba(203, 213, 225, 0.35) 38%,
+    rgba(226, 232, 240, 0.85) 46%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(226, 232, 240, 0.85) 54%,
+    rgba(203, 213, 225, 0.35) 62%,
+    transparent 72%
   );
 }
 
