@@ -75,37 +75,38 @@ body {
   border: 1px solid #E9D5FF;
 }
 
-/* Vivid Gold & Amber Tag Shimmer Animation */
-@keyframes tag-shimmer {
+/* Diagonal Smooth Shine Animation (Bottom-Left to Top-Right) */
+@keyframes diagonal-shine {
   0% {
-    transform: translateX(-160%) skewX(-25deg);
+    transform: translate3d(-100%, 100%, 0);
     opacity: 0;
   }
-  10% {
+  6% {
     opacity: 1;
   }
-  50% {
-    transform: translateX(260%) skewX(-25deg);
+  38% {
+    transform: translate3d(100%, -100%, 0);
     opacity: 1;
   }
-  51%, 100% {
-    transform: translateX(260%) skewX(-25deg);
+  39%, 100% {
+    transform: translate3d(100%, -100%, 0);
     opacity: 0;
   }
 }
 
-.animate-tag-shimmer {
-  animation: tag-shimmer 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+.animate-diagonal-shine {
+  animation: diagonal-shine 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.shimmer-gold-beam {
+.diagonal-shine-beam {
   background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(245, 158, 11, 0.35) 20%,
-    rgba(254, 240, 138, 0.75) 50%,
-    rgba(245, 158, 11, 0.35) 80%,
-    rgba(255, 255, 255, 0) 100%
+    45deg,
+    transparent 36%,
+    rgba(254, 240, 138, 0.45) 45%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(254, 240, 138, 0.45) 55%,
+    transparent 64%
   );
 }
+
 
