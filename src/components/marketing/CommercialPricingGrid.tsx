@@ -5,11 +5,11 @@ import { Check, Globe, TrendingUp, ExternalLink } from 'lucide-react';
 
 export const CommercialPricingGrid: React.FC = () => {
   return (
-    <section id="pricing" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-      {/* Simplified Header: Just mention 2 plans */}
-      <div className="text-center max-w-3xl mx-auto space-y-2">
+    <section id="pricing" className="pt-6 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      {/* Simplified Header: Select one out of the Two Plans. */}
+      <div className="text-center max-w-4xl mx-auto space-y-2">
         <h2 className="text-3xl sm:text-[42px] lg:text-[48px] font-black text-[#08232C] tracking-tight leading-[1.2]">
-          Two Plans.
+          Select one out of the Two Plans.
         </h2>
       </div>
 
@@ -40,58 +40,58 @@ export const CommercialPricingGrid: React.FC = () => {
             </div>
 
             {/* Feature Boxes */}
-            <div className="space-y-4">
+            <div className="space-y-5">
               {/* Light Yellow Box: Website Features */}
-              <div className="bg-[#FFFDE7] border-2 border-[#FEF08A] rounded-2xl p-6 space-y-4">
+              <div className="bg-[#FFFDE7] border-2 border-[#FEF08A] rounded-2xl p-6 sm:p-7 space-y-4">
                 <div className="flex items-center space-x-2 text-[#854D0E]">
                   <Globe className="w-5 h-5 text-[#B45309]" />
                   <h4 className="text-sm font-black uppercase tracking-wider">Website Features</h4>
                 </div>
-                <ul className="space-y-2.5 text-xs font-medium text-[#713F12]">
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                <ul className="space-y-3.5 text-sm font-medium text-[#713F12] leading-relaxed">
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#B45309] shrink-0 mt-0.5" />
                     <span>Modern bespoke Next.js responsive website</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#B45309] shrink-0 mt-0.5" />
                     <span>Direct WhatsApp consultation &amp; click-to-call routing</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#B45309] shrink-0 mt-0.5" />
                     <span>FCA Consumer Duty, FRN verification &amp; FSCS disclaimers</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#B45309] shrink-0 mt-0.5" />
                     <span>Dedicated adviser bios, qualifications &amp; team sections</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#B45309] shrink-0 mt-0.5" />
                     <span>High-speed UK cloud hosting with SSL security</span>
                   </li>
                 </ul>
               </div>
 
               {/* Light Sky Blue Box: Digital Marketing Features */}
-              <div className="bg-[#F0F9FF] border-2 border-[#BAE6FD] rounded-2xl p-6 space-y-4">
+              <div className="bg-[#F0F9FF] border-2 border-[#BAE6FD] rounded-2xl p-6 sm:p-7 space-y-4">
                 <div className="flex items-center space-x-2 text-[#0369A1]">
                   <TrendingUp className="w-5 h-5 text-[#0284C7]" />
                   <h4 className="text-sm font-black uppercase tracking-wider">Digital Marketing Features</h4>
                 </div>
-                <ul className="space-y-2.5 text-xs font-medium text-[#0C4A6E]">
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                <ul className="space-y-3.5 text-sm font-medium text-[#0C4A6E] leading-relaxed">
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#0284C7] shrink-0 mt-0.5" />
                     <span><strong>3-Month DFY Social Media Retainer:</strong> Included on contract</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#0284C7] shrink-0 mt-0.5" />
                     <span>Weekly financial thought-leadership LinkedIn &amp; X content</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#0284C7] shrink-0 mt-0.5" />
                     <span>Monthly branded client email newsletter template</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#0284C7] shrink-0 mt-0.5" />
                     <span>Google Business Profile setup &amp; local search optimisation</span>
                   </li>
                 </ul>
@@ -128,58 +128,58 @@ export const CommercialPricingGrid: React.FC = () => {
             </div>
 
             {/* Feature Boxes */}
-            <div className="space-y-4">
+            <div className="space-y-5">
               {/* Light Yellow Box: Additional Website Features */}
-              <div className="bg-[#FFFDE7] border-2 border-[#FEF08A] rounded-2xl p-6 space-y-4">
+              <div className="bg-[#FFFDE7] border-2 border-[#FEF08A] rounded-2xl p-6 sm:p-7 space-y-4">
                 <div className="flex items-center space-x-2 text-[#854D0E]">
                   <Globe className="w-5 h-5 text-[#B45309]" />
                   <h4 className="text-sm font-black uppercase tracking-wider">Website Features</h4>
                 </div>
-                <ul className="space-y-2.5 text-xs font-medium text-[#713F12]">
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                <ul className="space-y-3.5 text-sm font-medium text-[#713F12] leading-relaxed">
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#B45309] shrink-0 mt-0.5" />
                     <span><strong>24/7 Conversational AI Concierge:</strong> Answers questions &amp; qualifies wealth prospects</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#B45309] shrink-0 mt-0.5" />
                     <span><strong>3 Interactive UK Wealth Calculators:</strong> Pension Drawdown, 40% IHT &amp; Compound ISA</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#B45309] shrink-0 mt-0.5" />
                     <span>Gated downloadable retirement &amp; wealth lead magnet guide</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#B45309] shrink-0 mt-0.5" />
                     <span>Multi-adviser booking calendar integration (Calendly / HubSpot)</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#B45309] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#B45309] shrink-0 mt-0.5" />
                     <span>Client portal login integration (moneyinfo / Intelliflo)</span>
                   </li>
                 </ul>
               </div>
 
               {/* Light Sky Blue Box: Additional Digital Marketing Features */}
-              <div className="bg-[#F0F9FF] border-2 border-[#BAE6FD] rounded-2xl p-6 space-y-4">
+              <div className="bg-[#F0F9FF] border-2 border-[#BAE6FD] rounded-2xl p-6 sm:p-7 space-y-4">
                 <div className="flex items-center space-x-2 text-[#0369A1]">
                   <TrendingUp className="w-5 h-5 text-[#0284C7]" />
                   <h4 className="text-sm font-black uppercase tracking-wider">Digital Marketing Features</h4>
                 </div>
-                <ul className="space-y-2.5 text-xs font-medium text-[#0C4A6E]">
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                <ul className="space-y-3.5 text-sm font-medium text-[#0C4A6E] leading-relaxed">
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#0284C7] shrink-0 mt-0.5" />
                     <span>Expanded multi-channel social media campaigns &amp; bespoke visual assets</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#0284C7] shrink-0 mt-0.5" />
                     <span>Automated high-intent email lead capture &amp; nurturing sequences</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#0284C7] shrink-0 mt-0.5" />
                     <span>Quarterly UK local search authority building &amp; citation management</span>
                   </li>
-                  <li className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-[#0284C7] shrink-0 mt-0.5" />
+                  <li className="flex items-start space-x-3">
+                    <Check className="w-4.5 h-4.5 text-[#0284C7] shrink-0 mt-0.5" />
                     <span>Dedicated monthly lead acquisition &amp; engagement reporting</span>
                   </li>
                 </ul>
