@@ -5,16 +5,46 @@ import { Check, Globe, TrendingUp, ExternalLink } from 'lucide-react';
 
 export const CommercialPricingGrid: React.FC = () => {
   return (
-    <section id="pricing" className="pt-6 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
-      {/* Simplified Header: Matched font size scale with main copy headline */}
-      <div className="text-center max-w-4xl mx-auto space-y-2">
-        <h2 className="text-2xl xs:text-[28px] sm:text-4xl lg:text-[48px] xl:text-[52px] font-semibold text-[#08232C] tracking-tight leading-[1.2]">
+    <section id="pricing" className="pt-6 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
+      {/* Desktop Header with Branching Divider Lines to Plan 1 & Plan 2 */}
+      <div className="hidden lg:block relative max-w-5xl mx-auto">
+        <div className="relative flex items-center justify-center h-24">
+          {/* SVG Branching Lines */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 96" fill="none" preserveAspectRatio="none">
+            {/* Left line curving down to Plan 1 */}
+            <path
+              d="M 370 48 H 260 Q 240 48 240 68 V 96"
+              stroke="rgba(8, 35, 44, 0.6)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+            {/* Right line curving down to Plan 2 */}
+            <path
+              d="M 630 48 H 740 Q 760 48 760 68 V 96"
+              stroke="rgba(8, 35, 44, 0.6)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          {/* Centered 2 Plans Title with background mask */}
+          <h2 className="relative z-10 px-8 bg-[#F0F7FB] text-2xl xs:text-[28px] sm:text-4xl lg:text-[48px] xl:text-[52px] font-semibold text-[#08232C] tracking-tight leading-[1.2]">
+            2 Plans
+          </h2>
+        </div>
+      </div>
+
+      {/* Mobile Header with Flanking Horizontal Dividers */}
+      <div className="lg:hidden flex items-center justify-center max-w-sm mx-auto px-4 gap-4 py-2">
+        <div className="h-[2px] flex-1 bg-[#08232C]/60 rounded-full" />
+        <h2 className="text-2xl xs:text-[28px] font-semibold text-[#08232C] tracking-tight leading-[1.2] shrink-0">
           2 Plans
         </h2>
+        <div className="h-[2px] flex-1 bg-[#08232C]/60 rounded-full" />
       </div>
 
       {/* 2 Core Plan Cards with Mobile-Responsive Directional Arrows */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start pt-1">
         {/* Plan 1 Column */}
         <div className="space-y-3">
           {/* Plan 1 Directional Arrow */}
