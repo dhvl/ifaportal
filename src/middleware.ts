@@ -45,12 +45,14 @@ export function middleware(request: NextRequest) {
     subdomain = '';
   } else if (hostname.endsWith('.ifaportal.vercel.app')) {
     subdomain = hostname.slice(0, -'.ifaportal.vercel.app'.length);
-  } else if (hostname.startsWith('starter.') || hostname.startsWith('starter-')) {
-    subdomain = 'starter';
+  } else if (hostname.startsWith('scale.') || hostname.startsWith('scale-')) {
+    subdomain = 'scale';
   } else if (hostname.startsWith('growth.') || hostname.startsWith('growth-')) {
     subdomain = 'growth';
-  } else if (hostname.startsWith('pro.') || hostname.startsWith('pro-')) {
+  } else if (hostname.startsWith('starter.') || hostname.startsWith('starter-')) {
     subdomain = 'growth';
+  } else if (hostname.startsWith('pro.') || hostname.startsWith('pro-')) {
+    subdomain = 'scale';
   } else {
     // Multi-part TLD handling (e.g. .co.uk, .org.uk)
     const parts = hostname.split('.');
@@ -63,15 +65,15 @@ export function middleware(request: NextRequest) {
 
   // If a valid subdomain exists (excluding www)
   if (subdomain && subdomain !== 'www') {
-    // Flagship Starter Plan portal (Reliable Advisors)
-    if (subdomain === 'starter') {
+    // Flagship Growth Plan portal (Reliable Advisors) - Plan 1
+    if (subdomain === 'growth' || subdomain === 'starter') {
       if (url.pathname === '/' || url.pathname === '') {
         url.pathname = '/portal/reliable-advisors';
         return NextResponse.rewrite(url);
       }
     }
-    // Flagship Growth portal (Trustworthy Advisors)
-    else if (subdomain === 'growth' || subdomain === 'pro') {
+    // Flagship Scale Plan portal (Trustworthy Advisors) - Plan 2
+    else if (subdomain === 'scale' || subdomain === 'pro') {
       if (url.pathname === '/' || url.pathname === '') {
         url.pathname = '/portal/trustworthy-advisors';
         return NextResponse.rewrite(url);

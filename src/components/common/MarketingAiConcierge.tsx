@@ -26,11 +26,11 @@ const INITIAL_MESSAGES: ChatMessage[] = [
 ];
 
 const SUGGESTED_QUESTIONS = [
-  "What's included in the Starter Plan?",
-  "How does Starter beat competitors' top plans?",
+  "What's included in the Growth Plan?",
+  "How does Growth beat competitors' top plans?",
+  "Tell me about the Scale Plan with AI Concierge",
   "Tell me about the 3-month social retainer",
   "How fast can our firm go live?",
-  "How do I request package pricing?",
 ];
 
 export const MarketingAiConcierge: React.FC = () => {
@@ -53,24 +53,24 @@ export const MarketingAiConcierge: React.FC = () => {
   const generateBotReply = (query: string): { text: string; action?: { label: string; href: string } } => {
     const q = query.toLowerCase();
 
-    if (q.includes('starter') && (q.includes('beat') || q.includes('competitor') || q.includes('more') || q.includes('difference') || q.includes('premium') || q.includes('top'))) {
+    if ((q.includes('growth') || q.includes('starter')) && (q.includes('beat') || q.includes('competitor') || q.includes('more') || q.includes('difference') || q.includes('premium') || q.includes('top'))) {
       return {
-        text: "Traditional agencies charge £3k–£8k just for a static WordPress shell. Our **Starter Plan** is engineered from the ground up to offer more firepower out of the box than most competitors' premium tiers:\n\n• **Built-in 3-Month Social Media Retainer**: Done-for-you weekly LinkedIn thought-leadership posts & newsletters included as standard.\n• **FCA & FSCS Compliance**: Live FRN verification & Consumer Duty COBS 4 transparent fee grids.\n• **Ultra-Fast Next.js Cloud Hosting**: Instant WhatsApp and phone routing with zero maintenance headaches.",
-        action: { label: 'Explore Starter Plan Live Demo', href: 'https://starter.ifamedia.co.uk' },
-      };
-    }
-
-    if (q.includes('starter') || q.includes('plan 1')) {
-      return {
-        text: "The **Starter Plan** is tailored for solo IFAs and boutique practices wanting a high-trust, FCA-compliant presence without tech bloat:\n\n• Turnkey Next.js practice website\n• Direct WhatsApp & phone consultation routing\n• FCA FRN & FSCS £85k protection badges\n• Transparent Consumer Duty fee schedule\n• **Includes our 3-Month DFY Social Media Retainer**",
-        action: { label: 'Inquire for Starter Plan', href: 'mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan' },
-      };
-    }
-
-    if (q.includes('growth') || q.includes('pro') || q.includes('calculator') || q.includes('ai')) {
-      return {
-        text: "The **Growth Plan** is our flagship client acquisition platform for ambitious wealth managers and multi-adviser practices:\n\n• **24/7 Conversational AI Concierge** (trained on FCA advice boundaries)\n• **3 Interactive UK Calculators** (Pension Drawdown, 40% IHT, and Compound ISA)\n• **Gated High-Net-Worth Retirement Guide** for email lead capture\n• **Multi-Adviser Directory** with individual booking profiles\n• **Includes our 3-Month DFY Social Media Retainer**",
+        text: "Traditional agencies charge £3k–£8k just for a static WordPress shell. Our **Growth Plan** is engineered from the ground up to offer more firepower out of the box than most competitors' premium tiers:\n\n• **Built-in 3-Month Social Media Retainer**: Done-for-you weekly LinkedIn thought-leadership posts & newsletters included as standard.\n• **FCA & FSCS Compliance**: Live FRN verification & Consumer Duty COBS 4 transparent fee grids.\n• **Ultra-Fast Next.js Cloud Hosting**: Instant WhatsApp and phone routing with zero maintenance headaches.",
         action: { label: 'Explore Growth Plan Live Demo', href: 'https://growth.ifamedia.co.uk' },
+      };
+    }
+
+    if (q.includes('growth') || q.includes('plan 1') || q.includes('starter')) {
+      return {
+        text: "The **Growth Plan** is tailored for established IFAs and boutique practices wanting a high-trust, FCA-compliant presence without tech bloat:\n\n• Turnkey Next.js practice website\n• Direct WhatsApp & phone consultation routing\n• FCA FRN & FSCS £85k protection badges\n• Transparent Consumer Duty fee schedule\n• **Includes our 3-Month DFY Social Media Retainer**",
+        action: { label: 'Inquire for Growth Plan', href: 'mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan' },
+      };
+    }
+
+    if (q.includes('scale') || q.includes('plan 2') || q.includes('calculator') || q.includes('ai') || q.includes('concierge')) {
+      return {
+        text: "The **Scale Plan** is our flagship client acquisition platform for ambitious wealth managers and multi-adviser practices:\n\n• **24/7 Conversational AI Concierge** (trained on FCA advice boundaries)\n• **3 Interactive UK Calculators** (Pension Drawdown, 40% IHT, and Compound ISA)\n• **Gated High-Net-Worth Retirement Guide** for email lead capture\n• **Multi-Adviser Directory** with individual booking profiles\n• **Expanded Multi-Channel Social & Lead Nurture Funnels**\n• **Includes our 3-Month DFY Social Media Retainer**",
+        action: { label: 'Explore Scale Plan Live Demo', href: 'https://scale.ifamedia.co.uk' },
       };
     }
 
@@ -83,7 +83,7 @@ export const MarketingAiConcierge: React.FC = () => {
 
     if (q.includes('price') || q.includes('pricing') || q.includes('cost') || q.includes('quote') || q.includes('fee')) {
       return {
-        text: "We operate with **fixed package pricing** and zero hidden agency markups. Both our Starter and Growth plans are turnkey fixed-fee investments with setup fees waived on our default 3-month agreement.\n\nDrop an email to **inquiry@ifamedia.co.uk** with your practice name, and we'll send over the complete commercial package breakdown.",
+        text: "We operate with **fixed package pricing** and zero hidden agency markups. Both our Growth and Scale plans are turnkey fixed-fee investments with setup fees waived on our default 3-month agreement.\n\nDrop an email to **inquiry@ifamedia.co.uk** with your practice name, and we'll send over the complete commercial package breakdown.",
         action: { label: 'Email: inquiry@ifamedia.co.uk', href: 'mailto:inquiry@ifamedia.co.uk?subject=Commercial%20Pricing%20Inquiry%20-%20IFA%20Media' },
       };
     }
@@ -110,7 +110,7 @@ export const MarketingAiConcierge: React.FC = () => {
     }
 
     return {
-      text: "Thanks for asking! We specialize exclusively in creating high-performance websites for UK Financial Advisors, Financial Planners, and Wealth Managers.\n\nWould you like to explore our live demos, learn about our Starter or Growth plans, or request our fixed package pricing breakdown?",
+      text: "Thanks for asking! We specialize exclusively in creating high-performance websites for UK Financial Advisors, Financial Planners, and Wealth Managers.\n\nWould you like to explore our live demos, learn about our Growth or Scale plans, or request our fixed package pricing breakdown?",
       action: { label: 'Email inquiry@ifamedia.co.uk', href: 'mailto:inquiry@ifamedia.co.uk?subject=Website%20Inquiry%20-%20IFA%20Media' },
     };
   };

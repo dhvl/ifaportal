@@ -258,22 +258,24 @@ export default function AdminDashboardPage() {
                         )}
                       </div>
 
-                      {/* Instant Plan Tier Switcher */}
-                      <div className="pt-2 border-t border-slate-100 space-y-1.5">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Switch Plan Tier:</span>
-                        <div className="grid grid-cols-2 gap-2 text-[10px] font-bold">
+                      {/* Tier Switcher */}
+                      <div className="pt-2">
+                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
+                          Change Plan Tier:
+                        </label>
+                        <div className="flex gap-2">
                           {(['starter', 'pro'] as PlanTier[]).map((t) => (
                             <button
                               key={t}
                               type="button"
                               onClick={() => handlePlanChange(client, t)}
-                              className={`py-1.5 rounded-lg border uppercase transition-all ${
-                                plan === t
-                                  ? 'bg-slate-900 text-white border-slate-900 shadow-xs'
-                                  : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                                (client.planTier || 'starter') === t
+                                  ? 'bg-slate-900 text-white shadow-sm'
+                                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                               }`}
                             >
-                              {t === 'starter' ? 'Starter Plan' : 'Growth Plan'}
+                              {t === 'starter' ? 'Growth Plan' : 'Scale Plan'}
                             </button>
                           ))}
                         </div>

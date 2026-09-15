@@ -22,13 +22,13 @@ const StepsIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) 
 );
 
 interface InteractivePreviewWidgetProps {
-  selectedPreset?: 'pro' | 'starter' | 'pension';
+  selectedPreset?: 'scale' | 'growth' | 'pro' | 'starter' | 'pension';
 }
 
 export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> = ({ selectedPreset }) => {
-  const [userSelectedTier, setUserSelectedTier] = useState<'starter' | 'growth' | null>(null);
+  const [userSelectedTier, setUserSelectedTier] = useState<'growth' | 'scale' | null>(null);
 
-  const activeTier: 'starter' | 'growth' = userSelectedTier ?? (selectedPreset === 'pro' || selectedPreset === 'pension' ? 'growth' : 'starter');
+  const activeTier: 'growth' | 'scale' = userSelectedTier ?? (selectedPreset === 'scale' || selectedPreset === 'pro' || selectedPreset === 'pension' ? 'scale' : 'growth');
 
   return (
     <section id="demos" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -49,33 +49,21 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
       </div>
 
       <div className="bg-white border-2 border-[#D8E5EE] rounded-[32px] p-6 sm:p-10 shadow-sm space-y-8 max-w-6xl mx-auto transition-all">
-        {/* Clean Plan Switcher Tabs: Starter Plan First, Growth Plan Second */}
+        {/* Clean Plan Switcher Tabs: Growth Plan First, Scale Plan Second */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b-2 border-[#E2EEF5]">
           <div>
             <h3 className="text-xl sm:text-2xl font-black text-[#08232C]">
-              {activeTier === 'starter' ? 'Starter Plan' : 'Growth Plan'}
+              {activeTier === 'growth' ? 'Growth Plan' : 'Scale Plan'}
             </h3>
             <p className="text-xs text-[#636F75] font-medium pt-0.5">
-              {activeTier === 'starter' 
-                ? 'Ideal for solo IFAs and boutique practices focused on direct WhatsApp consultation booking.'
+              {activeTier === 'growth' 
+                ? 'Ideal for boutique practices and established advisers focused on direct WhatsApp consultation booking.'
                 : 'Complete AI lead machine with 24/7 conversational concierge and 3 UK financial calculators.'}
             </p>
           </div>
 
-          {/* Tab Selector: Steps for Starter, Rocket for Growth */}
+          {/* Tab Selector: Steps for Growth, Rocket for Scale */}
           <div className="inline-flex items-center p-1.5 bg-[#F0F7FB] rounded-2xl border-2 border-[#D8E5EE] gap-1 shrink-0">
-            <button
-              onClick={() => setUserSelectedTier('starter')}
-              className={`px-5 py-2.5 rounded-xl font-black text-xs tracking-wider uppercase transition-all flex items-center justify-center space-x-2 cursor-pointer whitespace-nowrap ${
-                activeTier === 'starter'
-                  ? 'bg-[#08232C] text-white shadow-md'
-                  : 'text-[#475760] hover:text-[#08232C]'
-              }`}
-            >
-              <StepsIcon className="w-4 h-4 text-[#5CDFB0]" />
-              <span>Starter Plan</span>
-            </button>
-
             <button
               onClick={() => setUserSelectedTier('growth')}
               className={`px-5 py-2.5 rounded-xl font-black text-xs tracking-wider uppercase transition-all flex items-center justify-center space-x-2 cursor-pointer whitespace-nowrap ${
@@ -84,14 +72,26 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                   : 'text-[#475760] hover:text-[#08232C]'
               }`}
             >
-              <Rocket className="w-4 h-4 text-[#F3C044]" />
+              <StepsIcon className="w-4 h-4 text-[#5CDFB0]" />
               <span>Growth Plan</span>
+            </button>
+
+            <button
+              onClick={() => setUserSelectedTier('scale')}
+              className={`px-5 py-2.5 rounded-xl font-black text-xs tracking-wider uppercase transition-all flex items-center justify-center space-x-2 cursor-pointer whitespace-nowrap ${
+                activeTier === 'scale'
+                  ? 'bg-[#08232C] text-white shadow-md'
+                  : 'text-[#475760] hover:text-[#08232C]'
+              }`}
+            >
+              <Rocket className="w-4 h-4 text-[#F3C044]" />
+              <span>Scale Plan</span>
             </button>
           </div>
         </div>
 
-        {/* Tab 1: Starter Plan (FIRST) */}
-        {activeTier === 'starter' && (
+        {/* Tab 1: Growth Plan (FIRST) */}
+        {activeTier === 'growth' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-in fade-in duration-300">
             {/* Left Details */}
             <div className="lg:col-span-7 space-y-6 flex flex-col justify-between">
@@ -102,7 +102,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                   </div>
                   <div>
                     <div className="flex items-center space-x-2">
-                      <h4 className="text-2xl font-black text-[#08232C]">Starter Plan</h4>
+                      <h4 className="text-2xl font-black text-[#08232C]">Growth Plan</h4>
                       <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-[#E8F8F2] text-[#0A6B48] border border-[#B4ECD6]">
                         Direct Routing
                       </span>
@@ -164,24 +164,24 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
               {/* CTAs */}
               <div className="flex flex-wrap items-center gap-4 pt-4 border-t-2 border-[#E2EEF5]">
                 <a
-                  href="https://starter.ifamedia.co.uk"
+                  href="https://growth.ifamedia.co.uk"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3.5 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center space-x-2 border border-[#184654]"
                 >
-                  <span>Preview Live Starter Portal</span>
+                  <span>Preview Live Growth Portal</span>
                   <ExternalLink className="w-3.5 h-3.5 text-[#5CDFB0]" />
                 </a>
 
                 <div className="flex items-center space-x-2 text-xs font-mono text-[#636F75]">
                   <span>Live URL:</span>
                   <a
-                    href="https://starter.ifamedia.co.uk"
+                    href="https://growth.ifamedia.co.uk"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-2.5 py-1 rounded-md bg-[#F0F7FB] hover:bg-[#E2EEF5] border border-[#D8E5EE] font-bold text-[#08232C] transition-colors inline-flex items-center gap-1"
                   >
-                    starter.ifamedia.co.uk
+                    growth.ifamedia.co.uk
                     <span className="text-[10px] text-[#0A6B48]">↗</span>
                   </a>
                 </div>
@@ -193,7 +193,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-mono uppercase px-3 py-1 rounded-full bg-[#043327] text-[#5CDFB0] font-extrabold border border-[#0D7A53]">
-                    STARTER PLAN
+                    GROWTH PLAN
                   </span>
                   <span className="text-xs font-mono text-[#5CDFB0] font-bold flex items-center space-x-1.5">
                     <span className="w-2 h-2 rounded-full bg-[#5CDFB0] animate-pulse" />
@@ -213,7 +213,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                   </p>
                   <div className="pt-1">
                     <a
-                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan%20Scope%20and%20Pricing"
+                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan%20Scope%20and%20Pricing"
                       className="inline-flex items-center space-x-1.5 text-xs text-[#5CDFB0] font-bold hover:underline"
                     >
                       <Mail className="w-3.5 h-3.5 text-[#5CDFB0]" />
@@ -243,10 +243,10 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
 
               <div className="pt-6">
                 <a
-                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Starter%20Plan"
+                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan"
                   className="w-full py-4 rounded-2xl bg-[#5CDFB0] hover:bg-[#4BD2A3] text-[#064E3B] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
                 >
-                  <span>Inquire for Starter Plan</span>
+                  <span>Inquire for Growth Plan</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -254,8 +254,8 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
           </div>
         )}
 
-        {/* Tab 2: Growth Plan (SECOND) */}
-        {activeTier === 'growth' && (
+        {/* Tab 2: Scale Plan (SECOND) */}
+        {activeTier === 'scale' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-in fade-in duration-300">
             {/* Left Details */}
             <div className="lg:col-span-7 space-y-6 flex flex-col justify-between">
@@ -266,7 +266,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                   </div>
                   <div>
                     <div className="flex items-center space-x-2">
-                      <h4 className="text-2xl font-black text-[#08232C]">Growth Plan</h4>
+                      <h4 className="text-2xl font-black text-[#08232C]">Scale Plan</h4>
                       <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-[#FEF8E7] text-[#92400E] border border-[#FDE68A]">
                         Full AI Engine
                       </span>
@@ -328,24 +328,24 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
               {/* CTAs */}
               <div className="flex flex-wrap items-center gap-4 pt-4 border-t-2 border-[#E2EEF5]">
                 <a
-                  href="https://growth.ifamedia.co.uk"
+                  href="https://scale.ifamedia.co.uk"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3.5 rounded-2xl bg-[#08232C] hover:bg-[#0E3542] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center space-x-2 border border-[#184654]"
                 >
-                  <span>Preview Live Growth Portal</span>
+                  <span>Preview Live Scale Portal</span>
                   <ExternalLink className="w-3.5 h-3.5 text-[#F3C044]" />
                 </a>
 
                 <div className="flex items-center space-x-2 text-xs font-mono text-[#636F75]">
                   <span>Live URL:</span>
                   <a
-                    href="https://growth.ifamedia.co.uk"
+                    href="https://scale.ifamedia.co.uk"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-2.5 py-1 rounded-md bg-[#F0F7FB] hover:bg-[#E2EEF5] border border-[#D8E5EE] font-bold text-[#08232C] transition-colors inline-flex items-center gap-1"
                   >
-                    growth.ifamedia.co.uk
+                    scale.ifamedia.co.uk
                     <span className="text-[10px] text-[#0A6B48]">↗</span>
                   </a>
                 </div>
@@ -357,7 +357,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-mono uppercase px-3 py-1 rounded-full bg-[#143946] text-[#F3C044] font-extrabold border border-[#235364]">
-                    GROWTH PLAN
+                    SCALE PLAN
                   </span>
                   <span className="text-xs font-mono text-[#F3C044] font-bold flex items-center space-x-1.5">
                     <span className="w-2 h-2 rounded-full bg-[#F3C044] animate-pulse" />
@@ -377,7 +377,7 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
                   </p>
                   <div className="pt-1">
                     <a
-                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan%20Scope%20and%20Pricing"
+                      href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Scale%20Plan%20Scope%20and%20Pricing"
                       className="inline-flex items-center space-x-1.5 text-xs text-[#F3C044] font-bold hover:underline"
                     >
                       <Mail className="w-3.5 h-3.5 text-[#F3C044]" />
@@ -407,10 +407,10 @@ export const InteractivePreviewWidget: React.FC<InteractivePreviewWidgetProps> =
 
               <div className="pt-6">
                 <a
-                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Growth%20Plan"
+                  href="mailto:inquiry@ifamedia.co.uk?subject=Inquiry%20regarding%20Scale%20Plan"
                   className="w-full py-4 rounded-2xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2"
                 >
-                  <span>Inquire for Growth Plan</span>
+                  <span>Inquire for Scale Plan</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>

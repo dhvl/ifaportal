@@ -7,108 +7,108 @@ interface FeatureItem {
   id: string;
   title: string;
   explainer: string;
-  starter: boolean;
   growth: boolean;
+  scale: boolean;
 }
 
 const websiteFeatures: FeatureItem[] = [
   {
     id: 'bespoke-website',
     title: 'Modern Bespoke Responsive Website',
-    explainer: 'Custom Next.js design tailored to your advisory firm, fully responsive across mobile, tablet, and desktop.',
-    starter: true,
+    explainer: 'Design tailored to your advisory firm, fully responsive across mobile, tablet, and desktop.',
     growth: true,
+    scale: true,
   },
   {
     id: 'whatsapp-call',
     title: 'Direct WhatsApp & Call Routing',
     explainer: 'One-tap instant WhatsApp consultation trigger and click-to-call routing for immediate prospect contact.',
-    starter: true,
     growth: true,
+    scale: true,
   },
   {
     id: 'fca-consumer-duty',
     title: 'FCA Consumer Duty & FRN Verification',
     explainer: 'Embedded regulatory compliance, FCA registration validation badge, and statutory FSCS disclaimers.',
-    starter: true,
     growth: true,
+    scale: true,
   },
   {
     id: 'adviser-directory',
     title: 'Adviser Bio & Qualifications Directory',
     explainer: 'Professional adviser profiles showcasing SPS credentials, Chartered status, specialisms, and experience.',
-    starter: true,
     growth: true,
+    scale: true,
   },
   {
     id: 'uk-cloud-ssl',
     title: 'High-Speed UK Cloud Hosting & SSL',
     explainer: 'Ultra-fast UK-based cloud infrastructure with automatic SSL certification, DDoS defense, and 99.9% uptime.',
-    starter: true,
     growth: true,
+    scale: true,
   },
   {
     id: 'gdpr-cookie',
     title: 'UK GDPR & Cookie Consent Management',
     explainer: 'Compliant granular cookie consent banner, audit-ready data privacy architecture, and regulatory policy pages.',
-    starter: true,
     growth: true,
+    scale: true,
   },
   {
     id: 'contact-forms',
     title: 'Secure SSL Contact & Inquiry Forms',
     explainer: 'Encrypted lead inquiry forms delivering instant notifications directly to your primary practice inbox.',
-    starter: true,
     growth: true,
+    scale: true,
   },
   {
     id: 'ai-concierge',
     title: '24/7 Conversational AI Concierge',
     explainer: 'Trained UK wealth assistant that greets visitors, answers practice FAQs, and pre-qualifies high-net-worth leads.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
   {
     id: 'pension-calc',
     title: 'Pension Drawdown Calculator',
     explainer: 'Interactive tool allowing prospects to simulate tax-free cash lump sums and retirement income sustainability.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
   {
     id: 'iht-calc',
     title: 'Inheritance Tax (40% IHT) Calculator',
     explainer: 'Engaging tool calculating potential estate tax liability above nil-rate bands to prompt wealth transfer planning.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
   {
     id: 'isa-calc',
     title: 'Compound ISA / Wealth Calculator',
     explainer: 'Visual investment growth calculator demonstrating long-term tax-efficient compounding returns.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
   {
     id: 'gated-guide',
     title: 'Gated Retirement Guide Lead Magnet',
     explainer: 'High-value downloadable wealth & retirement guide designed to capture verified prospect emails.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
   {
     id: 'booking-calendar',
     title: 'Adviser Booking Calendar Integration',
     explainer: 'Seamless real-time appointment booking synced with Calendly, HubSpot, or Microsoft Outlook calendars.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
   {
     id: 'client-portal',
     title: 'Client Portal Login Integration',
     explainer: 'Direct single-click client portal access gateway for moneyinfo, Intelliflo, Transact, or standard platforms.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
 ];
 
@@ -117,57 +117,57 @@ const marketingFeatures: FeatureItem[] = [
     id: 'dfy-social',
     title: '3-Month DFY Social Media Retainer',
     explainer: 'Comprehensive 90-day Done-For-You social media strategy, scheduling, and execution included with launch.',
-    starter: true,
     growth: true,
+    scale: true,
   },
   {
     id: 'weekly-content',
     title: 'Weekly LinkedIn & X Financial Content',
     explainer: 'Curated weekly thought-leadership posts to build trust and authority among local and corporate clients.',
-    starter: true,
     growth: true,
+    scale: true,
   },
   {
     id: 'client-newsletter',
     title: 'Monthly Branded Client Newsletter',
     explainer: 'Professionally formatted email newsletter template with timely market updates for client retention.',
-    starter: true,
     growth: true,
+    scale: true,
   },
   {
     id: 'local-seo',
     title: 'Google Business Profile & Local SEO',
     explainer: 'Full setup, category optimization, and local map-pack targeting for regional search dominance.',
-    starter: true,
     growth: true,
+    scale: true,
   },
   {
     id: 'multichannel-campaigns',
     title: 'Expanded Multi-Channel Social Campaigns',
     explainer: 'Tailored multi-platform campaigns with custom infographic assets, infographics, and carousel posts.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
   {
     id: 'email-nurture',
     title: 'Automated Email Lead Nurture Funnel',
     explainer: 'Automated multi-touch email drip sequence warming cold inquiries into committed booked consultations.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
   {
     id: 'local-citations',
     title: 'UK Local Search Citation Building',
     explainer: 'High-authority UK financial directory and citation syndication to maximize organic local search ranking.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
   {
     id: 'monthly-analytics',
     title: 'Monthly Performance & ROI Analytics',
     explainer: 'Executive monthly reporting dashboard detailing traffic volume, lead conversion rates, and acquisition ROI.',
-    starter: false,
-    growth: true,
+    growth: false,
+    scale: true,
   },
 ];
 
@@ -184,12 +184,12 @@ export const CommercialPricingGrid: React.FC = () => {
     return (
       <tr
         key={feature.id}
-        className={`border-b border-[#E2EEF5]/70 transition-colors ${
+        className={`border-b border-[#E2EEF5]/70 transition-colors group ${
           isEven ? 'bg-[#FAFDFE]' : 'bg-white'
-        } hover:bg-[#F0F7FB]/70 group`}
+        } hover:bg-[#F0F7FB]`}
       >
         {/* Column 1: Feature Title & Info Tooltip */}
-        <td className="py-4 px-4 sm:px-6 text-left align-middle">
+        <td className="py-4 px-4 sm:px-6 text-left align-middle transition-colors group-hover:bg-[#F0F7FB]">
           <div className="flex items-center space-x-2">
             <span className="text-xs sm:text-sm md:text-base font-semibold text-[#08232C] leading-snug">
               {feature.title}
@@ -219,9 +219,9 @@ export const CommercialPricingGrid: React.FC = () => {
           </div>
         </td>
 
-        {/* Column 2: Starter Plan (Basic) */}
-        <td className="py-4 px-3 sm:px-6 text-center align-middle w-28 sm:w-44 lg:w-56 border-l border-[#E2EEF5]/70">
-          {feature.starter ? (
+        {/* Column 2: Growth Plan (Plan 1) */}
+        <td className="py-4 px-3 sm:px-6 text-center align-middle w-28 sm:w-44 lg:w-56 border-l border-[#E2EEF5]/70 transition-colors group-hover:bg-[#F0F7FB]">
+          {feature.growth ? (
             <div className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#E6F4EA] text-[#0A6B48]">
               <Check className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
             </div>
@@ -230,9 +230,9 @@ export const CommercialPricingGrid: React.FC = () => {
           )}
         </td>
 
-        {/* Column 3: Growth Plan (Advanced) */}
-        <td className="py-4 px-3 sm:px-6 text-center align-middle w-28 sm:w-44 lg:w-56 border-l border-[#E2EEF5]/70 bg-[#FBFDFD]">
-          {feature.growth ? (
+        {/* Column 3: Scale Plan (Plan 2) - Full row hover enabled */}
+        <td className="py-4 px-3 sm:px-6 text-center align-middle w-28 sm:w-44 lg:w-56 border-l border-[#E2EEF5]/70 transition-colors group-hover:bg-[#F0F7FB]">
+          {feature.scale ? (
             <div className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#E6F4EA] text-[#0A6B48]">
               <Check className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
             </div>
@@ -245,39 +245,45 @@ export const CommercialPricingGrid: React.FC = () => {
   };
 
   return (
-    <section id="pricing" className="pt-6 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
-      {/* Desktop Header with Branching Divider Lines to Plan 1 & Plan 2 */}
-      <div className="hidden lg:block relative max-w-5xl mx-auto">
-        <div className="relative flex items-center justify-center h-24">
-          {/* SVG Branching Lines */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 96" fill="none" preserveAspectRatio="none">
-            {/* Left line curving down to Plan 1 (Starter) */}
-            <path
-              d="M 370 48 H 260 Q 240 48 240 68 V 96"
-              stroke="rgba(8, 35, 44, 0.6)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-            />
-            {/* Right line curving down to Plan 2 (Growth) */}
-            <path
-              d="M 630 48 H 740 Q 760 48 760 68 V 96"
-              stroke="rgba(8, 35, 44, 0.6)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-            />
-          </svg>
+    <section id="pricing" className="pt-6 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
+      {/* Desktop Header: 2 Plans with Branching Lines Positioned Over the 2 Plan Columns on the Right */}
+      <div className="hidden lg:grid grid-cols-12 max-w-5xl mx-auto items-end">
+        {/* Left Side (Over Features & Services column) - Empty space */}
+        <div className="lg:col-span-6 xl:col-span-7" />
 
-          {/* Centered 2 Plans Title with background mask */}
-          <h2 className="relative z-10 px-8 bg-[#F0F7FB] text-2xl xs:text-[28px] sm:text-4xl lg:text-[48px] xl:text-[52px] font-semibold text-[#08232C] tracking-tight leading-[1.2]">
-            2 Plans
-          </h2>
+        {/* Right Side (Directly over Plan 1 and Plan 2 columns) */}
+        <div className="lg:col-span-6 xl:col-span-5 relative flex flex-col items-center">
+          <div className="relative w-full flex items-center justify-center h-16">
+            {/* SVG Branching Lines: Left line to Plan 1 (x=25%), Right line to Plan 2 (x=75%) */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 64" fill="none" preserveAspectRatio="none">
+              {/* Left branch curving down to Plan 1 center */}
+              <path
+                d="M 38 28 H 27 Q 25 28 25 40 V 64"
+                stroke="rgba(8, 35, 44, 0.6)"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+              {/* Right branch curving down to Plan 2 center */}
+              <path
+                d="M 62 28 H 73 Q 75 28 75 40 V 64"
+                stroke="rgba(8, 35, 44, 0.6)"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            {/* Centered Smaller "2 Plans" Title with Background Mask */}
+            <span className="relative z-10 px-4 bg-[#F0F7FB] text-xl sm:text-2xl font-bold text-[#08232C] tracking-tight leading-none">
+              2 Plans
+            </span>
+          </div>
         </div>
       </div>
 
       {/* Mobile Header with Flanking Horizontal Dividers */}
-      <div className="lg:hidden flex items-center justify-center max-w-sm mx-auto px-4 gap-4 py-2">
+      <div className="lg:hidden flex items-center justify-center max-w-xs mx-auto px-4 gap-3 py-2">
         <div className="h-[2px] flex-1 bg-[#08232C]/60 rounded-full" />
-        <h2 className="text-2xl xs:text-[28px] font-semibold text-[#08232C] tracking-tight leading-[1.2] shrink-0">
+        <h2 className="text-xl sm:text-2xl font-bold text-[#08232C] tracking-tight shrink-0">
           2 Plans
         </h2>
         <div className="h-[2px] flex-1 bg-[#08232C]/60 rounded-full" />
@@ -301,7 +307,7 @@ export const CommercialPricingGrid: React.FC = () => {
                   </h3>
                 </th>
 
-                {/* Column 2: Plan 1 (Starter Plan) Header */}
+                {/* Column 2: Plan 1 (Growth Plan) Header */}
                 <th className="py-6 px-3 sm:px-6 text-center align-bottom w-28 sm:w-44 lg:w-56 border-l-2 border-[#E2EEF5] bg-[#FAFDFE]">
                   <div className="flex flex-col items-center space-y-2">
                     <span className="text-xs font-black uppercase tracking-widest text-[#08232C]/60">
@@ -311,10 +317,10 @@ export const CommercialPricingGrid: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                     </svg>
                     <h3 className="text-base sm:text-xl font-black text-[#08232C] tracking-tight">
-                      Starter Plan
+                      Growth Plan
                     </h3>
                     <a
-                      href="https://starter.ifamedia.co.uk"
+                      href="https://growth.ifamedia.co.uk"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center space-x-1 px-3 py-1.5 rounded-xl bg-[#08232C] hover:bg-[#0E3542] text-white font-bold text-[11px] uppercase tracking-wider transition-colors shadow-xs"
@@ -325,7 +331,7 @@ export const CommercialPricingGrid: React.FC = () => {
                   </div>
                 </th>
 
-                {/* Column 3: Plan 2 (Growth Plan) Header */}
+                {/* Column 3: Plan 2 (Scale Plan) Header */}
                 <th className="py-6 px-3 sm:px-6 text-center align-bottom w-28 sm:w-44 lg:w-56 border-l-2 border-[#E2EEF5] bg-[#F7FBFD] relative">
                   <div className="flex flex-col items-center space-y-2">
                     <div className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-[#08232C] text-[#F3C044] text-[10px] font-black uppercase tracking-wider shadow-xs">
@@ -339,10 +345,10 @@ export const CommercialPricingGrid: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                     </svg>
                     <h3 className="text-base sm:text-xl font-black text-[#08232C] tracking-tight">
-                      Growth Plan
+                      Scale Plan
                     </h3>
                     <a
-                      href="https://growth.ifamedia.co.uk"
+                      href="https://scale.ifamedia.co.uk"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center space-x-1 px-3 py-1.5 rounded-xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-bold text-[11px] uppercase tracking-wider transition-colors shadow-xs"
@@ -397,23 +403,23 @@ export const CommercialPricingGrid: React.FC = () => {
                 </td>
                 <td className="py-6 px-3 sm:px-6 text-center border-l-2 border-[#E2EEF5] bg-[#FAFDFE]">
                   <a
-                    href="https://starter.ifamedia.co.uk"
+                    href="https://growth.ifamedia.co.uk"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-3 px-4 rounded-xl bg-[#08232C] hover:bg-[#0E3542] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-1.5 group"
                   >
-                    <span>Preview Starter</span>
+                    <span>Preview Growth</span>
                     <ExternalLink className="w-3.5 h-3.5 text-[#F3C044] group-hover:translate-x-0.5 transition-transform" />
                   </a>
                 </td>
                 <td className="py-6 px-3 sm:px-6 text-center border-l-2 border-[#E2EEF5] bg-[#F7FBFD]">
                   <a
-                    href="https://growth.ifamedia.co.uk"
+                    href="https://scale.ifamedia.co.uk"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-3 px-4 rounded-xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-black text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-1.5 group"
                   >
-                    <span>Preview Growth</span>
+                    <span>Preview Scale</span>
                     <ExternalLink className="w-3.5 h-3.5 text-[#08232C] group-hover:translate-x-0.5 transition-transform" />
                   </a>
                 </td>

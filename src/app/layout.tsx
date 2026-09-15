@@ -145,10 +145,10 @@ const jsonLdStructuredData = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "What is included in the IFA Media Starter Plan?",
+          name: "What is included in the IFA Media Growth Plan?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "The Starter Plan includes a turnkey Next.js practice website, direct WhatsApp and phone consultation routing, FCA FRN and FSCS £85,000 protection badges, a transparent Consumer Duty fee grid, ultra-fast UK hosting, and our built-in 3-month Done-For-You social media and newsletter retainer.",
+            text: "The Growth Plan includes a turnkey Next.js practice website, direct WhatsApp and phone consultation routing, FCA FRN and FSCS £85,000 protection badges, a transparent Consumer Duty fee grid, ultra-fast UK hosting, and our built-in 3-month Done-For-You social media and newsletter retainer.",
           },
         },
         {

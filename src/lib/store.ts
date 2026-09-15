@@ -59,12 +59,12 @@ export const DEFAULT_SERVICES = [
 
 export const PLAN_DETAILS = {
   starter: {
-    name: 'Starter Plan',
+    name: 'Growth Plan',
     priceMonthly: 0,
     setupFeeQuarterly: 0,
     setupFeeMonthly: 0,
     defaultRetainerMonths: 3,
-    badge: 'Starter',
+    badge: 'Growth',
     leadMagnetsCount: 0,
     calculators: [],
     hasWhatsAppClick: true,
@@ -77,12 +77,12 @@ export const PLAN_DETAILS = {
     tagline: 'High-converting website + WhatsApp inquiry button + 3-month built-in social media retainer.',
   },
   pro: {
-    name: 'Growth Plan',
+    name: 'Scale Plan',
     priceMonthly: 0,
     setupFeeQuarterly: 0,
     setupFeeMonthly: 0,
     defaultRetainerMonths: 3,
-    badge: 'Growth (Recommended)',
+    badge: 'Scale (Recommended)',
     leadMagnetsCount: 3,
     calculators: ['pension', 'inheritanceTax', 'investmentGrowth'],
     hasWhatsAppClick: true,

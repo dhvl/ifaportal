@@ -545,7 +545,7 @@ export default function OnboardingQuestionnairePage() {
                         </div>
                         <div>
                           <div className="flex items-center space-x-2">
-                            <h4 className="font-extrabold text-base text-slate-900">Starter Plan</h4>
+                            <h4 className="font-extrabold text-base text-slate-900">Growth Plan</h4>
                             <span className="bg-slate-200 text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Essential</span>
                           </div>
                           <span className="text-xs text-slate-500">Website &amp; WhatsApp Direct with Built-in Social Media</span>
@@ -566,7 +566,7 @@ export default function OnboardingQuestionnairePage() {
                     </div>
                   </div>
 
-                  {/* Plan 2: Growth Plan */}
+                  {/* Plan 2: Scale Plan */}
                   <div
                     onClick={() => setFormData({ ...formData, planTier: 'pro' })}
                     className={`p-6 rounded-3xl border-2 cursor-pointer transition-all relative ${
@@ -576,7 +576,7 @@ export default function OnboardingQuestionnairePage() {
                     }`}
                   >
                     <div className="absolute -top-3 right-6 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm">
-                      ⭐ Recommended • Growth Plan
+                      ⭐ Recommended • Scale Plan
                     </div>
 
                     <div className="flex items-center justify-between">
@@ -586,7 +586,7 @@ export default function OnboardingQuestionnairePage() {
                         </div>
                         <div>
                           <div className="flex items-center space-x-2">
-                            <h4 className="font-extrabold text-base text-slate-900">Growth Plan</h4>
+                            <h4 className="font-extrabold text-base text-slate-900">Scale Plan</h4>
                             <span className="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Full Engine</span>
                           </div>
                           <span className="text-xs text-slate-500">Full AI Chatbot + Calculators + Lead Magnets + Social Media</span>
