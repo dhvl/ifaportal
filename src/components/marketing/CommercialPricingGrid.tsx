@@ -6,9 +6,9 @@ import { Check, Globe, TrendingUp, ExternalLink } from 'lucide-react';
 export const CommercialPricingGrid: React.FC = () => {
   return (
     <section id="pricing" className="pt-6 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
-      {/* Simplified Header: 2 Plans */}
+      {/* Simplified Header: Matched font size scale with main copy headline */}
       <div className="text-center max-w-4xl mx-auto space-y-2">
-        <h2 className="text-3xl sm:text-[42px] lg:text-[48px] font-semibold text-[#08232C] tracking-tight leading-[1.2]">
+        <h2 className="text-2xl xs:text-[28px] sm:text-4xl lg:text-[48px] xl:text-[52px] font-semibold text-[#08232C] tracking-tight leading-[1.2]">
           2 Plans
         </h2>
       </div>
