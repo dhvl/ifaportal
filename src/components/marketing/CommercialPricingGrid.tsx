@@ -220,7 +220,7 @@ export const CommercialPricingGrid: React.FC = () => {
         </td>
 
         {/* Column 2: Growth Plan (Plan 1) */}
-        <td className="py-4 px-3 sm:px-6 text-center align-middle w-28 sm:w-44 lg:w-56 border-l border-[#E2EEF5]/70 transition-colors group-hover:bg-[#F0F7FB]">
+        <td className="py-4 px-4 sm:px-6 text-center align-middle border-l border-[#E2EEF5]/70 transition-colors group-hover:bg-[#F0F7FB]">
           {feature.growth ? (
             <div className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#E6F4EA] text-[#0A6B48]">
               <Check className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
@@ -230,8 +230,8 @@ export const CommercialPricingGrid: React.FC = () => {
           )}
         </td>
 
-        {/* Column 3: Scale Plan (Plan 2) - Full row hover enabled */}
-        <td className="py-4 px-3 sm:px-6 text-center align-middle w-28 sm:w-44 lg:w-56 border-l border-[#E2EEF5]/70 transition-colors group-hover:bg-[#F0F7FB]">
+        {/* Column 3: Scale Plan (Plan 2) */}
+        <td className="py-4 px-4 sm:px-6 text-center align-middle border-l border-[#E2EEF5]/70 transition-colors group-hover:bg-[#F0F7FB]">
           {feature.scale ? (
             <div className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#E6F4EA] text-[#0A6B48]">
               <Check className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
@@ -245,55 +245,65 @@ export const CommercialPricingGrid: React.FC = () => {
   };
 
   return (
-    <section id="pricing" className="pt-6 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
-      {/* Desktop Header: 2 Plans with Branching Lines Positioned Over the 2 Plan Columns on the Right */}
-      <div className="hidden lg:grid grid-cols-12 max-w-5xl mx-auto items-end">
-        {/* Left Side (Over Features & Services column) - Empty space */}
-        <div className="lg:col-span-6 xl:col-span-7" />
+    <section id="pricing" className="pt-6 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3 sm:space-y-4">
+      {/* Desktop Header: 2 Plans with Branching Bracket Lines aligned directly to Plan 1 (55%) and Plan 2 (85%) */}
+      <div className="hidden lg:block relative max-w-5xl mx-auto h-14">
+        {/* Full-width SVG matching the 1000-unit coordinate system */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          viewBox="0 0 1000 56"
+          fill="none"
+          preserveAspectRatio="none"
+        >
+          {/* Left branching bracket curving down to center of Growth Plan column (x = 550) */}
+          <path
+            d="M 645 20 H 570 Q 550 20 550 38 V 56"
+            stroke="#08232C"
+            strokeOpacity="0.45"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
+          {/* Right branching bracket curving down to center of Scale Plan column (x = 850) */}
+          <path
+            d="M 755 20 H 830 Q 850 20 850 38 V 56"
+            stroke="#08232C"
+            strokeOpacity="0.45"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
 
-        {/* Right Side (Directly over Plan 1 and Plan 2 columns) */}
-        <div className="lg:col-span-6 xl:col-span-5 relative flex flex-col items-center">
-          <div className="relative w-full flex items-center justify-center h-16">
-            {/* SVG Branching Lines: Left line to Plan 1 (x=25%), Right line to Plan 2 (x=75%) */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 64" fill="none" preserveAspectRatio="none">
-              {/* Left branch curving down to Plan 1 center */}
-              <path
-                d="M 38 28 H 27 Q 25 28 25 40 V 64"
-                stroke="rgba(8, 35, 44, 0.6)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-              {/* Right branch curving down to Plan 2 center */}
-              <path
-                d="M 62 28 H 73 Q 75 28 75 40 V 64"
-                stroke="rgba(8, 35, 44, 0.6)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-            </svg>
-
-            {/* Centered Smaller "2 Plans" Title with Background Mask */}
-            <span className="relative z-10 px-4 bg-[#F0F7FB] text-xl sm:text-2xl font-bold text-[#08232C] tracking-tight leading-none">
-              2 Plans
-            </span>
-          </div>
+        {/* Centered 2 Plans Title directly at 70% (between Column 2 and Column 3) */}
+        <div className="absolute top-2 left-[70%] -translate-x-1/2 z-10 px-4 bg-[#F0F7FB] flex items-center justify-center">
+          <span className="text-base font-bold text-[#08232C] tracking-tight leading-none whitespace-nowrap">
+            2 Plans
+          </span>
         </div>
       </div>
 
       {/* Mobile Header with Flanking Horizontal Dividers */}
       <div className="lg:hidden flex items-center justify-center max-w-xs mx-auto px-4 gap-3 py-2">
-        <div className="h-[2px] flex-1 bg-[#08232C]/60 rounded-full" />
-        <h2 className="text-xl sm:text-2xl font-bold text-[#08232C] tracking-tight shrink-0">
+        <div className="h-[1.5px] flex-1 bg-[#08232C]/30 rounded-full" />
+        <h2 className="text-base sm:text-lg font-bold text-[#08232C] tracking-tight shrink-0">
           2 Plans
         </h2>
-        <div className="h-[2px] flex-1 bg-[#08232C]/60 rounded-full" />
+        <div className="h-[1.5px] flex-1 bg-[#08232C]/30 rounded-full" />
       </div>
 
       {/* Main Pricing Comparison Table */}
       <div className="max-w-5xl mx-auto bg-white border-2 border-[#D8E5EE] rounded-[32px] shadow-sm overflow-hidden">
-        {/* Table View with responsive horizontal scroll */}
+        {/* Table View with responsive horizontal scroll and 40-30-30 proportions */}
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[620px]">
+          <table className="w-full text-left border-collapse min-w-[680px] table-fixed">
+            {/* Column Proportions: 40% - 30% - 30% */}
+            <colgroup>
+              <col className="w-[40%]" />
+              <col className="w-[30%]" />
+              <col className="w-[30%]" />
+            </colgroup>
+
             {/* Header Columns */}
             <thead>
               <tr className="border-b-2 border-[#E2EEF5] bg-white">
@@ -308,7 +318,7 @@ export const CommercialPricingGrid: React.FC = () => {
                 </th>
 
                 {/* Column 2: Plan 1 (Growth Plan) Header */}
-                <th className="py-6 px-3 sm:px-6 text-center align-bottom w-28 sm:w-44 lg:w-56 border-l-2 border-[#E2EEF5] bg-[#FAFDFE]">
+                <th className="py-6 px-4 sm:px-6 text-center align-bottom border-l-2 border-[#E2EEF5] bg-[#FAFDFE]">
                   <div className="flex flex-col items-center space-y-2">
                     <span className="text-xs font-black uppercase tracking-widest text-[#08232C]/60">
                       Plan 1
@@ -323,16 +333,16 @@ export const CommercialPricingGrid: React.FC = () => {
                       href="https://growth.ifamedia.co.uk"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center space-x-1 px-3 py-1.5 rounded-xl bg-[#08232C] hover:bg-[#0E3542] text-white font-bold text-[11px] uppercase tracking-wider transition-colors shadow-xs"
+                      className="inline-flex items-center justify-center space-x-1.5 px-4 py-2 rounded-xl bg-[#08232C] hover:bg-[#0E3542] text-white font-bold text-[11px] uppercase tracking-wider transition-colors shadow-xs"
                     >
                       <span>Preview</span>
-                      <ExternalLink className="w-3 h-3 text-[#F3C044]" />
+                      <ExternalLink className="w-3.5 h-3.5 text-[#F3C044]" />
                     </a>
                   </div>
                 </th>
 
                 {/* Column 3: Plan 2 (Scale Plan) Header */}
-                <th className="py-6 px-3 sm:px-6 text-center align-bottom w-28 sm:w-44 lg:w-56 border-l-2 border-[#E2EEF5] bg-[#F7FBFD] relative">
+                <th className="py-6 px-4 sm:px-6 text-center align-bottom border-l-2 border-[#E2EEF5] bg-[#F7FBFD] relative">
                   <div className="flex flex-col items-center space-y-2">
                     <div className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-[#08232C] text-[#F3C044] text-[10px] font-black uppercase tracking-wider shadow-xs">
                       <Sparkles className="w-2.5 h-2.5" />
@@ -351,10 +361,10 @@ export const CommercialPricingGrid: React.FC = () => {
                       href="https://scale.ifamedia.co.uk"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center space-x-1 px-3 py-1.5 rounded-xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-bold text-[11px] uppercase tracking-wider transition-colors shadow-xs"
+                      className="inline-flex items-center justify-center space-x-1.5 px-4 py-2 rounded-xl bg-[#F3C044] hover:bg-[#F5CA5E] text-[#08232C] font-bold text-[11px] uppercase tracking-wider transition-colors shadow-xs"
                     >
                       <span>Preview</span>
-                      <ExternalLink className="w-3 h-3 text-[#08232C]" />
+                      <ExternalLink className="w-3.5 h-3.5 text-[#08232C]" />
                     </a>
                   </div>
                 </th>
