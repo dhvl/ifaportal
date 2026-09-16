@@ -14,99 +14,99 @@ interface FeatureItem {
 const websiteFeatures: FeatureItem[] = [
   {
     id: 'bespoke-website',
-    title: 'Modern Bespoke Responsive Website',
-    explainer: 'Design tailored to your advisory firm, fully responsive across mobile, tablet, and desktop.',
+    title: 'Custom Mobile & Desktop Website',
+    explainer: 'Designed specifically for your advisory firm. Looks clean, loads fast, and works smoothly on mobile phones, tablets, and computers.',
     growth: true,
     scale: true,
   },
   {
     id: 'whatsapp-call',
-    title: 'Direct WhatsApp & Call Routing',
-    explainer: 'One-tap instant WhatsApp consultation trigger and click-to-call routing for immediate prospect contact.',
+    title: 'Instant WhatsApp & Phone Contact',
+    explainer: 'Lets prospective clients call or message your advisers directly with a single tap.',
     growth: true,
     scale: true,
   },
   {
     id: 'fca-consumer-duty',
-    title: 'FCA Consumer Duty & FRN Verification',
-    explainer: 'Embedded regulatory compliance, FCA registration validation badge, and statutory FSCS disclaimers.',
+    title: 'FCA & Regulatory Compliance Safeguards',
+    explainer: 'Built with official FCA Firm Reference Number checks, Consumer Duty disclosures, and FSCS protection notices.',
     growth: true,
     scale: true,
   },
   {
     id: 'adviser-directory',
-    title: 'Adviser Bio & Qualifications Directory',
-    explainer: 'Professional adviser profiles showcasing SPS credentials, Chartered status, specialisms, and experience.',
+    title: 'Adviser Profiles & Credentials',
+    explainer: 'Dedicated profile pages showcasing qualifications, specialisms, and individual contact details for each adviser.',
     growth: true,
     scale: true,
   },
   {
     id: 'uk-cloud-ssl',
-    title: 'High-Speed UK Cloud Hosting & SSL',
-    explainer: 'Ultra-fast UK-based cloud infrastructure with automatic SSL certification, DDoS defense, and 99.9% uptime.',
+    title: 'Fast UK Hosting & Bank-Grade Security',
+    explainer: 'Hosted on secure UK cloud servers with SSL encryption to protect client information and guarantee fast load times.',
     growth: true,
     scale: true,
   },
   {
     id: 'gdpr-cookie',
-    title: 'UK GDPR & Cookie Consent Management',
-    explainer: 'Compliant granular cookie consent banner, audit-ready data privacy architecture, and regulatory policy pages.',
+    title: 'UK GDPR & Privacy Policy Controls',
+    explainer: 'Includes compliant cookie consent banners and privacy policy pages to meet UK data protection laws.',
     growth: true,
     scale: true,
   },
   {
     id: 'contact-forms',
-    title: 'Secure SSL Contact & Inquiry Forms',
-    explainer: 'Encrypted lead inquiry forms delivering instant notifications directly to your primary practice inbox.',
+    title: 'Secure Client Enquiry Forms',
+    explainer: 'Protected contact forms that deliver new client messages straight to your inbox without spam.',
     growth: true,
     scale: true,
   },
   {
     id: 'ai-concierge',
-    title: '24/7 Conversational AI Concierge',
-    explainer: 'Trained UK wealth assistant that greets visitors, answers practice FAQs, and pre-qualifies high-net-worth leads.',
+    title: '24/7 Virtual Client Assistant (AI Chat)',
+    explainer: 'A friendly automated assistant that greets website visitors, answers common questions, and collects contact details 24/7.',
     growth: false,
     scale: true,
   },
   {
     id: 'pension-calc',
-    title: 'Pension Drawdown Calculator',
-    explainer: 'Interactive tool allowing prospects to simulate tax-free cash lump sums and retirement income sustainability.',
+    title: 'Pension & Retirement Drawdown Calculator',
+    explainer: 'An interactive tool that lets prospective clients estimate tax-free cash and sustainable retirement income.',
     growth: false,
     scale: true,
   },
   {
     id: 'iht-calc',
-    title: 'Inheritance Tax (40% IHT) Calculator',
-    explainer: 'Engaging tool calculating potential estate tax liability above nil-rate bands to prompt wealth transfer planning.',
+    title: 'Inheritance Tax (IHT) Calculator',
+    explainer: 'An easy-to-use tool showing visitors their potential estate tax liability to prompt an advisory consultation.',
     growth: false,
     scale: true,
   },
   {
     id: 'isa-calc',
-    title: 'Compound ISA / Wealth Calculator',
-    explainer: 'Visual investment growth calculator demonstrating long-term tax-efficient compounding returns.',
+    title: 'ISA & Investment Growth Calculator',
+    explainer: 'A visual tool showing visitors how their savings and investments could compound over time.',
     growth: false,
     scale: true,
   },
   {
     id: 'gated-guide',
-    title: 'Gated Retirement Guide Lead Magnet',
-    explainer: 'High-value downloadable wealth & retirement guide designed to capture verified prospect emails.',
+    title: 'Free Retirement Guide for New Enquiries',
+    explainer: 'A downloadable retirement guide that visitors can read in exchange for leaving their name and email address.',
     growth: false,
     scale: true,
   },
   {
     id: 'booking-calendar',
-    title: 'Adviser Booking Calendar Integration',
-    explainer: 'Seamless real-time appointment booking synced with Calendly, HubSpot, or Microsoft Outlook calendars.',
+    title: 'Online Meeting Booking (Calendar Sync)',
+    explainer: 'Connects directly to your diary (Calendly, Outlook, etc.) so clients can book consultations online.',
     growth: false,
     scale: true,
   },
   {
     id: 'client-portal',
-    title: 'Client Portal Login Integration',
-    explainer: 'Direct single-click client portal access gateway for moneyinfo, Intelliflo, Transact, or standard platforms.',
+    title: 'Client Portal Sign-In Button',
+    explainer: 'A prominent button on your site where existing clients can log into their investment platform (e.g. moneyinfo, Intelliflo, Transact).',
     growth: false,
     scale: true,
   },
@@ -115,57 +115,57 @@ const websiteFeatures: FeatureItem[] = [
 const marketingFeatures: FeatureItem[] = [
   {
     id: 'dfy-social',
-    title: '3-Month DFY Social Media Retainer',
-    explainer: 'Comprehensive 90-day Done-For-You social media strategy, scheduling, and execution included with launch.',
+    title: '3 Months of Hands-Off Social Media (Included)',
+    explainer: "We write, design, and publish weekly financial posts for your practice so you don't have to lift a finger.",
     growth: true,
     scale: true,
   },
   {
     id: 'weekly-content',
-    title: 'Weekly LinkedIn & X Financial Content',
-    explainer: 'Curated weekly thought-leadership posts to build trust and authority among local and corporate clients.',
+    title: 'Weekly LinkedIn & Social Media Articles',
+    explainer: "Timely, compliance-friendly market insights posted under your firm's name to build authority and trust.",
     growth: true,
     scale: true,
   },
   {
     id: 'client-newsletter',
-    title: 'Monthly Branded Client Newsletter',
-    explainer: 'Professionally formatted email newsletter template with timely market updates for client retention.',
+    title: 'Monthly Email Newsletter for Your Clients',
+    explainer: 'A professionally written email newsletter ready to send to your clients with market updates and timely advice tips.',
     growth: true,
     scale: true,
   },
   {
     id: 'local-seo',
-    title: 'Google Business Profile & Local SEO',
-    explainer: 'Full setup, category optimization, and local map-pack targeting for regional search dominance.',
+    title: 'Google Maps & Local Search Setup',
+    explainer: 'Puts your firm on Google Maps and local search results so local clients find you when searching for financial advice.',
     growth: true,
     scale: true,
   },
   {
     id: 'multichannel-campaigns',
-    title: 'Expanded Multi-Channel Social Campaigns',
-    explainer: 'Tailored multi-platform campaigns with custom infographic assets, infographics, and carousel posts.',
+    title: 'Advanced Social Media & Visual Graphics',
+    explainer: 'Custom charts, infographics, and visual posts designed to grab attention and attract higher-value clients.',
     growth: false,
     scale: true,
   },
   {
     id: 'email-nurture',
-    title: 'Automated Email Lead Nurture Funnel',
-    explainer: 'Automated multi-touch email drip sequence warming cold inquiries into committed booked consultations.',
+    title: 'Automated Follow-Up Emails for New Enquiries',
+    explainer: 'Automatically sends friendly, helpful follow-up emails to prospects who get in touch, helping convert them into booked calls.',
     growth: false,
     scale: true,
   },
   {
     id: 'local-citations',
-    title: 'UK Local Search Citation Building',
-    explainer: 'High-authority UK financial directory and citation syndication to maximize organic local search ranking.',
+    title: 'Local Business Directory Listings',
+    explainer: 'Registers your firm across trusted UK financial and local business directories to improve your online presence.',
     growth: false,
     scale: true,
   },
   {
     id: 'monthly-analytics',
-    title: 'Monthly Performance & ROI Analytics',
-    explainer: 'Executive monthly reporting dashboard detailing traffic volume, lead conversion rates, and acquisition ROI.',
+    title: 'Monthly Website & Enquiry Reports',
+    explainer: 'A clear, simple monthly summary showing how many people visited your website and how many enquiries were generated.',
     growth: false,
     scale: true,
   },
@@ -371,7 +371,7 @@ export const CommercialPricingGrid: React.FC = () => {
                       1. Website Features
                     </span>
                     <span className="text-xs text-[#A16207] font-medium hidden sm:inline">
-                      — Bespoke design, regulatory compliance &amp; core infrastructure
+                      — Fast, secure, FCA-compliant &amp; easy for clients to use
                     </span>
                   </div>
                 </td>
@@ -384,10 +384,10 @@ export const CommercialPricingGrid: React.FC = () => {
                   <div className="flex items-center space-x-2 text-[#0369A1]">
                     <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-[#0284C7]" />
                     <span className="text-xs sm:text-sm font-black uppercase tracking-wider">
-                      2. Digital Marketing Features
+                      2. Marketing &amp; Growth Services
                     </span>
                     <span className="text-xs text-[#0284C7] font-medium hidden sm:inline">
-                      — DFY social authority, local SEO &amp; lead nurturing funnels
+                      — Hands-off social posts, local Google visibility &amp; client enquiries
                     </span>
                   </div>
                 </td>
@@ -399,7 +399,7 @@ export const CommercialPricingGrid: React.FC = () => {
             <tfoot>
               <tr className="border-t-2 border-[#E2EEF5] bg-white">
                 <td className="py-6 px-4 sm:px-6 text-xs text-[#08232C]/60 font-medium">
-                  Hover or tap the <Info className="w-3.5 h-3.5 inline mx-0.5 text-[#08232C]/70" /> icon next to any feature to view its full specification.
+                  Hover or tap the <Info className="w-3.5 h-3.5 inline mx-0.5 text-[#08232C]/70" /> icon next to any feature to view a simple, plain-English explanation.
                 </td>
                 <td className="py-6 px-3 sm:px-6 text-center border-l-2 border-[#E2EEF5] bg-[#FAFDFE]">
                   <a
